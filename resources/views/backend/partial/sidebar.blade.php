@@ -27,16 +27,6 @@
                     <li class="list-title">Dashboard</li>
                     <li class="sidebar-item"><a class="sidebar-link" href="/dashboard">Main</a></li>
                 </ul>
-
-                <a href="#employee" data-toggle="collapse" class="sidebar-link collapsed">
-                    <span class="item">
-                        <i class="align-middle mr-2 fas fa-fw fa-user"></i> <span class="align-middle">Employee</span>
-                    </span>
-                </a>
-                <ul id="employee" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
-                    <li class="list-title">Employee</li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="/payroll/employee-information">Employee Profile</a></li>
-                </ul>
             </li>
             <li class="sidebar-header">
                 Transaction
@@ -45,16 +35,16 @@
             <li class="sidebar-item">
                 <a href="#payroll_system" data-toggle="collapse" class="sidebar-link collapsed">
                     <span class="item">
-                        <i class="align-middle mr-2 fas fa-fw fa-receipt"></i> <span class="align-middle">Payroll</span>
-                    </span>
+                        <i class="align-middle mr-2 fas fa-fw fa-receipt"></i> <span class="align-middle">Area</span>
+                    </span> 
                 </a>
                 <ul id="payroll_system" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
-                    <li class="list-title">Payroll</li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="/payroll/company-profile">Company Profile</a></li>
+                    <li class="list-title">Area</li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="/transaction/area">Area</a></li>
                 </ul>
             </li>
 
-            <li class="sidebar-header">
+            {{-- <li class="sidebar-header">
                 Maintenance
             </li>
             <li class="sidebar-item">
@@ -87,7 +77,7 @@
                     <li class="sidebar-item"><a class="sidebar-link" href="{{url('settings/role')}}">Roles</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="{{url('settings/user')}}">Permission</a></li>
                 </ul>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </nav>

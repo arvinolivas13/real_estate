@@ -93,6 +93,14 @@ var scion = {
                 },
                 columns: data
             });
+        },
+        static_table(field_id, data, column) {
+            $('#'+field_id).DataTable( {
+                responsive: true,
+                processing: true,
+                data: data,
+                columns: column
+            });
         }
     },
     lookup(title, field_id, url, data) {
