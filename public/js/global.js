@@ -94,10 +94,11 @@ var scion = {
                 columns: data
             });
         },
-        static_table(field_id, data, column) {
+        static_table(field_id, data, column, paging) {
             $('#'+field_id).DataTable( {
                 responsive: true,
                 processing: true,
+                bPaginate: paging,
                 data: data,
                 columns: column
             });

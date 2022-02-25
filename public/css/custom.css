@@ -27,7 +27,7 @@ a.sidebar-toggle.mr-2 {
     padding: 10px;
     font-size: 25px;
     display: inline-block !important;
-    color: #47b4ea  !important;
+    color: #2e9e5b  !important;
     text-align: center;
 }
 
@@ -48,7 +48,7 @@ a.sidebar-toggle.mr-2 {
 }
 
 li.sidebar-item a i {
-    color: #47b4ea !important;
+    color: #2e9e5b !important;
 }
 
 .company-name {
@@ -66,7 +66,7 @@ a.sidebar-link:before {
 }
 
 a.sidebar-link.collapsed span {
-    color: #47b4ea !important;
+    color: #2e9e5b !important;
 }
 
 a.sidebar-link .item {
@@ -89,7 +89,7 @@ a.sidebar-link {
 }
 
 a.sidebar-link:hover {
-    background: #47b4ea ;
+    background: #2e9e5b ;
     color: #fff !important;
 }
 
@@ -104,7 +104,7 @@ a.sidebar-link:hover span{
     font-size: 8px;
     color: #ffffff;
     font-weight: bold !important;
-    background: #47b4ea;
+    background: #2e9e5b;
     margin: 2px 4px;
     border-radius: 3px;
 }
@@ -142,12 +142,12 @@ a.sidebar-link .item {
 }
 
 .sidebar-dropdown a.sidebar-link:hover {
-    background: #99c2ff !important;
+    background: #4ed986 !important;
     color: #fff !important;
 }
 
 ul.sidebar-nav>li>a.sidebar-link:not(.collapsed) {
-    background: #47b4ea !important;
+    background: #2e9e5b !important;
     color: #fff !important;
 }
 
@@ -224,7 +224,7 @@ li.list-title {
 .toggled .sidebar-header {
     display: block !important;
     font-weight: bold !important;
-    color: #47b4ea !important;
+    color: #2e9e5b !important;
     font-size: 12px !important;
     font-family: system-ui !important;
     text-align: left !important;
@@ -244,7 +244,7 @@ li.list-title {
 
 /* Custom Features */
 .modal-header {
-    background: #47b4ea;
+    background: #2e9e5b;
     padding: 10px 20px;
 }
 
@@ -260,12 +260,12 @@ li.list-title {
 }
 
 .btn-primary {
-    background: #47b4ea !important;
+    background: #2e9e5b !important;
     border: 0px !important;
 }
 
 .bg-primary {
-    background: #47b4ea !important;
+    background: #2e9e5b !important;
 }
 
 .btn-primary:hover {
@@ -275,7 +275,7 @@ li.list-title {
 .btn-secondary {
     background: #e9e9e9;
     border: 0px !important;
-    color: #47b4ea;
+    color: #2e9e5b;
 }
 
 .btn-secondary:hover {
@@ -284,8 +284,6 @@ li.list-title {
 }
 
 .dataTable thead {
-    background: #47b4ea;
-    color: #fff !important;
     font-size: 13px;
 }
 
@@ -297,10 +295,11 @@ div#datatables_processing {
 
 .dataTable {
     border: 1px solid #f8f9fa;
+    text-transform: uppercase;
 }
 
 li.paginate_button.page-item.active a {
-    background: #47b4ea;
+    background: #2e9e5b;
 }
 /* End Features */
 
@@ -312,7 +311,7 @@ li.paginate_button.page-item.active a {
 }
 
 .header-block {
-    background: #47b4ea;
+    background: #2e9e5b;
     padding: 0px !important;
 }
 
@@ -340,7 +339,7 @@ li.paginate_button.page-item.active a {
 }
 
 .sidebar-user {
-    background: #74ccf7 !important;
+    background: #4ed986 !important;
     padding: 0 10px;
     border-radius: 100px;
 }

@@ -15,7 +15,7 @@
             <h3>List of Area</h3>
             <div class="area-container row">
                 <div class="col-6">
-                    <div class="area" style="background: url('/images/area/area_1.jpg')no-repeat;">
+                    <div class="area" style="background: url('/images/area/area_1.jpg')no-repeat;" onclick="location.href = 'area/customer-record'">
                         <div class="area-body">
                             <span class="area-count">10/20</span>
                             <span class="area-name">Sample Area 1</span>
@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="area" style="background: url('/images/area/area_2.jpg')no-repeat;">
+                    <div class="area" style="background: url('/images/area/area_2.jpg')no-repeat;" onclick="location.href = 'area/customer-record'">
                         <div class="area-body">
                             <span class="area-count">14/20</span>
                             <span class="area-name">Sample Area 2</span>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="area" style="background: url('/images/area/area_3.jpg')no-repeat;">
+                    <div class="area" style="background: url('/images/area/area_3.jpg')no-repeat;" onclick="location.href = 'area/customer-record'">
                         <div class="area-body">
                             <span class="area-count">11/20</span>
                             <span class="area-name">Sample Area 3</span>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="area" style="background: url('/images/area/area_4.jpg')no-repeat;">
+                    <div class="area" style="background: url('/images/area/area_4.jpg')no-repeat;" onclick="location.href = 'area/customer-record'">
                         <div class="area-body">
                             <span class="area-count">19/20</span>
                             <span class="area-name">Sample Area 4</span>
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="area" style="background: url('/images/area/area_5.jpg')no-repeat;">
+                    <div class="area" style="background: url('/images/area/area_5.jpg')no-repeat;" onclick="location.href = 'area/customer-record'">
                         <div class="area-body">
                             <span class="area-count">08/20</span>
                             <span class="area-name">Sample Area 5</span>
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="area" style="background: url('/images/area/area_6.jpg')no-repeat;">
+                    <div class="area" style="background: url('/images/area/area_6.jpg')no-repeat;" onclick="location.href = 'area/customer-record'">
                         <div class="area-body">
                             <span class="area-count">03/20</span>
                             <span class="area-name">Sample Area 6</span>
