@@ -10,11 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 Route::group(['middleware' => ['auth']], function() {
     
-    Route::get('/', function () {
-        return view('backend.pages.dashboard');
-    });
+    // Route::get('/', function () {
+    //     return view('backend.pages.dashboard');
+    // });
     
     Route::get('/dashboard', function () {
         return view('backend.pages.dashboard');
@@ -119,6 +121,10 @@ Route::group(['middleware' => ['auth']], function() {
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Auth::routes();
+
+Route::get('/', function () {
+    return view('frontend.pages.home');
+});
 
 Route::get('/home', 'HomeController@index' )->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
