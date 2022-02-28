@@ -50,6 +50,8 @@
                         <i class="align-middle mr-2 fas fa-fw fa-car"></i> <span class="align-middle">Van</span>
                     </span> 
                 </a>
+                @endrole
+                @role('Super Admin|Agent')
                 <a href="/transaction/commission" class="sidebar-link collapsed">
                     <span class="item">
                         <i class="align-middle mr-2 fas fa-fw fa-money-bill"></i> <span class="align-middle">Commission</span>
