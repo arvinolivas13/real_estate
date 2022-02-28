@@ -43,19 +43,19 @@
                 <div class="col-12">
                     <h1 class="customer-name">Sample Data</h1>
                 </div>
-                <div class="col-4">
+                <div class="col-xl-4 col-lg-4 col-sm-12">
                     <div class="balance-data">
                         <span class="label">Total Contract Price</span>
                         <span class="total">P 2,000,000.00</span>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-xl-4 col-lg-4 col-sm-12">
                     <div class="balance-data">
                         <span class="label">Balance</span>
                         <span class="total">P 1,530,005.00</span>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-xl-4 col-lg-4 col-sm-12">
                     <div class="balance-data">
                         <span class="label">Total Payment</span>
                         <span class="total">P 469,995</span>
