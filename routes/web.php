@@ -21,6 +21,19 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard', function () {
         return view('backend.pages.dashboard');
     });
+
+    Route::get('maintenance/calendar', function () {
+        return view('backend.pages.maintenance.calendar');
+    });
+    Route::get('maintenance/customer', function () {
+        return view('backend.pages.maintenance.customer');
+    });
+    Route::get('maintenance/agent', function () {
+        return view('backend.pages.maintenance.agent');
+    });
+    Route::get('maintenance/van', function () {
+        return view('backend.pages.maintenance.van');
+    });
     
     Route::group(['prefix' => '/api'], function (){
         Route::group(['prefix' => '/leave-type'], function (){

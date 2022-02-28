@@ -476,9 +476,9 @@
                             <div class="icon-quote">
                                 <span class="icon-quote-left"></span>
                             </div>
-                            <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                            <p class="name">Jacob Bolton</p>
-                            <span class="position">CEO, Founder</span>
+                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                            <p class="name">Juan Dela Cruz</p>
+                            <span class="position">CEO, President</span>
                         </div>
                     </div>
                     </div>
@@ -492,8 +492,8 @@
                             <div class="icon-quote">
                                 <span class="icon-quote-left"></span>
                             </div>
-                            <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                            <p class="name">Jacob Bolton</p>
+                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                            <p class="name">Peter Reyes</p>
                             <span class="position">CEO, Founder</span>
                         </div>
                     </div>
@@ -505,7 +505,7 @@
     </div>
     </section>
 
-    <section class="ftco-section bg-light" data-section="blog">
+    <!-- <section class="ftco-section bg-light" data-section="blog">
     <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
         <div class="col-md-7 heading-section text-center ftco-animate">
@@ -674,7 +674,7 @@
         </div>
         </div>
     </div>
-    </section>
+    </section> -->
 
     <section class="ftco-section contact-section ftco-no-pb" data-section="contact">
     <div class="container">

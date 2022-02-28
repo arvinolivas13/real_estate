@@ -26,6 +26,8 @@
                 <ul id="dashboard" class="sidebar-dropdown list-unstyled collapse" data-parent="#sidebar">
                     <li class="list-title">Dashboard</li>
                     <li class="sidebar-item"><a class="sidebar-link" href="/dashboard">Main</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="/calendar">Calendar</a></li>
+
                 </ul>
             </li>
             <li class="sidebar-header">
@@ -41,6 +43,22 @@
                 <ul id="payroll_system" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
                     <li class="list-title">Area</li>
                     <li class="sidebar-item"><a class="sidebar-link" href="/transaction/area">Area</a></li>
+                </ul>
+            </li>
+            <li class="sidebar-header">
+                Maintenace
+            </li>
+            <li class="sidebar-item">
+                <a href="#information" data-toggle="collapse" class="sidebar-link collapsed">
+                    <span class="item">
+                        <i class="align-middle mr-2 fas fa-fw fa-receipt"></i> <span class="align-middle">Information</span>
+                    </span> 
+                </a>
+                <ul id="information" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                    <li class="list-title">Main</li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="/maintenance/customer">Customers</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="/maintenance/agent">Agents</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="/maintenance/van">Vans</a></li>
                 </ul>
             </li>
 

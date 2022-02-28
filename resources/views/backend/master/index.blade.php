@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMP - Payroll System</title>
+    <title>Brilliant Five J System</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
@@ -14,6 +14,7 @@
     <link href="{{asset('/css/custom.css')}}" rel="stylesheet">
     {{-- <script src="{{{ URL::asset('backend/js/settings.js') }}}"></script> --}}
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="{{asset('lib/main.css')}}">
     @yield('scripts')
     @yield('styles')
     @yield('styles-2')
@@ -113,7 +114,7 @@
     </div>
 
     <script src="{{{ URL::asset('backend/js/app.js') }}}"></script>
-
+    <script src="{{asset('lib/main.js')}}"></script>
     <script src="{{asset('/plugins/cropimg/cropzee.js')}}" ></script>
     <script src="{{asset('/plugins/toastr/toastr.min.js')}}" ></script>
     <script src="{{asset('/js/global.js')}}" ></script>
@@ -139,5 +140,7 @@
 	</script>
     
     @yield('chart-js')
+    @yield('calendar-js')
+
 </body>
 </html>
