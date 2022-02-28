@@ -20,7 +20,7 @@
     </div>
     </section>
         
-        <section class="ftco-section ftco-services ftco-no-pt">
+    <section class="ftco-section ftco-services ftco-no-pt">
     <div class="container">
         <div class="row services-section">
         <div class="col-md-4 d-flex align-self-stretch ftco-animate">
@@ -57,6 +57,29 @@
     </div>
     </section>
 
+    <section class="ftco-section">
+        <div class="container-fluid p-0">
+            <div class="row no-gutters justify-content-center pb-5">
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <span class="subheading">Inquire Status</span>
+                    <h2 class="mb-4">Quickly Check Your Plan</h2>
+                    <p>Search the details and your payment plan with your code!</p>
+                </div>
+                <div class="col-md 12">
+                    <form action="#" class="p-5 inquire-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Transaction Code">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Check Status" class="btn btn-secondary py-3 px-5" data-toggle="modal" data-target=".bd-example-modal-lg">
+                        </div>
+                    </form>
+                </div>
+            </div>
+       
+        </div>
+    </section>
+
     <section class="ftco-section ftco-project bg-light">
         <div class="container-fluid p-0">
             <div class="row no-gutters justify-content-center pb-5">
@@ -70,8 +93,6 @@
                 <div id='calendar'></div>
             </div>
         </div>
-            
-        
     </section>
 
     <section class="ftco-counter img ftco-section ftco-no-pt ftco-no-pb" id="section-counter" data-section="about">
@@ -701,7 +722,7 @@
                 <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
             </div>
             <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-secondary py-3 px-5">
+                <input value="Send Message" class="btn btn-secondary py-3 px-5">
             </div>
             </form>
         
@@ -756,8 +777,93 @@
         </div>
     </div>
     </section>
-@endsection
 
+    <!-- MODAL -->
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="customer-name">Nadine Cruz Lopez</h1>
+                        <div class="row">
+                            <div class="col-4">
+                                <h5>TCP: P2,000,000.00</h5>
+                            </div>
+                            <div class="col-4">
+                                <h5>Balance: P1,530,005.00</h5>
+                            </div>
+                            <div class="col-4">
+                                <h5>Total Payment: P 469,995</h5>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-12 mt-3">
+                        <table id="customer_reports_table" class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Transaction Number</th>
+                                    <th>Payment Type</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Reference Number</th>
+                                </tr>
+                                <tr>
+                                    <td>2020-MDZUUWEL</td>
+                                    <td>Gcash</td>
+                                    <td>2020/09/30</td>
+                                    <td>P 31,333.33</td>
+                                    <td>UDBWUUBO</td>
+                                </tr>
+                                <tr>
+                                    <td>2020-LHOBNK2C</td>
+                                    <td>BPI</td>
+                                    <td>2021/08/30</td>
+                                    <td>P 31,333.33</td>
+                                    <td>ITDEOGLX</td>
+                                </tr>
+                                <tr>
+                                    <td>2020-UZTWLXLU</td>
+                                    <td>BDO</td>
+                                    <td>2021/04/30</td>
+                                    <td>P 31,333.33</td>
+                                    <td>3JREXJ8P</td>
+                                </tr>
+                                <tr>
+                                    <td>2020-YUNTNA01</td>
+                                    <td>PNB</td>
+                                    <td>2021/02/28</td>
+                                    <td>P 31,333.33</td>
+                                    <td>LMWCVNRX</td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+@endsection
+@section('style')
+<style>
+h1.customer-name {
+    margin-bottom: 0px !important;
+    color: #03a84e;
+}
+form.p-5.inquire-form {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+</style>
+@endsection
 @section('calendar-js')
 <script>
 
