@@ -33,7 +33,7 @@
 
                                     <div class="col-auto">
                                         <div class="avatar">
-                                            <div class="avatar-title rounded-circle bg-primary-dark">
+                                            <div class="avatar-title rounded-circle bg-success-dark">
                                                 <i class="align-middle" data-feather="truck"></i>
                                             </div>
                                         </div>
@@ -54,7 +54,7 @@
 
                                     <div class="col-auto">
                                         <div class="avatar">
-                                            <div class="avatar-title rounded-circle bg-primary-dark">
+                                            <div class="avatar-title rounded-circle bg-success-dark">
                                                 <i class="align-middle" data-feather="users"></i>
                                             </div>
                                         </div>
@@ -77,7 +77,7 @@
 
                                     <div class="col-auto">
                                         <div class="avatar">
-                                            <div class="avatar-title rounded-circle bg-primary-dark">
+                                            <div class="avatar-title rounded-circle bg-success-dark">
                                                 <i class="align-middle" data-feather="dollar-sign"></i>
                                             </div>
                                         </div>
@@ -98,7 +98,7 @@
 
                                     <div class="col-auto">
                                         <div class="avatar">
-                                            <div class="avatar-title rounded-circle bg-primary-dark">
+                                            <div class="avatar-title rounded-circle bg-success-dark">
                                                 <i class="align-middle" data-feather="shopping-cart"></i>
                                             </div>
                                         </div>
@@ -128,7 +128,7 @@
 @section('styles')
 <style>
 .dashboard-greeting {
-    background: #3282b8;
+    background: #2e9e5b;
 }
 .dashboard-greeting h1 {
     color: #fff !important;

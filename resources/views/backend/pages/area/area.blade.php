@@ -18,7 +18,8 @@
                     <div class="area" style="background: url('/images/area/area_1.jpg')no-repeat;" onclick="location.href = 'area/customer-record'">
                         <div class="area-body">
                             <span class="area-count">10/20</span>
-                            <span class="area-name">Sample Area 1</span>
+                            <span class="area-name">Grand Villas Farm Phase 1</span>
+                            <span class="area-type">Farm Lot</span>
                             <span class="area-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
                         </div>
                     </div>
@@ -27,7 +28,8 @@
                     <div class="area" style="background: url('/images/area/area_2.jpg')no-repeat;" onclick="location.href = 'area/customer-record'">
                         <div class="area-body">
                             <span class="area-count">14/20</span>
-                            <span class="area-name">Sample Area 2</span>
+                            <span class="area-name">Grand Villas Farm Phase 2</span>
+                            <span class="area-type">Farm Lot</span>
                             <span class="area-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
                         </div>
                     </div>
@@ -36,7 +38,8 @@
                     <div class="area" style="background: url('/images/area/area_3.jpg')no-repeat;" onclick="location.href = 'area/customer-record'">
                         <div class="area-body">
                             <span class="area-count">11/20</span>
-                            <span class="area-name">Sample Area 3</span>
+                            <span class="area-name">Grand Villas Farm Phase 2-B</span>
+                            <span class="area-type">Farm Lot</span>
                             <span class="area-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
                         </div>
                     </div>
@@ -45,7 +48,8 @@
                     <div class="area" style="background: url('/images/area/area_4.jpg')no-repeat;" onclick="location.href = 'area/customer-record'">
                         <div class="area-body">
                             <span class="area-count">19/20</span>
-                            <span class="area-name">Sample Area 4</span>
+                            <span class="area-name">Grand Villas Farm Phase 3</span>
+                            <span class="area-type">Farm Lot</span>
                             <span class="area-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
                         </div>
                     </div>
@@ -54,7 +58,8 @@
                     <div class="area" style="background: url('/images/area/area_5.jpg')no-repeat;" onclick="location.href = 'area/customer-record'">
                         <div class="area-body">
                             <span class="area-count">08/20</span>
-                            <span class="area-name">Sample Area 5</span>
+                            <span class="area-name">Grand Villas Farm East 1</span>
+                            <span class="area-type">Farm Lot</span>
                             <span class="area-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
                         </div>
                     </div>
@@ -63,7 +68,8 @@
                     <div class="area" style="background: url('/images/area/area_6.jpg')no-repeat;" onclick="location.href = 'area/customer-record'">
                         <div class="area-body">
                             <span class="area-count">03/20</span>
-                            <span class="area-name">Sample Area 6</span>
+                            <span class="area-name">Grand Villas Farm East 2</span>
+                            <span class="area-type">Farm Lot</span>
                             <span class="area-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
                         </div>
                     </div>
@@ -117,6 +123,17 @@ span.area-name {
 }
 span.area-details {
     font-size: 15px;
+}
+span.area-details {
+    display: block;
+}
+span.area-type {
+    display: inline-block !important;
+    padding: 3px 10px;
+    background: #2e9e5b;
+    font-size: 12px;
+    border-radius: 50px;
+    text-transform: uppercase;
 }
 </style>
 @endsection

@@ -8,7 +8,7 @@
         <div class="company-logo">
             <img src="/images/logo.png" alt="company-logo" width="100%"/>
             <div class="company-name">
-                Company Name
+                Brilliant Five J Construction and Development Corp.
             </div>
         </div>
 
@@ -35,15 +35,20 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="#payroll_system" data-toggle="collapse" class="sidebar-link collapsed">
+                <a href="/transaction/area" class="sidebar-link collapsed">
                     <span class="item">
                         <i class="align-middle mr-2 fas fa-fw fa-receipt"></i> <span class="align-middle">Area</span>
                     </span> 
                 </a>
-                <ul id="payroll_system" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+                <a href="/transaction/van" class="sidebar-link collapsed">
+                    <span class="item">
+                        <i class="align-middle mr-2 fas fa-fw fa-car"></i> <span class="align-middle">Van</span>
+                    </span> 
+                </a>
+                {{-- <ul id="payroll_system" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
                     <li class="list-title">Area</li>
                     <li class="sidebar-item"><a class="sidebar-link" href="/transaction/area">Area</a></li>
-                </ul>
+                </ul> --}}
             </li>
             <li class="sidebar-header">
                 Maintenace
