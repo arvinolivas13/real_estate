@@ -40,6 +40,10 @@ Route::group(['middleware' => ['auth']], function() {
             // Route::get          ('/destroy/{id}',                'EmployeeInformationController@destroy'                        )->name('destroy_employment_information');
             // Route::get          ('/sample',                      'EmployeeInformationController@sample'                         )->name('destroy_employment_information');
         });
+
+        Route::group(['prefix' => '/van'], function (){
+            Route::get          ('/',                            'VanController@index'                           )->name('van');
+        });
     });
 
  });
