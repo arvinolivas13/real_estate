@@ -17,6 +17,7 @@
             <li class="sidebar-header">
                 Main
             </li>
+            @role('Super Admin|Agent')
             <li class="sidebar-item">   
                 <a href="#dashboard" data-toggle="collapse" class="sidebar-link collapsed">
                     <span class="item">
@@ -26,30 +27,41 @@
                 <ul id="dashboard" class="sidebar-dropdown list-unstyled collapse" data-parent="#sidebar">
                     <li class="list-title">Dashboard</li>
                     <li class="sidebar-item"><a class="sidebar-link" href="/dashboard">Main</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="/calendar">Calendar</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="/maintenance/calendar">Calendar</a></li>
 
                 </ul>
             </li>
+            @endrole
             <li class="sidebar-header">
                 Transaction
             </li>
 
             <li class="sidebar-item">
+                @role('Super Admin|Agent')
                 <a href="/transaction/area" class="sidebar-link collapsed">
                     <span class="item">
                         <i class="align-middle mr-2 fas fa-fw fa-receipt"></i> <span class="align-middle">Area</span>
                     </span> 
                 </a>
+                @endrole
+                @role('Agent')
                 <a href="/transaction/van" class="sidebar-link collapsed">
                     <span class="item">
                         <i class="align-middle mr-2 fas fa-fw fa-car"></i> <span class="align-middle">Van</span>
                     </span> 
                 </a>
+                <a href="/transaction/commission" class="sidebar-link collapsed">
+                    <span class="item">
+                        <i class="align-middle mr-2 fas fa-fw fa-money-bill"></i> <span class="align-middle">Commission</span>
+                    </span> 
+                </a>
+                @endrole
                 {{-- <ul id="payroll_system" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
                     <li class="list-title">Area</li>
                     <li class="sidebar-item"><a class="sidebar-link" href="/transaction/area">Area</a></li>
                 </ul> --}}
             </li>
+            @role('Super Admin')
             <li class="sidebar-header">
                 Maintenace
             </li>
@@ -66,6 +78,7 @@
                     <li class="sidebar-item"><a class="sidebar-link" href="/maintenance/van">Vans</a></li>
                 </ul>
             </li>
+            @endrole
 
             {{-- <li class="sidebar-header">
                 Maintenance

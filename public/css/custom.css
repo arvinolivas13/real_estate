@@ -440,3 +440,22 @@ table#lookup tbody>tr:hover {
         margin: 0px !important;
     }
 }
+
+@media screen and (max-width: 800px) {
+    
+    li.nav-item.dropdown.action {
+        display: none;
+    }
+    .profile-name {
+        display: none;
+    }
+    .sidebar-user {
+        background: none !important;
+    }
+    .profile-img {
+        margin: 0px;
+    }
+    a.sidebar-toggle.mr-2 {
+        display: none !important;
+    }
+}

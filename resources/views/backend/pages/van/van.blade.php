@@ -37,7 +37,7 @@
                                 </span>
                             </div>
                             <div class="van-action text-right">
-                                <button class="btn btn-primary">Check Schedule</button>
+                                <button class="btn btn-primary" onclick="location.href='/transaction/van/schedule'">Check Schedule</button>
                             </div>
                         </div>
                     </div>

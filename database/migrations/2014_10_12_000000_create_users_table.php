@@ -46,6 +46,18 @@ class CreateUsersTable extends Migration
                 'company_id' => '1', 
                 'created_by' => '1', 
                 'password' => Hash::make('P@ssw0rd')
+            ],
+            [
+                'firstname' => 'Juan', 
+                'middlename' => '', 
+                'lastname' => 'Dela Cruz',
+                'suffix' => '',
+                'profile_img' => 'default.jpg', 
+                'email' => 'agent01@gmail.com', 
+                'status' => '1', 
+                'company_id' => '1', 
+                'created_by' => '1', 
+                'password' => Hash::make('P@ssw0rd')
             ]
         ]);
     }

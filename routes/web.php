@@ -43,6 +43,10 @@ Route::group(['middleware' => ['auth']], function() {
     
     Route::group(['prefix' => '/transaction'], function (){
         
+        Route::get('/commission', function () {
+            return view('backend.pages.commission.commission');
+        });
+        
         Route::group(['prefix' => '/area'], function (){
             Route::get          ('/',                            'AreaController@index'                          )->name('area');
             Route::get          ('/customer-record',             'AreaController@customer_record'                )->name('area_customer_record');
@@ -56,6 +60,31 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::group(['prefix' => '/van'], function (){
             Route::get          ('/',                            'VanController@index'                           )->name('van');
+            Route::get          ('/schedule',                    'VanController@schedule'                        )->name('van_schedule');
+        });
+        
+    });
+
+    Route::group(['prefix' => '/maintenance'], function (){
+
+        Route::group(['prefix' => '/van'], function (){
+            Route::get          ('/',                            'VanController@index'                           )->name('van');
+        });
+
+        Route::get('/calendar', function () {
+            return view('backend.pages.calendar');
+        });
+
+        Route::get('/customer', function () {
+            return view('backend.pages.maintenance.customer');
+        });
+
+        Route::get('/agent', function () {
+            return view('backend.pages.maintenance.agent');
+        });
+
+        Route::get('/van', function () {
+            return view('backend.pages.maintenance.van');
         });
     });
 
