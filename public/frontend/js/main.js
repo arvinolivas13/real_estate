@@ -1,386 +1,379 @@
- AOS.init({
- 	duration: 800,
- 	easing: 'slide'
- });
-
-(function($) {
-
-	"use strict";
-
-	var isMobile = {
-		Android: function() {
-			return navigator.userAgent.match(/Android/i);
-		},
-			BlackBerry: function() {
-			return navigator.userAgent.match(/BlackBerry/i);
-		},
-			iOS: function() {
-			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-		},
-			Opera: function() {
-			return navigator.userAgent.match(/Opera Mini/i);
-		},
-			Windows: function() {
-			return navigator.userAgent.match(/IEMobile/i);
-		},
-			any: function() {
-			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-		}
-	};
-
-
-	$(window).stellar({
-    responsive: true,
-    parallaxBackgrounds: true,
-    parallaxElements: true,
-    horizontalScrolling: false,
-    hideDistantElements: false,
-    scrollProperty: 'scroll'
-  });
-
-
-	var fullHeight = function() {
-
-		$('.js-fullheight').css('height', $(window).height());
-		$(window).resize(function(){
-			$('.js-fullheight').css('height', $(window).height());
-		});
-
-	};
-	fullHeight();
-
-	// loader
-	var loader = function() {
-		setTimeout(function() { 
-			if($('#ftco-loader').length > 0) {
-				$('#ftco-loader').removeClass('show');
-			}
-		}, 1);
-	};
-	loader();
-
-	// Scrollax
-   $.Scrollax();
+/*----------------------
+   Template Name: Haven Real Estate html5 template
+    Description: This is html5 template
+    Author: Devitems
+    Version: 1.0
+---------------------------*/
+(function ($) {
+  "use strict";
 
 
 
-   // Burger Menu
-	var burgerMenu = function() {
+  /*-------------------------------------------
+   	 jQuery MeanMenu
+   --------------------------------------------- */
+  jQuery('nav#dropdown').meanmenu();
 
-		$('body').on('click', '.js-fh5co-nav-toggle', function(event){
+  /*-------------------------------------------
+  	 wow js active
+  --------------------------------------------- */
+  new WOW().init();
 
-			event.preventDefault();
+  /*-------------------------------------------
+  	 toltip js active
+  --------------------------------------------- */
+  $('[data-toggle="tooltip"]').tooltip();
 
-			if ( $('#ftco-nav').is(':visible') ) {
-				$(this).removeClass('active');
-			} else {
-				$(this).addClass('active');	
-			}
-
-			
-			
-		});
-
-	};
-	burgerMenu();
-
-
-	// Page Nav
-	var clickMenu = function() {
-
-		$('#ftco-nav a:not([class="external"])').click(function(event){
-			var section = $(this).data('nav-section'),
-				navbar = $('#ftco-nav');
-
-				if ( $('[data-section="' + section + '"]').length ) {
-			    	$('html, body').animate({
-			        	scrollTop: $('[data-section="' + section + '"]').offset().top - 70
-			    	}, 500);
-			   }
-
-		    if ( navbar.is(':visible')) {
-		    	navbar.removeClass('in');
-		    	navbar.attr('aria-expanded', 'false');
-		    	$('.js-fh5co-nav-toggle').removeClass('active');
-		    }
-
-		    event.preventDefault();
-		    return false;
-		});
-
-	};
-	clickMenu();
-
-	// Reflect scrolling in navigation
-	var navActive = function(section) {
-
-		var $el = $('#ftco-nav > ul');
-		$el.find('li').removeClass('active');
-		$el.each(function(){
-			$(this).find('a[data-nav-section="'+section+'"]').closest('li').addClass('active');
-		});
-
-	};
-	navActive();
-
-	var navigationSection = function() {
-
-		var $section = $('section[data-section]');
-		
-		$section.waypoint(function(direction) {
-		  	
-		  	if (direction === 'down') {
-		    	navActive($(this.element).data('section'));
-		  	}
-		}, {
-	  		offset: '150px'
-		});
-
-		$section.waypoint(function(direction) {
-		  	if (direction === 'up') {
-		    	navActive($(this.element).data('section'));
-		  	}
-		}, {
-		  	offset: function() { return -$(this.element).height() + 155; }
-		});
-
-	};
-	navigationSection();
-	
-
-	var carousel = function() {
-		$('.carousel-testimony').owlCarousel({
-			autoplay: true,
-			autoHeight: true,
-			center: true,
-			loop: true,
-			items:1,
-			margin: 30,
-			stagePadding: 0,
-			nav: true,
-			dots: false,
-			navText: ['<span class="ion-ios-arrow-back">', '<span class="ion-ios-arrow-forward">'],
-			responsive:{
-				0:{
-					items: 1
-				},
-				600:{
-					items: 1
-				},
-				1000:{
-					items: 1
-				}
-			}
-		});
-		$('.carousel-project').owlCarousel({
-			autoplay: true,
-			autoHeight: true,
-			center: false,
-			loop: true,
-			items:1,
-			margin: 30,
-			stagePadding: 0,
-			nav: false,
-			dots: true,
-			navText: ['<span class="ion-ios-arrow-back">', '<span class="ion-ios-arrow-forward">'],
-			responsive:{
-				0:{
-					items: 1
-				},
-				600:{
-					items: 2
-				},
-				1000:{
-					items: 4
-				}
-			}
-		});
-
-	};
-	carousel();
-
-	$('nav .dropdown').hover(function(){
-		var $this = $(this);
-		// 	 timer;
-		// clearTimeout(timer);
-		$this.addClass('show');
-		$this.find('> a').attr('aria-expanded', true);
-		// $this.find('.dropdown-menu').addClass('animated-fast fadeInUp show');
-		$this.find('.dropdown-menu').addClass('show');
-	}, function(){
-		var $this = $(this);
-			// timer;
-		// timer = setTimeout(function(){
-			$this.removeClass('show');
-			$this.find('> a').attr('aria-expanded', false);
-			// $this.find('.dropdown-menu').removeClass('animated-fast fadeInUp show');
-			$this.find('.dropdown-menu').removeClass('show');
-		// }, 100);
-	});
-
-
-	$('#dropdown04').on('show.bs.dropdown', function () {
-	  console.log('show');
-	});
-
-	// scroll
-	var scrollWindow = function() {
-		$(window).scroll(function(){
-			var $w = $(this),
-					st = $w.scrollTop(),
-					navbar = $('.ftco_navbar'),
-					sd = $('.js-scroll-wrap');
-
-			if (st > 150) {
-				if ( !navbar.hasClass('scrolled') ) {
-					navbar.addClass('scrolled');	
-				}
-			} 
-			if (st < 150) {
-				if ( navbar.hasClass('scrolled') ) {
-					navbar.removeClass('scrolled sleep');
-				}
-			} 
-			if ( st > 350 ) {
-				if ( !navbar.hasClass('awake') ) {
-					navbar.addClass('awake');	
-				}
-				
-				if(sd.length > 0) {
-					sd.addClass('sleep');
-				}
-			}
-			if ( st < 350 ) {
-				if ( navbar.hasClass('awake') ) {
-					navbar.removeClass('awake');
-					navbar.addClass('sleep');
-				}
-				if(sd.length > 0) {
-					sd.removeClass('sleep');
-				}
-			}
-		});
-	};
-	scrollWindow();
-
-	var isMobile = {
-		Android: function() {
-			return navigator.userAgent.match(/Android/i);
-		},
-			BlackBerry: function() {
-			return navigator.userAgent.match(/BlackBerry/i);
-		},
-			iOS: function() {
-			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-		},
-			Opera: function() {
-			return navigator.userAgent.match(/Opera Mini/i);
-		},
-			Windows: function() {
-			return navigator.userAgent.match(/IEMobile/i);
-		},
-			any: function() {
-			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-		}
-	};
-
-	var counter = function() {
-		
-		$('#section-counter, .hero-wrap, .ftco-counter').waypoint( function( direction ) {
-
-			if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
-
-				var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
-				$('.number').each(function(){
-					var $this = $(this),
-						num = $this.data('number');
-						console.log(num);
-					$this.animateNumber(
-					  {
-					    number: num,
-					    numberStep: comma_separator_number_step
-					  }, 7000
-					);
-				});
-				
-			}
-
-		} , { offset: '95%' } );
-
-	}
-	counter();
-
-
-	var contentWayPoint = function() {
-		var i = 0;
-		$('.ftco-animate').waypoint( function( direction ) {
-
-			if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
-				
-				i++;
-
-				$(this.element).addClass('item-animate');
-				setTimeout(function(){
-
-					$('body .ftco-animate.item-animate').each(function(k){
-						var el = $(this);
-						setTimeout( function () {
-							var effect = el.data('animate-effect');
-							if ( effect === 'fadeIn') {
-								el.addClass('fadeIn ftco-animated');
-							} else if ( effect === 'fadeInLeft') {
-								el.addClass('fadeInLeft ftco-animated');
-							} else if ( effect === 'fadeInRight') {
-								el.addClass('fadeInRight ftco-animated');
-							} else {
-								el.addClass('fadeInUp ftco-animated');
-							}
-							el.removeClass('item-animate');
-						},  k * 50, 'easeInOutExpo' );
-					});
-					
-				}, 100);
-				
-			}
-
-		} , { offset: '95%' } );
-	};
-	contentWayPoint();
-
-	// magnific popup
-	$('.image-popup').magnificPopup({
-    type: 'image',
-    closeOnContentClick: true,
-    closeBtnInside: false,
-    fixedContentPos: true,
-    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
-     gallery: {
-      enabled: true,
-      navigateByImgClick: true,
-      preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-    },
-    image: {
-      verticalFit: true
-    },
-    zoom: {
-      enabled: true,
-      duration: 300 // don't foget to change the duration also in CSS
+  /*----------------------------
+     stickey menu
+  ----------------------------*/
+  $(window).on('scroll', function () {
+    var scroll = $(window).scrollTop();
+    if (scroll < 265) {
+      $(".sticky-header").removeClass("sticky");
+    } else {
+      $(".sticky-header").addClass("sticky");
     }
   });
 
-  $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
-    disableOn: 700,
-    type: 'iframe',
-    mainClass: 'mfp-fade',
-    removalDelay: 160,
-    preloader: false,
+  $('.close-home').on('click', function () {
+    $('.find-home-box').addClass('fadeOut');
 
-    fixedContentPos: false
+  });
+
+  /*----------------------
+		Nivo slider activation
+	----------------------*/
+  $('#mainSlider').nivoSlider({
+    directionNav: true,
+    controlNavThumbs: false,
+    animSpeed: 1000,
+    slices: 10,
+    pauseTime: 5000,
+    pauseOnHover: true,
+    controlNav: false,
+    manualAdvance: true,
+    prevText: '<i class="fa fa-angle-left"></i>',
+    nextText: '<i class="fa fa-angle-right"></i>'
+  });
+
+  
+  /*-------------------------
+    Owl Carousel Slider
+  ------------------------------ */
+  var homeSlider = $(".js-slider-active");
+
+  homeSlider.owlCarousel({
+    autoplay: false,
+    smartSpeed: 2000,
+    items: 1,
+    dots: false,
+    nav: true,
+    navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+  });
+
+  homeSlider.on('translate.owl.carousel', function(){
+		var animation = $('[data-animation]');
+		animation.each(function(){
+			var anim_name = $(this).data('animation');
+			$(this).removeClass('animated ' + anim_name).css('opacity', '0');
+		});
+	});
+
+	$('[data-delay]').each(function(){
+		var anim_del = $(this).data('delay');
+		$(this).css('animation-delay', anim_del);
+	});
+
+
+	$('[data-duration]').each(function(){
+		var anim_dur = $(this).data('duration');
+		$(this).css('animation-duration', anim_dur);
+	});
+
+	homeSlider.on('translated.owl.carousel', function(){
+		var layer = homeSlider.find('.owl-item.active').find('[data-animation]');
+		layer.each(function(){
+			var anim_name = $(this).data('animation');
+			$(this).addClass('animated ' + anim_name).css('opacity', '1');
+		});
+	});
+  /*-------------------------
+    slider active
+  ------------------------------ */
+  $(".property-list").owlCarousel({
+    autoplay: false,
+    smartSpeed: 2000,
+    margin: 30,
+    items: 3,
+    dots: false,
+    nav: true,
+    navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+    responsive: {
+      0: {
+        items: 1,
+      },
+      767: {
+        items: 2
+      },
+      1199: {
+        items: 3
+      }
+    }
+  });
+  
+  $(".lataest-property-carousel").owlCarousel({
+    autoplay: false,
+    smartSpeed: 2000,
+    margin: 30,
+    items: 4,
+    dots: false,
+    nav: true,
+    navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+    responsive: {
+      0: {
+        items: 1,
+      },
+      767: {
+        items: 3
+      },
+      991: {
+        items: 4
+      }
+    }
+  });
+  
+  $(".lataest-property-carousel-2").owlCarousel({
+    autoplay: false,
+    smartSpeed: 2000,
+    margin: 30,
+    items: 3,
+    dots: false,
+    nav: true,
+    navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+    responsive: {
+      0: {
+        items: 1,
+      },
+      767: {
+        items: 2
+      },
+      991: {
+        items: 3
+      }
+    }
   });
 
 
+  $(".single-property-tab-slider").owlCarousel({
+    autoplay: false,
+    smartSpeed: 2000,
+    dots: false,
+    nav: true,
+    items: 6,
+    margin: 20,
+    navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+    responsive: {
+      0: {
+        items: 1,
+      },
+      320: {
+        items: 2,
+      },
+      479: {
+        items: 3,
+      },
+      767: {
+        items: 5
+      },
+      991: {
+        items: 5
+      },
+      1199: {
+        items: 6
+      }
+    }
+  });
+
+  $(".happy-client-list").owlCarousel({
+    autoplay: false,
+    smartSpeed: 2000,
+    margin: 30,
+    dots: false,
+    nav: true,
+    items: 4,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      767: {
+        items: 1
+      },
+      991: {
+        items: 3
+      },
+      1199: {
+        items: 4
+      }
+    }
+  });
+
+  $(".testimonial-carousel").owlCarousel({
+    autoplay: false,
+    smartSpeed: 2000,
+    margin: 30,
+    dots: false,
+    nav: true,
+    navText: ["<i class='fa fa-long-arrow-left'></i>", "<i class='fa fa-long-arrow-right'></i>"],
+    items: 2,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      991: {
+        items: 2
+      }
+    }
+  });
+
+  $(".brand-list").owlCarousel({
+    autoplay: false,
+    smartSpeed: 2000,
+    dots: false,
+    nav: false,
+    items: 5,
+    navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+    itemsDesktop: [1199, 4],
+    itemsDesktopSmall: [991, 3],
+    itemsTablet: [768, 2],
+    itemsMobile: [479, 1],
+    responsive: {
+      0: {
+        items: 1,
+      },
+      479: {
+        items: 2,
+      },
+      767: {
+        items: 3
+      },
+      991: {
+        items: 4
+      },
+      1199: {
+        items: 5
+      }
+    }
+  });
+  $(".property_list").owlCarousel({
+    autoplay: false,
+    smartSpeed: 2000,
+    dots: false,
+    nav: true,
+    items: 1,
+    navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+  });
+
+  /*------------------------------------    
+    Search Bar
+  --------------------------------------*/
+
+  $('.search-icon a').on('click', function () {
+    $('.header').toggleClass('search-box-show');
+    return false;
+  });
+
+  $('.search-close-btn a').on('click', function () {
+    $('.header').toggleClass('search-box-show');
+    return false;
+  });
+  /*----------------------    
+      magnificPopup active
+  --------------*/
+  $('.play-button a').magnificPopup({
+    disableOn: 0,
+    type: 'iframe',
+    mainClass: 'mfp-fade',
+    removalDelay: 160,
+    preloader: true,
+
+    fixedContentPos: false
+  });
+  /*----------------------    
+      collpase active
+  --------------*/
+  $(".accordion-active").collapse({
+    accordion: true,
+    open: function () {
+      this.slideDown(550);
+    },
+    close: function () {
+      this.slideUp(550);
+    }
+  });
 
 
+  /*--------------------
+      You tube video active
+  -------------------------*/
+  $(".youtube-bg").YTPlayer({
+    videoURL: "https://youtu.be/vb5KLYAtPIs",
+    containment: '.youtube-bg',
+    mute: true,
+    loop: true,
+    showControls: true
 
-})(jQuery);
+  });
 
+  /*--------------------------
+		 Parallax active
+	----------------------*/
+  $('.parallax').parallax("50%", 0.5);
+
+  /*------------------
+      5. Price Slider
+  --------------------------*/
+  $("#slider-range").slider({
+    range: true,
+    min: 20,
+    max: 2500,
+    values: [600, 2000],
+    slide: function (event, ui) {
+      $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+    }
+  });
+  $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+    " - $" + $("#slider-range").slider("values", 1));
+
+
+  /*--------------------------
+    Counter Up
+  ---------------------------- */
+  $('.counter').counterUp({
+    delay: 70,
+    time: 5000
+  });
+
+  /*-------------------------------------------
+    	scrollUp jquery active
+    --------------------------------------------- */
+  $.scrollUp({
+    scrollText: '<i class="icofont icofont-simple-up"></i>',
+    easingType: 'linear',
+    scrollSpeed: 900,
+    animation: 'fade'
+  });
+
+  /*-----------------------------
+  Loader activation here. 
+  -------------------------------*/
+  $("#fakeLoader").fakeLoader({
+    timeToHide: 1500,
+    zIndex: 999999,
+    spinner: "spinner1", //Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7' 
+    bgColor: "#fff"
+  });
+
+
+})
+(jQuery);
