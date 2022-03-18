@@ -13,15 +13,15 @@
                                 <div class="header-topbar-menu">
                                     <ul>
                                         <li><span><img src="frontend/img/icon/mail.png" alt=""></span> info@haven.com</li>
-                                        <li><a href="agency.html">Create Agency</a></li>
+                                        <!-- <li><a href="agency.html">Create Agency</a></li>
                                         <li><a data-target="#quick-view" data-toggle="modal" href="#">Login</a></li>
-                                        <li><a href="register.html">Register</a></li>
+                                        <li><a href="register.html">Register</a></li> -->
                                     </ul>
                                 </div>
                                 <div class="header-search">
-                                    <div class="search-icon">
-                                        <a href="#"><img src="frontend/img/icon/search.png" alt=""></a>
-                                    </div>
+                                    <!-- <div class="search-icon"> -->
+                                        <!-- <a href="#"><img src="frontend/img/icon/search.png" alt=""></a> -->
+                                    <!-- </div> -->
                                 </div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                     <div class="row">
                         <div class="col-lg-2 col-md-4 col-sm-6">
                             <div class="logo">
-                                <a href="index.html"><img src="frontend/img/logo/logo.png" alt=""></a>
+                                <a href="index.html"><img src="frontend/img/logo/brilliant_logo.jpg" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-10 d-none d-lg-block">
@@ -55,7 +55,7 @@
                                                 </ul>
                                             </li>
                                             <li><a href="about-us.html">About</a></li>
-                                            <li><a href="blog.html"> BLOG</a>
+                                            <!-- <li><a href="blog.html"> BLOG</a>
                                                 <ul class="dropdown_menu">
                                                     <li><a href="blog.html">Blog pages</a></li>
                                                     <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
@@ -79,7 +79,7 @@
                                                     <li><a href="single-services.html">Single Services</a></li>
                                                     <li><a href="single-services-2.html">Single Services 2 </a></li>
                                                 </ul>
-                                            </li>
+                                            </li> -->
 
                                             <li><a href="properties.html">PROPERTIES </a>
                                                 <ul class="dropdown_menu">
@@ -101,7 +101,7 @@
                                                     <li><a href="agency.html">Agency page</a></li>
                                                 </ul>
                                             </li>
-                                            <li class="mega-parent"><a href="#">Elements</a>
+                                            <!-- <li class="mega-parent"><a href="#">Elements</a>
                                                 <ul class="mega_menu">
                                                     <li><a href="#" class="title">Column 1</a>
                                                         <ul class="mega-submenu">
@@ -144,7 +144,7 @@
                                                         </ul>
                                                     </li>
                                                 </ul>
-                                            </li>
+                                            </li> -->
                                             <li><a href="contact.html"> Contact</a></li>
                                         </ul>
                                     </nav>
@@ -173,7 +173,7 @@
                                         </ul>
                                     </li>
                                     <li><a href="about-us.html">About</a></li>
-                                    <li><a href="blog.html"> BLOG</a>
+                                    <!-- <li><a href="blog.html"> BLOG</a>
                                         <ul>
                                             <li><a href="blog.html">Blog pages</a></li>
                                             <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
@@ -182,8 +182,8 @@
                                             <li><a href="article.html">Blog details</a></li>
                                             <li><a href="article-left-sidebar.html">Blog details left sidebar</a></li>
                                         </ul>
-                                    </li>
-                                    <li><a href="#">pages</a>
+                                    </li> -->
+                                    <!-- <li><a href="#">pages</a>
                                         <ul>
                                             <li><a href="about-us.html">About us</a></li>
                                             <li><a href="contact.html">contact us</a></li>
@@ -197,7 +197,7 @@
                                             <li><a href="single-services.html">Single Services</a></li>
                                             <li><a href="single-services-2.html">Single Services 2 </a></li>
                                         </ul>
-                                    </li>
+                                    </li> -->
 
                                     <li><a href="properties.html">PROPERTIES </a>
                                         <ul>
@@ -218,7 +218,7 @@
                                             <li><a href="agency.html">Agency page</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Elements</a>
+                                    <!-- <li><a href="#">Elements</a>
                                         <ul>
                                             <li><a href="#" class="title">Column 1</a>
                                                 <ul>
@@ -257,7 +257,7 @@
                                                 </ul>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> -->
                                     <li><a href="contact.html"> Contact</a></li>
                                 </ul>
                             </nav>

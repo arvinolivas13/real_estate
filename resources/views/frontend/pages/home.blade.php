@@ -19,11 +19,11 @@
                                         <div class="middle-text">
                                             <div class="title-1 wow fadeUp" data-wow-duration="1.2s"
                                                 data-wow-delay="0.1s">
-                                                <h3>WANT TO BUY OR RENT HOME ?</h3>
+                                                <h3>WANT TO BUY OR INVEST IN PROPERTIES ?</h3>
                                             </div>
                                             <div class="title-2 wow fadeUp" data-wow-duration="1.3s"
                                                 data-wow-delay="0.2s">
-                                                <h1><span>HAVEN</span> SOLVE YOUR PROBLEMS</h1>
+                                                <h1>PRE-SELLING <span>FARM LOTS</span> AT IT'S LOWEST POSSIBLE PRICE</h1>
                                             </div>
                                             <div class="desc wow fadeUp" data-wow-duration="1.4s" data-wow-delay="0.4s">
                                                 <p>Lorem consectetur adipiscing elit, sed do eiusmod tempor dolor sit
@@ -251,10 +251,10 @@
                                     <a class="nav-link active" id="property-sale-tab" data-toggle="tab" href="#sale"
                                         role="tab" aria-controls="sale" aria-selected="true">PROPERTY FOR SALE</a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a class="nav-link" id="property-rent-tab" data-toggle="tab" href="#rent" role="tab"
                                         aria-controls="rent" aria-selected="false">PROPERTY TO RENT</a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                     </div>
@@ -286,10 +286,6 @@
                                                             <li>
                                                                 <img src="frontend/img/property/icon-1.png" alt="">
                                                                 <span>550 sqft</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                                <span>6</span>
                                                             </li>
                                                             <li>
                                                                 <img src="frontend/img/property/icon-3.png" alt="">
@@ -329,10 +325,6 @@
                                                                 <span>550 sqft</span>
                                                             </li>
                                                             <li>
-                                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                                <span>6</span>
-                                                            </li>
-                                                            <li>
                                                                 <img src="frontend/img/property/icon-3.png" alt="">
                                                                 <span>4</span>
                                                             </li>
@@ -370,10 +362,6 @@
                                                                 <span>550 sqft</span>
                                                             </li>
                                                             <li>
-                                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                                <span>6</span>
-                                                            </li>
-                                                            <li>
                                                                 <img src="frontend/img/property/icon-3.png" alt="">
                                                                 <span>4</span>
                                                             </li>
@@ -409,10 +397,6 @@
                                                             <li>
                                                                 <img src="frontend/img/property/icon-1.png" alt="">
                                                                 <span>550 sqft</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                                <span>6</span>
                                                             </li>
                                                             <li>
                                                                 <img src="frontend/img/property/icon-3.png" alt="">
@@ -452,10 +436,6 @@
                                                                 <span>550 sqft</span>
                                                             </li>
                                                             <li>
-                                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                                <span>6</span>
-                                                            </li>
-                                                            <li>
                                                                 <img src="frontend/img/property/icon-3.png" alt="">
                                                                 <span>4</span>
                                                             </li>
@@ -493,10 +473,6 @@
                                                                 <span>550 sqft</span>
                                                             </li>
                                                             <li>
-                                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                                <span>6</span>
-                                                            </li>
-                                                            <li>
                                                                 <img src="frontend/img/property/icon-3.png" alt="">
                                                                 <span>4</span>
                                                             </li>
@@ -512,255 +488,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="rent" aria-labelledby="property-rent-tab">
-                                <div class="property-list owl-carousel">
-                                    <div class="item">
-                                        <div class="single-property">
-                                            <div class="property-img">
-                                                <a href="single-properties.html">
-                                                    <img src="frontend/img/property/7.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="property-desc">
-                                                <div class="property-desc-top">
-                                                    <h6><a href="single-properties.html">Friuli-Venezia Giulia</a></h6>
-                                                    <h4 class="price">$12,354</h4>
-                                                    <div class="property-location">
-                                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 568 E 1st Ave,
-                                                            Miami</p>
-                                                    </div>
-                                                </div>
-                                                <div class="property-desc-bottom">
-                                                    <div class="property-bottom-list">
-                                                        <ul>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-1.png" alt="">
-                                                                <span>550 sqft</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                                <span>6</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-3.png" alt="">
-                                                                <span>4</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-4.png" alt="">
-                                                                <span>3</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="single-property">
-                                            <div class="property-img">
-                                                <a href="single-properties.html">
-                                                    <img src="frontend/img/property/8.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="property-desc">
-                                                <div class="property-desc-top">
-                                                    <h6><a href="single-properties.html">Friuli-Venezia Giulia</a></h6>
-                                                    <h4 class="price">$92,354</h4>
-                                                    <div class="property-location">
-                                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 568 E 1st Ave,
-                                                            Miami</p>
-                                                    </div>
-                                                </div>
-                                                <div class="property-desc-bottom">
-                                                    <div class="property-bottom-list">
-                                                        <ul>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-1.png" alt="">
-                                                                <span>550 sqft</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                                <span>6</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-3.png" alt="">
-                                                                <span>4</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-4.png" alt="">
-                                                                <span>3</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="single-property">
-                                            <div class="property-img">
-                                                <a href="single-properties.html">
-                                                    <img src="frontend/img/property/9.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="property-desc">
-                                                <div class="property-desc-top">
-                                                    <h6><a href="single-properties.html">Radison de Villa</a></h6>
-                                                    <h4 class="price">$22,354</h4>
-                                                    <div class="property-location">
-                                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 12 1st Ave, New
-                                                            Yourk</p>
-                                                    </div>
-                                                </div>
-                                                <div class="property-desc-bottom">
-                                                    <div class="property-bottom-list">
-                                                        <ul>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-1.png" alt="">
-                                                                <span>550 sqft</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                                <span>6</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-3.png" alt="">
-                                                                <span>4</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-4.png" alt="">
-                                                                <span>3</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="single-property">
-                                            <div class="property-img">
-                                                <a href="single-properties.html">
-                                                    <img src="frontend/img/property/7.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="property-desc">
-                                                <div class="property-desc-top">
-                                                    <h6><a href="single-properties.html">Friuli-Venezia Giulia</a></h6>
-                                                    <h4 class="price">$52,334</h4>
-                                                    <div class="property-location">
-                                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 568 E 1st Ave,
-                                                            Miami</p>
-                                                    </div>
-                                                </div>
-                                                <div class="property-desc-bottom">
-                                                    <div class="property-bottom-list">
-                                                        <ul>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-1.png" alt="">
-                                                                <span>550 sqft</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                                <span>6</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-3.png" alt="">
-                                                                <span>4</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-4.png" alt="">
-                                                                <span>3</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="single-property">
-                                            <div class="property-img">
-                                                <a href="single-properties.html">
-                                                    <img src="frontend/img/property/8.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="property-desc">
-                                                <div class="property-desc-top">
-                                                    <h6><a href="single-properties.html">Radison de Villa</a></h6>
-                                                    <h4 class="price">$52,351</h4>
-                                                    <div class="property-location">
-                                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 668 L 2nd Ave,
-                                                            Boston</p>
-                                                    </div>
-                                                </div>
-                                                <div class="property-desc-bottom">
-                                                    <div class="property-bottom-list">
-                                                        <ul>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-1.png" alt="">
-                                                                <span>550 sqft</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                                <span>6</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-3.png" alt="">
-                                                                <span>4</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-4.png" alt="">
-                                                                <span>3</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="single-property">
-                                            <div class="property-img">
-                                                <a href="single-properties.html"><img src="frontend/img/property/9.jpg"
-                                                        alt=""></a>
-                                            </div>
-                                            <div class="property-desc">
-                                                <div class="property-desc-top">
-                                                    <h6><a href="single-properties.html">Handson de Villa</a></h6>
-                                                    <h4 class="price">$62,354</h4>
-                                                    <div class="property-location">
-                                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 568 E 1st Ave,
-                                                            Miami</p>
-                                                    </div>
-                                                </div>
-                                                <div class="property-desc-bottom">
-                                                    <div class="property-bottom-list">
-                                                        <ul>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-1.png" alt="">
-                                                                <span>550 sqft</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                                <span>6</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-3.png" alt="">
-                                                                <span>4</span>
-                                                            </li>
-                                                            <li>
-                                                                <img src="frontend/img/property/icon-4.png" alt="">
-                                                                <span>3</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--  -->
                         </div>
                     </div>
                 </div>
