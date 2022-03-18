@@ -65,8 +65,8 @@
                                                     <img src="frontend/img/icon/c-1.png" alt="">
                                                 </div>
                                                 <div class="contact-text">
-                                                    <p>256, 1st AVE, Manchester</p>
-                                                    <p>125 , Noth England</p>
+                                                    <p>2D RNL Bldg. Bagumbayan,</p>
+                                                    <p>Teresa Rizal</p>
                                                 </div>
                                             </div>
                                             <div class="single-contact-list">
@@ -74,7 +74,7 @@
                                                     <img src="frontend/img/icon/c-2.png" alt="">
                                                 </div>
                                                 <div class="contact-text">
-                                                    <p>Telephone : +012 345 678 102</p>
+                                                    <p>Mobile : 0917 502 3189</p>
                                                     <p>Telephone : +012 745 674 152</p>
                                                 </div>
                                             </div>
@@ -83,8 +83,8 @@
                                                     <img src="frontend/img/icon/c-3.png" alt="">
                                                 </div>
                                                 <div class="contact-text">
-                                                    <p>Email : info@example.com</p>
-                                                    <p>Web : www.example.com</p>
+                                                    <p>Email : info@brilliantfivej.com</p>
+                                                    <p>Web : www.brilliantfivej.com</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -105,8 +105,8 @@
                                 <ul>
                                     <li><a href="index.html">Home</a></li>
                                     <li><a href="about-us.html">About</a></li>
-                                    <li><a href="services.html">Services</a></li>
-                                    <li><a href="blog.html">BLog </a></li>
+                                    <li><a href="services.html">Properties</a></li>
+                                    <li><a href="blog.html">Agents </a></li>
                                     <li><a href="contact.html">Contact </a></li>
                                 </ul>
                             </div>
@@ -116,7 +116,7 @@
                                 <p>&copy; 
                                     <script>
                                         document.write(new Date().getFullYear());
-                                    </script> <strong> haven </strong> Mede with ❤️ by <a href="https://hasthemes.com/" target="_blank"><strong>HasThemes</strong></a>
+                                    </script> <strong> brilliantfivej </strong> Made with ❤️ by <a href="https://opimac.com/" target="_blank"><strong>SamsamTech</strong></a>
                                 </p>
                             </div>
                         </div>

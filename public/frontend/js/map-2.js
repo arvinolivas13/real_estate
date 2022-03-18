@@ -2,7 +2,7 @@ function initialize() {
       var mapOptions = {
     zoom: 13,
     scrollwheel: false,
-    center: new google.maps.LatLng(40.740610, -73.935242)
+    center: new google.maps.LatLng(14.551707861824474, 121.21975254043059)
   };
 
   var map = new google.maps.Map(document.getElementById('googleMap-2'),

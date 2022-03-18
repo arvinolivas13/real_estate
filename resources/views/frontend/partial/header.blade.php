@@ -12,7 +12,7 @@
                             <div class="header-1-top-inner">
                                 <div class="header-topbar-menu">
                                     <ul>
-                                        <li><span><img src="frontend/img/icon/mail.png" alt=""></span> info@haven.com</li>
+                                        <li><span><img src="frontend/img/icon/mail.png" alt=""></span> info@brilliantfivej.com</li>
                                         <!-- <li><a href="agency.html">Create Agency</a></li>
                                         <li><a data-target="#quick-view" data-toggle="modal" href="#">Login</a></li>
                                         <li><a href="register.html">Register</a></li> -->
@@ -42,7 +42,7 @@
                                     <nav>
                                         <ul>
                                             <li><a href="index.html">Home</a>
-                                                <ul class="dropdown_menu">
+                                                <!-- <ul class="dropdown_menu">
                                                     <li><a href="index.html">Home Version 1</a></li>
                                                     <li><a href="index-2.html">Home Version 2</a></li>
                                                     <li><a href="index-3.html">Home Version 3</a></li>
@@ -52,7 +52,7 @@
                                                     <li><a href="index-7.html">Home Version 7</a></li>
                                                     <li><a href="index-8.html">Home Version 8</a></li>
                                                     <li><a href="index-9.html">Home Version 9</a></li>
-                                                </ul>
+                                                </ul> -->
                                             </li>
                                             <li><a href="about-us.html">About</a></li>
                                             <!-- <li><a href="blog.html"> BLOG</a>
@@ -94,7 +94,7 @@
                                                             right sidebar</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="agent.html">AGENT</a>
+                                            <li><a href="agent.html">AGENTS</a>
                                                 <ul class="dropdown_menu">
                                                     <li><a href="agent.html">Agent page</a></li>
                                                     <li><a href="agent-details.html">Agent Details</a></li>

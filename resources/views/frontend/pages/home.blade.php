@@ -56,7 +56,7 @@
                                             </div>
                                             <div class="title-2 wow fadeUp" data-wow-duration="1.3s"
                                                 data-wow-delay="0.2s">
-                                                <h1><span>HAVEN</span> SOLVE YOUR PROBLEMS</h1>
+                                                <h1>IT'S SUPER EASY TO ACQUIRE A <span>PROPERTY</span></h1>
                                             </div>
                                             <div class="desc wow fadeUp" data-wow-duration="1.4s" data-wow-delay="0.4s">
                                                 <p>Lorem consectetur adipiscing elit, sed do eiusmod tempor dolor sit
@@ -89,7 +89,7 @@
                                             </div>
                                             <div class="title-2 wow fadeUp" data-wow-duration="1.3s"
                                                 data-wow-delay="0.2s">
-                                                <h1><span>HAVEN</span> SOLVE YOUR PROBLEMS</h1>
+                                                <h1>LET OUR <span>LAND</span> BE YOUR LEGACY</h1>
                                             </div>
                                             <div class="desc wow fadeUp" data-wow-duration="1.4s" data-wow-delay="0.4s">
                                                 <p>Lorem consectetur adipiscing elit, sed do eiusmod tempor dolor sit
@@ -117,113 +117,21 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="find-home-title">
-                            <h3>FIND YOUR DREAM HOME</h3>
+                            <h3>INQUIRE STATUS OF YOUR PLAN</h3>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <form action="#" class="form-row gutter-30">
-                            <div class="col-lg-3 col-md-4 col-12">
-                                <div class="find-home-item custom-select mb-40">
-                                    <select class="selectpicker" title="Location" data-hide-disabled="true"
-                                        data-live-search="true">
-                                        <optgroup disabled="disabled" label="disabled">
-                                            <option>Hidden</option>
-                                        </optgroup>
-                                        <optgroup label="Australia">
-                                            <option>Sydney</option>
-                                            <option>Melbourne</option>
-                                            <option>Cairns</option>
-                                        </optgroup>
-                                        <optgroup label="USA">
-                                            <option>South Carolina</option>
-                                            <option>Florida</option>
-                                            <option>Rhode Island</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-12">
-                                <div class="find-home-item custom-select">
-                                    <select class="selectpicker" title="Sub - Location" data-hide-disabled="true"
-                                        data-live-search="true">
-                                        <optgroup disabled="disabled" label="disabled">
-                                            <option>Hidden</option>
-                                        </optgroup>
-                                        <optgroup label="Australia">
-                                            <option>southeastern coast</option>
-                                            <option>southeastern tip</option>
-                                            <option>northwest corner</option>
-                                        </optgroup>
-                                        <optgroup label="USA">
-                                            <option>Charleston</option>
-                                            <option>St. Petersburg</option>
-                                            <option>Newport</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-12">
+                            <div class="col-lg-9 col-md-8 col-12">
                                 <div class="find-home-item mb-40">
-                                    <input type="text" name="min-area" placeholder="Min area (sqft)">
+                                    <input type="text" name="account-no" placeholder="Account No.">
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-4 col-12">
-                                <div class="find-home-item mb-40">
-                                    <input type="text" name="max-area" placeholder="Max area (sqft)">
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-12">
-                                <div class="find-home-item custom-select">
-                                    <select class="selectpicker" title="No. of Beadrooms" data-hide-disabled="true"
-                                        data-live-search="true">
-                                        <optgroup label="1">
-                                            <option label="1">1 Beadrooms</option>
-                                            <option>2 Beadrooms</option>
-                                            <option>3 Beadrooms</option>
-                                            <option>4 Beadrooms</option>
-                                            <option>5 Beadrooms</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-12">
-                                <div class="find-home-item custom-select">
-                                    <select class="selectpicker" title="No. of Bathrooms" data-hide-disabled="true"
-                                        data-live-search="true">
-                                        <optgroup label="2">
-                                            <option>1 Bathrooms</option>
-                                            <option>2 Bathrooms</option>
-                                            <option>3 Bathrooms</option>
-                                            <option>4 Bathrooms</option>
-                                            <option>5 Bathrooms</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="row">
-                                    <div class="col-md-7 col-12">
-                                        <div class="find-home-item">
-                                            <!-- shop-filter -->
-                                            <div class="shop-filter">
-                                                <div class="price_filter">
-                                                    <div class="price_slider_amount">
-                                                        <input type="submit" value="price range" />
-                                                        <input type="text" id="amount" name="price"
-                                                            placeholder="Add Your Price" />
-                                                    </div>
-                                                    <div id="slider-range"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5 col-12">
-                                        <div class="find-home-item">
-                                            <button type="submit">SEARCH PROPERTY </button>
-                                        </div>
-                                    </div>
+                                <div class="find-home-item">
+                                    <button type="submit">Check Status </button>
                                 </div>
                             </div>
                         </form>
@@ -273,8 +181,8 @@
                                             </div>
                                             <div class="property-desc">
                                                 <div class="property-desc-top">
-                                                    <h6><a href="single-properties.html">Friuli-Venezia Giulia</a></h6>
-                                                    <h4 class="price">$52,354</h4>
+                                                    <h6><a href="single-properties.html">Grand Villas Farm Phase 1</a></h6>
+                                                    <h4 class="price">OPEN</h4>
                                                     <div class="property-location">
                                                         <p><img src="frontend/img/property/icon-5.png" alt=""> 568 E 1st Ave,
                                                             Miami</p>
@@ -310,8 +218,8 @@
                                             </div>
                                             <div class="property-desc">
                                                 <div class="property-desc-top">
-                                                    <h6><a href="single-properties.html">Friuli-Venezia Giulia</a></h6>
-                                                    <h4 class="price">$52,454</h4>
+                                                    <h6><a href="single-properties.html">Grand Villas Farm Phase 2</a></h6>
+                                                    <h4 class="price">OPEN</h4>
                                                     <div class="property-location">
                                                         <p><img src="frontend/img/property/icon-5.png" alt=""> 568 E 1st Ave,
                                                             Miami</p>
@@ -347,8 +255,8 @@
                                             </div>
                                             <div class="property-desc">
                                                 <div class="property-desc-top">
-                                                    <h6><a href="single-properties.html">Radison de Villa</a></h6>
-                                                    <h4 class="price">$42,354</h4>
+                                                    <h6><a href="single-properties.html">Grand Villas Farm Phase 3</a></h6>
+                                                    <h4 class="price">OPEN</h4>
                                                     <div class="property-location">
                                                         <p><img src="frontend/img/property/icon-5.png" alt=""> 12 1st Ave, New
                                                             Yourk</p>
@@ -384,8 +292,8 @@
                                             </div>
                                             <div class="property-desc">
                                                 <div class="property-desc-top">
-                                                    <h6><a href="single-properties.html">Friuli-Venezia Giulia</a></h6>
-                                                    <h4 class="price">$22,354</h4>
+                                                    <h6><a href="single-properties.html">Grand Villas Farm Phase 4</a></h6>
+                                                    <h4 class="price">OPEN</h4>
                                                     <div class="property-location">
                                                         <p><img src="frontend/img/property/icon-5.png" alt=""> 568 E 1st Ave,
                                                             Miami</p>
@@ -421,8 +329,8 @@
                                             </div>
                                             <div class="property-desc">
                                                 <div class="property-desc-top">
-                                                    <h6><a href="single-properties.html">Friuli-Venezia Giulia</a></h6>
-                                                    <h4 class="price">$72,354</h4>
+                                                    <h6><a href="single-properties.html">Grand Villas Farm East</a></h6>
+                                                    <h4 class="price">OPEN</h4>
                                                     <div class="property-location">
                                                         <p><img src="frontend/img/property/icon-5.png" alt=""> 668 L 2nd Ave,
                                                             Boston</p>
@@ -458,8 +366,8 @@
                                             </div>
                                             <div class="property-desc">
                                                 <div class="property-desc-top">
-                                                    <h6><a href="single-properties.html">Friuli-Venezia Giulia</a></h6>
-                                                    <h4 class="price">$52,444</h4>
+                                                    <h6><a href="single-properties.html">Grand Villas Farm East 2</a></h6>
+                                                    <h4 class="price">OPEN</h4>
                                                     <div class="property-location">
                                                         <p><img src="frontend/img/property/icon-5.png" alt=""> 568 E 1st Ave,
                                                             Miami</p>
@@ -502,14 +410,12 @@
                 <div class="row">
                     <div class="col-lg-6 col-12 fadeInLeft wow welcome-pd" data-wow-delay="0.2s">
                         <div class="welcome-title">
-                            <h3 class="title-1">WELCOME TO <span>HAVEN</span></h3>
-                            <h4 class="title-2">WE ALWAYS PROVIDE PRORITY TO OUR CUSTOMER</h4>
+                            <h3 class="title-1">WELCOME TO <span>BRILLIANT FIVE J</span></h3>
+                            <h4 class="title-2">WE ALWAYS PROVIDE PRIORITY TO OUR CLIENTS</h4>
                         </div>
                         <div class="welcome-content">
-                            <p> <span>HAVEN</span> is the best theme for elit, sed do eiusmod tempor dolor sit amet,
-                                conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna
-                                aliquatd minimam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo equat.
-                                eiusmod tempor dolor sit amet, conse ctetur adipiscing elit</p>
+                            <p> <span>Brilliant Five J</span> is a construction and development corporation that are selling farm-lots at Rizal. We provide quality and efficient service to our clients 
+                        to help them with investing and acquiring farm land properties at the lowest possible price.</p>
                         </div>
                         <div class="welcome-services">
                             <div class="row">
@@ -692,10 +598,6 @@
                                                 <span>550 sqft</span>
                                             </li>
                                             <li>
-                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                <span>6</span>
-                                            </li>
-                                            <li>
                                                 <img src="frontend/img/property/icon-3.png" alt="">
                                                 <span>4</span>
                                             </li>
@@ -730,10 +632,6 @@
                                             <li>
                                                 <img src="frontend/img/property/icon-1.png" alt="">
                                                 <span>550 sqft</span>
-                                            </li>
-                                            <li>
-                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                <span>6</span>
                                             </li>
                                             <li>
                                                 <img src="frontend/img/property/icon-3.png" alt="">
@@ -773,10 +671,6 @@
                                                 <span>550 sqft</span>
                                             </li>
                                             <li>
-                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                <span>6</span>
-                                            </li>
-                                            <li>
                                                 <img src="frontend/img/property/icon-3.png" alt="">
                                                 <span>4</span>
                                             </li>
@@ -811,10 +705,6 @@
                                             <li>
                                                 <img src="frontend/img/property/icon-1.png" alt="">
                                                 <span>550 sqft</span>
-                                            </li>
-                                            <li>
-                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                <span>6</span>
                                             </li>
                                             <li>
                                                 <img src="frontend/img/property/icon-3.png" alt="">
@@ -854,10 +744,6 @@
                                                 <span>550 sqft</span>
                                             </li>
                                             <li>
-                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                <span>6</span>
-                                            </li>
-                                            <li>
                                                 <img src="frontend/img/property/icon-3.png" alt="">
                                                 <span>4</span>
                                             </li>
@@ -892,10 +778,6 @@
                                             <li>
                                                 <img src="frontend/img/property/icon-1.png" alt="">
                                                 <span>550 sqft</span>
-                                            </li>
-                                            <li>
-                                                <img src="frontend/img/property/icon-2.png" alt="">
-                                                <span>6</span>
                                             </li>
                                             <li>
                                                 <img src="frontend/img/property/icon-3.png" alt="">
