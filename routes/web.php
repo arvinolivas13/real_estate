@@ -97,5 +97,17 @@ Route::get('/', function () {
     return view('frontend.pages.home');
 });
 
+Route::get('/properties', function () {
+    return view('frontend.pages.properties');
+});
+
+Route::get('/about', function () {
+    return view('frontend.pages.about');
+});
+
+Route::get('/agents', function () {
+    return view('frontend.pages.agents');
+});
+
 Route::get('/home', 'HomeController@index' )->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
