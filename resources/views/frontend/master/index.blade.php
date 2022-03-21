@@ -40,7 +40,7 @@
         @yield('content')
       @include('frontend.partial.footer')
     </div>
-      @include('frontend.partial.sidebar')
+      <!-- @include('frontend.partial.sidebar') -->
 
     
   <!-- loader -->
