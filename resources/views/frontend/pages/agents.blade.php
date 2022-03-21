@@ -33,7 +33,7 @@
                             <h4 class="title-2">GENIOUS <span>PEOPLE</span></h4>
                         </div>
                         <div class="welcome-content">
-                            <p> <span>HAVEN</span> is the best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minimam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo equat. eiusmod tempor dolor sit amet, conse ctetur adipiscing elit</p>
+                            <p> <span>Brilliant Five J</span> is the best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minimam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo equat. eiusmod tempor dolor sit amet, conse ctetur adipiscing elit</p>
                             <p class="text-2">Best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minimam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo equat. eiusmod tempor dolor</p>
                             <p class="text-3">Best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minimam</p>
                         </div>

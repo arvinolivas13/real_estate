@@ -109,5 +109,9 @@ Route::get('/agents', function () {
     return view('frontend.pages.agents');
 });
 
+Route::get('/contact', function () {
+    return view('frontend.pages.contact');
+});
+
 Route::get('/home', 'HomeController@index' )->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
