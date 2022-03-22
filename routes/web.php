@@ -113,5 +113,13 @@ Route::get('/contact', function () {
     return view('frontend.pages.contact');
 });
 
+Route::get('/agent/details', function () {
+    return view('frontend.pages.single.agent');
+});
+
+Route::get('/property/details', function () {
+    return view('frontend.pages.single.property');
+});
+
 Route::get('/home', 'HomeController@index' )->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

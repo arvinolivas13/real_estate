@@ -1596,8 +1596,21 @@ img {
 /*--------------
     18. Breadcrumbs css here
 ----------------*/
+.breadcrumbs.overlay-black.about-cover {
+  background: url(img/about-banner.jpg)no-repeat scroll center center / cover !important;
+}
+.breadcrumbs.overlay-black.properties-cover {
+  background: url(img/properties-banner.jpg)no-repeat scroll center center / cover !important;
+}
+.breadcrumbs.overlay-black.agents-cover {
+  background: url(img/agents-banner.jpg)no-repeat scroll center center / cover !important;
+}
+.breadcrumbs.overlay-black.contact-cover {
+  background: url(img/contact-banner.jpg)no-repeat scroll center center / cover !important;
+  
+}
 .breadcrumbs {
-  background: url(img/common/breadcrumbs.jpg)no-repeat scroll center center / cover;
+  background: url(img/properties-banner.jpg)no-repeat scroll center center / cover;
   padding: 176px 0 19px;
   position: relative;
 }

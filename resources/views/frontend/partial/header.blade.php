@@ -41,7 +41,7 @@
                                 <div class="header-menu">
                                     <nav>
                                         <ul>
-                                            <li><a href="index.html">Home</a>
+                                            <li><a href="/">Home</a>
                                                 <!-- <ul class="dropdown_menu">
                                                     <li><a href="index.html">Home Version 1</a></li>
                                                     <li><a href="index-2.html">Home Version 2</a></li>
@@ -54,7 +54,7 @@
                                                     <li><a href="index-9.html">Home Version 9</a></li>
                                                 </ul> -->
                                             </li>
-                                            <li><a href="about-us.html">About</a></li>
+                                            <li><a href="/about">About</a></li>
                                             <!-- <li><a href="blog.html"> BLOG</a>
                                                 <ul class="dropdown_menu">
                                                     <li><a href="blog.html">Blog pages</a></li>
@@ -81,24 +81,15 @@
                                                 </ul>
                                             </li> -->
 
-                                            <li><a href="properties.html">PROPERTIES </a>
+                                            <li><a href="#">PROPERTIES </a>
                                                 <ul class="dropdown_menu">
-                                                    <li><a href="properties.html">Properties page</a></li>
-                                                    <li><a href="single-properties.html">Single Properties</a></li>
-                                                    <li><a href="properties-sidebar.html">Properties sidebar</a></li>
-                                                    <li><a href="properties-right-sidebar.html">Properties right
-                                                            sidebar</a></li>
-                                                    <li><a href="properties-list-sidebar.html">Properties list
-                                                            sidebar</a></li>
-                                                    <li><a href="properties-list-right-sidebar.html">Properties list
-                                                            right sidebar</a></li>
+                                                    <li><a href="/properties">Properties List</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="agent.html">AGENTS</a>
+                                            <li><a href="#">AGENTS</a>
                                                 <ul class="dropdown_menu">
-                                                    <li><a href="agent.html">Agent page</a></li>
-                                                    <li><a href="agent-details.html">Agent Details</a></li>
-                                                    <li><a href="agency.html">Agency page</a></li>
+                                                    <li><a href="/agents">Agent List</a></li>
+                                                 
                                                 </ul>
                                             </li>
                                             <!-- <li class="mega-parent"><a href="#">Elements</a>
@@ -145,7 +136,7 @@
                                                     </li>
                                                 </ul>
                                             </li> -->
-                                            <li><a href="contact.html"> Contact</a></li>
+                                            <li><a href="/contact"> Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -159,20 +150,10 @@
                         <div class="col-12">
                             <nav id="dropdown">
                                 <ul>
-                                    <li><a href="index.html">Home</a>
-                                        <ul>
-                                            <li><a href="index.html">Home Version 1</a></li>
-                                            <li><a href="index-2.html">Home Version 2</a></li>
-                                            <li><a href="index-3.html">Home Version 3</a></li>
-                                            <li><a href="index-4.html">Home Version 4</a></li>
-                                            <li><a href="index-5.html">Home Version 5</a></li>
-                                            <li><a href="index-6.html">Home Version 6</a></li>
-                                            <li><a href="index-7.html">Home Version 7</a></li>
-                                            <li><a href="index-8.html">Home Version 8</a></li>
-                                            <li><a href="index-9.html">Home Version 9</a></li>
-                                        </ul>
+                                    <li><a href="/">Home</a>
+                                     
                                     </li>
-                                    <li><a href="about-us.html">About</a></li>
+                                    <li><a href="/about">About</a></li>
                                     <!-- <li><a href="blog.html"> BLOG</a>
                                         <ul>
                                             <li><a href="blog.html">Blog pages</a></li>
@@ -199,23 +180,14 @@
                                         </ul>
                                     </li> -->
 
-                                    <li><a href="properties.html">PROPERTIES </a>
+                                    <li><a href="#">PROPERTIES </a>
                                         <ul>
-                                            <li><a href="properties.html">Properties page</a></li>
-                                            <li><a href="single-properties.html">Single Properties</a></li>
-                                            <li><a href="properties-sidebar.html">Properties sidebar</a></li>
-                                            <li><a href="properties-right-sidebar.html">Properties right sidebar</a>
-                                            </li>
-                                            <li><a href="properties-list-sidebar.html">Properties list sidebar</a></li>
-                                            <li><a href="properties-list-right-sidebar.html">Properties list right
-                                                    sidebar</a></li>
+                                            <li><a href="/properties">Property List</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="agent.html">AGENT</a>
+                                    <li><a href="#">AGENT</a>
                                         <ul>
-                                            <li><a href="agent.html">Agent page</a></li>
-                                            <li><a href="agent-details.html">Agent Details</a></li>
-                                            <li><a href="agency.html">Agency page</a></li>
+                                            <li><a href="/agents">Agent List</a></li>
                                         </ul>
                                     </li>
                                     <!-- <li><a href="#">Elements</a>

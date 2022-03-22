@@ -53,6 +53,7 @@
     <!-- Map js code here -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAj9b_nyz33KEaocu6ZOXRgqwwUZkDVEAw"></script>
     <script src="{{asset('frontend/js/map.js')}}"></script>
+    <script src="{{asset('frontend/js/map-2.js')}}"></script>
     <!-- All jquery file included here -->
     <script src="{{asset('frontend/js/vendor/jquery-1.12.0.min.js')}}"></script>
     <script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>

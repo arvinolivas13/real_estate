@@ -2,18 +2,18 @@
 
 @section('content')
  <!--Breadcrumbs start-->
- <div class="breadcrumbs overlay-black">
+ <div class="breadcrumbs overlay-black agents-cover">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="breadcrumbs-inner">
                             <div class="breadcrumbs-title text-center">
-                                <h1>Agent</h1>
+                                <h1>Agents</h1>
                             </div>
                             <div class="breadcrumbs-menu">
                                 <ul>
                                     <li><a href="index.html">Home /</a></li>
-                                    <li>Agent</li>
+                                    <li>Agents</li>
                                 </ul>
                             </div>
                         </div>
