@@ -2,7 +2,7 @@
 
 @section('content')
 <!--Breadcrumbs start-->
-<div class="breadcrumbs overlay-black">
+<div class="breadcrumbs overlay-black properties-cover">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
