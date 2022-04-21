@@ -121,5 +121,9 @@ Route::get('/property/details', function () {
     return view('frontend.pages.single.property');
 });
 
+Route::get('/account-status', function () {
+    return view('frontend.pages.custom_pages.inquiry');
+});
+
 Route::get('/home', 'HomeController@index' )->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

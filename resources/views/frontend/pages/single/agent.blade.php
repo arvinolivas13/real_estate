@@ -32,7 +32,7 @@
                     <div class="agent-profile">
                         <div class="single-team">
                             <div class="team-img">
-                                <img src="frontend/img/agent/7.jpg" alt="">
+                                <img src="../frontend/img/agent/7.jpg" alt="">
                             </div>
                             <div class="team-desc">
                                 <div class="team-member-title">
@@ -121,8 +121,8 @@
                         </div>
                         <div class="contact-list">
                             <ul>
-                                <li> <img src="frontend/img/icon/phone.png" alt=""> +1245  785  659 </li>
-                                <li> <img src="frontend/img/icon/email.png" alt=""> info@example.com</li>
+                                <li> <img src="../frontend/img/icon/phone.png" alt=""> +1245  785  659 </li>
+                                <li> <img src="../frontend/img/icon/email.png" alt=""> info@example.com</li>
                                 <li> <i class="fa fa-skype"></i> skype id : admin.smith</li>
                             </ul>
                         </div>
@@ -228,34 +228,34 @@
             <div class="col-12">
                 <div class="brand-list owl-carousel">
                     <div class="single-brand">
-                        <a href="#"><img src="frontend/img/brand/1.png" alt=""></a>
+                        <a href="#"><img src="../frontend/img/brand/1.png" alt=""></a>
                     </div>
                     <div class="single-brand">
-                        <a href="#"><img src="frontend/img/brand/2.png" alt=""></a>
+                        <a href="#"><img src="../frontend/img/brand/2.png" alt=""></a>
                     </div>
                     <div class="single-brand">
-                        <a href="#"><img src="frontend/img/brand/3.png" alt=""></a>
+                        <a href="#"><img src="../frontend/img/brand/3.png" alt=""></a>
                     </div>
                     <div class="single-brand">
-                        <a href="#"><img src="frontend/img/brand/4.png" alt=""></a>
+                        <a href="#"><img src="../frontend/img/brand/4.png" alt=""></a>
                     </div>
                     <div class="single-brand">
-                        <a href="#"><img src="frontend/img/brand/5.png" alt=""></a>
+                        <a href="#"><img src="../frontend/img/brand/5.png" alt=""></a>
                     </div>
                     <div class="single-brand">
-                        <a href="#"><img src="frontend/img/brand/1.png" alt=""></a>
+                        <a href="#"><img src="../frontend/img/brand/1.png" alt=""></a>
                     </div>
                     <div class="single-brand">
-                        <a href="#"><img src="frontend/img/brand/2.png" alt=""></a>
+                        <a href="#"><img src="../frontend/img/brand/2.png" alt=""></a>
                     </div>
                     <div class="single-brand">
-                        <a href="#"><img src="frontend/img/brand/3.png" alt=""></a>
+                        <a href="#"><img src="../frontend/img/brand/3.png" alt=""></a>
                     </div>
                     <div class="single-brand">
-                        <a href="#"><img src="frontend/img/brand/4.png" alt=""></a>
+                        <a href="#"><img src="../frontend/img/brand/4.png" alt=""></a>
                     </div>
                     <div class="single-brand">
-                        <a href="#"><img src="frontend/img/brand/5.png" alt=""></a>
+                        <a href="#"><img src="../frontend/img/brand/5.png" alt=""></a>
                     </div>
                 </div>
             </div>

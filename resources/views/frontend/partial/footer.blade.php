@@ -5,7 +5,7 @@
                         <div class="col-12">
                             <div class="map-area">
                                 <div id="contact-map" class="map-area">
-                                    <div id="googleMap" style="width:100%;height:365px;"></div>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15447.541219186267!2d121.2199242!3d14.5485509!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x19cb0fc7ab0b2d36!2sBrilliant%20Five%20J%20Construction%20and%20Development%20Corp.!5e0!3m2!1sen!2sph!4v1649947727950!5m2!1sen!2sph" width="100%" height="365" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                                 <!--Footer desc start-->
                                 <div class="footer-desc">
