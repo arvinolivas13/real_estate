@@ -18,63 +18,19 @@
     @yield('scripts')
     @yield('styles')
     @yield('styles-2')
-    <style>
-    .alert {
-        padding: 10px;
-    }
-    .centralized>button {
-        padding: 5px 10px;
-        border: 0px;
-        font-size: 20px;
-        color: #153d77;
-        background: #fff;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        margin: 5px;
-    }
-    .alert {
-        margin: 10px;
-        width: auto !important;
-    }
-    .alert p {
-        margin: 0px;
-    }
-    label.error {
-        width: 100%;
-        padding: 5px 10px;
-        background: #ff9f9f;
-        color: #fff;
-    }
-    </style>
-    
 </head>
 <body>
     <div class="wrapper">
         @include('backend.partial.sidebar')
-        <div class="main">
+        <div class="main" >
             @include('backend.partial.header')
-            <div class="action-header">
-                @yield('action-header')
-            </div>
-            <div class="row" style="height:calc(100% - 180px);padding: 0 10px;">
-                <div class="col-xl-2">
-                    @yield('left-content')
-                </div>
-                <main class="col-xl-8 content">
-                    <div class="container-fluid">
-                        @yield('content')
-                    </div>
-                </main>
-                <div class="col-xl-2">
-                    @yield('right-content')
-                </div>
+            <div class="mt-3 p-2 ">
+                @yield('content')
             </div>
             @include('backend.partial.footer')
         </div>
     </div>
 
-    
     <div class="modal fade" id="deleteMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
         <div class="modal-content">

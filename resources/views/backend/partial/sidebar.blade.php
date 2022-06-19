@@ -28,8 +28,12 @@
                     <li class="list-title">Dashboard</li>
                     <li class="sidebar-item"><a class="sidebar-link" href="/dashboard">Main</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="/maintenance/calendar">Calendar</a></li>
-
                 </ul>
+                <a href="{{url('customer')}}" class="sidebar-link collapsed">
+                    <span class="item">
+                        <i class="align-middle mr-2 fas fa-fw fa-receipt"></i> <span class="align-middle">Customer</span>
+                    </span> 
+                </a>
             </li>
             @endrole
             <li class="sidebar-header">

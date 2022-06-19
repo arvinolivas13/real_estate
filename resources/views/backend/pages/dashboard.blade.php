@@ -1,4 +1,4 @@
-@extends('backend.master.index')
+@extends('backend.master.template')
 
 @section('title', 'Dashboard')
 

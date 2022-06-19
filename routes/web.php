@@ -14,9 +14,13 @@
 
 Route::group(['middleware' => ['auth']], function() {
     
-    // Route::get('/', function () {
-    //     return view('backend.pages.dashboard');
-    // });
+    Route::group(['prefix' => 'customer'], function (){
+        Route::get          ('/',                            'CustomerController@index'                            )->name('get_employment_information');
+        Route::post         ('/save',                        'CustomerController@store'                          )->name('save_employment_information');
+        Route::get          ('/edit/{id}',                   'CustomerController@edit'                           )->name('edit_employment_information');
+        Route::post         ('/update/{id}',                 'CustomerController@update'                         )->name('update_employment_information');
+        Route::get          ('/destroy/{id}',                'CustomerController@destroy'                        )->name('destroy_employment_information');
+    });
     
     Route::get('/dashboard', function () {
         return view('backend.pages.dashboard');
@@ -24,9 +28,6 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('maintenance/calendar', function () {
         return view('backend.pages.maintenance.calendar');
-    });
-    Route::get('maintenance/customer', function () {
-        return view('backend.pages.maintenance.customer');
     });
     Route::get('maintenance/agent', function () {
         return view('backend.pages.maintenance.agent');
@@ -50,12 +51,6 @@ Route::group(['middleware' => ['auth']], function() {
         Route::group(['prefix' => '/area'], function (){
             Route::get          ('/',                            'AreaController@index'                          )->name('area');
             Route::get          ('/customer-record',             'AreaController@customer_record'                )->name('area_customer_record');
-            // Route::get          ('/get',                         'EmployeeInformationController@get'                            )->name('get_employment_information');
-            // Route::post         ('/save',                        'EmployeeInformationController@store'                          )->name('save_employment_information');
-            // Route::get          ('/edit/{id}',                   'EmployeeInformationController@edit'                           )->name('edit_employment_information');
-            // Route::post         ('/update/{id}',                 'EmployeeInformationController@update'                         )->name('update_employment_information');
-            // Route::get          ('/destroy/{id}',                'EmployeeInformationController@destroy'                        )->name('destroy_employment_information');
-            // Route::get          ('/sample',                      'EmployeeInformationController@sample'                         )->name('destroy_employment_information');
         });
 
         Route::group(['prefix' => '/van'], function (){
@@ -73,10 +68,6 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::get('/calendar', function () {
             return view('backend.pages.calendar');
-        });
-
-        Route::get('/customer', function () {
-            return view('backend.pages.maintenance.customer');
         });
 
         Route::get('/agent', function () {

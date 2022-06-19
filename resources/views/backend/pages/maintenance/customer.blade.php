@@ -1,9 +1,9 @@
-@extends('backend.master.index')
+@extends('backend.master.template')
 
 @section('title', 'Customers')
 
 @section('breadcrumbs')
-    <span>Transaction</span>  /  <span><a href="/transaction/area" style="color:#fff;">Information</a></span> / <span class="highlight">Customers</span>
+    <span>Main</span>  /  <span><a href="/transaction/area" style="color:#fff;">Home</a></span> / <span class="highlight">Customers</span>
 @endsection
 
 
@@ -23,14 +23,36 @@
                     <table id="customer_record" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>#</th>
+                                <th>Action</th>
+                                <th>Subscriber No</th>
+                                <th>Customer Name</th>
+                                <th>Email</th>
                                 <th>Address</th>
+                                <th>Contact</th>
+                                <th>Birthday</th>
+                                <th>Occupation</th>
                                 <th>Gender</th>
-                                <th>Contact Number</th>
-                                <th>Email Address</th>
-                                <th>Date Purchased</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @foreach ($customers as $key => $customer)
+                                <tr>
+                                    <td>{{$key++}}</td>
+                                    <td>{{$key++}}</td>
+                                    <td>{{$customer->Subscriber}}</td>
+                                    <td>{{$customer->firstname . ' ' . $customer->middlename . ' ' . $customer->lastname}}</td>
+                                    <td>{{$customer->email}}</td>
+                                    <td>{{$customer->address}}</td>
+                                    <td>{{$customer->contact}}</td>
+                                    <td>{{$customer->birthday}}</td>
+                                    <td>{{$customer->occupation}}</td>
+                                    <td>{{$customer->gender}}</td>
+                                    <td>{{$customer->status}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -71,239 +93,13 @@
 @section('scripts')
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script>
-        var employee_id = '';
         $(function() {
-            var data = [
-                {
-                    "name": "Airi Satou",
-                    "address": "#1 Waling-waling St. Sta Lucia Metro Manila",
-                    "gender": "Female",
-                    "contact_number": "09123456789",
-                    "email": "airi.satou@gmail.com",
-                    "date_purchased":"2011/08/09"
-                },
-                {
-                    "name": "Angelica Ramos",
-                    "address": "3 Lily Novaliches Gulod Metro Manila",
-                    "gender": "Female",
-                    "contact_number": "09234567891",
-                    "email": "angelica.ramos@gmail.com",
-                    "date_purchased":"2010/10/09"
-                },
-                {
-                    "name": "Ashton Cox",
-                    "address": "Lot 9 Blk 12 Audi Corner Lambo St. Metro Manila",
-                    "gender": "Female",
-                    "contact_number": "09123456789",
-                    "email": "ashton.cox@gmail.com",
-                    "date_purchased":"2012/12/20"
-                },
-                {
-                    "name": "Bradley Greer",
-                    "address": "30 Agustin Morong Rizal",
-                    "gender": "Male",
-                    "contact_number": "09995557892",
-                    "email": "bradley.greer@gmail.com",
-                    "date_purchased":"2020/10/09"
-                },
-                {
-                    "name": "Bruno Nash",
-                    "address": "Rockwell Subdivision Rizal",
-                    "gender": "Male",
-                    "contact_number": "09113456789",
-                    "email": "bruno.nash@gmail.com",
-                    "date_purchased":"2021/08/10"
-                },
-                {
-                    "name": "Cedric Kelly",
-                    "address": "Don Bosco Compound Pampanga",
-                    "gender": "Male",
-                    "contact_number": "09826528900",
-                    "email": "cedric.kelly@gmail.com",
-                    "date_purchased":"2020/10/09"
-                },
-                {
-                    "name": "Finn Camacho",
-                    "address": "Corel Beach Club Iba Zambales",
-                    "gender": "Male",
-                    "contact_number": "09997260012",
-                    "email": "finn.camacho@gmail.com",
-                    "date_purchased":"2011/08/09"
-                },
-                {
-                    "name": "Garret Winters",
-                    "address": "Makati Metro Manila",
-                    "gender": "Male",
-                    "contact_number": "09234658791",
-                    "email": "garret.winters@gmail.com",
-                    "date_purchased":"2020/10/09"
-                },
-                {
-                    "name": "Gavin Joyce",
-                    "address": "Wind Residences Unit 908 Metro Manila",
-                    "gender": "Male",
-                    "contact_number": "09988223246",
-                    "email": "gavin.joyce@gmail.com",
-                    "date_purchased":"2020/08/09"
-                },
-                {
-                    "name": "Haley Kennedy",
-                    "address": "89 Lowell St Lipa Batangas",
-                    "gender": "Male",
-                    "contact_number": "09123456789",
-                    "email": "haley.kennedy@gmail.com",
-                    "date_purchased":"2011/01/27"
-                },
-                {
-                    "name": "Lael Greer",
-                    "address": "Novaliches Quezon City Metro Manila",
-                    "gender": "Male",
-                    "contact_number": "09096547821",
-                    "email": "lael.greer@gmail.com",
-                    "date_purchased":"2020/03/25"
-                }
-            ];
-            var column = [
-                { data: 'name', title: "Name" },
-                { data: 'address', title: "Address"  },
-                { data: 'gender', title: "Gender"  },
-                { data: 'contact_number', title: "Contact Number"  },
-                { data: 'email', title: "Email Address"  },
-                { data: 'date_purchased', title: "Date Purchased"  }
-            ];
-
-            var data2 = [
-                {
-                    'transaction_no': '2020-'+scion.create.random(8),
-                    'payment_type': 'Gcash',
-                    'date': '2021/10/30',
-                    'amount': 'P 31,333.33',
-                    'reference_no': scion.create.random(8)
-                },
-                {
-                    'transaction_no': '2020-'+scion.create.random(8),
-                    'payment_type': 'Gcash',
-                    'date': '2021/09/30',
-                    'amount': 'P 31,333.33',
-                    'reference_no': scion.create.random(8)
-                },
-                {
-                    'transaction_no': '2020-'+scion.create.random(8),
-                    'payment_type': 'BDO',
-                    'date': '2021/08/30',
-                    'amount': 'P 31,333.33',
-                    'reference_no': scion.create.random(8)
-                },
-                {
-                    'transaction_no': '2020-'+scion.create.random(8),
-                    'payment_type': 'BPI',
-                    'date': '2021/08/30',
-                    'amount': 'P 31,333.33',
-                    'reference_no': scion.create.random(8)
-                },
-                {
-                    'transaction_no': '2020-'+scion.create.random(8),
-                    'payment_type': 'BPI',
-                    'date': '2021/07/30',
-                    'amount': 'P 31,333.33',
-                    'reference_no': scion.create.random(8)
-                },
-                {
-                    'transaction_no': '2020-'+scion.create.random(8),
-                    'payment_type': 'Gcash',
-                    'date': '2021/06/30',
-                    'amount': 'P 31,333.33',
-                    'reference_no': scion.create.random(8)
-                },
-                {
-                    'transaction_no': '2020-'+scion.create.random(8),
-                    'payment_type': 'BPI',
-                    'date': '2021/05/30',
-                    'amount': 'P 31,333.33',
-                    'reference_no': scion.create.random(8)
-                },
-                {
-                    'transaction_no': '2020-'+scion.create.random(8),
-                    'payment_type': 'BPI',
-                    'date': '2021/04/30',
-                    'amount': 'P 31,333.33',
-                    'reference_no': scion.create.random(8)
-                },
-                {
-                    'transaction_no': '2020-'+scion.create.random(8),
-                    'payment_type': 'BPI',
-                    'date': '2021/03/30',
-                    'amount': 'P 31,333.33',
-                    'reference_no': scion.create.random(8)
-                },
-                {
-                    'transaction_no': '2020-'+scion.create.random(8),
-                    'payment_type': 'BPI',
-                    'date': '2021/02/28',
-                    'amount': 'P 31,333.33',
-                    'reference_no': scion.create.random(8)
-                },
-                {
-                    'transaction_no': '2020-'+scion.create.random(8),
-                    'payment_type': 'BPI',
-                    'date': '2021/01/30',
-                    'amount': 'P 31,333.33',
-                    'reference_no': scion.create.random(8)
-                },
-                {
-                    'transaction_no': '2020-'+scion.create.random(8),
-                    'payment_type': 'BPI',
-                    'date': '2020/12/30',
-                    'amount': 'P 31,333.33',
-                    'reference_no': scion.create.random(8)
-                },
-                {
-                    'transaction_no': '2020-'+scion.create.random(8),
-                    'payment_type': 'BPI',
-                    'date': '2020/11/30',
-                    'amount': 'P 31,333.33',
-                    'reference_no': scion.create.random(8)
-                },
-                {
-                    'transaction_no': '2020-'+scion.create.random(8),
-                    'payment_type': 'BPI',
-                    'date': '2020/10/30',
-                    'amount': 'P 31,333.33',
-                    'reference_no': scion.create.random(8)
-                },
-                {
-                    'transaction_no': '2020-'+scion.create.random(8),
-                    'payment_type': 'BPI',
-                    'date': '2020/09/30',
-                    'amount': 'P 31,333.33',
-                    'reference_no': scion.create.random(8)
-                }
-            ];
-            
-            var column2 = [
-                { data: 'date', title: "Date"  },
-                { data: 'transaction_no', title: "Transaction Number" },
-                { data: 'payment_type', title: "Payment Type"  },
-                { data: 'amount', title: "Amount"  },
-                { data: 'reference_no', title: "Reference Number"  }
-            ];
-
-            scion.create.static_table('customer_record', data, column, true);
-            scion.create.static_table('customer_reports_table', data2, column2, false);
-            
-            $('body').delegate('#customer_record tbody tr','click', function () {
-                var data = $('#customer_record').DataTable().row(this).data();
-                console.log(data);
-                
-                $('.customer-name').text(data.name);
-                $('#customer_reports').modal('show');
-            });
+            alert('test');
+            $('#customer_record').DataTable();
         });
 
     </script>
 @endsection
-
-@yield('leaves_tab')
 
 @section('styles')
 <style>
