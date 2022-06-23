@@ -12,6 +12,9 @@
 */
 
 
+Route::get('sendhtmlemail','AreaController@html_email');
+
+
 Route::group(['middleware' => ['auth']], function() {
     
     // Route::get('/', function () {
