@@ -35,6 +35,11 @@
                         @foreach ($blocks as $block)
                             <div class="filterDiv {{'block-' . $block->block}} col-12">
                                 <div class="text-center">
+                                    <div class="action-item">
+                                        <button class="btn" onclick="removeLot({{$block->id}})">
+                                            <i class="align-middle fas fa-fw fa-times" style="color: black"></i> Reduce Lot
+                                        </button>
+                                    </div>
                                     <h4> {{'BLOCK-' . $block->block}} ({{App\AreaDetailLot::where('block_id', $block->id)->where('status', '!=', 'Open')->count() . '/' .App\AreaDetailLot::where('block_id', $block->id)->count()}}) </h4>
                                         <div class="row">
                                             @foreach ($block->lot as $item)
@@ -54,7 +59,6 @@
                                                 </div>
                                             </div>
                                         @endforeach
-                                        <a href="{{url('area/destroy/' . $block->id)}}" onclick="alert('Are you sure you want to Delete?')"><i class="align-middle fas fa-fw fa-trash" style="color: black"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -315,6 +319,15 @@
             });
         }
 
+        function removeLot(id) {
+            let message = "Are you sure you want to Delete?";
+            
+            if (confirm(message) == true) {
+                location.href = 'area/destroy/' + id
+            } else {
+            }
+        }
+
         $( document ).ready(function() {
             filterSelection("all");
            
@@ -333,6 +346,20 @@
 
 @section('styles')
     <style>
+        .action-item {
+            text-align: right;
+        }
+        .action-item button {
+            background: #c54545;
+            color: #fff !important;
+            margin-top: 5px;
+            margin-right: 5px;
+            float: right;
+        }
+        
+        .action-item button i {
+            color: #fff !important;
+        }
         table.dataTable td {
             padding: 3px 10px;
             width: 1px;
@@ -405,10 +432,10 @@
         }
         .filterDiv h4 {
             text-transform: uppercase;
-            margin-bottom: 20px;
             color: black;
             background: #fffcb4;
-            padding: 10px 3px;
+            padding: 10px 15px;
+            text-align: left;
         }
         legend>div {
             display: inline-block;
