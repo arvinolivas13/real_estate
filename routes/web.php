@@ -41,6 +41,10 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/destroy/{id}',                'AreaDetailController@destroy'                        )->name('destroy_employment_information');
     });
 
+    Route::group(['prefix' => 'transaction'], function (){
+        Route::get          ('/reservation',                 'TransactionController@reservation'                          )->name('get_employment_information');
+    });
+
     Route::get('/dashboard', function () {
         return view('backend.pages.dashboard');
     });

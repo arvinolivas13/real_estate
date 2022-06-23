@@ -144,7 +144,7 @@
                 </button>
             </div>
             <div class="modal-body m-3">
-                <form id="modal-form" action="{{url('area_detail/save')}}" method="post">
+                <form id="modal-form" action="{{url('transaction/reservation')}}" method="post">
                 @csrf
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Customer Name</label>
