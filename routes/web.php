@@ -15,6 +15,8 @@
 Route::get('sendhtmlemail','AreaController@html_email');
 
 
+
+
 Route::group(['middleware' => ['auth']], function() {
     
     Route::group(['prefix' => 'customer'], function (){
@@ -41,8 +43,16 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/destroy/{id}',                'AreaDetailController@destroy'                        )->name('destroy_employment_information');
     });
 
+    Route::group(['prefix' => 'transaction'], function (){
+        Route::get          ('/reservation',                 'TransactionController@reservation'                          )->name('get_employment_information');
+    });
+
     Route::get('/dashboard', function () {
         return view('backend.pages.dashboard');
+    });
+
+    Route::get('/document-management', function () {
+        return view('backend.pages.elfinder');
     });
 
     Route::get('e-soa', function () {

@@ -36,7 +36,7 @@ class CreatePaymentsTable extends Migration
 
             $table->foreign('lot_id')
                 ->references('id')
-                ->on('AreaDetailLot')
+                ->on('area_detail_lots')
                 ->onDelete('cascade');
         });
     }
