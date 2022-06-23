@@ -10,37 +10,29 @@
 @section('content')
 
 <div class="row" style="height:100%;">
-    <div class="col-12" style="height:100%;">
+    <div class="col-12" style="height:100%;padding:10px 30px;">
             <h3>List of Area</h3>
+
             <div class="area-container row">
-                <div class="col-xl-3 col-lg-3 col-sm-12" data-toggle="modal" data-target="#areaModal">
-                    <div class="area" style="background: url('/images/area/add.jpg')no-repeat;">
-                        <div class="area-body">
-                            <span class="area-count">10/20</span>
-                            <span class="area-name">Grand Villas Farm Phase 1</span>
-                            <span class="area-type">Farm Lot</span>
-                            <span class="area-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                <div class="col-xl-3 col-lg-3 col-sm-12">
+                    <button class="btn btn-light add-btn" data-toggle="modal" data-target="#areaModal"><i class="fas fa-plus"></i></button>
+                </div>
+                
+                @foreach ($areas as $area)
+                <div class="col-xl-3 col-lg-3 col-sm-12">
+                    <div class="area">
+                        <button class="btn edit-pen" onclick="edit({{ $area->id }});" data-toggle="modal" data-target="#areaModal" id="{{$area->id}}"><i class="fas fa-pen"></i></button>
+                        <img src="/images/area/{{$area->image}}" alt="/images/area/{{$area->image}}" onclick="location.href='{{url('area_detail/' . $area->id)}}'">
+                        <div class="area-details">
+                            <span class="area-name">{{ $area->name }}</span>
+                            <span class="area-type">{{ $area->type }}</span>
+                            <span class="area-description">{{ $area->description }}</span>
                         </div>
                     </div>
                 </div>
-                @foreach ($areas as $area)
-                    <div class="col-xl-3 col-lg-3 col-sm-12">
-                        <div class="area" style="background: url('/images/area/{{$area->image}}')no-repeat;">
-                            <div class="area-body">
-                                <span class="col-md-6 area-count">14/20</span>
-                                <span class="area-name">{{ $area->name }}</span>
-                                <span class="area-type">{{ $area->type }}</span>
-                                <span class="area-details">{{ $area->description }}.</span>
-                                <div class="row">
-                                    <a href="#" class="align-middle edit" onclick="edit({{ $area->id }})" title="Edit" data-toggle="modal" data-target="#areaModal" id={{$area->id}} ><i class="align-middle fas fa-fw fa-pen" style="color: black"></i></a>
-                                    <a href="{{url('area/destroy/' . $area->id)}}" onclick="alert('Are you sure you want to Delete?')"><i class="align-middle fas fa-fw fa-trash" style="color: black"></i></a>
-                                    <a href="{{url('area_detail/' . $area->id)}}"><i class="align-middle fas fa-fw fa-eye" style="color: black"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 @endforeach
             </div>
+
     </div>
 
     {{-- MODAL --}}
@@ -123,6 +115,7 @@
                         });
                 }
             });
+            
         }
 
         $(function() {
@@ -136,47 +129,43 @@
 
 @section('styles')
 <style>
+.add-btn {
+    height: 100%;
+    width: 100%;
+    font-size: 90px;
+}
+.area img {
+    width: 100%;
+    height: 210px;
+}
 .area {
-    background-position: center center !important;
-    background-size: cover !important;
-    border-radius: 8px;
+    box-shadow: 0 0 12px 0px #ccc;
     cursor: pointer;
-    transition: 0.3s;
-    margin: 10px 0;
 }
-.area:hover {
-    transform: scale(1.05);
+.area-details {
+    padding: 10px 15px;
+    background: #fff;
 }
-.area-body {
-    background: rgba(0,0,0,0.4);
-    color: #fff;
-    padding: 10px;
-    border-radius: 8px;
-}
-span.area-count {
-    display: block !important;
-    font-size: 50px;
-}
-span.area-name {
-    display: block;
-    font-size: 24px;
-    padding: 10px 0;
-    text-transform: uppercase;
+.area-name {
     font-weight: bold;
-}
-span.area-details {
-    font-size: 15px;
-}
-span.area-details {
+    text-transform: uppercase;
+    color: #343a40;
+    font-size: 17px;
     display: block;
 }
-span.area-type {
-    display: inline-block !important;
-    padding: 3px 10px;
-    background: #2e9e5b;
+.area-type {
     font-size: 12px;
-    border-radius: 50px;
-    text-transform: uppercase;
+    color: #2e9e5b;
+    display: block;
+}
+.area-description {
+    font-size: 12px;
+}
+.edit-pen {
+    position: absolute;
+    background: #ffffffd6;
+    margin: 6px;
+    color: #000;
 }
 </style>
 @endsection

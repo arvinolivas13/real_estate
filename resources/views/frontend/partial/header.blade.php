@@ -33,7 +33,7 @@
                     <div class="row">
                         <div class="col-lg-2 col-md-4 col-sm-6">
                             <div class="logo">
-                                <a href="index.html"><img src="frontend/img/logo/brilliant_logo.jpg" alt=""></a>
+                                <a href="/"><img src="frontend/img/logo/brilliant_logo.jpg" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-10 d-none d-lg-block">
