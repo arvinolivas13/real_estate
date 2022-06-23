@@ -87,6 +87,7 @@
 				buttons: ["copy", "print"],
 				responsive: true
 			});
+            
 			datatablesButtons.buttons().container().appendTo("#datatables-buttons_wrapper .col-md-6:eq(0)");
             
 		    $("#image").cropzee({

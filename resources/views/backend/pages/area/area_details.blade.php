@@ -66,6 +66,7 @@
     </div>
 </div>
 
+
 {{-- MODAL --}}
 <div class="modal fade" id="customerModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -132,6 +133,84 @@
         </div>
     </div>
 </div>
+
+{{-- MODAL --}}
+<div class="modal fade" id="reserveModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title reserve-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body m-3">
+                <form id="modal-form" action="{{url('area_detail/save')}}" method="post">
+                @csrf
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">Customer Name</label>
+                    <div class="row col-12">
+                        <input type="hidden" id="customer_id" name="customer_id" class="form-control col-10"/>
+                        <input type="text" class="form-control col-10 customer_name" placeholder="Select Order" disabled/>
+                        <button type="button" class="btn btn-primary col-2" data-toggle="modal" data-target="#customerList"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                    
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">Lot Quantity<span style="color: red">*</span></label>
+                    <input type="number" class="form-control" id="lot" name="lot" placeholder="Enter Lot Quantity" required>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary submit-button">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Customer List Modal -->
+<div class="modal fade" id="customerList" style="background: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Orders</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body m-3">
+                <table id="customer_records" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Subscriber No</th>
+                            <th>Customer Name</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Contact</th>
+                            <th>Birthday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($customers as $key => $customer)
+                            <tr onclick="selectCustomer({{ $customer->id }}, '{{ $customer->firstname . ' ' . $customer->middlename . ' ' . $customer->lastname }}')">
+                                <td>{{++$key}}</td>
+                                <td>{{$customer->subscriber_no}}</td>
+                                <td>{{$customer->firstname . ' ' . $customer->middlename . ' ' . $customer->lastname}}</td>
+                                <td>{{$customer->email}}</td>
+                                <td>{{$customer->address}}</td>
+                                <td>{{$customer->contact}}</td>
+                                <td>{{$customer->birthday}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 @section('scripts')
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
@@ -167,7 +246,20 @@
             element.className = arr1.join(" ");
         }
 
-        function edit(id){
+        function LotFunction(id, block, lot) {
+            alert(block);
+            $('.reserve-title').text('Reserve ' + 'Block - ' + block + 'Lot - ' + lot)
+            $('#reserveModal').modal('show'); 
+        }
+
+        function selectCustomer(id, value) {
+            $('#customer_id').val(id);
+            $('.customer_name').val(value);
+
+            $('#customerList').modal('hide');
+        }
+
+        function edit(id) {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -190,8 +282,12 @@
             });
         }
 
-        $(function() {
+        $( document ).ready(function() {
             filterSelection("all");
+           
+            $('#customer_records').DataTable({
+                scrollX: true,
+            });
 
             $( "body" ).delegate( ".block_btn", "click", function() {
                 $('.block_btn').removeClass('active');
