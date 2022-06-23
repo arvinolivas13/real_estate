@@ -7,8 +7,9 @@
 @endsection
 
 @section('content')
+
 <div class="main">
-    <div class="main-container" style="background: white; padding: 10px 40px;">
+    <div id="printableSoa" class="main-container" style="background: white; padding: 10px 40px;">
         <div class="row" style="margin-bottom: 10px;">
             <div style="text-align: left; display: flex;" class="col-8">
                 <span><img src="/images/logo.png" style="width: 100px;" alt=""></span>
@@ -194,6 +195,9 @@
             </table>
         </div>
     </div>
+    <a onclick='printDiv();' class="float">
+        <i class="fa fa-print my-float"></i>
+    </a>
 </div>
 @endsection
 
@@ -296,11 +300,38 @@
             }
         });
     });
+   function printDiv() {
+        var myStyle = '<link rel="stylesheet" href="backend/css/modern.css" />';
+        var divToPrint=document.getElementById('printableSoa');
+        var newWin=window.open('','Print-Window');
+        newWin.document.open();
+        newWin.document.write(myStyle + '<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+        newWin.document.close();
+        setTimeout(function(){newWin.close();},10);
+    };
 </script>
 @endsection
 
 @section('styles')
 <style>
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+    background-color: #2e9e5b;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+a.float:hover {
+    color: #e9cb00;
+}
+.my-float{
+	margin-top:22px;
+}
 .dashboard-greeting {
     background: #2e9e5b;
 }
