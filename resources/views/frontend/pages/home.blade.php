@@ -1001,7 +1001,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="section-title text-center">
-                            <h3>HERE IS OUR AGENTS</h3>
+                            <h3>OUR AGENTS</h3>
                             <p>Haven the best theme for elit, sed do eiusmod tempor dolor sit amet, conse ctetur
                                 adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minimam,
                                 quis nostrud exercitation.</p>
@@ -1018,7 +1018,7 @@
                             </div>
                             <div class="team-desc">
                                 <div class="team-member-title">
-                                    <h6><a href="agent-details.html">Stephen de Smith</a></h6>
+                                    <h6><a href="agent-details.html">John Reyes</a></h6>
                                     <p>Real Estate Agent</p>
                                 </div>
                                 <div class="team-member-social">
@@ -1040,7 +1040,7 @@
                             <div class="team-desc">
                                 <div class="team-member-title">
                                     <h6>
-                                        <a href="agent-details.html">Stephen de Smith</a>
+                                        <a href="agent-details.html">Mark Cabuyao</a>
                                     </h6>
                                     <p>Real Estate Agent</p>
                                 </div>
@@ -1063,7 +1063,7 @@
                             <div class="team-desc">
                                 <div class="team-member-title">
                                     <h6>
-                                        <a href="agent-details.html">Stephen de Smith</a>
+                                        <a href="agent-details.html">Ronnie Cruz</a>
                                     </h6>
                                     <p>Real Estate Agent</p>
                                 </div>
@@ -1086,7 +1086,7 @@
                             <div class="team-desc">
                                 <div class="team-member-title">
                                     <h6>
-                                        <a href="agent-details.html">Stephen de Smith</a>
+                                        <a href="agent-details.html">Steven Portez</a>
                                     </h6>
                                     <p>Real Estate Agent</p>
                                 </div>
