@@ -33,7 +33,7 @@
                                         
                                         <div class="row">
                                             @foreach ($block->lot as $item)
-                                                <div class="col-2">
+                                                <div class="col-2" onclick="LotFunction('{{$item->id}}', '{{$block->block}}', '{{$item->id}}')">
                                                     <div class="lot {{$item->status}}">
                                                         <span class="lot-name">LOT {{$item->lot}}</span>
                                                         <div class="row lot-details">
@@ -144,6 +144,10 @@
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Customer Name</label>
                     <div class="row col-12">
+                        <input type="hidden" id="lot_id" name="lot_id" class="form-control col-10"/>
+                        <input type="hidden" id="block_no" name="block_no" class="form-control col-10"/>
+                        <input type="hidden" id="lot_no" name="lot_no" class="form-control col-10"/>
+                        <input type="hidden" id="payment_classification" name="payment_classification" class="form-control col-10" value="RES"/>
                         <input type="hidden" id="customer_id" name="customer_id" class="form-control col-10"/>
                         <input type="text" class="form-control col-10 customer_name" placeholder="Select Order" disabled/>
                         <button type="button" class="btn btn-primary col-2" data-toggle="modal" data-target="#customerList"><i class="fas fa-search"></i></button>
@@ -151,8 +155,36 @@
                 </div>
                     
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Lot Quantity<span style="color: red">*</span></label>
-                    <input type="number" class="form-control" id="lot" name="lot" placeholder="Enter Lot Quantity" required>
+                    <label for="inputPassword4">Payment Date<span style="color: red">*</span></label>
+                    <input type="date" class="form-control" id="payment_date" name="payment_date" required>
+                </div>
+                <div class="form-group col-md-12">
+                    <label class="inputPassword4">Payment Type<span style="color: red">*</span></label>
+                    <select class="form-control" name="payment_type" required>
+                        <option value="CASH">CASH</option>
+                        <option value="CHEQUE">CHEQUE</option>
+                        <option value="ONLINE TRANSFER">ONLINE TRANSFER</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">Amount<span style="color: red">*</span></label>
+                    <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter Amount" required>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">Reference #</label>
+                    <input type="text" class="form-control" id="reference_no" name="reference_no" placeholder="Enter Reference #">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">OR #</label>
+                    <input type="number" class="form-control" id="or_no" name="or_no" placeholder="Enter OR #">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">Attachment</label>
+                    <input type="file" class="form-control" id="attachment" name="attachment">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">Remarks</label>
+                    <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Enter Remarks">
                 </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -241,8 +273,10 @@
         }
 
         function LotFunction(id, block, lot) {
-            alert(block);
-            $('.reserve-title').text('Reserve ' + 'Block - ' + block + 'Lot - ' + lot)
+            $('.reserve-title').text('Reserve ' + 'Block - ' + block + ' Lot - ' + lot)
+            $('#lot_id').val(id);
+            $('#block_no').val(block);
+            $('#lot_no').val(lot);
             $('#reserveModal').modal('show'); 
         }
 
