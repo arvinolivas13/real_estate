@@ -21,6 +21,16 @@ body, h1, h2, h3, h4, h5, h6, a, span, input {
     background: #fff !important;
 }
 
+.toggled .company-name {
+    display: block !important;
+    white-space: nowrap;
+    padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #2e9e5b;
+    font-size: 15px !important;
+}
+
 a.sidebar-toggle.mr-2 {
     width: 45px;
     height: 45px;
@@ -421,12 +431,31 @@ table#lookup tbody>tr:hover {
 
 @media screen and (max-width: 991px) {
     .main {
-        width: auto !important;
+        width: 100% !important;
         min-width: auto !important;
     }
     
     .sidebar {
         min-width: auto !important;
         margin: 0px !important;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    
+    li.nav-item.dropdown.action {
+        display: none;
+    }
+    .profile-name {
+        display: none;
+    }
+    .sidebar-user {
+        background: none !important;
+    }
+    .profile-img {
+        margin: 0px;
+    }
+    a.sidebar-toggle.mr-2 {
+        display: none !important;
     }
 }

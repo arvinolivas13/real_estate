@@ -35,7 +35,7 @@
                         <img src="{{ asset('images/logo.png')}}" class="img-fluid" alt="">
                     </p>
                     <p class="section-title">
-                        <span>Welcome to ScionTech!</span>
+                        <span>Welcome to Brilliant Five J!</span>
                     </p>
                     <div class="form-1">
                         <p class="form-label">Email</p>

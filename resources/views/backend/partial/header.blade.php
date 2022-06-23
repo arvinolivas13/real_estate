@@ -12,17 +12,17 @@
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav ml-auto">
             
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown action">
                 <a class="nav-link dropdown-toggle position-relative" href="#" id="search" data-toggle="dropdown">
                     <i class="fas fa-search"></i>
                 </a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown action">
                 <a class="nav-link dropdown-toggle position-relative" href="#" id="addLink" data-toggle="dropdown">
                     <i class="fas fa-plus-square"></i>
                 </a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown action">
                 <a class="nav-link dropdown-toggle position-relative" href="#" id="messagesDropdown" data-toggle="dropdown">
                     <i class="fas fa-envelope-open"></i>
                 </a>
@@ -87,7 +87,7 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown action">
                 <a class="nav-link dropdown-toggle position-relative" href="#" id="alertsDropdown" data-toggle="dropdown">
                     <i class="fas fa-bell"></i>
                     <span class="indicator"></span>
@@ -151,7 +151,7 @@
                 </div>
             </li>
             
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown action">
                 <a class="nav-link dropdown-toggle position-relative" href="#" id="search" data-toggle="dropdown">
                     <i class="fas fa-question-circle"></i>
                 </a>

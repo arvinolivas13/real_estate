@@ -1,857 +1,1377 @@
-
 @extends('frontend.master.index')
 
 @section('content')
-<section class="hero-wrap js-fullheight" style="background-image: url('/frontend/images/bg_1.jpg');" data-section="home">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
-        <div class="col-md-8 ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="d-flex align-items-center" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
-                            <a href="https://vimeo.com/45830194" class="icon-video popup-vimeo d-flex justify-content-center align-items-center mr-3">
-                            <span class="ion-ios-play play mr-2"></span>
-                            <span class="watch">Watch Video</span>
-                        </a>
-                        </p>
-            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Pre-selling farm lots at it's lowest possible price.</h1>
-            <p class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Real Estate Investment Firm</p>
-        </div>
-        </div>
-    </div>
-    </section>
-        
-        <section class="ftco-section ftco-services ftco-no-pt">
-    <div class="container">
-        <div class="row services-section">
-        <div class="col-md-4 d-flex align-self-stretch ftco-animate">
-            <div class="media block-6 services text-center d-block">
-            <div class="icon"><span class="flaticon-layers"></span></div>
-            <div class="media-body">
-                <h3 class="heading mb-3">Perfectly Design</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <p><a href="#" class="btn btn-primary">Read more</a></p>
+<div class="slider-container overlay">
+            <!-- Slider Image -->
+            <div id="mainSlider" class="nivoSlider slider-image">
+                <img src="frontend/img/slider/1.jpg" alt="" title="#htmlcaption1" />
+                <img src="frontend/img/slider/2.jpg" alt="" title="#htmlcaption2" />
+                <img src="frontend/img/slider/3.jpg" alt="" title="#htmlcaption3" />
             </div>
-            </div>      
-        </div>
-        <div class="col-md-4 d-flex align-self-stretch ftco-animate">
-            <div class="media block-6 services text-center d-block">
-            <div class="icon"><span class="flaticon-compass-symbol"></span></div>
-            <div class="media-body">
-                <h3 class="heading mb-3">Carefully Planned</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <p><a href="#" class="btn btn-primary">Read more</a></p>
-            </div>
-            </div>    
-        </div>
-        <div class="col-md-4 d-flex align-self-stretch ftco-animate">
-            <div class="media block-6 services text-center d-block">
-            <div class="icon"><span class="flaticon-layers"></span></div>
-            <div class="media-body">
-                <h3 class="heading mb-3">Smartly Execute</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <p><a href="#" class="btn btn-primary">Read more</a></p>
-            </div>
-            </div>      
-        </div>
-        </div>
-    </div>
-    </section>
-
-    <section class="ftco-section ftco-project bg-light">
-        <div class="container-fluid p-0">
-            <div class="row no-gutters justify-content-center pb-5">
-                <div class="col-md-12 heading-section text-center ftco-animate">
-                    <span class="subheading">Book a Tripping</span>
-                    <h2 class="mb-4">Farm Lots Tripping Schedule Calendar</h2>
-                    <p>Schedule your tripping with us, we're happy to assist you!</p>
+            <!-- Slider Caption 1 -->
+            <div id="htmlcaption1" class="nivo-html-caption slider-caption-1">
+                <div class="display-table">
+                    <div class="display-tablecell">
+                        <div class="container ">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="slide1-text">
+                                        <div class="middle-text">
+                                            <div class="title-1 wow fadeUp" data-wow-duration="1.2s"
+                                                data-wow-delay="0.1s">
+                                                <h3>WANT TO BUY OR INVEST IN PROPERTIES ?</h3>
+                                            </div>
+                                            <div class="title-2 wow fadeUp" data-wow-duration="1.3s"
+                                                data-wow-delay="0.2s">
+                                                <h1>PRE-SELLING <span>FARM LOTS</span> AT IT'S LOWEST POSSIBLE PRICE</h1>
+                                            </div>
+                                            <div class="desc wow fadeUp" data-wow-duration="1.4s" data-wow-delay="0.4s">
+                                                <p>Lorem consectetur adipiscing elit, sed do eiusmod tempor dolor sit
+                                                    amet<br> contetur adipiscing elit, sed do eiusmod tempor incididunt
+                                                </p>
+                                            </div>
+                                            <div class="contact-us wow fadeUp" data-wow-duration="1.5s"
+                                                data-wow-delay=".5s">
+                                                <a href="contact.html">CONTACT US</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div id="htmlcaption2" class="nivo-html-caption slider-caption-1">
+                <div class="display-table">
+                    <div class="display-tablecell">
+                        <div class="container ">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="slide1-text">
+                                        <div class="middle-text">
+                                            <div class="title-1 wow fadeUp" data-wow-duration="1.2s"
+                                                data-wow-delay="0.1s">
+                                                <h3>WANT TO BUY OR RENT HOME ?</h3>
+                                            </div>
+                                            <div class="title-2 wow fadeUp" data-wow-duration="1.3s"
+                                                data-wow-delay="0.2s">
+                                                <h1>IT'S SUPER EASY TO ACQUIRE A <span>PROPERTY</span></h1>
+                                            </div>
+                                            <div class="desc wow fadeUp" data-wow-duration="1.4s" data-wow-delay="0.4s">
+                                                <p>Lorem consectetur adipiscing elit, sed do eiusmod tempor dolor sit
+                                                    amet<br> contetur adipiscing elit, sed do eiusmod tempor incididunt
+                                                </p>
+                                            </div>
+                                            <div class="contact-us wow fadeUp" data-wow-duration="1.5s"
+                                                data-wow-delay=".5s">
+                                                <a href="contact.html">CONTACT US</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="htmlcaption3" class="nivo-html-caption slider-caption-1">
+                <div class="display-table">
+                    <div class="display-tablecell">
+                        <div class="container ">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="slide1-text">
+                                        <div class="middle-text">
+                                            <div class="title-1 wow fadeUp" data-wow-duration="1.2s"
+                                                data-wow-delay="0.1s">
+                                                <h3>WANT TO BUY OR RENT HOME ?</h3>
+                                            </div>
+                                            <div class="title-2 wow fadeUp" data-wow-duration="1.3s"
+                                                data-wow-delay="0.2s">
+                                                <h1>LET OUR <span>LAND</span> BE YOUR LEGACY</h1>
+                                            </div>
+                                            <div class="desc wow fadeUp" data-wow-duration="1.4s" data-wow-delay="0.4s">
+                                                <p>Lorem consectetur adipiscing elit, sed do eiusmod tempor dolor sit
+                                                    amet<br> contetur adipiscing elit, sed do eiusmod tempor incididunt
+                                                </p>
+                                            </div>
+                                            <div class="contact-us wow fadeUp" data-wow-duration="1.5s"
+                                                data-wow-delay=".5s">
+                                                <a href="contact.html">CONTACT US</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--slider section end-->
+
+        <!--Find home area start-->
+        <div class="find-home">
             <div class="container">
-                <div id='calendar'></div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="find-home-title">
+                            <h3>INQUIRE STATUS OF YOUR PLAN</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <form action="#" class="form-row gutter-30">
+                            <div class="col-lg-9 col-md-8 col-12">
+                                <div class="find-home-item mb-40">
+                                    <input type="text" name="account-no" placeholder="Account No.">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-12">
+                                <div class="find-home-item">
+                                    <button type="submit">Check Status </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-            
-        
-    </section>
+        <!--Find home area end-->
 
-    <section class="ftco-counter img ftco-section ftco-no-pt ftco-no-pb" id="section-counter" data-section="about">
-        <div class="container">
-            <div class="row d-flex">
-                <div class="col-md-6 col-lg-4 d-flex">
-                    <div class="img d-flex align-self-stretch align-items-center" style="background-image:url(/frontend/images/about.jpg);">
-                        <div class="request-quote py-5">
-                            <div class="py-2">
-                                <span class="subheading">Be Part of our Business</span>
-                                <h3>Request A Quote</h3>
+        <!--Feature property section start-->
+        <div class="property-area fadeInUp wow ptb-130" data-wow-delay="0.2s">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="feature-property-title">
+                            <h3>NEWLY ADDED PROPERTY</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="property-tab-menu">
+                            <ul class="nav justify-content-md-end" id="property-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="property-sale-tab" data-toggle="tab" href="#sale"
+                                        role="tab" aria-controls="sale" aria-selected="true">PROPERTY FOR SALE</a>
+                                </li>
+                                <!-- <li class="nav-item">
+                                    <a class="nav-link" id="property-rent-tab" data-toggle="tab" href="#rent" role="tab"
+                                        aria-controls="rent" aria-selected="false">PROPERTY TO RENT</a>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="tab-content" id="property-tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="sale" aria-labelledby="property-sale-tab">
+                                <div class="property-list owl-carousel">
+                                    <div class="item">
+                                        <div class="single-property">
+                                            <div class="property-img">
+                                                <a href="single-properties.html">
+                                                    <img src="frontend/img/property/7.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="property-desc">
+                                                <div class="property-desc-top">
+                                                    <h6><a href="single-properties.html">Grand Villas Farm Phase 1</a></h6>
+                                                    <h4 class="price">OPEN</h4>
+                                                    <div class="property-location">
+                                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 568 E 1st Ave,
+                                                            Miami</p>
+                                                    </div>
+                                                </div>
+                                                <div class="property-desc-bottom">
+                                                    <div class="property-bottom-list">
+                                                        <ul>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-1.png" alt="">
+                                                                <span>550 sqft</span>
+                                                            </li>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-3.png" alt="">
+                                                                <span>4</span>
+                                                            </li>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-4.png" alt="">
+                                                                <span>3</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="single-property">
+                                            <div class="property-img">
+                                                <a href="single-properties.html">
+                                                    <img src="frontend/img/property/8.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="property-desc">
+                                                <div class="property-desc-top">
+                                                    <h6><a href="single-properties.html">Grand Villas Farm Phase 2</a></h6>
+                                                    <h4 class="price">OPEN</h4>
+                                                    <div class="property-location">
+                                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 568 E 1st Ave,
+                                                            Miami</p>
+                                                    </div>
+                                                </div>
+                                                <div class="property-desc-bottom">
+                                                    <div class="property-bottom-list">
+                                                        <ul>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-1.png" alt="">
+                                                                <span>550 sqft</span>
+                                                            </li>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-3.png" alt="">
+                                                                <span>4</span>
+                                                            </li>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-4.png" alt="">
+                                                                <span>3</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="single-property">
+                                            <div class="property-img">
+                                                <a href="single-properties.html">
+                                                    <img src="frontend/img/property/9.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="property-desc">
+                                                <div class="property-desc-top">
+                                                    <h6><a href="single-properties.html">Grand Villas Farm Phase 3</a></h6>
+                                                    <h4 class="price">OPEN</h4>
+                                                    <div class="property-location">
+                                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 12 1st Ave, New
+                                                            Yourk</p>
+                                                    </div>
+                                                </div>
+                                                <div class="property-desc-bottom">
+                                                    <div class="property-bottom-list">
+                                                        <ul>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-1.png" alt="">
+                                                                <span>550 sqft</span>
+                                                            </li>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-3.png" alt="">
+                                                                <span>4</span>
+                                                            </li>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-4.png" alt="">
+                                                                <span>3</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="single-property">
+                                            <div class="property-img">
+                                                <a href="single-properties.html">
+                                                    <img src="frontend/img/property/7.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="property-desc">
+                                                <div class="property-desc-top">
+                                                    <h6><a href="single-properties.html">Grand Villas Farm Phase 4</a></h6>
+                                                    <h4 class="price">OPEN</h4>
+                                                    <div class="property-location">
+                                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 568 E 1st Ave,
+                                                            Miami</p>
+                                                    </div>
+                                                </div>
+                                                <div class="property-desc-bottom">
+                                                    <div class="property-bottom-list">
+                                                        <ul>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-1.png" alt="">
+                                                                <span>550 sqft</span>
+                                                            </li>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-3.png" alt="">
+                                                                <span>4</span>
+                                                            </li>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-4.png" alt="">
+                                                                <span>3</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="single-property">
+                                            <div class="property-img">
+                                                <a href="single-properties.html">
+                                                    <img src="frontend/img/property/8.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="property-desc">
+                                                <div class="property-desc-top">
+                                                    <h6><a href="single-properties.html">Grand Villas Farm East</a></h6>
+                                                    <h4 class="price">OPEN</h4>
+                                                    <div class="property-location">
+                                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 668 L 2nd Ave,
+                                                            Boston</p>
+                                                    </div>
+                                                </div>
+                                                <div class="property-desc-bottom">
+                                                    <div class="property-bottom-list">
+                                                        <ul>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-1.png" alt="">
+                                                                <span>550 sqft</span>
+                                                            </li>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-3.png" alt="">
+                                                                <span>4</span>
+                                                            </li>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-4.png" alt="">
+                                                                <span>3</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="single-property">
+                                            <div class="property-img">
+                                                <a href="single-properties.html">
+                                                    <img src="frontend/img/property/9.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="property-desc">
+                                                <div class="property-desc-top">
+                                                    <h6><a href="single-properties.html">Grand Villas Farm East 2</a></h6>
+                                                    <h4 class="price">OPEN</h4>
+                                                    <div class="property-location">
+                                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 568 E 1st Ave,
+                                                            Miami</p>
+                                                    </div>
+                                                </div>
+                                                <div class="property-desc-bottom">
+                                                    <div class="property-bottom-list">
+                                                        <ul>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-1.png" alt="">
+                                                                <span>550 sqft</span>
+                                                            </li>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-3.png" alt="">
+                                                                <span>4</span>
+                                                            </li>
+                                                            <li>
+                                                                <img src="frontend/img/property/icon-4.png" alt="">
+                                                                <span>3</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <form action="#" class="request-form ftco-animate">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="First Name">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Last Name">
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-field">
-                                <div class="select-wrap">
-                        <div class="icon-arr"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="" class="form-control">
-                            <option value="">Select Your Services</option>
-                            <option value="">Construction</option>
-                            <option value="">Renovation</option>
-                            <option value="">Interior Design</option>
-                            <option value="">Exterior Design</option>
-                            <option value="">Painting</option>
-                        </select>
-                        </div>
-                        </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Phone">
-                                </div>
-                                <div class="form-group">
-                        <textarea name="" id="" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
-                        </div>
-                        <div class="form-group">
-                        <input type="submit" value="Request A Quote" class="btn btn-secondary py-3 px-4">
-                        </div>
-                            </form>
+                            <!--  -->
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-8 pl-lg-5 py-5">
-                    <div class="row justify-content-start pb-3">
-                <div class="col-md-12 heading-section ftco-animate">
-                    <span class="subheading">Welcome</span>
-                    <h2 class="mb-4">Since we started work in 1980</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis hendrerit dolor magna eget est lorem ipsum dolor. Facilisis gravida neque convallis a cras semper auctor.</p>
-                    <p>Viverra orci sagittis eu volutpat odio facilisis mauris sit amet. Interdum velit euismod in pellentesque massa placerat duis. Aliquam etiam erat velit scelerisque in. </p>
-                    <p>Nunc lobortis mattis aliquam faucibus purus in massa tempor nec. Condimentum lacinia quis vel eros. Convallis tellus id interdum velit. Felis imperdiet proin fermentum leo vel.</p>
-                </div>
-                </div>
-                    <div class="row">
-                <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate d-flex">
-                    <div class="block-18 text-center p-4 mb-4 align-self-stretch d-flex">
-                    <div class="text">
-                        <strong class="number" data-number="30">0</strong>
-                        <span>Years of experience</span>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate d-flex">
-                    <div class="block-18 text-center py-4 px-3 mb-4 align-self-stretch d-flex">
-                    <div class="text">
-                        <strong class="number" data-number="1000">0</strong>
-                        <span>Our Farm Lots</span>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate d-flex">
-                    <div class="block-18 text-center py-4 px-3 mb-4 align-self-stretch d-flex">
-                    <div class="text">
-                        <strong class="number" data-number="100">0</strong>
-                        <span>Our Architect</span>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate d-flex">
-                    <div class="block-18 text-center py-4 px-3 mb-4 align-self-stretch d-flex">
-                    <div class="text">
-                        <strong class="number" data-number="1100">0</strong>
-                        <span>Happy Customers</span>
-                    </div>
-                    </div>
-                </div>
                 </div>
             </div>
         </div>
-        </div>
-    </section>
+        <!--Feature property section end-->
 
-    <section class="ftco-section ftco-project bg-light" data-section="projects">
-        <div class="container-fluid px-md-5">
-            <div class="row justify-content-center pb-5">
-        <div class="col-md-12 heading-section text-center ftco-animate">
-            <span class="subheading">Accomplishments</span>
-            <h2 class="mb-4">Our Projects</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-        </div>
-        </div>
-            <div class="row">
-                <div class="col-md-12 testimonial">
-            <div class="carousel-project owl-carousel">
-                <div class="item">
-                    <div class="project">
-                                <div class="img">
-                                    <img src="/frontend/images/project-1.jpg" class="img-fluid" alt="Colorlib Template">
-                                    <a href="/frontend/images/project-1.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
-                                        <span class="icon-expand"></span>
-                                    </a>
+        <!--Welcome Haven section-->
+        <div class="welcome-haven bg-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-12 fadeInLeft wow welcome-pd" data-wow-delay="0.2s">
+                        <div class="welcome-title">
+                            <h3 class="title-1">WELCOME TO <span>BRILLIANT FIVE J</span></h3>
+                            <h4 class="title-2">WE ALWAYS PROVIDE PRIORITY TO OUR CLIENTS</h4>
+                        </div>
+                        <div class="welcome-content">
+                            <p> <span>Brilliant Five J</span> is a construction and development corporation that are selling farm-lots at Rizal. We provide quality and efficient service to our clients 
+                        to help them with investing and acquiring farm land properties at the lowest possible price.</p>
+                        </div>
+                        <div class="welcome-services">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="w-single-services">
+                                        <div class="services-img">
+                                            <img src="frontend/img/welcome/icon-1.png" alt="">
+                                        </div>
+                                        <div class="services-desc">
+                                            <h6>Low Cost</h6>
+                                            <p>Low cost provides yur best for <br> elit, sed do eiusmod tempe</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="text px-4">
-                                    <h3><a href="#">Grand Villas Farm Phase 1</a></h3>
-                                    <span>Farm Lot</span>
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="w-single-services">
+                                        <div class="services-img">
+                                            <img src="frontend/img/welcome/icon-2.png" alt="">
+                                        </div>
+                                        <div class="services-desc">
+                                            <h6>Good Marketing </h6>
+                                            <p>Low cost provides yur best for <br> elit, sed do eiusmod tempe</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                </div>
-                <div class="item">
-                    <div class="project">
-                                <div class="img">
-                                    <img src="/frontend/images/project-2.jpg" class="img-fluid" alt="Colorlib Template">
-                                    <a href="/frontend/images/project-2.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
-                                        <span class="icon-expand"></span>
-                                    </a>
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="w-single-services">
+                                        <div class="services-img">
+                                            <img src="frontend/img/welcome/icon-3.png" alt="">
+                                        </div>
+                                        <div class="services-desc">
+                                            <h6>Easy to Find</h6>
+                                            <p>Low cost provides yur best for <br> elit, sed do eiusmod tempe</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="text px-4">
-                                    <h3><a href="#">Grand Villas Farm Phase 2</a></h3>
-                                    <span>Farm Lot</span>
-                                </div>
-                            </div>
-                </div>
-                <div class="item">
-                    <div class="project">
-                                <div class="img">
-                                    <img src="/frontend/images/project-3.jpg" class="img-fluid" alt="Colorlib Template">
-                                    <a href="/frontend/images/project-3.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
-                                        <span class="icon-expand"></span>
-                                    </a>
-                                </div>
-                                <div class="text px-4">
-                                    <h3><a href="#">Grand Villas Farm Phase 2-B</a></h3>
-                                    <span>Farm Lot</span>
-                                </div>
-                            </div>
-                </div>
-                <div class="item">
-                    <div class="project">
-                                <div class="img">
-                                    <img src="/frontend/images/project-4.jpg" class="img-fluid" alt="Colorlib Template">
-                                    <a href="/frontend/images/project-4.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
-                                        <span class="icon-expand"></span>
-                                    </a>
-                                </div>
-                                <div class="text px-4">
-                                    <h3><a href="#">Grand Villas Farm Phase 3</a></h3>
-                                    <span>Farm Lot</span>
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="w-single-services">
+                                        <div class="services-img">
+                                            <img src="frontend/img/welcome/icon-4.png" alt="">
+                                        </div>
+                                        <div class="services-desc">
+                                            <h6>Reliable</h6>
+                                            <p>Low cost provides yur best for <br> elit, sed do eiusmod tempe</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                </div>
-                <div class="item">
-                    <div class="project">
-                                <div class="img">
-                                    <img src="/frontend/images/project-5.jpg" class="img-fluid" alt="Colorlib Template">
-                                    <a href="/frontend/images/project-5.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
-                                        <span class="icon-expand"></span>
-                                    </a>
-                                </div>
-                                <div class="text px-4">
-                                    <h3><a href="#">Grand Villas Farm East</a></h3>
-                                    <span>Farm Lot</span>
-                                </div>
-                            </div>
-                </div>
-                <div class="item">
-                    <div class="project">
-                                <div class="img">
-                                    <img src="/frontend/images/project-6.jpg" class="img-fluid" alt="Colorlib Template">
-                                    <a href="/frontend/images/project-6.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
-                                        <span class="icon-expand"></span>
-                                    </a>
-                                </div>
-                                <div class="text px-4">
-                                    <h3><a href="#">Grand Villas Farm East 2</a></h3>
-                                    <span>Farm Lot</span>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="welcome-haven-img fadeInRight wow" data-wow-delay="0.2s">
+                            <img src="frontend/img/welcome/1.jpg" alt="">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <!--Welcome Haven section end-->
+
+        <!--Download apps section start-->
+        <div class="download-apps overlay-blue">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-12">
+                        <div class="download-apps-desc wow fadeInDown" data-wow-delay="0.1s">
+                            <div class="download-apps-title">
+                                <h3 class="title-1">DOWNLOAD OUR APPS</h3>
+                                <h3 class="title-2">AND GET NOTIFICATION FOR NEW PROPERTIES</h3>
+                            </div>
+                            <div class="download-apps-bottom">
+                                <p>Haven the best theme for elit, sed do eiusmod tempor dolor sit amet, conse ctetur
+                                    apiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd
+                                    minimam</p>
+                                <a href="#">DOWNLOAD</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-12">
+                        <div class="download-apps-caption-img f-right wow fadeUp" data-wow-duration="1.2s"
+                            data-wow-delay="0.2s">
+                            <img src="frontend/img/common/download-caption.png" alt="">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+        <!--Download apps section end-->
 
-    <section class="ftco-section" data-section="team">
-        <div class="container-fluid p-0">
-            <div class="row no-gutters justify-content-center pb-5">
-        <div class="col-md-12 heading-section text-center ftco-animate">
-            <span class="subheading">Architect</span>
-            <h2 class="mb-4">Behind those Beautiful Works</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-        </div>
-        </div>
-        <div class="row no-gutters">
-                    <div class="col-md-6 col-lg-3 ftco-animate">
-                        <div class="staff">
-                            <div class="img-wrap d-flex align-items-stretch">
-                                <div class="img align-self-stretch" style="background-image: url(/frontend/images/team-1.jpg);"></div>
+        <!--Services section start-->
+        <div class="services-section ptb-130 bg-1">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="section-title text-center">
+                            <h3>OUR SERVICES</h3>
+                            <p>Haven the best theme for elit, sed do eiusmod tempor dolor sit amet, conse ctetur
+                                adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minimam,
+                                quis nostrud exercitation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-12">
+                        <div class="single-services wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.2s">
+                            <div class="single-services-img">
+                                <img src="frontend/img/service/1.png" alt="">
                             </div>
-                            <div class="text d-flex align-items-center pt-3 text-center">
-                                <div>
-                                    <span class="position mb-2">Sales Agent</span>
-                                    <h3 class="mb-4">Lloyd Wilson</h3>
-                                    <div class="faded">
-                                        <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-                                        <ul class="ftco-social text-center">
-                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                        </ul>
-                    </div>
-                    </div>
+                            <div class="single-services-desc">
+                                <h5>Buy Property</h5>
+                                <p>Haven the best theme for elit, sed do eiumod tempor dolor sit amet, conse ctetur
+                                    adipiscing elit, sed do eiusmod tempor incididunt ut </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-3 ftco-animate">
-                        <div class="staff">
-                            <div class="img-wrap d-flex align-items-stretch">
-                                <div class="img align-self-stretch" style="background-image: url(/frontend/images/team-2.jpg);"></div>
+                    <div class="col-md-4 col-12">
+                        <div class="single-services wow fadeInUp" data-wow-duration="1.4s" data-wow-delay="0.2s">
+                            <div class="single-services-img">
+                                <img src="frontend/img/service/2.png" alt="">
                             </div>
-                            <div class="text d-flex align-items-center pt-3 text-center">
-                                <div>
-                                    <span class="position mb-2">Sales Agent</span>
-                                    <h3 class="mb-4">Rachel Parker</h3>
-                                    <div class="faded">
-                                        <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-                                        <ul class="ftco-social text-center">
-                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                        </ul>
-                    </div>
-                    </div>
+                            <div class="single-services-desc">
+                                <h5>Sale Property</h5>
+                                <p>Haven the best theme for elit, sed do eiumod tempor dolor sit amet, conse ctetur
+                                    adipiscing elit, sed do eiusmod tempor incididunt ut </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-3 ftco-animate">
-                        <div class="staff">
-                            <div class="img-wrap d-flex align-items-stretch">
-                                <div class="img align-self-stretch" style="background-image: url(/frontend/images/team-3.jpg);"></div>
+                    <div class="col-md-4 col-12">
+                        <div class="single-services wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.4s">
+                            <div class="single-services-img">
+                                <img src="frontend/img/service/3.png" alt="">
                             </div>
-                            <div class="text d-flex align-items-center pt-3 text-center">
-                                <div>
-                                    <span class="position mb-2">Sales Agent</span>
-                                    <h3 class="mb-4">Ian Smith</h3>
-                                    <div class="faded">
-                                        <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-                                        <ul class="ftco-social text-center">
-                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                        </ul>
-                    </div>
-                    </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 ftco-animate">
-                        <div class="staff">
-                            <div class="img-wrap d-flex align-items-stretch">
-                                <div class="img align-self-stretch" style="background-image: url(/frontend/images/team-4.jpg);"></div>
-                            </div>
-                            <div class="text d-flex align-items-center pt-3 text-center">
-                                <div>
-                                    <span class="position mb-2">Sales Agent</span>
-                                    <h3 class="mb-4">Alicia Henderson</h3>
-                                    <div class="faded">
-                                        <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-                                        <ul class="ftco-social text-center">
-                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                        </ul>
-                    </div>
-                    </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-3 ftco-animate">
-                        <div class="staff">
-                            <div class="img-wrap d-flex align-items-stretch">
-                                <div class="img align-self-stretch" style="background-image: url(/frontend/images/staff-1.jpg);"></div>
-                            </div>
-                            <div class="text d-flex align-items-center pt-3 text-center">
-                                <div>
-                                    <span class="position mb-2">Sales Agent</span>
-                                    <h3 class="mb-4">Lloyd Wilson</h3>
-                                    <div class="faded">
-                                        <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-                                        <ul class="ftco-social text-center">
-                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                        </ul>
-                    </div>
-                    </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 ftco-animate">
-                        <div class="staff">
-                            <div class="img-wrap d-flex align-items-stretch">
-                                <div class="img align-self-stretch" style="background-image: url(/frontend/images/staff-2.jpg);"></div>
-                            </div>
-                            <div class="text d-flex align-items-center pt-3 text-center">
-                                <div>
-                                    <span class="position mb-2">Sales Agent</span>
-                                    <h3 class="mb-4">Rachel Parker</h3>
-                                    <div class="faded">
-                                        <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-                                        <ul class="ftco-social text-center">
-                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                        </ul>
-                    </div>
-                    </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 ftco-animate">
-                        <div class="staff">
-                            <div class="img-wrap d-flex align-items-stretch">
-                                <div class="img align-self-stretch" style="background-image: url(/frontend/images/staff-3.jpg);"></div>
-                            </div>
-                            <div class="text d-flex align-items-center pt-3 text-center">
-                                <div>
-                                    <span class="position mb-2">Sales Agent</span>
-                                    <h3 class="mb-4">Ian Smith</h3>
-                                    <div class="faded">
-                                        <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-                                        <ul class="ftco-social text-center">
-                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                        </ul>
-                    </div>
-                    </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 ftco-animate">
-                        <div class="staff">
-                            <div class="img-wrap d-flex align-items-stretch">
-                                <div class="img align-self-stretch" style="background-image: url(/frontend/images/staff-4.jpg);"></div>
-                            </div>
-                            <div class="text d-flex align-items-center pt-3 text-center">
-                                <div>
-                                    <span class="position mb-2">Sales Agent</span>
-                                    <h3 class="mb-4">Alicia Henderson</h3>
-                                    <div class="faded">
-                                        <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-                                        <ul class="ftco-social text-center">
-                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                        </ul>
-                    </div>
-                    </div>
+                            <div class="single-services-desc">
+                                <h5>rent Property</h5>
+                                <p>Haven the best theme for elit, sed do eiumod tempor dolor sit amet, conse ctetur
+                                    adipiscing elit, sed do eiusmod tempor incididunt ut </p>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
-    </section>
+        <!--Services section end-->
 
-
-    <section class="testimony-section" data-section="testimony">
-    <div class="container">
-        <div class="row ftco-animate justify-content-center">
-            <div class="col-md-12 d-flex align-items-center">
-                <div class="carousel-testimony owl-carousel">
-                    <div class="item">
-                        <div class="testimony-wrap d-flex align-items-stretch">
-                    <div class="user-img d-flex align-self-stretch" style="background-image: url(/frontend/images/testimony-1.jpg)">
-                    </div>
-                    <div class="text d-flex align-items-center">
-                        <div>
-                            <div class="icon-quote">
-                                <span class="icon-quote-left"></span>
-                            </div>
-                            <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                            <p class="name">Jacob Bolton</p>
-                            <span class="position">CEO, Founder</span>
+        <!--Feature property section-->
+        <div class="feature-property ptb-130">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="section-title text-center">
+                            <h3>FEATURED PROPERTY</h3>
+                            <p>Haven the best theme for elit, sed do eiusmod tempor dolor sit amet, conse ctetur
+                                adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minimam,
+                                quis nostrud exercitation.</p>
                         </div>
                     </div>
-                    </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap d-flex align-items-stretch">
-                    <div class="user-img d-flex align-self-stretch" style="background-image: url(/frontend/images/testimony-2.jpg)">
-                    </div>
-                    <div class="text d-flex align-items-center">
-                        <div>
-                            <div class="icon-quote">
-                                <span class="icon-quote-left"></span>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="single-property wow fadeInUp mb-40" data-wow-delay="0.2s" data-wow-duration="1s">
+                            <span>FOR SALE</span>
+                            <div class="property-img">
+                                <a href="single-properties.html">
+                                    <img src="frontend/img/property/1.jpg" alt="">
+                                </a>
                             </div>
-                            <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                            <p class="name">Jacob Bolton</p>
-                            <span class="position">CEO, Founder</span>
+                            <div class="property-desc">
+                                <div class="property-desc-top">
+                                    <h6><a href="single-properties.html">Marvel de Villa</a></h6>
+                                    <h4 class="price">$48,354</h4>
+                                    <div class="property-location">
+                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 450 E 1st Ave, New Jersey</p>
+                                    </div>
+                                </div>
+                                <div class="property-desc-bottom">
+                                    <div class="property-bottom-list">
+                                        <ul>
+                                            <li>
+                                                <img src="frontend/img/property/icon-1.png" alt="">
+                                                <span>550 sqft</span>
+                                            </li>
+                                            <li>
+                                                <img src="frontend/img/property/icon-3.png" alt="">
+                                                <span>4</span>
+                                            </li>
+                                            <li>
+                                                <img src="frontend/img/property/icon-4.png" alt="">
+                                                <span>3</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="single-property mb-40 wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1.1s">
+                            <div class="property-img">
+                                <a href="single-properties.html">
+                                    <img src="frontend/img/property/2.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="property-desc">
+                                <div class="property-desc-top">
+                                    <h6><a href="single-properties.html">Friuli-Venezia Giulia</a></h6>
+                                    <h4 class="price">$52,354</h4>
+                                    <div class="property-location">
+                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 568 E 1st Ave, Miami</p>
+                                    </div>
+                                </div>
+                                <div class="property-desc-bottom">
+                                    <div class="property-bottom-list">
+                                        <ul>
+                                            <li>
+                                                <img src="frontend/img/property/icon-1.png" alt="">
+                                                <span>550 sqft</span>
+                                            </li>
+                                            <li>
+                                                <img src="frontend/img/property/icon-3.png" alt="">
+                                                <span>4</span>
+                                            </li>
+                                            <li>
+                                                <img src="frontend/img/property/icon-4.png" alt="">
+                                                <span>3</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="single-property mb-40 wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1.2s">
+                            <span class="bg-blue">FOR Rent</span>
+                            <div class="property-img">
+                                <a href="single-properties.html">
+                                    <img src="frontend/img/property/3.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="property-desc">
+                                <div class="property-desc-top">
+                                    <h6><a href="single-properties.html">Friuli-Venezia Giulia</a></h6>
+                                    <h4 class="price">$52,354</h4>
+                                    <div class="property-location">
+                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 568 E 1st Ave, Miami</p>
+                                    </div>
+                                </div>
+                                <div class="property-desc-bottom">
+                                    <div class="property-bottom-list">
+                                        <ul>
+                                            <li>
+                                                <img src="frontend/img/property/icon-1.png" alt="">
+                                                <span>550 sqft</span>
+                                            </li>
+                                            <li>
+                                                <img src="frontend/img/property/icon-3.png" alt="">
+                                                <span>4</span>
+                                            </li>
+                                            <li>
+                                                <img src="frontend/img/property/icon-4.png" alt="">
+                                                <span>3</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="single-property wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="1.3s">
+                            <div class="property-img">
+                                <a href="single-properties.html">
+                                    <img src="frontend/img/property/4.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="property-desc">
+                                <div class="property-desc-top">
+                                    <h6><a href="single-properties.html">Ruposi Bangla Cottage</a></h6>
+                                    <h4 class="price">$52,354</h4>
+                                    <div class="property-location">
+                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 215 L AH Rod, California</p>
+                                    </div>
+                                </div>
+                                <div class="property-desc-bottom">
+                                    <div class="property-bottom-list">
+                                        <ul>
+                                            <li>
+                                                <img src="frontend/img/property/icon-1.png" alt="">
+                                                <span>550 sqft</span>
+                                            </li>
+                                            <li>
+                                                <img src="frontend/img/property/icon-3.png" alt="">
+                                                <span>4</span>
+                                            </li>
+                                            <li>
+                                                <img src="frontend/img/property/icon-4.png" alt="">
+                                                <span>3</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="single-property wow fadeInUp" data-wow-delay="0.5s" data-wow-duration="1.4s">
+                            <span>FOR SALE</span>
+                            <div class="property-img">
+                                <a href="single-properties.html">
+                                    <img src="frontend/img/property/5.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="property-desc">
+                                <div class="property-desc-top">
+                                    <h6><a href="single-properties.html">MayaKanon de Villa</a></h6>
+                                    <h4 class="price">$32,344</h4>
+                                    <div class="property-location">
+                                        <p><img src="frontend/img/property/icon-5.png" alt=""> 12 EA 1st Ave, Washington</p>
+                                    </div>
+                                </div>
+                                <div class="property-desc-bottom">
+                                    <div class="property-bottom-list">
+                                        <ul>
+                                            <li>
+                                                <img src="frontend/img/property/icon-1.png" alt="">
+                                                <span>550 sqft</span>
+                                            </li>
+                                            <li>
+                                                <img src="frontend/img/property/icon-3.png" alt="">
+                                                <span>4</span>
+                                            </li>
+                                            <li>
+                                                <img src="frontend/img/property/icon-4.png" alt="">
+                                                <span>3</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="single-property wow fadeInUp" data-wow-delay="0.6s" data-wow-duration="1.5s">
+                            <div class="property-img">
+                                <a href="single-properties.html">
+                                    <img src="frontend/img/property/6.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="property-desc">
+                                <div class="property-desc-top">
+                                    <h6><a href="single-properties.html">Azorex de South Villa</a></h6>
+                                    <h4 class="price">$65,354</h4>
+                                    <div class="property-location">
+                                        <p><img src="frontend/img/property/icon-5.png" alt="">668 L 2nd Ave, Boston</p>
+                                    </div>
+                                </div>
+                                <div class="property-desc-bottom">
+                                    <div class="property-bottom-list">
+                                        <ul>
+                                            <li>
+                                                <img src="frontend/img/property/icon-1.png" alt="">
+                                                <span>550 sqft</span>
+                                            </li>
+                                            <li>
+                                                <img src="frontend/img/property/icon-3.png" alt="">
+                                                <span>4</span>
+                                            </li>
+                                            <li>
+                                                <img src="frontend/img/property/icon-4.png" alt="">
+                                                <span>3</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </section>
+        <!--Feature property section end-->
 
-    <section class="ftco-section bg-light" data-section="blog">
-    <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
-        <div class="col-md-7 heading-section text-center ftco-animate">
-            <span class="subheading">Blog</span>
-            <h2 class="mb-4">Read Our Stories</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+        <!--Awesome Feature section-->
+        <div class="awesome-feature bg-1">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="section-title text-center">
+                            <h3>AWESOME FEATURES</h3>
+                            <p>Haven the best theme for elit, sed do eiusmod tempor dolor sit amet, conse ctetur
+                                adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minimam,
+                                quis nostrud exercitation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="awesome-feature-desc">
+                            <div class="awesome-feature-img">
+                                <div class="awesome-feature-img-border">
+                                    <div class="awesome-feature-img-inner">
+                                        <img src="frontend/img/awesome/feature.jpg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="awesome-feature-list">
+                                <div class="col-4 left">
+                                    <div class="single-awesome-feature one mb-87 wow fadeInLeft" data-wow-delay="0.2s"
+                                        data-wow-duration="1.2s">
+                                        <div class="s-awesome-feature-head">
+                                            <div class="s-awesome-feature-title">
+                                                <h6>Fully Furnished</h6>
+                                            </div>
+                                            <div class="s-awesome-feature-text">
+                                                <p>Paint cost provides ar best for <br> elit, sed do eiusmod tempe</p>
+                                            </div>
+                                        </div>
+                                        <div class="s-awesome-feature-icon">
+                                            <i class="icofont icofont-tools-alt-2"></i>
+                                        </div>
+                                    </div>
+                                    <div class="single-awesome-feature two mb-87 wow fadeInLeft" data-wow-delay="0.3s"
+                                        data-wow-duration="1.3s">
+                                        <div class="s-awesome-feature-head">
+                                            <div class="s-awesome-feature-title">
+                                                <h6>Royal Touch Paint</h6>
+                                            </div>
+                                            <div class="s-awesome-feature-text">
+                                                <p>Paint cost provides ar best for <br> elit, sed do eiusmod tempe</p>
+                                            </div>
+                                        </div>
+                                        <div class="s-awesome-feature-icon">
+                                            <i class="icofont icofont-paint-brush"></i>
+                                        </div>
+                                    </div>
+                                    <div class="single-awesome-feature three wow fadeInLeft" data-wow-delay="0.3s"
+                                        data-wow-duration="1.4s">
+                                        <div class="s-awesome-feature-head">
+                                            <div class="s-awesome-feature-title">
+                                                <h6>Non Stop Security</h6>
+                                            </div>
+                                            <div class="s-awesome-feature-text">
+                                                <p>Paint cost provides ar best for <br> elit, sed do eiusmod tempe</p>
+                                            </div>
+                                        </div>
+                                        <div class="s-awesome-feature-icon">
+                                            <i class="zmdi zmdi-bug"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 right">
+                                    <div class="single-awesome-feature four mb-87 wow fadeInRight" data-wow-delay="0.2s"
+                                        data-wow-duration="1.2s">
+                                        <div class="s-awesome-feature-icon">
+                                            <i class="icofont icofont-calculations"></i>
+                                        </div>
+                                        <div class="s-awesome-feature-head">
+                                            <div class="s-awesome-feature-title">
+                                                <h6>Latest Interior Design</h6>
+                                            </div>
+                                            <div class="s-awesome-feature-text">
+                                                <p>Paint cost provides ar best for <br> elit, sed do eiusmod tempe</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="single-awesome-feature five mb-87 wow fadeInRight" data-wow-delay="0.3s"
+                                        data-wow-duration="1.3s">
+                                        <div class="s-awesome-feature-icon">
+                                            <i class="fa fa-leaf"></i>
+                                        </div>
+                                        <div class="s-awesome-feature-head">
+                                            <div class="s-awesome-feature-title">
+                                                <h6>Living Inside a Nature</h6>
+                                            </div>
+                                            <div class="s-awesome-feature-text">
+                                                <p>Paint cost provides ar best for <br> elit, sed do eiusmod tempe</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="single-awesome-feature six wow fadeInRight" data-wow-delay="0.2s"
+                                        data-wow-duration="1.4s">
+                                        <div class="s-awesome-feature-icon">
+                                            <i class="icofont icofont-fix-tools"></i>
+                                        </div>
+                                        <div class="s-awesome-feature-head">
+                                            <div class="s-awesome-feature-title">
+                                                <h6>Luxurious Fittings</h6>
+                                            </div>
+                                            <div class="s-awesome-feature-text">
+                                                <p>Paint cost provides ar best for <br> elit, sed do eiusmod tempe</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-        <div class="row d-flex">
-        <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry justify-content-end">
-            <a href="single.html" class="block-20" style="background-image: url('/frontend/images/image_1.jpg');">
-            </a>
-            <div class="text mt-3 float-right d-block">
-                <div class="d-flex align-items-center pt-2 mb-4 topp">
-                    <div class="one mr-3">
-                        <span class="day">12</span>
-                    </div>
-                    <div class="two">
-                        <span class="yr">2019</span>
-                        <span class="mos">March</span>
-                    </div>
-                </div>
-                <h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <div class="d-flex align-items-center mt-4 meta">
-                    <p class="mb-0"><a href="#" class="btn btn-secondary">Read More <span class="ion-ios-arrow-round-forward"></span></a></p>
-                    <p class="ml-auto mb-0">
-                        <a href="#" class="mr-2">Admin</a>
-                        <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-                    </p>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry justify-content-end">
-            <a href="single.html" class="block-20" style="background-image: url('/frontend/images/image_2.jpg');">
-            </a>
-            <div class="text mt-3 float-right d-block">
-                <div class="d-flex align-items-center pt-2 mb-4 topp">
-                    <div class="one mr-3">
-                        <span class="day">10</span>
-                    </div>
-                    <div class="two">
-                        <span class="yr">2019</span>
-                        <span class="mos">March</span>
-                    </div>
-                </div>
-                <h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <div class="d-flex align-items-center mt-4 meta">
-                    <p class="mb-0"><a href="#" class="btn btn-secondary">Read More <span class="ion-ios-arrow-round-forward"></span></a></p>
-                    <p class="ml-auto mb-0">
-                        <a href="#" class="mr-2">Admin</a>
-                        <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-                    </p>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry">
-            <a href="single.html" class="block-20" style="background-image: url('/frontend/images/image_3.jpg');">
-            </a>
-            <div class="text mt-3 float-right d-block">
-                <div class="d-flex align-items-center pt-2 mb-4 topp">
-                    <div class="one mr-3">
-                        <span class="day">05</span>
-                    </div>
-                    <div class="two">
-                        <span class="yr">2019</span>
-                        <span class="mos">March</span>
-                    </div>
-                </div>
-                <h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <div class="d-flex align-items-center mt-4 meta">
-                    <p class="mb-0"><a href="#" class="btn btn-secondary">Read More <span class="ion-ios-arrow-round-forward"></span></a></p>
-                    <p class="ml-auto mb-0">
-                        <a href="#" class="mr-2">Admin</a>
-                        <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-                    </p>
-                </div>
-            </div>
-            </div>
-        </div>
+        <!--Awesome Feature section end-->
 
-        <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry justify-content-end">
-            <a href="single.html" class="block-20" style="background-image: url('/frontend/images/image_4.jpg');">
-            </a>
-            <div class="text mt-3 float-right d-block">
-                <div class="d-flex align-items-center pt-2 mb-4 topp">
-                    <div class="one mr-3">
-                        <span class="day">12</span>
+        <!--Fun fact area start-->
+        <div class="fun-fact overlay-blue">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-12">
+                        <div class="singe-fun-fact  f-left">
+                            <div class="fun-head">
+                                <div class="fun-icon">
+                                    <i class="fa fa-home"></i>
+                                </div>
+                                <div class="fun-count">
+                                    <h3 class="counter">
+                                        999
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="fun-text">
+                                <p>Complete Project</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="two">
-                        <span class="yr">2019</span>
-                        <span class="mos">March</span>
+                    <div class="col-md-3 col-12">
+                        <div class="singe-fun-fact middle">
+                            <div class="fun-head">
+                                <div class="fun-icon">
+                                    <i class="fa fa-key"></i>
+                                </div>
+                                <div class="fun-count">
+                                    <h3 class="counter">
+                                        999
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="fun-text">
+                                <p>Property Sold</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <div class="singe-fun-fact text-center middle-2">
+                            <div class="fun-head">
+                                <div class="fun-icon">
+                                    <i class="zmdi zmdi-mood"></i>
+                                </div>
+                                <div class="fun-count">
+                                    <h3 class="counter">
+                                        450
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="fun-text">
+                                <p>Happy Clients</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <div class="singe-fun-fact f-right">
+                            <div class="fun-head">
+                                <div class="fun-icon">
+                                    <i class="fa fa-trophy"></i>
+                                </div>
+                                <div class="fun-count">
+                                    <h3 class="counter">
+                                        120
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="fun-text">
+                                <p>Awards Win</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <div class="d-flex align-items-center mt-4 meta">
-                    <p class="mb-0"><a href="#" class="btn btn-secondary">Read More <span class="ion-ios-arrow-round-forward"></span></a></p>
-                    <p class="ml-auto mb-0">
-                        <a href="#" class="mr-2">Admin</a>
-                        <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-                    </p>
-                </div>
-            </div>
             </div>
         </div>
-        <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry justify-content-end">
-            <a href="single.html" class="block-20" style="background-image: url('/frontend/images/image_5.jpg');">
-            </a>
-            <div class="text mt-3 float-right d-block">
-                <div class="d-flex align-items-center pt-2 mb-4 topp">
-                    <div class="one mr-3">
-                        <span class="day">10</span>
-                    </div>
-                    <div class="two">
-                        <span class="yr">2019</span>
-                        <span class="mos">March</span>
-                    </div>
-                </div>
-                <h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <div class="d-flex align-items-center mt-4 meta">
-                    <p class="mb-0"><a href="#" class="btn btn-secondary">Read More <span class="ion-ios-arrow-round-forward"></span></a></p>
-                    <p class="ml-auto mb-0">
-                        <a href="#" class="mr-2">Admin</a>
-                        <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-                    </p>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry">
-            <a href="single.html" class="block-20" style="background-image: url('/frontend/images/image_6.jpg');">
-            </a>
-            <div class="text mt-3 float-right d-block">
-                <div class="d-flex align-items-center pt-2 mb-4 topp">
-                    <div class="one mr-3">
-                        <span class="day">05</span>
-                    </div>
-                    <div class="two">
-                        <span class="yr">2019</span>
-                        <span class="mos">March</span>
-                    </div>
-                </div>
-                <h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <div class="d-flex align-items-center mt-4 meta">
-                    <p class="mb-0"><a href="#" class="btn btn-secondary">Read More <span class="ion-ios-arrow-round-forward"></span></a></p>
-                    <p class="ml-auto mb-0">
-                        <a href="#" class="mr-2">Admin</a>
-                        <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-                    </p>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
-    </section>
+        <!--Fun fact area end-->
 
-    <section class="ftco-section contact-section ftco-no-pb" data-section="contact">
-    <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
-        <div class="col-md-7 heading-section text-center ftco-animate">
-            <span class="subheading">Contact</span>
-            <h2 class="mb-4">Contact Us</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-        </div>
-        </div>
-        <div class="row no-gutters block-9">
-        <div class="col-md-6 order-md-last d-flex">
-            <form action="#" class="bg-light p-5 contact-form">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Email">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject">
-            </div>
-            <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-secondary py-3 px-5">
-            </div>
-            </form>
-        
-        </div>
-
-        <div class="col-md-6 d-flex">
-            <div class="mapouter"><div class="gmap_canvas"><iframe width="500" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=2D%20RNL%20Bldg.%20Bagumbayan,%20Teresa%20Rizal&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-        </div>
-        </div>
-    </div>
-    </section>
-
-    <section class="ftco-section contact-section">
-    <div class="container">
-        <div class="row d-flex contact-info">
-        <div class="col-md-6 col-lg-3 d-flex">
-            <div class="align-self-stretch box p-4 text-center">
-                <div class="icon d-flex align-items-center justify-content-center">
-                    <span class="icon-map-signs"></span>
+        <!--Team area start-->
+        <div class="team-area bg-1">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="section-title text-center">
+                            <h3>HERE IS OUR AGENTS</h3>
+                            <p>Haven the best theme for elit, sed do eiusmod tempor dolor sit amet, conse ctetur
+                                adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minimam,
+                                quis nostrud exercitation.</p>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="mb-4">Address</h3>
-                <p>2D RNL Bldg. Bagumbayan, Teresa Rizal</p>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-3 d-flex">
-            <div class="align-self-stretch box p-4 text-center">
-                <div class="icon d-flex align-items-center justify-content-center">
-                    <span class="icon-phone2"></span>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="single-team wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1.2s">
+                            <div class="team-img">
+                                <a href="agent-details.html">
+                                    <img src="frontend/img/team/1.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="team-desc">
+                                <div class="team-member-title">
+                                    <h6><a href="agent-details.html">Stephen de Smith</a></h6>
+                                    <p>Real Estate Agent</p>
+                                </div>
+                                <div class="team-member-social">
+                                    <a href="#"><i class="zmdi zmdi-phone-in-talk"></i></a>
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="single-team wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1.3s">
+                            <div class="team-img">
+                                <a href="agent-details.html">
+                                    <img src="frontend/img/team/2.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="team-desc">
+                                <div class="team-member-title">
+                                    <h6>
+                                        <a href="agent-details.html">Stephen de Smith</a>
+                                    </h6>
+                                    <p>Real Estate Agent</p>
+                                </div>
+                                <div class="team-member-social">
+                                    <a href="#"><i class="zmdi zmdi-phone-in-talk"></i></a>
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="single-team wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="1.4s">
+                            <div class="team-img">
+                                <a href="agent-details.html">
+                                    <img src="frontend/img/team/3.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="team-desc">
+                                <div class="team-member-title">
+                                    <h6>
+                                        <a href="agent-details.html">Stephen de Smith</a>
+                                    </h6>
+                                    <p>Real Estate Agent</p>
+                                </div>
+                                <div class="team-member-social">
+                                    <a href="#"><i class="zmdi zmdi-phone-in-talk"></i></a>
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="single-team wow fadeInUp" data-wow-delay="0.5s" data-wow-duration="1.5s">
+                            <div class="team-img">
+                                <a href="agent-details.html">
+                                    <img src="frontend/img/team/4.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="team-desc">
+                                <div class="team-member-title">
+                                    <h6>
+                                        <a href="agent-details.html">Stephen de Smith</a>
+                                    </h6>
+                                    <p>Real Estate Agent</p>
+                                </div>
+                                <div class="team-member-social">
+                                    <a href="#"><i class="zmdi zmdi-phone-in-talk"></i></a>
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="mb-4">Contact Number</h3>
-                <p><a href="tel://1234567920">0917 502 3189</a></p>
             </div>
         </div>
-        <div class="col-md-6 col-lg-3 d-flex">
-            <div class="align-self-stretch box p-4 text-center">
-                <div class="icon d-flex align-items-center justify-content-center">
-                    <span class="icon-paper-plane"></span>
-                </div>
-                <h3 class="mb-4">Email Address</h3>
-                <p><a href="mailto:info@yoursite.com">info@brilliantfivej.com</a></p>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-3 d-flex">
-            <div class="align-self-stretch box p-4 text-center">
-                <div class="icon d-flex align-items-center justify-content-center">
-                    <span class="icon-globe"></span>
-                </div>
-                <h3 class="mb-4">Website</h3>
-                <p><a href="#">brilliantfivej.com</a></p>
-            </div>
-        </div>
-        </div>
-    </div>
-    </section>
-@endsection
+        <!--Team area end-->
 
-@section('calendar-js')
-<script>
+        <!--Latest blog start-->
+        <div class="latest-blog ptb-130">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="section-title text-center">
+                            <h3>LATEST FROM THE BLOG</h3>
+                            <p>Haven the best theme for elit, sed do eiusmod tempor dolor sit amet, conse ctetur
+                                adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minimam,
+                                quis nostrud exercitation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="single-blog wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1s">
+                            <div class="blog-thubmnail">
+                                <a href="article.html">
+                                    <img src="frontend/img/blog/1.jpg" alt="">
+                                </a>
+                                <div class="blog-post">
+                                    <span class="post-day">
+                                        20
+                                    </span>
+                                    <span class="post-month">
+                                        March
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="blog-desc">
+                                <h6><a href="article.html">New Duplex Villa design with Latest Altra Concept</a></h6>
+                                <p class="post-content">Haven the best theme for elit, sed do eiusmod tempor dolor sit
+                                    amet, conse ctetur adipiscing elit, sed do eismod tempor incididunt </p>
+                                <div class="bolg-continue">
+                                    <a href="article.html">Continure Reading ></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="single-blog wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1.2s">
+                            <div class="blog-thubmnail">
+                                <a href="article.html">
+                                    <img src="frontend/img/blog/2.jpg" alt="">
+                                </a>
+                                <div class="blog-post">
+                                    <span class="post-day">
+                                        20
+                                    </span>
+                                    <span class="post-month">
+                                        March
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="blog-desc">
+                                <h6><a href="article.html">New Duplex Villa design with Latest Altra Concept</a></h6>
+                                <p class="post-content">Haven the best theme for elit, sed do eiusmod tempor dolor sit
+                                    amet, conse ctetur adipiscing elit, sed do eismod tempor incididunt </p>
+                                <div class="bolg-continue">
+                                    <a href="article.html">Continure Reading ></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="single-blog wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="1.3s">
+                            <div class="blog-thubmnail">
+                                <a href="article.html">
+                                    <img src="frontend/img/blog/3.jpg" alt="">
+                                </a>
+                                <div class="blog-post">
+                                    <span class="post-day">
+                                        20
+                                    </span>
+                                    <span class="post-month">
+                                        March
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="blog-desc">
+                                <h6><a href="article.html">New Duplex Villa design with Latest Altra Concept</a></h6>
+                                <p class="post-content">Haven the best theme for elit, sed do eiusmod tempor dolor sit
+                                    amet, conse ctetur adipiscing elit, sed do eismod tempor incididunt </p>
+                                <div class="bolg-continue">
+                                    <a href="article.html">Continure Reading ></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Latest blog end-->
 
-    document.addEventListener('DOMContentLoaded', function() {
-      var calendarEl = document.getElementById('calendar');
-  
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        },
-        initialDate: '2020-09-12',
-        navLinks: true, // can click day/week names to navigate views
-        selectable: true,
-        selectMirror: true,
-        select: function(arg) {
-          var title = prompt('Event Title:');
-          if (title) {
-            calendar.addEvent({
-              title: title,
-              start: arg.start,
-              end: arg.end,
-              allDay: arg.allDay
-            })
-          }
-          calendar.unselect()
-        },
-        eventClick: function(arg) {
-          if (confirm('Are you sure you want to delete this event?')) {
-            arg.event.remove()
-          }
-        },
-        editable: true,
-        dayMaxEvents: true, // allow "more" link when too many events
-        events: [
-          {
-            title: 'Grand Villas Farm Phase 1',
-            start: '2020-09-01'
-          },
-          {
-            title: 'Grand Villas Farm Phase 2',
-            start: '2020-09-07',
-            end: '2020-09-10'
-          },
-          {
-            groupId: 999,
-            title: 'Van 1 - Arvin Olivas',
-            start: '2020-09-09T16:00:00'
-          },
-          {
-            groupId: 999,
-            title: 'Van 1 - Sunshine Arias',
-            start: '2020-09-16T16:00:00'
-          },
-          {
-            title: 'Grand East Villa 1',
-            start: '2020-09-11',
-            end: '2020-09-13'
-          },
-          {
-            title: 'Van 1 - Juan Dela Cruz',
-            start: '2020-09-12T10:30:00',
-            end: '2020-09-12T12:30:00'
-          },
-          {
-            title: 'Van 2 - Maria Reyes',
-            start: '2020-09-12T12:00:00'
-          },
-          {
-            title: 'Van 3 - Noemi Perez',
-            start: '2020-09-12T14:30:00'
-          },
-          {
-            title: 'Van 4 - Kevin Alas',
-            start: '2020-09-12T17:30:00'
-          },
-          {
-            title: 'Van 5 - Tina Mones',
-            start: '2020-09-12T20:00:00'
-          },
-          {
-            title: 'Van 1 - Jetro Macalipay',
-            start: '2020-09-13T07:00:00'
-          },
-          {
-            title: 'Holiday (No Viewing)',
-            start: '2020-09-28'
-          }
-        ]
-      });
-  
-      calendar.render();
-    });
-  
-  </script>
+        <!--Happy client section start-->
+        <div class="happy-client wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1.3s">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="section-title text-center">
+                            <h3>HERE IS THE REVIEW OF OUR HAPPY CLIENTS</h3>
+                            <p>Haven the best theme for elit, sed do eiusmod tempor dolor sit amet, conse ctetur
+                                adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minimam,
+                                quis nostrud exercitation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="happy-client-list owl-carousel">
+                            <div class="item">
+                                <div class="client-reveiw">
+                                    <div class="review-quote">
+                                        <i class="fa fa-quote-right"></i>
+                                    </div>
+                                    <div class="review-desc">
+                                        <p> <span>HAVEN</span> is the best theme for elit sed do od tempor dolor sit
+                                            amet conse tetur adipiscingit</p>
+                                    </div>
+                                    <div class="happy-client-name">
+                                        <h6>James Bond, <span>CEO</span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="client-reveiw">
+                                    <div class="review-quote">
+                                        <i class="fa fa-quote-right"></i>
+                                    </div>
+                                    <div class="review-desc">
+                                        <p> <span>HAVEN</span> is the best theme for elit sed do od tempor dolor sit
+                                            amet conse tetur adipiscingit</p>
+                                    </div>
+                                    <div class="happy-client-name">
+                                        <h6>Nirob Khan, <span>COO</span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="client-reveiw">
+                                    <div class="review-quote">
+                                        <i class="fa fa-quote-right"></i>
+                                    </div>
+                                    <div class="review-desc">
+                                        <p> <span>HAVEN</span> is the best theme for elit sed do od tempor dolor sit
+                                            amet conse tetur adipiscingit</p>
+                                    </div>
+                                    <div class="happy-client-name">
+                                        <h6>Lara Craft, <span>CEO</span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="client-reveiw">
+                                    <div class="review-quote">
+                                        <i class="fa fa-quote-right"></i>
+                                    </div>
+                                    <div class="review-desc">
+                                        <p> <span>HAVEN</span> is the best theme for elit sed do od tempor dolor sit
+                                            amet conse tetur adipiscingit</p>
+                                    </div>
+                                    <div class="happy-client-name">
+                                        <h6>Zenefer Lopez, <span>CEO</span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="client-reveiw">
+                                    <div class="review-quote">
+                                        <i class="fa fa-quote-right"></i>
+                                    </div>
+                                    <div class="review-desc">
+                                        <p> <span>HAVEN</span> is the best theme for elit sed do od tempor dolor sit
+                                            amet conse tetur adipiscingit</p>
+                                    </div>
+                                    <div class="happy-client-name">
+                                        <h6>James Bond, <span>CEO</span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="client-reveiw">
+                                    <div class="review-quote">
+                                        <i class="fa fa-quote-right"></i>
+                                    </div>
+                                    <div class="review-desc">
+                                        <p> <span>HAVEN</span> is the best theme for elit sed do od tempor dolor sit
+                                            amet conse tetur adipiscingit</p>
+                                    </div>
+                                    <div class="happy-client-name">
+                                        <h6>Nirob Khan, <span>COO</span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="client-reveiw">
+                                    <div class="review-quote">
+                                        <i class="fa fa-quote-right"></i>
+                                    </div>
+                                    <div class="review-desc">
+                                        <p> <span>HAVEN</span> is the best theme for elit sed do od tempor dolor sit
+                                            amet conse tetur adipiscingit</p>
+                                    </div>
+                                    <div class="happy-client-name">
+                                        <h6>Lara Craft, <span>CEO</span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="client-reveiw">
+                                    <div class="review-quote">
+                                        <i class="fa fa-quote-right"></i>
+                                    </div>
+                                    <div class="review-desc">
+                                        <p> <span>HAVEN</span> is the best theme for elit sed do od tempor dolor sit
+                                            amet conse tetur adipiscingit</p>
+                                    </div>
+                                    <div class="happy-client-name">
+                                        <h6>Zenefer Lopez, <span>CEO</span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Happy client section end-->
+
+        <!--Brand section start-->
+        <div class="brand-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="brand-list owl-carousel">
+                            <div class="single-brand">
+                                <a href="#"><img src="frontend/img/brand/1.png" alt=""></a>
+                            </div>
+                            <div class="single-brand">
+                                <a href="#"><img src="frontend/img/brand/2.png" alt=""></a>
+                            </div>
+                            <div class="single-brand">
+                                <a href="#"><img src="frontend/img/brand/3.png" alt=""></a>
+                            </div>
+                            <div class="single-brand">
+                                <a href="#"><img src="frontend/img/brand/4.png" alt=""></a>
+                            </div>
+                            <div class="single-brand">
+                                <a href="#"><img src="frontend/img/brand/5.png" alt=""></a>
+                            </div>
+                            <div class="single-brand">
+                                <a href="#"><img src="frontend/img/brand/1.png" alt=""></a>
+                            </div>
+                            <div class="single-brand">
+                                <a href="#"><img src="frontend/img/brand/2.png" alt=""></a>
+                            </div>
+                            <div class="single-brand">
+                                <a href="#"><img src="frontend/img/brand/3.png" alt=""></a>
+                            </div>
+                            <div class="single-brand">
+                                <a href="#"><img src="frontend/img/brand/4.png" alt=""></a>
+                            </div>
+                            <div class="single-brand">
+                                <a href="#"><img src="frontend/img/brand/5.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 @endsection
