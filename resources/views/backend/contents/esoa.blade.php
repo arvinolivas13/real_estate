@@ -50,44 +50,146 @@
             </div>
         </div>
         <div class="row" style="border-top: 2px solid;">
-            <p style="margin-bottom: 30px;"></p>
         </div>
-        <div class="row" style="border-top: 2px solid;">
+        <div class="row">
             <p style="margin-bottom: 20px;"></p>
             <table style="width: 100%; font-size: 12px;">
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-
+                <tr style="border-bottom: 2px solid;">
+                    <th style="padding: 15px; width: 100px; text-align: left;">Description</th>
+                    <th style="padding: 15px; width: 100px; text-align: left;">Ammortization Date</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">Monthly Ammortization</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">O.R Date</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">O.R No.</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">Cheque No.</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">Amount Due</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">Amount Paid</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">Outstanding Balance</th>
                 </tr>
                 <tr>
-                    <td style="text-align: left;">RES</td>
-                    <td style="text-align: left;">10/28/2022</td>
-                    <td style="text-align: right;">0.00</td>
-                    <td style="text-align: right;">10/28/2022</td>
-                    <td style="text-align: right;">0148</td>
-                    <td style="text-align: right;">CASH</td>
-                    <td style="text-align: right;">11,900.00</td>
-                    <td style="text-align: right;">11,900.00</td>
-                    <td style="text-align: right;">227,900.00</td>
+                    <td style="padding: 15px; width: 100px; text-align: left;">RES</td>
+                    <td style="padding: 15px; width: 100px; text-align: left;">10/28/2022</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">0.00</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">10/28/2022</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">0148</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">CASH</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">11,900.00</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">11,900.00</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">227,900.00</td>
                 </tr>
                 <tr>
-                    <td style="text-align: left;">MA</td>
-                    <td style="text-align: left;">11/28/2022</td>
-                    <td style="text-align: right;">5,675.00</td>
-                    <td style="text-align: right;">11/28/2022</td>
-                    <td style="text-align: right;">0149</td>
-                    <td style="text-align: right;">CASH</td>
-                    <td style="text-align: right;">5,675.00</td>
-                    <td style="text-align: right;">5,675.00</td>
-                    <td style="text-align: right;">222,135.00</td>
+                    <td style="padding: 15px; width: 100px; text-align: left;">MA</td>
+                    <td style="padding: 15px; width: 100px; text-align: left;">11/28/2022</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">5,675.00</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">11/28/2022</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">0149</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">CASH</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">5,675.00</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">5,675.00</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">222,135.00</td>
+                </tr>
+            </table>
+        </div>
+        <div class="spacer" style="height: 360px;"></div>
+        <div class="row">
+            <p style="margin-bottom: 20px;"></p>
+            <table style="width: 100%; font-size: 12px;">
+                <tr style="border-bottom: 2px solid; border-top: 2px solid;">
+                    <th style="padding: 15px; width: 100px; text-align: left;">Totals</th>
+                    <th style="padding: 15px; width: 100px; text-align: left;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">239,800.00</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">17,595.00</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">222,205.00</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                </tr>
+                <tr>
+                    <td style="padding: 15px; width: 100px; text-align: left; text-decoration: underline;">Interest</td>
+                    <td style="padding: 15px; width: 100px; text-align: left;">Interest Date</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">Interest Amount</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">O.R Date</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">O.R No.</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">Cheque No.</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">Amount Due</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">Amount Paid</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">Outstanding Balance</td>
+                </tr>
+                <tr>
+                    <td style="padding: 15px; width: 100px; text-align: left;">INT</td>
+                    <td style="padding: 15px; width: 100px; text-align: left;">12/28/2022</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">675.00</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">12/15/2022</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">0156</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">CASH</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">675.00</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">0.00</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">0.00</td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <p style="margin-bottom: 20px;"></p>
+            <table style="width: 100%; font-size: 12px;">
+                <tr style="border-bottom: 2px solid; border-top: 2px solid;">
+                    <th style="padding: 15px; width: 100px; text-align: left;">Totals</th>
+                    <th style="padding: 15px; width: 100px; text-align: left;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">675.00</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">0.00</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                </tr>
+                <tr>
+                    <td style="padding: 15px; width: 100px; text-align: left; text-decoration: underline;">Penalty/Others</td>
+                    <td style="padding: 15px; width: 100px; text-align: left;">Penalty Date</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">Amount</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">O.R Date</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">O.R No.</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">Cheque No.</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">Amount Due</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">Amount Paid</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">Outstanding Balance</td>
+                </tr>
+                <tr>
+                    <td style="padding: 15px; width: 100px; text-align: left;">PEN</td>
+                    <td style="padding: 15px; width: 100px; text-align: left;">12/28/2022</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">505.00</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">12/15/2022</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">0134</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">CASH</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">505.00</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">(505.00)</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">(505.00)</td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <p style="margin-bottom: 20px;"></p>
+            <table style="width: 100%; font-size: 12px;">
+                <tr style="border-bottom: 2px solid; border-top: 2px solid;">
+                    <th style="padding: 15px; width: 100px; text-align: left;">Totals</th>
+                    <th style="padding: 15px; width: 100px; text-align: left;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">(505.00)</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                </tr>
+                <tr>
+                    <td style="padding: 15px; width: 100px; text-align: left; font-weight: bold;">Grand Total</td>
+                    <td style="padding: 15px; width: 100px; text-align: left;"></td>
+                    <td style="padding: 15px; width: 100px; text-align: right;"></td>
+                    <td style="padding: 15px; width: 100px; text-align: right;"></td>
+                    <td style="padding: 15px; width: 100px; text-align: right;"></td>
+                    <td style="padding: 15px; width: 100px; text-align: right;"></td>
+                    <td style="padding: 15px; width: 100px; text-align: right; font-weight: bold;">18,775.00</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;"></td>
+                    <td style="padding: 15px; width: 100px; text-align: right;"></td>
                 </tr>
             </table>
         </div>
@@ -210,5 +312,6 @@
     color: #ffff;
     margin-bottom: 15px;
 }
+
 </style>
 @endsection

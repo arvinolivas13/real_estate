@@ -45,6 +45,9 @@ Route::group(['middleware' => ['auth']], function() {
         return view('backend.pages.dashboard');
     });
 
+    Route::get('e-soa', function () {
+        return view('backend.contents.esoa');
+    });
     Route::get('maintenance/calendar', function () {
         return view('backend.pages.maintenance.calendar');
     });
