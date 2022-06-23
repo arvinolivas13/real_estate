@@ -43,8 +43,17 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/destroy/{id}',                'AreaDetailController@destroy'                        )->name('destroy_employment_information');
     });
 
+    Route::group(['prefix' => 'payment'], function (){
+        Route::get          ('/',                            'PaymentController@index'                          )->name('get_employment_information');
+        Route::post         ('/save',                        'PaymentController@store'                          )->name('save_employment_information');
+        Route::get          ('/edit/{id}',                   'PaymentController@edit'                           )->name('edit_employment_information');
+        Route::post         ('/update/{id}',                 'PaymentController@update'                         )->name('update_employment_information');
+        Route::get          ('/destroy/{id}',                'PaymentController@destroy'                        )->name('destroy_employment_information');
+    });
+
     Route::group(['prefix' => 'transaction'], function (){
-        Route::get          ('/reservation',                 'TransactionController@reservation'                          )->name('get_employment_information');
+        Route::post          ('/reservation',                 'TransactionController@reservation'                          )->name('get_employment_information');
+        Route::get           ('/checkdp/{id}',                'TransactionController@checkdp'                          )->name('get_employment_information');
     });
 
     Route::get('/dashboard', function () {

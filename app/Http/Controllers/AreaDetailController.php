@@ -48,7 +48,7 @@ class AreaDetailController extends Controller
                 'reservation_fee' => $request->reservation_fee,
                 'balance' => $request->balance,
                 'monthly_amortization' => $request->monthly_amortization,
-                'status' => 'Open',
+                'status' => 'OPEN',
                 'created_user' => Auth::user()->id,
               ]);
 

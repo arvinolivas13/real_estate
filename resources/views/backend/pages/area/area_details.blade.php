@@ -43,7 +43,7 @@
                                     <h4> {{'BLOCK-' . $block->block}} ({{App\AreaDetailLot::where('block_id', $block->id)->where('status', '!=', 'Open')->count() . '/' .App\AreaDetailLot::where('block_id', $block->id)->count()}}) </h4>
                                         <div class="row">
                                             @foreach ($block->lot as $item)
-                                                <div class="col-2" onclick="LotFunction('{{$item->id}}', '{{$block->block}}', '{{$item->id}}')">
+                                                <div class="col-2" onclick="LotFunction('{{$item->status}}', '{{$item->id}}', '{{$block->block}}', '{{$item->id}}')">
                                                 <div class="lot {{$item->status}}">
                                                     <span class="lot-name">LOT {{$item->lot}}</span>
                                                     <div class="row lot-details">
@@ -138,6 +138,36 @@
 </div>
 
 {{-- MODAL --}}
+<div class="modal fade" id="amortizationModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title reserve-title">Calculate Monthly Amortization</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body m-3">
+                <form id="modal-form" action="{{url('transaction/reservation')}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">Starting Date</label>
+                    <input type="text" class="form-control" id="starting_date" name="starting_date" placeholder="Enter Starting Date">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">Duration</label>
+                    <input type="text" class="form-control" id="duration" name="duration" placeholder="Enter Starting Date">
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary submit-button">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- MODAL --}}
 <div class="modal fade" id="reserveModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -148,7 +178,7 @@
                 </button>
             </div>
             <div class="modal-body m-3">
-                <form id="modal-form" action="{{url('transaction/reservation')}}" method="post">
+                <form id="modal-form" action="{{url('transaction/reservation')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Customer Name</label>
@@ -281,12 +311,37 @@
             element.className = arr1.join(" ");
         }
 
-        function LotFunction(id, block, lot) {
-            $('.reserve-title').text('Reserve ' + 'Block - ' + block + ' Lot - ' + lot)
-            $('#lot_id').val(id);
-            $('#block_no').val(block);
-            $('#lot_no').val(lot);
-            $('#reserveModal').modal('show'); 
+        function checkDownpayment(id) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/transaction/checkdp/' + id,
+                method: 'get',
+                success: function(data) {
+                   if(data.Message == 'DETECTED') {
+                    $('#amortizationModal').modal('show'); 
+                   } else {
+                       alert('NO DOWNPAYMENT! Please provide downpayment record before calculating the Monthly Amortization');
+                   }
+                }
+            });
+        }
+
+        function LotFunction(status, id, block, lot) {
+            if (status == 'Open') {
+                $('.reserve-title').text('Reserve ' + 'Block - ' + block + ' Lot - ' + lot)
+                $('#lot_id').val(id);
+                $('#block_no').val(block);
+                $('#lot_no').val(lot);
+                $('#reserveModal').modal('show'); 
+            } if (status == 'RESERVED') {
+                checkDownpayment(id);
+            } if (status == 'INACTIVE') {
+
+            } else {
+
+            }    
         }
 
         function selectCustomer(id, value) {
@@ -407,16 +462,16 @@
             border-radius: 5px;
             border: 1px solid #ccc;
         }
-        .lot.Open, .square.Open {
+        .lot.OPEN, .square.Open {
             background: #fff;
         }
-        .lot.Active, .square.Active {
+        .lot.ACTIVE, .square.Active {
             background: #d1ffd1;
         }
-        .lot.Inactive, .square.Inactive {
+        .lot.INACTIVE, .square.Inactive {
             background: #ffd1d1;
         }
-        .lot.Reserved, .square.Reserved {
+        .lot.RESERVED, .square.Reserved {
             background: #fffbd1;
         }
         div#myBtnContainer button {

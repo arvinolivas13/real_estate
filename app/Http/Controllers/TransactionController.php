@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Payment;
 use App\Transaction;
+use App\AreaDetailLot;
+use Auth;
 
 class TransactionController extends Controller
 {
@@ -26,24 +28,37 @@ class TransactionController extends Controller
         ]);
 
         $request->request->add(['created_user' => Auth::user()->id]);
-        $payment = Payment::create($request->all());
 
-        $lot = new Transaction([
-            'block_id' => $block->id,
-            'lot' => $a + 1,
-            'area' => $request->area,
-            'psqm' => $request->psqm,
-            'tcp' => $request->tcp,
-            'reservation_percent' => $request->reservation_percent,
-            'reservation_fee' => $request->reservation_fee,
-            'balance' => $request->balance,
-            'monthly_amortization' => $request->monthly_amortization,
-            'status' => 'Open',
+        $file = $request->attachment->getClientOriginalName();
+        $filename = pathinfo($file, PATHINFO_FILENAME);
+
+        $imageName = $filename.time().'.'.$request->attachment->extension();  
+        $image = $request->attachment->move(public_path('customer_file/' . $request->customer_id . '-' . $request->lot_id), $imageName);
+
+        $requestData = $request->all();
+        $requestData['attachment'] = $imageName;
+
+        Payment::create($requestData);
+
+        $transaction = new Transaction([
+            'code' => 'TEST',
+            'customer_id' => $request->customer_id,
+            'lot_id' => $request->lot_id,
             'created_user' => Auth::user()->id,
         ]);
 
-            $lot->save();
+        $transaction->save();
 
+        AreaDetailLot::where("id", $request->lot_id)->update(["status" => "RESERVED"]);
         return redirect()->back()->with('success','Successfully Added');
+    }
+
+    public function checkdp($id)
+    {
+        if(Payment::where('lot_id', $id)->where('payment_classification', 'DP')->exists()) {
+            return response()->json(['Message' => 'DETECTED']);
+        } else {
+            return response()->json(['Message' => 'NONE']);
+        }
     }
 }

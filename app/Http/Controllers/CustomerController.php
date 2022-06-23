@@ -50,8 +50,8 @@ class CustomerController extends Controller
 
     public function destroy($id)
     {
-        $barangay_destroy = Customer::find($id);
-        $barangay_destroy->delete();
+        $destroy = Customer::find($id);
+        $destroy->delete();
         return redirect()->back()->with('success','Successfully Deleted!');
     }
 }
