@@ -1,6 +1,6 @@
 @extends('backend.master.template')
 
-@section('title', 'Customers')
+@section('title', 'Area Details')
 
 @section('breadcrumbs')
     <span><a href="{{url('area')}}" style="color:#fff;">Area</a></span> / <span class="highlight">Area Details</span>
@@ -14,50 +14,47 @@
     <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3>Area Details</h3>
-                    <button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#customerModal" style="float:right">
-                        Add Block
+                    <button type="button" class="btn btn-success add-block" data-toggle="modal" data-target="#customerModal" style="float:right">
+                        <i class="fas fa-plus"></i>
                     </button>
                 </div>
                 <div class="card-body">
-                        <div id="myBtnContainer ">
+                        <div id="myBtnContainer">
                             <button class="block_btn btn active" onclick="filterSelection('all')">All</button>
                             @foreach ($blocks as $block)
                                 <button class="block_btn btn" onclick="filterSelection('{{'block-' . $block->block}}')">{{$block->block}}</button>
                             @endforeach
                         </div>
-                      <div class="mt-3">
+                        <div class="mt-3">
                             @foreach ($blocks as $block)
                                 <div class="filterDiv {{'block-' . $block->block}} col-12">
-                                    <div class="card text-center">
-                                        <div class="card-header">
-                                         <h4> {{'BLOCK-' . $block->block}} ({{App\AreaDetailLot::where('block_id', $block->id)->where('status', '!=', 'Open')->count() . '/' .App\AreaDetailLot::where('block_id', $block->id)->count()}}) </h4>
-                                        </div>
-                                            <div class="card-body row">
-                                                 @foreach ($block->lot as $item)
-                                                    <div class="card mr-2">
-                                                        <div class="card-body">
-                                                        <h5 class="card-title">LOT {{$item->lot}}</h5>
-                                                        <h5 class="card-title">Area: {{$item->area}}</h5>
-                                                        <h5 class="card-title">TCP: {{$item->tcp}}</h5>
-                                                        <h5 class="card-title">PSQM: {{$item->psqm}}</h5>
-                                                        <h5 class="card-title">MA: {{$item->monthly_amortization}}</h5>
-                                                        <h6 class="mb-2 badge-success" >{{$item->status}}</h6>
-                                                            <a href="{{url('area_detail/' . $item->id)}}"><i class="align-middle fas fa-fw fa-pen" style="color: black"></i></a>
-                                                            <a href="{{url('area_detail/' . $item->id)}}"><i class="align-middle fas fa-fw fa-eye" style="color: black"></i></a>
-                                                            <a href="{{url('area/destroy/' . $item->id)}}" onclick="alert('Are you sure you want to Delete?')"><i class="align-middle fas fa-fw fa-trash" style="color: black"></i></a>
+                                    <div class="text-center">
+                                        <h4> {{'BLOCK-' . $block->block}} ({{App\AreaDetailLot::where('block_id', $block->id)->where('status', '!=', 'Open')->count() . '/' .App\AreaDetailLot::where('block_id', $block->id)->count()}}) </h4>
+                                        
+                                        <div class="row">
+                                            @foreach ($block->lot as $item)
+                                                <div class="col-2">
+                                                    <div class="lot {{$item->status}}">
+                                                        <span class="lot-name">LOT {{$item->lot}}</span>
+                                                        <div class="row lot-details">
+                                                            <div class="col-6">
+                                                                Area: {{$item->area}} <br>
+                                                                TCP: {{$item->tcp}} <br>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                PSQM: {{$item->psqm}}<br>
+                                                                MA: {{$item->monthly_amortization}}
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                @endforeach
-                                                <a href="{{url('area/destroy/' . $block->id)}}" onclick="alert('Are you sure you want to Delete?')"><i class="align-middle fas fa-fw fa-trash" style="color: black"></i></a>
-                                            </div>
-                                        <div class="card-footer text-muted">
-                                          Status: {{$block->status}}
+                                                </div>
+                                            @endforeach
+                                            <a href="{{url('area/destroy/' . $block->id)}}" onclick="alert('Are you sure you want to Delete?')"><i class="align-middle fas fa-fw fa-trash" style="color: black"></i></a>
                                         </div>
-                                      </div>
+                                    </div>
                                 </div>
                             @endforeach
-                      </div>
+                    </div>
                 </div>
             </div>
     </div>
@@ -207,7 +204,7 @@
             white-space: nowrap;
         }
         thead th {
-             white-space: nowrap;
+            white-space: nowrap;
         }
         .filterDiv {
             display: none;
@@ -220,23 +217,60 @@
             margin-top: 20px;
             overflow: hidden;
         }
-
-        /* Style the buttons */
-        .btn {
-            border: none;
-            outline: none;
-            padding: 12px 16px;
-            background-color: #f1f1f1;
-            cursor: pointer;
+        .add-block {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 10;
+            font-size: 20px;
         }
-
-        .btn:hover {
-            background-color: #ddd;
+        span.lot-name {
+            display: block;
+            font-weight: bold;
+            background: #007eff;
+            color: #fff;
+            border-radius: 3px;
+            margin-bottom: 10px;
         }
-
-        .btn.active {
-            background-color: #666;
-            color: white;
+        .lot-details {
+            font-size: 12px;
+            text-align: left;
+        }
+        .lot {
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .lot.Open {
+            background: #d1ffd1;
+        }
+        .lot.Cancel {
+            background: #ffd1d1;
+        }
+        .lot.Taken {
+            background: #fffbd1;
+        }
+        div#myBtnContainer button {
+            background: #eee;
+            border: 1px solid #ccc;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+        div#myBtnContainer button.active {
+            background: #007eff;
+            color: #fff;
+            border: 1px solid #007eff;
+        }
+        .filterDiv h4 {
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: black;
+            background: #fffcb4;
+            padding: 10px 3px;
         }
     </style>
 @endsection
