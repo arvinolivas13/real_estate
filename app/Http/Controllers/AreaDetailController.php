@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AreaDetail;
 use App\AreaDetailLot;
+use App\Customer;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -12,8 +13,9 @@ class AreaDetailController extends Controller
     public function index($id)
     {
         $blocks = AreaDetail::where('area_id', $id)->orderBy('block')->with('lot')->get();
+        $customers = Customer::where('status', 'ACTIVE')->get();
         $area_id = $id;
-        return view('backend.pages.area.area_details', compact('blocks', 'area_id'));
+        return view('backend.pages.area.area_details', compact('blocks', 'area_id', 'customers'));
     }
 
     public function store(Request $request)

@@ -20,6 +20,7 @@ class Customer extends Model
         'birthday',
         'occupation',
         'gender',
-        'status'
+        'status',
+        'created_user'
     ];
 }
