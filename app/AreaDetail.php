@@ -5,17 +5,19 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Area extends Model
+class AreaDetail extends Model
 {
     use SoftDeletes;
 
     protected $fillable = [
-        'name',
-        'description',
-        'address',
-        'type',
-        'image',
+        'area_id',
+        'block',
         'status',
         'created_user',
     ];
+
+    public function lot()
+    {
+        return $this->hasMany(AreaDetailLot::class, 'block_id');
+    }
 }

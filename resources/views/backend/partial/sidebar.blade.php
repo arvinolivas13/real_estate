@@ -42,7 +42,7 @@
 
             <li class="sidebar-item">
                 @role('Super Admin|Agent')
-                <a href="/transaction/area" class="sidebar-link collapsed">
+                <a href="{{ url('area') }}" class="sidebar-link collapsed">
                     <span class="item">
                         <i class="align-middle mr-2 fas fa-fw fa-receipt"></i> <span class="align-middle">Area</span>
                     </span> 

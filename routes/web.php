@@ -15,13 +15,29 @@
 Route::group(['middleware' => ['auth']], function() {
     
     Route::group(['prefix' => 'customer'], function (){
-        Route::get          ('/',                            'CustomerController@index'                            )->name('get_employment_information');
+        Route::get          ('/',                            'CustomerController@index'                          )->name('get_employment_information');
         Route::post         ('/save',                        'CustomerController@store'                          )->name('save_employment_information');
         Route::get          ('/edit/{id}',                   'CustomerController@edit'                           )->name('edit_employment_information');
         Route::post         ('/update/{id}',                 'CustomerController@update'                         )->name('update_employment_information');
         Route::get          ('/destroy/{id}',                'CustomerController@destroy'                        )->name('destroy_employment_information');
     });
     
+    Route::group(['prefix' => 'area'], function (){
+        Route::get          ('/',                            'AreaController@index'                          )->name('get_employment_information');
+        Route::post         ('/save',                        'AreaController@store'                          )->name('save_employment_information');
+        Route::get          ('/edit/{id}',                   'AreaController@edit'                           )->name('edit_employment_information');
+        Route::post         ('/update/{id}',                 'AreaController@update'                         )->name('update_employment_information');
+        Route::get          ('/destroy/{id}',                'AreaController@destroy'                        )->name('destroy_employment_information');
+    });
+
+    Route::group(['prefix' => 'area_detail'], function (){
+        Route::get          ('/{id}',                        'AreaDetailController@index'                          )->name('get_employment_information');
+        Route::post         ('/save',                        'AreaDetailController@store'                          )->name('save_employment_information');
+        Route::get          ('/edit/{id}',                   'AreaDetailController@edit'                           )->name('edit_employment_information');
+        Route::post         ('/update/{id}',                 'AreaDetailController@update'                         )->name('update_employment_information');
+        Route::get          ('/destroy/{id}',                'AreaDetailController@destroy'                        )->name('destroy_employment_information');
+    });
+
     Route::get('/dashboard', function () {
         return view('backend.pages.dashboard');
     });
@@ -36,29 +52,6 @@ Route::group(['middleware' => ['auth']], function() {
         return view('backend.pages.maintenance.van');
     });
     
-    Route::group(['prefix' => '/api'], function (){
-        Route::group(['prefix' => '/leave-type'], function (){
-            Route::post         ('/getData',                     'LeaveTypeController@getData'                                  )->name('get_data_leave_type');
-        });
-    });
-    
-    Route::group(['prefix' => '/transaction'], function (){
-        
-        Route::get('/commission', function () {
-            return view('backend.pages.commission.commission');
-        });
-        
-        Route::group(['prefix' => '/area'], function (){
-            Route::get          ('/',                            'AreaController@index'                          )->name('area');
-            Route::get          ('/customer-record',             'AreaController@customer_record'                )->name('area_customer_record');
-        });
-
-        Route::group(['prefix' => '/van'], function (){
-            Route::get          ('/',                            'VanController@index'                           )->name('van');
-            Route::get          ('/schedule',                    'VanController@schedule'                        )->name('van_schedule');
-        });
-        
-    });
 
     Route::group(['prefix' => '/maintenance'], function (){
 

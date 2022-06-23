@@ -26,6 +26,7 @@ class CreateCustomersTable extends Migration
             $table->string('occupation')->nullable();;
             $table->string('gender');
             $table->string('status')->default('ACTIVE');
+            $table->string('created_user');
             $table->softDeletes();
             $table->timestamps();
         });
