@@ -19,41 +19,47 @@
                     </button>
                 </div>
                 <div class="card-body">
-                        <div id="myBtnContainer">
-                            <button class="block_btn btn active" onclick="filterSelection('all')">All</button>
-                            @foreach ($blocks as $block)
-                                <button class="block_btn btn" onclick="filterSelection('{{'block-' . $block->block}}')">{{$block->block}}</button>
-                            @endforeach
-                        </div>
-                        <div class="mt-3">
-                            @foreach ($blocks as $block)
-                                <div class="filterDiv {{'block-' . $block->block}} col-12">
-                                    <div class="text-center">
-                                        <h4> {{'BLOCK-' . $block->block}} ({{App\AreaDetailLot::where('block_id', $block->id)->where('status', '!=', 'Open')->count() . '/' .App\AreaDetailLot::where('block_id', $block->id)->count()}}) </h4>
-                                        
-                                        <div class="row">
-                                            @foreach ($block->lot as $item)
-                                                <div class="col-2">
-                                                    <div class="lot {{$item->status}}">
-                                                        <span class="lot-name">LOT {{$item->lot}}</span>
-                                                        <div class="row lot-details">
-                                                            <div class="col-6">
-                                                                Area: {{$item->area}} <br>
-                                                                TCP: {{$item->tcp}} <br>
-                                                            </div>
-                                                            <div class="col-6">
-                                                                PSQM: {{$item->psqm}}<br>
-                                                                MA: {{$item->monthly_amortization}}
-                                                            </div>
+                    <div class="legend">
+                        <div><span class="square Open"></span> <span class="square-details">Open Lot</span></div>
+                        <div><span class="square Active"></span> <span class="square-details">Active Lot</span></div>
+                        <div><span class="square Inactive"></span> <span class="square-details">Inactive Lot</span></div>
+                        <div><span class="square Reserved"></span> <span class="square-details">Reserved Lot</span></div>
+                    </div>
+                    <div id="myBtnContainer">
+                        <button class="block_btn btn active" onclick="filterSelection('all')">All</button>
+                        @foreach ($blocks as $block)
+                            <button class="block_btn btn" onclick="filterSelection('{{'block-' . $block->block}}')">{{$block->block}}</button>
+                        @endforeach
+                    </div>
+                    <div class="mt-3">
+                        @foreach ($blocks as $block)
+                            <div class="filterDiv {{'block-' . $block->block}} col-12">
+                                <div class="text-center">
+                                    <h4> {{'BLOCK-' . $block->block}} ({{App\AreaDetailLot::where('block_id', $block->id)->where('status', '!=', 'Open')->count() . '/' .App\AreaDetailLot::where('block_id', $block->id)->count()}}) </h4>
+                                    
+                                    <div class="row">
+                                        @foreach ($block->lot as $item)
+                                            <div class="col-2">
+                                                <div class="lot {{$item->status}}">
+                                                    <span class="lot-name">LOT {{$item->lot}}</span>
+                                                    <div class="row lot-details">
+                                                        <div class="col-6">
+                                                            Area: {{$item->area}} <br>
+                                                            TCP: {{$item->tcp}} <br>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            PSQM: {{$item->psqm}}<br>
+                                                            MA: {{$item->monthly_amortization}}
                                                         </div>
                                                     </div>
                                                 </div>
-                                            @endforeach
-                                            <a href="{{url('area/destroy/' . $block->id)}}" onclick="alert('Are you sure you want to Delete?')"><i class="align-middle fas fa-fw fa-trash" style="color: black"></i></a>
-                                        </div>
+                                            </div>
+                                        @endforeach
+                                        <a href="{{url('area/destroy/' . $block->id)}}" onclick="alert('Are you sure you want to Delete?')"><i class="align-middle fas fa-fw fa-trash" style="color: black"></i></a>
                                     </div>
                                 </div>
-                            @endforeach
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -245,13 +251,16 @@
             border-radius: 5px;
             border: 1px solid #ccc;
         }
-        .lot.Open {
+        .lot.Open, .square.Open {
+            background: #fff;
+        }
+        .lot.Active, .square.Active {
             background: #d1ffd1;
         }
-        .lot.Cancel {
+        .lot.Inactive, .square.Inactive {
             background: #ffd1d1;
         }
-        .lot.Taken {
+        .lot.Reserved, .square.Reserved {
             background: #fffbd1;
         }
         div#myBtnContainer button {
@@ -271,6 +280,28 @@
             color: black;
             background: #fffcb4;
             padding: 10px 3px;
+        }
+        legend>div {
+            display: inline-block;
+            vertical-align: top;
+        }
+        .square {
+            height: 15px;
+            width: 15px;
+            display: inline-block;
+            border: 1px solid #b3b3b3;
+            vertical-align: middle;
+        }
+        .legend>div {
+            display: inline-block;
+            margin-right: 11px;
+            vertical-align: middle;
+        }
+        .legend>div>span {
+            vertical-align: middle;
+        }
+        .legend {
+            margin-bottom: 20px;
         }
     </style>
 @endsection
