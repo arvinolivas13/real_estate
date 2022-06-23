@@ -85,6 +85,18 @@
                 </ul>
             </li>
             @endrole
+            @role('Super Admin')
+            <li class="sidebar-header">
+                Other
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed">
+                    <span class="item">
+                        <i class="align-middle mr-2 fas fa-fw fa-receipt"></i> <span class="align-middle">Document Management</span>
+                    </span> 
+                </a>
+            </li>
+            @endrole
 
             {{-- <li class="sidebar-header">
                 Maintenance
