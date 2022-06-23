@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Area;
 use Illuminate\Http\Request;
+use Mail;
 use Auth;
 
 class AreaController extends Controller
@@ -39,6 +40,16 @@ class AreaController extends Controller
         Area::create($requestData);
 
         return redirect()->back()->with('success','Successfully Added');
+    }
+
+    public function html_email() {
+        
+        $data = array('name'=>"Virat Gandhi");
+        Mail::send('email.sample', $data, function($message) {
+            $message->to('arvin.olivas15@gmail.com', 'Tutorials Point')->subject('Laravel HTML Testing Mail');
+            $message->from('arvin.olivas15@gmail.com','Virat Gandhi');
+        });
+        echo "HTML Email Sent. Check your inbox.";
     }
 
     public function edit($id)
