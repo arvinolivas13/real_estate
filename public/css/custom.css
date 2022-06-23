@@ -69,6 +69,7 @@ li.sidebar-item a i {
     padding: 3px;
     font-size: 9px;
     color: #ffffff;
+    display: block;
 }
 
 a.sidebar-link:before {
