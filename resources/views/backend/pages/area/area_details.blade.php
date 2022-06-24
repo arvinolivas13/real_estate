@@ -48,8 +48,15 @@
                                             @foreach ($block->lot as $item)
                                                 <div class="col-2" onclick="LotFunction('{{$item->status}}', '{{$item->id}}', '{{$block->block}}', '{{$item->lot}}')">
                                                 <div class="lot {{$item->status}}">
-                                                    <span class="lot-name">LOT {{$item->lot}}</span>
+                                                    <span class="lot-name">LOT {{$item->lot}}<button class="btn btn-sm btn-block edit-lot"><i class="fas fa-pen"></i></button></span>
                                                     <div class="row lot-details">
+                                                        <div class="col-12">
+                                                            @if($item->status === 'Open')
+                                                            <span class="name-open">OPEN LOT</span>
+                                                            @else
+                                                            <span class="name-open">--NAME HERE--</span>
+                                                            @endif
+                                                        </div>
                                                         <div class="col-6">
                                                             Area: {{$item->area}} <br>
                                                             TCP: {{$item->tcp}} <br>
@@ -429,8 +436,9 @@
             font-weight: bold;
             background: #007eff;
             color: #fff;
+            text-align: left;
             border-radius: 3px;
-            margin-bottom: 10px;
+            padding: 0 10px;
         }
         .lot-details {
             font-size: 12px;
@@ -493,6 +501,17 @@
         }
         .legend {
             margin-bottom: 20px;
+        }
+        .edit-lot {
+            color: #fff;
+            float: right;
+            padding: 0px;
+            width: auto !important;
+        }
+        span.name-open {
+            display: block;
+            text-align: center;
+            border-bottom: 1px solid;
         }
     </style>
 @endsection
