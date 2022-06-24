@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Area;
 use App\AreaDetail;
 use App\AreaDetailLot;
 use App\Customer;
@@ -15,7 +16,8 @@ class AreaDetailController extends Controller
         $blocks = AreaDetail::where('area_id', $id)->orderBy('block')->with('lot')->get();
         $customers = Customer::where('status', 'ACTIVE')->get();
         $area_id = $id;
-        return view('backend.pages.area.area_details', compact('blocks', 'area_id', 'customers'));
+        $area = Area::where('id', $id)->firstOrFail();
+        return view('backend.pages.area.area_details', compact('blocks', 'area_id', 'customers', 'area'));
     }
 
     public function store(Request $request)

@@ -18,6 +18,7 @@ class AreaController extends Controller
     public function store(Request $request)
     {
         $area = $request->validate([
+            'code' => ['required', 'max:250', 'unique:areas'],
             'name' => ['required', 'max:250', 'unique:areas'],
             'description' => ['required'],
             'address' => ['required'],

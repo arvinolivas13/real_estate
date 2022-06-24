@@ -24,7 +24,7 @@
                         <button class="btn edit-pen" onclick="edit({{ $area->id }});" data-toggle="modal" data-target="#areaModal" id="{{$area->id}}"><i class="fas fa-pen"></i></button>
                         <img src="/images/area/{{$area->image}}" alt="/images/area/{{$area->image}}" onclick="location.href='{{url('area_detail/' . $area->id)}}'">
                         <div class="area-details">
-                            <span class="area-name">{{ $area->name }}</span>
+                            <span class="area-name">{{ $area->name . ' (' . $area->code . ')' }}</span>
                             <span class="area-type">{{ $area->type }}</span>
                             <span class="area-description">{{ $area->description }}</span>
                         </div>
@@ -48,6 +48,10 @@
             <div class="modal-body m-3">
                 <form id="modal-form" action="{{url('area/save')}}" method="post" enctype="multipart/form-data">
                 @csrf
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">Area Code <span style="color: red">*</span></label>
+                    <input type="text" class="form-control" id="code" name="code" placeholder="Enter Area Code" required>
+                </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Area Name <span style="color: red">*</span></label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter Area Name" required>

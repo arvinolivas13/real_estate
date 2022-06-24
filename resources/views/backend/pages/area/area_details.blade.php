@@ -11,6 +11,9 @@
 <div class="main">
 <div class="row">
     @include('backend.partial.flash-message')
+    <input type="text" class="form-control" id="area_code" name="area_code" value="{{$area->code}}" hidden>
+    <input type="text" class="form-control" id="area_name" name="area_name" value="{{$area->name}}" hidden>
+
     <div class="col-12">
             <div class="card">
                 <div class="card-header">
@@ -43,7 +46,7 @@
                                     <h4> {{'BLOCK-' . $block->block}} ({{App\AreaDetailLot::where('block_id', $block->id)->where('status', '!=', 'Open')->count() . '/' .App\AreaDetailLot::where('block_id', $block->id)->count()}}) </h4>
                                         <div class="row">
                                             @foreach ($block->lot as $item)
-                                                <div class="col-2" onclick="LotFunction('{{$item->status}}', '{{$item->id}}', '{{$block->block}}', '{{$item->id}}')">
+                                                <div class="col-2" onclick="LotFunction('{{$item->status}}', '{{$item->id}}', '{{$block->block}}', '{{$item->lot}}')">
                                                 <div class="lot {{$item->status}}">
                                                     <span class="lot-name">LOT {{$item->lot}}</span>
                                                     <div class="row lot-details">
@@ -137,7 +140,7 @@
     </div>
 </div>
 
-{{-- MODAL --}}
+{{-- MODAL
 <div class="modal fade" id="amortizationModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -165,14 +168,14 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 {{-- MODAL --}}
 <div class="modal fade" id="reserveModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title reserve-title"></h5>
+                <h5 class="modal-title reserve-title"> </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -191,6 +194,11 @@
                         <input type="text" class="form-control col-10 customer_name" placeholder="Select Order" disabled/>
                         <button type="button" class="btn btn-primary col-2" data-toggle="modal" data-target="#customerList"><i class="fas fa-search"></i></button>
                     </div>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">Code<span style="color: red">*</span></label>
+                    <input type="text" class="form-control" id="code" name="code" value="" readonly>
                 </div>
                     
                 <div class="form-group col-md-12">
@@ -227,7 +235,7 @@
                 </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary submit-button">Add</button>
+                <button type="submit" class="btn btn-primary submit-button">Reserve</button>
                 </form>
             </div>
         </div>
@@ -320,7 +328,7 @@
                 method: 'get',
                 success: function(data) {
                    if(data.Message == 'DETECTED') {
-                    $('#amortizationModal').modal('show'); 
+                        $('#amortizationModal').modal('show'); 
                    } else {
                        alert('NO DOWNPAYMENT! Please provide downpayment record before calculating the Monthly Amortization');
                    }
@@ -329,8 +337,9 @@
         }
 
         function LotFunction(status, id, block, lot) {
-            if (status == 'Open') {
-                $('.reserve-title').text('Reserve ' + 'Block - ' + block + ' Lot - ' + lot)
+            if (status == 'OPEN') {
+                $('.reserve-title').text('Reserve - ' + $('#area_name').val() + ' Block ' + block + ' Lot ' + lot)
+                $('#code').val($('#area_code').val() + '-' + block + '-' + lot)
                 $('#lot_id').val(id);
                 $('#block_no').val(block);
                 $('#lot_no').val(lot);

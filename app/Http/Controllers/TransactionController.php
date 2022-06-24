@@ -13,6 +13,7 @@ class TransactionController extends Controller
     public function reservation(Request $request)
     {
         $area = $request->validate([
+            'code' => ['required', 'max:250'],
             'lot_id' => ['required', 'max:250'],
             'block_no' => ['required', 'max:250'],
             'lot_no' => ['required', 'max:250'],
@@ -41,7 +42,7 @@ class TransactionController extends Controller
         Payment::create($requestData);
 
         $transaction = new Transaction([
-            'code' => 'TEST',
+            'code' => $request->code,
             'customer_id' => $request->customer_id,
             'lot_id' => $request->lot_id,
             'created_user' => Auth::user()->id,
@@ -55,7 +56,8 @@ class TransactionController extends Controller
 
     public function checkdp($id)
     {
-        if(Payment::where('lot_id', $id)->where('payment_classification', 'DP')->exists()) {
+        $transaction = Transaction::where('lot_id', $id)->firstOrFail();
+        if(Payment::where('code', $transaction->code)->where('payment_classification', 'DP')->exists()) {
             return response()->json(['Message' => 'DETECTED']);
         } else {
             return response()->json(['Message' => 'NONE']);

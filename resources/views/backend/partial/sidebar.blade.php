@@ -31,7 +31,7 @@
                 </ul>
                 <a href="{{url('customer')}}" class="sidebar-link collapsed">
                     <span class="item">
-                        <i class="align-middle mr-2 fas fa-fw fa-receipt"></i> <span class="align-middle">Customer</span>
+                        <i class="align-middle mr-2 fas fa-fw fa-users"></i> <span class="align-middle">Customer</span>
                     </span> 
                 </a>
             </li>
@@ -49,7 +49,7 @@
                 </a>
                 <a href="{{ url('payment') }}" class="sidebar-link collapsed">
                     <span class="item">
-                        <i class="align-middle mr-2 fas fa-fw fa-receipt"></i> <span class="align-middle">Payment</span>
+                        <i class="align-middle mr-2 fas fa-fw fa-money-bill"></i> <span class="align-middle">Payment</span>
                     </span> 
                 </a>
                 @endrole
@@ -63,7 +63,7 @@
                 @role('Super Admin|Agent')
                 <a href="/transaction/commission" class="sidebar-link collapsed">
                     <span class="item">
-                        <i class="align-middle mr-2 fas fa-fw fa-money-bill"></i> <span class="align-middle">Commission</span>
+                        <i class="align-middle mr-2 fas fa-fw fa-dollar-sign"></i> <span class="align-middle">Commission</span>
                     </span> 
                 </a>
                 @endrole
@@ -79,7 +79,7 @@
             <li class="sidebar-item">
                 <a href="#information" data-toggle="collapse" class="sidebar-link collapsed">
                     <span class="item">
-                        <i class="align-middle mr-2 fas fa-fw fa-receipt"></i> <span class="align-middle">Information</span>
+                        <i class="align-middle mr-2 fas fa-fw fa-info"></i> <span class="align-middle">Information</span>
                     </span> 
                 </a>
                 <ul id="information" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">

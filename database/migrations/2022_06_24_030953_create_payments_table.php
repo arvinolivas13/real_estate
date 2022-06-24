@@ -16,7 +16,7 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('lot_id');
+            $table->string('code');
             $table->date('payment_date');
             $table->string('payment_type');
             $table->string('payment_classification');
@@ -32,11 +32,6 @@ class CreatePaymentsTable extends Migration
             $table->foreign('customer_id')
                 ->references('id')
                 ->on('customers')
-                ->onDelete('cascade');
-
-            $table->foreign('lot_id')
-                ->references('id')
-                ->on('area_detail_lots')
                 ->onDelete('cascade');
         });
     }

@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/edit/{id}',                   'PaymentController@edit'                           )->name('edit_employment_information');
         Route::post         ('/update/{id}',                 'PaymentController@update'                         )->name('update_employment_information');
         Route::get          ('/destroy/{id}',                'PaymentController@destroy'                        )->name('destroy_employment_information');
+        Route::get          ('/lot/{id}',                    'PaymentController@lotNo'                          )->name('destroy_employment_information');
     });
 
     Route::group(['prefix' => 'transaction'], function (){

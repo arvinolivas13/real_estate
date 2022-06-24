@@ -23,4 +23,9 @@ class Customer extends Model
         'status',
         'created_user'
     ];
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class);
+    }
 }

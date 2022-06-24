@@ -10,6 +10,7 @@ class Area extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'code',
         'name',
         'description',
         'address',
