@@ -63,4 +63,11 @@ class TransactionController extends Controller
             return response()->json(['Message' => 'NONE']);
         }
     }
+
+    public function soa($id)
+    {
+        $payments = Payment::orderBy('id')->with('customer')->get();
+        $customers = Customer::where('status', 'ACTIVE')->get();
+        return view('backend.pages.area.soa', compact('payments', 'customers'));
+    }
 }

@@ -140,36 +140,6 @@
     </div>
 </div>
 
-{{-- MODAL
-<div class="modal fade" id="amortizationModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title reserve-title">Calculate Monthly Amortization</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body m-3">
-                <form id="modal-form" action="{{url('transaction/reservation')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Starting Date</label>
-                    <input type="text" class="form-control" id="starting_date" name="starting_date" placeholder="Enter Starting Date">
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Duration</label>
-                    <input type="text" class="form-control" id="duration" name="duration" placeholder="Enter Starting Date">
-                </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary submit-button">Add</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
 {{-- MODAL --}}
 <div class="modal fade" id="reserveModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -328,9 +298,9 @@
                 method: 'get',
                 success: function(data) {
                    if(data.Message == 'DETECTED') {
-                        $('#amortizationModal').modal('show'); 
+                        location.href = 'transaction/soa/' + id
                    } else {
-                       alert('NO DOWNPAYMENT! Please provide downpayment record before calculating the Monthly Amortization');
+                       alert('No Downpayment! Please provide an amount before calculating monthly amortization.');
                    }
                 }
             });
@@ -389,6 +359,7 @@
             if (confirm(message) == true) {
                 location.href = 'area/destroy/' + id
             } else {
+                
             }
         }
 
