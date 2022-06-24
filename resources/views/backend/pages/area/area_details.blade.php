@@ -48,7 +48,7 @@
                                             @foreach ($block->lot as $item)
                                                 <div class="col-2" onclick="LotFunction('{{$item->status}}', '{{$item->id}}', '{{$block->block}}', '{{$item->lot}}')">
                                                 <div class="lot {{$item->status}}">
-                                                    <span class="lot-name">LOT {{$item->lot}}</span>
+                                                    <span class="lot-name">LOT {{$item->lot}}<button class="btn btn-sm btn-block edit-lot"><i class="fas fa-pen"></i></button></span>
                                                     <div class="row lot-details">
                                                         <div class="col-12">
                                                             @if($item->status === 'Open')
@@ -64,9 +64,6 @@
                                                         <div class="col-6">
                                                             PSQM: {{$item->psqm}}<br>
                                                             MA: {{$item->monthly_amortization}}
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <button class="btn btn-sm btn-block edit-lot"><i class="fas fa-pen"></i> Edit Lot</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -466,9 +463,11 @@
         span.lot-name {
             display: block;
             font-weight: bold;
-            background: #3f3f3f;
+            background: #007eff;
             color: #fff;
+            text-align: left;
             border-radius: 3px;
+            padding: 0 10px;
         }
         .lot-details {
             font-size: 12px;
@@ -533,9 +532,10 @@
             margin-bottom: 20px;
         }
         .edit-lot {
-            background: #007eff;
             color: #fff;
-            margin-top: 10px;
+            float: right;
+            padding: 0px;
+            width: auto !important;
         }
         span.name-open {
             display: block;
