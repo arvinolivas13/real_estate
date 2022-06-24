@@ -51,7 +51,7 @@
                                     <td>{{$payment->payment_date}}</td>
                                     <td>{{$payment->payment_type}}</td>
                                     <td>{{$payment->payment_classification}}</td>
-                                    <td>{{$payment->amount}}</td>
+                                    <td>₱ {{ number_format($payment->amount, 2) }}</td>
                                     <td>{{$payment->reference_no}}</td>
                                     <td>{{$payment->or_no}}</td>
                                     <td class="text-primary" style="font-weight: bold">File</td>

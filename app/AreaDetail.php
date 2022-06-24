@@ -20,4 +20,9 @@ class AreaDetail extends Model
     {
         return $this->hasMany(AreaDetailLot::class, 'block_id');
     }
+
+    public function lot_detail()
+    {
+        return $this->hasOne(AreaDetailLot::class);
+    }
 }

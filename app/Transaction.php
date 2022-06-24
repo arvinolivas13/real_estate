@@ -18,4 +18,9 @@ class Transaction extends Model
         'status',
         'created_user',
     ];
+
+    public function lot()
+    {
+        return $this->belongsTo(AreaDetailLot::class, 'lot_id');
+    }
 }

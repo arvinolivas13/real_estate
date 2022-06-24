@@ -51,19 +51,19 @@
                                                     <span class="lot-name">LOT {{$item->lot}}<button class="btn btn-sm btn-block edit-lot"><i class="fas fa-pen"></i></button></span>
                                                     <div class="row lot-details">
                                                         <div class="col-12">
-                                                            @if($item->status === 'Open')
+                                                            @if($item->status === 'OPEN')
                                                             <span class="name-open">OPEN LOT</span>
                                                             @else
-                                                            <span class="name-open">--NAME HERE--</span>
+                                                            <span class="name-open">----</span>
                                                             @endif
                                                         </div>
                                                         <div class="col-6">
                                                             Area: {{$item->area}} <br>
-                                                            TCP: {{$item->tcp}} <br>
+                                                            TCP:₱ {{ number_format($item->tcp, 2) }} <br>
                                                         </div>
                                                         <div class="col-6">
                                                             PSQM: {{$item->psqm}}<br>
-                                                            MA: {{$item->monthly_amortization}}
+                                                            MA: ₱ {{ number_format($item->monthly_amortization, 2) }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -305,7 +305,7 @@
                 method: 'get',
                 success: function(data) {
                    if(data.Message == 'DETECTED') {
-                        location.href = 'transaction/soa/' + id
+                        location.href = '/transaction/soa/' + id
                    } else {
                        alert('No Downpayment! Please provide an amount before calculating monthly amortization.');
                    }

@@ -23,8 +23,18 @@ class AreaDetailLot extends Model
         'created_user',
     ];
 
+    public function block()
+    {
+        return $this->belongsTo(AreaDetail::class, 'block_id');
+    }
+
     public function lot()
     {
         return $this->belongsTo(AreaDetail::class);
+    }
+
+    public function transaction()
+    {
+        return $this->hasOne(Transaction::class);
     }
 }

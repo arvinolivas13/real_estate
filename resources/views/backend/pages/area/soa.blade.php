@@ -34,19 +34,19 @@
         </div>
         <div class="row" style="margin: 10px 0px;">
             <div class="col-8">
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Customer Name: <span style="font-weight: 300;">Agnes Guevarra</span></p>
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Account Number: <span style="font-weight: 300;">GVF-001</span></p>
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Block Number: <span style="font-weight: 300;">11</span></p>
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Lot Number: <span style="font-weight: 300;">11</span></p>
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Area: <span style="font-weight: 300;"></span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Customer Name: <span style="font-weight: 300;">{{$customer->firstname . ' ' . $customer->middlename . ' ' . $customer->lastname}}</span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Subscriber Number: <span style="font-weight: 300;">{{$customer->subscriber_no}}</span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Block Number: <span style="font-weight: 300;">Block {{$lot->block->block}}</span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Lot Number: <span style="font-weight: 300;">Lot {{$lot->lot}}</span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Area: <span style="font-weight: 300;"></span>{{$lot->area}}</p>
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Account Status: <span style="font-weight: 300;">ACTIVE</span></p>
             </div>
             <div class="col-4">
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Purchase Date: <span style="font-weight: 300;">October 28, 2019</span></p>
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Contract Price: <span style="font-weight: 300;">239,800.00</span></p>
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Down payment: <span style="font-weight: 300;"></span></p>
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Reservation: <span style="font-weight: 300;">11,900</span></p>
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Ammortization: <span style="font-weight: 300;">5,695</span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Contract Price: <span style="font-weight: 300;">{{$lot->tcp}}</span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Down payment: <span style="font-weight: 300;">{{$dp->amount}}</span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Reservation: <span style="font-weight: 300;"></span>{{$res->amount}}</p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Ammortization: <span style="font-weight: 300;">{{$lot->monthly_amortization}}</span></p>
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">OR Number: <span style="font-weight: 300;">0148</span></p>
             </div>
         </div>
@@ -66,28 +66,20 @@
                     <th style="padding: 15px; width: 100px; text-align: right;">Amount Paid</th>
                     <th style="padding: 15px; width: 100px; text-align: right;">Outstanding Balance</th>
                 </tr>
-                <tr>
-                    <td style="padding: 15px; width: 100px; text-align: left;">RES</td>
-                    <td style="padding: 15px; width: 100px; text-align: left;">10/28/2022</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">0.00</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">10/28/2022</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">0148</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">CASH</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">11,900.00</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">11,900.00</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">227,900.00</td>
-                </tr>
-                <tr>
-                    <td style="padding: 15px; width: 100px; text-align: left;">MA</td>
-                    <td style="padding: 15px; width: 100px; text-align: left;">11/28/2022</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">5,675.00</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">11/28/2022</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">0149</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">CASH</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">5,675.00</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">5,675.00</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">222,135.00</td>
-                </tr>
+                @foreach ($payments as $payment)
+                    <tr>
+                        <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_classification}}</td>
+                        <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_date}}</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->amount}}</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">10/28/2022</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->reference_no}}</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->payment_type}}</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">11,900.00</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">11,900.00</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">227,900.00</td>
+                    </tr>
+                @endforeach
+               
             </table>
         </div>
         <div class="spacer" style="height: 360px;"></div>
@@ -301,13 +293,13 @@
         });
     });
    function printDiv() {
-        var myStyle = '<link rel="stylesheet" href="backend/css/modern.css" />';
+        var myStyle = '<link rel="stylesheet" href="/backend/css/modern.css" />';
         var divToPrint=document.getElementById('printableSoa');
         var newWin=window.open('','Print-Window');
         newWin.document.open();
         newWin.document.write(myStyle + '<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
         newWin.document.close();
-        setTimeout(function(){newWin.close();},10);
+        // setTimeout(function(){newWin.close();},10);
     };
 </script>
 @endsection

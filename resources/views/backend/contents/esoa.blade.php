@@ -201,105 +201,8 @@
 </div>
 @endsection
 
-@section('chart-js')
+@section('scripts')
 <script>
-    $(function() {
-        
-        new Chart(document.getElementById("chartjs-bar"), {
-            type: "bar",
-            data: {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Last year",
-                    backgroundColor: window.theme.primary,
-                    borderColor: window.theme.primary,
-                    hoverBackgroundColor: window.theme.primary,
-                    hoverBorderColor: window.theme.primary,
-                    data: [54, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79],
-                    barPercentage: .75,
-                    categoryPercentage: .5
-                }, {
-                    label: "This year",
-                    backgroundColor: "#E8EAED",
-                    borderColor: "#E8EAED",
-                    hoverBackgroundColor: "#E8EAED",
-                    hoverBorderColor: "#E8EAED",
-                    data: [69, 66, 24, 48, 52, 51, 44, 53, 62, 79, 51, 68],
-                    barPercentage: .75,
-                    categoryPercentage: .5
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                legend: {
-                    display: false
-                },
-                scales: {
-                    yAxes: [{
-                        gridLines: {
-                            display: false
-                        },
-                        stacked: false,
-                        ticks: {
-                            stepSize: 20
-                        }
-                    }],
-                    xAxes: [{
-                        stacked: false,
-                        gridLines: {
-                            color: "transparent"
-                        }
-                    }]
-                }
-            }
-        });
-        
-        new Chart(document.getElementById("chartjs-pie"), {
-            type: "pie",
-            data: {
-                labels: ["GRAND VILLAS FARM PHASE 1", "GRAND VILLAS FARM PHASE 2", "GRAND VILLAS FARM PHASE 2-B", "GRAND VILLAS FARM PHASE 3"],
-                datasets: [{
-                    data: [150, 125, 54, 146],
-                    backgroundColor: [
-                        window.theme.primary,
-                        window.theme.warning,
-                        window.theme.danger,
-                        "#E8EAED"
-                    ],
-                    borderColor: "transparent"
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                legend: {
-                    display: false
-                }
-            }
-        });
-
-        new Chart(document.getElementById("chartjs-pie2"), {
-            type: "pie",
-            data: {
-                labels: ["Antipolo", "Batangas", "Quezon City", "Zambales"],
-                datasets: [{
-                    data: [20, 2, 7, 11],
-                    backgroundColor: [
-                        window.theme.success,
-                        window.theme.secondary,
-                        window.theme.warning,
-                        "#E8EAED"
-                    ],
-                    borderColor: "transparent"
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                legend: {
-                    display: false
-                }
-            }
-        });
-    });
    function printDiv() {
         var myStyle = '<link rel="stylesheet" href="backend/css/modern.css" />';
         var divToPrint=document.getElementById('printableSoa');
@@ -307,7 +210,6 @@
         newWin.document.open();
         newWin.document.write(myStyle + '<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
         newWin.document.close();
-        setTimeout(function(){newWin.close();},10);
     };
 </script>
 @endsection

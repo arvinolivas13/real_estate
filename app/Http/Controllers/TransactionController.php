@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Payment;
 use App\Transaction;
+use App\Customer;
 use App\AreaDetailLot;
 use Auth;
 
@@ -66,8 +67,12 @@ class TransactionController extends Controller
 
     public function soa($id)
     {
-        $payments = Payment::orderBy('id')->with('customer')->get();
-        $customers = Customer::where('status', 'ACTIVE')->get();
-        return view('backend.pages.area.soa', compact('payments', 'customers'));
+        $transaction = Transaction::where('lot_id', $id)->firstOrFail(); 
+        $customer = Customer::where('id', $transaction->customer_id)->firstOrFail(); 
+        $lot = AreaDetailLot::where('id', $transaction->lot_id)->with('block')->firstOrFail(); 
+        $dp = Payment::where('code', $transaction->code)->where('payment_classification', 'DP')->firstOrFail();
+        $res = Payment::where('code', $transaction->code)->where('payment_classification', 'RES')->firstOrFail();
+        $payments = Payment::where('code', $transaction->code)->with('customer')->get();
+        return view('backend.pages.area.soa', compact('payments', 'customer', 'lot', 'dp', 'res'));
     }
 }
