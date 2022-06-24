@@ -50,6 +50,13 @@
                                                 <div class="lot {{$item->status}}">
                                                     <span class="lot-name">LOT {{$item->lot}}</span>
                                                     <div class="row lot-details">
+                                                        <div class="col-12">
+                                                            @if($item->status === 'Open')
+                                                            <span class="name-open">OPEN LOT</span>
+                                                            @else
+                                                            <span class="name-open">--NAME HERE--</span>
+                                                            @endif
+                                                        </div>
                                                         <div class="col-6">
                                                             Area: {{$item->area}} <br>
                                                             TCP: {{$item->tcp}} <br>
@@ -57,6 +64,9 @@
                                                         <div class="col-6">
                                                             PSQM: {{$item->psqm}}<br>
                                                             MA: {{$item->monthly_amortization}}
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button class="btn btn-sm btn-block edit-lot"><i class="fas fa-pen"></i> Edit Lot</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -456,10 +466,9 @@
         span.lot-name {
             display: block;
             font-weight: bold;
-            background: #007eff;
+            background: #3f3f3f;
             color: #fff;
             border-radius: 3px;
-            margin-bottom: 10px;
         }
         .lot-details {
             font-size: 12px;
@@ -522,6 +531,16 @@
         }
         .legend {
             margin-bottom: 20px;
+        }
+        .edit-lot {
+            background: #007eff;
+            color: #fff;
+            margin-top: 10px;
+        }
+        span.name-open {
+            display: block;
+            text-align: center;
+            border-bottom: 1px solid;
         }
     </style>
 @endsection
