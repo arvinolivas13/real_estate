@@ -53,24 +53,6 @@
                     </span> 
                 </a>
                 @endrole
-                @role('Agent')
-                <a href="/transaction/van" class="sidebar-link collapsed">
-                    <span class="item">
-                        <i class="align-middle mr-2 fas fa-fw fa-car"></i> <span class="align-middle">Van</span>
-                    </span> 
-                </a>
-                @endrole
-                @role('Super Admin|Agent')
-                <a href="/transaction/commission" class="sidebar-link collapsed">
-                    <span class="item">
-                        <i class="align-middle mr-2 fas fa-fw fa-dollar-sign"></i> <span class="align-middle">Commission</span>
-                    </span> 
-                </a>
-                @endrole
-                {{-- <ul id="payroll_system" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
-                    <li class="list-title">Area</li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="/transaction/area">Area</a></li>
-                </ul> --}}
             </li>
             @role('Super Admin')
             <li class="sidebar-header">

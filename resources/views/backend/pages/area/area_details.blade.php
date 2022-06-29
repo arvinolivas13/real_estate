@@ -62,7 +62,7 @@
                                                             TCP:₱ {{ number_format($item->tcp, 2) }} <br>
                                                         </div>
                                                         <div class="col-6">
-                                                            PSQM: {{$item->psqm}}<br>
+                                                            P/SQM: {{ number_format($item->psqm, 2) }}<br>
                                                             MA: ₱ {{ number_format($item->monthly_amortization, 2) }}
                                                         </div>
                                                     </div>

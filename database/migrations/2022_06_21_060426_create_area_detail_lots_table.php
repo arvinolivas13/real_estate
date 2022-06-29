@@ -15,6 +15,7 @@ class CreateAreaDetailLotsTable extends Migration
     {
         Schema::create('area_detail_lots', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('subscriber_no');
             $table->unsignedBigInteger('block_id');
             $table->string('lot');
             $table->string('area');
