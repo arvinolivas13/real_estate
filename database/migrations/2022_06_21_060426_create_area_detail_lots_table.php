@@ -17,6 +17,9 @@ class CreateAreaDetailLotsTable extends Migration
             $table->bigIncrements('id');
             $table->string('subscriber_no')->nullable();
             $table->unsignedBigInteger('block_id');
+            $table->date('reservation_date')->nullable();
+            $table->date('purchase_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->string('lot');
             $table->string('area');
             $table->string('psqm');

@@ -59,10 +59,10 @@
                                                         </div>
                                                         <div class="col-6">
                                                             Area: {{$item->area}} <br>
-                                                            TCP:₱ {{ number_format($item->tcp, 2) }} <br>
+                                                            TCP: ₱ {{ number_format($item->tcp, 2) }} <br>
                                                         </div>
                                                         <div class="col-6">
-                                                            P/SQM: {{ number_format($item->psqm, 2) }}<br>
+                                                            P/SQM: {{ number_format($item->psqm, 2) }}/SQM<br>
                                                             MA: ₱ {{ number_format($item->monthly_amortization, 2) }}
                                                         </div>
                                                     </div>
@@ -104,31 +104,31 @@
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Area<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="area" name="area" placeholder="Enter Lot Area" required>
+                    <input type="number" class="form-control" id="area" name="area" placeholder="Enter Lot Area" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">P/SQM<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="psqm" name="psqm" placeholder="Enter P/SQM" required>
+                    <input type="number" class="form-control" id="psqm" name="psqm" placeholder="Enter P/SQM" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">TCP<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="tcp" name="tcp" placeholder="Enter TCP" required>
+                    <input type="number" class="form-control" id="tcp" name="tcp" placeholder="Enter TCP" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Reservation %<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="reservation_percent" name="reservation_percent" placeholder="Enter Reservation %" required>
+                    <input type="number" class="form-control" id="reservation_percent" name="reservation_percent" placeholder="Enter Reservation %" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Reservation Fee<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="reservation_fee" name="reservation_fee" placeholder="Enter Reservation Fee" required>
+                    <input type="number" class="form-control" id="reservation_fee" name="reservation_fee" placeholder="Enter Reservation Fee" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Balance<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="balance" name="balance" placeholder="Enter Balance" required>
+                    <input type="number" class="form-control" id="balance" name="balance" placeholder="Enter Balance" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Monthly Amortization<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="monthly_amortization" name="monthly_amortization" placeholder="Enter Monthly Amortization" required>
+                    <input type="number" class="form-control" id="monthly_amortization" name="monthly_amortization" placeholder="Enter Monthly Amortization" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label class="inputPassword4">Status <span style="color: red">*</span></label>
@@ -177,7 +177,12 @@
                     <label for="inputPassword4">Code<span style="color: red">*</span></label>
                     <input type="text" class="form-control" id="code" name="code" value="" readonly>
                 </div>
-                    
+
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">Subscriber No.<span style="color: red">*</span></label>
+                    <input type="text" class="form-control" id="subscriber_no" name="subscriber_no" placeholder="Enter Subscriber No" required>
+                </div>
+
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Payment Date<span style="color: red">*</span></label>
                     <input type="date" class="form-control" id="payment_date" name="payment_date" required>

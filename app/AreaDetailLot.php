@@ -12,6 +12,9 @@ class AreaDetailLot extends Model
     protected $fillable = [
         'subscriber_no',
         'block_id',
+        'reservation_date',
+        'purchase_date',
+        'end_date',
         'lot',
         'area',
         'psqm',
