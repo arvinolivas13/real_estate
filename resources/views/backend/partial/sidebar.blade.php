@@ -8,7 +8,7 @@
         <div class="company-logo">
             <img src="/images/logo.png" alt="company-logo" width="100%"/>
             <div class="company-name">
-                Brilliant Five J Construction and Development Corp.
+                Brilliant Five J Construction and Development Corp. 
             </div>
         </div>
 
@@ -65,7 +65,7 @@
                     <span class="item">
                         <i class="align-middle mr-2 fas fa-fw fa-dollar-sign"></i> <span class="align-middle">Commission</span>
                     </span> 
-                </a>
+                </a> 
                 @endrole
                 {{-- <ul id="payroll_system" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
                     <li class="list-title">Area</li>
