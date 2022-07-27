@@ -45,6 +45,10 @@ class PaymentController extends Controller
 
         Payment::create($requestData);
 
+        if($request->payment_classification == 'DP') {
+            
+        }
+
         return redirect()->back()->with('success','Successfully Added');
     }
 

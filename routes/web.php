@@ -55,7 +55,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::group(['prefix' => 'transaction'], function (){
         Route::post          ('/reservation',                 'TransactionController@reservation'               )->name('get_employment_information');
         Route::get           ('/checkdp/{id}',                'TransactionController@checkdp'                   )->name('get_employment_information');
+        Route::get           ('/penalty',                     'TransactionController@penalty'                   )->name('get_employment_information');
         Route::get           ('/soa/{id}',                    'TransactionController@soa'                       )->name('get_employment_information');
+        Route::post          ('/generate_amort/{id}',         'TransactionController@generate_amortization'     )->name('get_employment_information');
     });
 
     Route::get('/dashboard', function () {

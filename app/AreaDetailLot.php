@@ -10,7 +10,11 @@ class AreaDetailLot extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'subscriber_no',
         'block_id',
+        'reservation_date',
+        'purchase_date',
+        'end_date',
         'lot',
         'area',
         'psqm',

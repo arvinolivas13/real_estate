@@ -25,7 +25,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Action</th>
-                                <th>Subscriber No</th>
+                                <th>Customer Code</th>
                                 <th>Customer Name</th>
                                 <th>Email</th>
                                 <th>Address</th>
@@ -76,8 +76,8 @@
                 <form id="modal-form" action="{{url('customer/save')}}" method="post">
                 @csrf
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Subscriber No <span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="subscriber_no" name="subscriber_no" placeholder="Enter Subscriber No" required>
+                    <label for="inputPassword4">Customer Code <span style="color: red">*</span></label>
+                    <input type="text" class="form-control" id="subscriber_no" name="subscriber_no" placeholder="Enter Customer Code" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">First Name <span style="color: red">*</span></label>
