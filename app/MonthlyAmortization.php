@@ -17,4 +17,9 @@ class MonthlyAmortization extends Model
         'status',
         'created_user',
     ];
+
+    public function Penalty()
+    {
+        return $this->belongsTo(Penalty::class);
+    }
 }

@@ -42,7 +42,7 @@
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Account Status: <span style="font-weight: 300;">ACTIVE</span></p>
             </div>
             <div class="col-4">
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Purchase Date: <span style="font-weight: 300;"></span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Purchase Date: <span style="font-weight: 300;">{{$lot->purchase_date}}</span></p>
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Contract Price: <span style="font-weight: 300;">₱ {{ number_format($lot->tcp, 2)}}</span></p>
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Down payment: <span style="font-weight: 300;">₱ {{ number_format($dp->amount, 2)}}</span></p>
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Reservation: <span style="font-weight: 300;">₱ {{ number_format($res->amount, 2)}}</span></p>
@@ -66,18 +66,42 @@
                     <th style="padding: 15px; width: 100px; text-align: right;">Amount Paid</th>
                     <th style="padding: 15px; width: 100px; text-align: right;">Outstanding Balance</th>
                 </tr>
+
+                @php
+                    $contract_price = $lot->tcp;
+                    $total_penalty = 0;
+                @endphp
+
                 @foreach ($payments as $payment)
-                    <tr>
-                        <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_classification}}</td>
-                        <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_date}}</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($payment->amount, 2)}}</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">10/28/2022</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->reference_no}}</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->payment_type}}</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">₱ 11,900.00</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">₱ 11,900.00</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">₱ 227,900.00</td>
-                    </tr>
+                    @php
+                        $contract_price = $contract_price - $payment->amount
+                    @endphp 
+
+                    @if ($payment->payment_classification == 'RES' || $payment->payment_classification == 'DP' )
+                        <tr>
+                            <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_classification}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_date}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($payment->amount, 2)}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">10/28/2022</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->reference_no}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->payment_type}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">₱ 0.00</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($payment->amount, 2)}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($contract_price, 2)}}</td>
+                        </tr>
+                    @else
+                        <tr>
+                            <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_classification}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_date}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($lot->monthly_amortization, 2)}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">10/28/2022</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->reference_no}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->payment_type}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($lot->monthly_amortization, 2)}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($payment->amount, 2)}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($contract_price, 2)}}</td>
+                        </tr>
+                    @endif
                 @endforeach
 
                 @foreach ($amortizations as $amortization)
@@ -88,7 +112,7 @@
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">₱ 11,900.00</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($lot->monthly_amortization, 2)}}</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
                     </tr>
@@ -102,12 +126,12 @@
                 <tr style="border-bottom: 2px solid; border-top: 2px solid;">
                     <th style="padding: 15px; width: 100px; text-align: left;">Totals</th>
                     <th style="padding: 15px; width: 100px; text-align: left;"></th>
-                    <th style="padding: 15px; width: 100px; text-align: right;">239,800.00</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($lot->tcp, 2)}}</th>
                     <th style="padding: 15px; width: 100px; text-align: right;"></th>
                     <th style="padding: 15px; width: 100px; text-align: right;"></th>
                     <th style="padding: 15px; width: 100px; text-align: right;"></th>
-                    <th style="padding: 15px; width: 100px; text-align: right;">17,595.00</th>
-                    <th style="padding: 15px; width: 100px; text-align: right;">222,205.00</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($lot->tcp - $regular_amount_pay, 2)}}</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($regular_amount_pay, 2)}}</th>
                     <th style="padding: 15px; width: 100px; text-align: right;"></th>
                 </tr>
             </table>
@@ -126,17 +150,21 @@
                     <td style="padding: 15px; width: 100px; text-align: right;">Amount Paid</td>
                     <td style="padding: 15px; width: 100px; text-align: right;">Outstanding Balance</td>
                 </tr>
+
                 @foreach ($penalties as $penalty)
+                @php
+                    $total_penalty = $total_penalty + $penalty->amount;
+                @endphp
                     <tr>
-                        <td style="padding: 15px; width: 100px; text-align: left;">{{$penalty->payment_classification}}</td>
+                        <td style="padding: 15px; width: 100px; text-align: left;">PEN</td>
                         <td style="padding: 15px; width: 100px; text-align: left;">{{$penalty->penalty_date}}</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">{{$penalty->amount}}</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">{{ number_format($penalty->amount, 2)}}</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">{{$penalty->amount}}</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">{{ number_format($penalty->amount, 2)}}</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">-</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">({{ number_format($total_penalty, 2)}})</td>
                     </tr>
                 @endforeach
                
@@ -146,14 +174,14 @@
             <p style="margin-bottom: 20px;"></p>
             <table style="width: 100%; font-size: 12px;">
                 <tr style="border-bottom: 2px solid; border-top: 2px solid;">
-                    <th style="padding: 15px; width: 100px; text-align: left;">Totals</th>
+                    <th style="padding: 15px; width: 100px; text-align: left;">Total</th>
                     <th style="padding: 15px; width: 100px; text-align: left;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($penalty_amount_due, 2)}}</th>
                     <th style="padding: 15px; width: 100px; text-align: right;"></th>
                     <th style="padding: 15px; width: 100px; text-align: right;"></th>
                     <th style="padding: 15px; width: 100px; text-align: right;"></th>
-                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
-                    <th style="padding: 15px; width: 100px; text-align: right;">(505.00)</th>
-                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($penalty_amount_due, 2)}}</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($penalty_amount_pay, 2)}}</th>
                     <th style="padding: 15px; width: 100px; text-align: right;"></th>
                 </tr>
                 
@@ -164,8 +192,8 @@
                     <td style="padding: 15px; width: 100px; text-align: right;"></td>
                     <td style="padding: 15px; width: 100px; text-align: right;"></td>
                     <td style="padding: 15px; width: 100px; text-align: right;"></td>
-                    <td style="padding: 15px; width: 100px; text-align: right; font-weight: bold;">18,775.00</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;"></td>
+                    <td style="padding: 15px; width: 100px; text-align: right; font-weight: bold;">₱ {{ number_format($penalty_amount_due + ($lot->tcp - $regular_amount_pay), 2)}}</td>
+                    <td style="padding: 15px; width: 100px; text-align: right; font-weight: bold;">₱ {{ number_format($penalty_amount_pay + $regular_amount_pay, 2)}}</td>
                     <td style="padding: 15px; width: 100px; text-align: right;"></td>
                 </tr>
             </table>

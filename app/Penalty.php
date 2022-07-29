@@ -18,4 +18,14 @@ class Penalty extends Model
         'status',
         'created_user',
     ];
+
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class, 'transaction_id');
+    }
+
+    public function amortization()
+    {
+        return $this->belongsTo(MonthlyAmortization::class, 'monthly_amortization_id');
+    }
 }

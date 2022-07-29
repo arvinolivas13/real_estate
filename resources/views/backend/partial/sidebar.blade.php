@@ -52,6 +52,11 @@
                         <i class="align-middle mr-2 fas fa-fw fa-money-bill"></i> <span class="align-middle">Payment</span>
                     </span> 
                 </a>
+                <a href="{{ url('penalty') }}" class="sidebar-link collapsed">
+                    <span class="item">
+                        <i class="align-middle mr-2 fas fa-fw fa-minus-circle"></i> <span class="align-middle">Penalty</span>
+                    </span> 
+                </a>
                 @endrole
                 @role('Agent')
                 <a href="/transaction/van" class="sidebar-link collapsed">
