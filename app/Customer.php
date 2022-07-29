@@ -28,4 +28,9 @@ class Customer extends Model
     {
         return $this->belongsTo(Payment::class);
     }
+
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class);
+    }
 }
