@@ -129,7 +129,7 @@ class TransactionController extends Controller
         $monthly_amortization = $remaining_balance/$diff_in_months;
         for ($i=1; $i < $diff_in_months; $i++) {
             $monthlyAmort = new MonthlyAmortization([
-                'transaction_id' => $transaction->id,
+                'transaction_id' => 3,
                 'payment_date' => $this->getSameDayNextMonth($startDate, $i)->format('Y-m-d'),
                 'payment_classification' => 'MA',
                 'amount' => $monthly_amortization,
