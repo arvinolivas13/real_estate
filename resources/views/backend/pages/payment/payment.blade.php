@@ -54,7 +54,7 @@
                                     <td>₱ {{ number_format($payment->amount, 2) }}</td>
                                     <td>{{$payment->reference_no}}</td>
                                     <td>{{$payment->or_no}}</td>
-                                    <td class="text-primary" style="font-weight: bold">File</td>
+                                    <td class="text-primary" style="font-weight: bold"><span class="image-viewer-btn" onclick="imageView('{{$payment->code}}', '{{$payment->attachment}}')">{{$payment->attachment}}</span></td>
                                     <td>{{$payment->remarks}}</td>
                                     <td>{{$payment->process_by->firstname . ' ' . $payment->process_by->middlename . ' ' . $payment->process_by->lastname}}</td>
                                 </tr>
@@ -66,7 +66,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="reserveModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="reserveModal" tabindex="1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -139,6 +139,24 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary submit-button">Add</button>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ImageView" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>File</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body m-3">
+                <div class="image-viewer">
+                    <img src="" alt="" width="100%">
+                </div>
             </div>
         </div>
     </div>
@@ -248,6 +266,11 @@
             });
         });
 
+        function imageView(block, output) {
+            var blk = block.split(" ");
+            $('#ImageView').modal('show');
+            $('#ImageView img').attr('src', '/customer_file/' + blk[1] + '/' + output);
+        }
     </script>
 @endsection
 

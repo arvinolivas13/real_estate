@@ -513,6 +513,11 @@
             text-align: center;
             border-bottom: 1px solid;
         }
+        .alert.alert-success.col-md-12.col-lg-12 p {
+            display: block !important;
+            margin: 0px;
+            padding: 5px 10px;
+        }
     </style>
 @endsection
 @stop

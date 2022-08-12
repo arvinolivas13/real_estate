@@ -138,3 +138,7 @@ Route::get('/account-status', function () {
 
 Route::get('/home', 'HomeController@index' )->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+Route::get('/payment', 'PaymentTransactionController@index');
+Route::post('/charge', 'PaymentTransactionController@charge');
+Route::get('/confirm', 'PaymentTransactionController@confirm');
