@@ -23,4 +23,14 @@ class Transaction extends Model
     {
         return $this->belongsTo(AreaDetailLot::class, 'lot_id');
     }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
+    }
+
+    public function penalty()
+    {
+        return $this->belongsTo(Penalty::class);
+    }
 }

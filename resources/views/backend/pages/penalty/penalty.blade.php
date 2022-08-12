@@ -14,9 +14,9 @@
     <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3>Customer Information</h3>
+                    <h3>Penalty</h3>
                     <button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#customerModal" style="float:right">
-                        Add Customer
+                        Add Penalty
                     </button>
                 </div>
                 <div class="card-body">
@@ -27,32 +27,28 @@
                                 <th>Action</th>
                                 <th>Customer Code</th>
                                 <th>Customer Name</th>
-                                <th>Email</th>
-                                <th>Address</th>
-                                <th>Contact</th>
-                                <th>Birthday</th>
-                                <th>Occupation</th>
-                                <th>Gender</th>
+                                <th>Subscriber No.</th>
+                                <th>Amortization Month</th>
+                                <th>Penalty Date</th>
+                                <th>Amount</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($customers as $key => $customer)
+                            @foreach ($penalties as $key => $penalty)
                                 <tr>
                                     <td>{{++$key}}</td>
                                     <td>
-                                        <a href="#" class="align-middle edit" onclick="edit({{ $customer->id }})" title="Edit" data-toggle="modal" data-target="#customerModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-pen"></i></a>
-                                        <a href="{{url('customer/destroy/' . $customer->id)}}" onclick="alert('Are you sure you want to Delete?')"><i class="align-middle fas fa-fw fa-trash"></i></a>
+                                        <a href="#" class="align-middle edit" onclick="edit({{ $penalty->id }})" title="Edit" data-toggle="modal" data-target="#customerModal" id={{$penalty->id}}><i class="align-middle fas fa-fw fa-pen"></i></a>
+                                        <a href="{{url('customer/destroy/' . $penalty->id)}}" onclick="alert('Are you sure you want to Delete?')"><i class="align-middle fas fa-fw fa-trash"></i></a>
                                     </td>
-                                    <td>{{$customer->subscriber_no}}</td>
-                                    <td>{{$customer->firstname . ' ' . $customer->middlename . ' ' . $customer->lastname}}</td>
-                                    <td>{{$customer->email}}</td>
-                                    <td>{{$customer->address}}</td>
-                                    <td>{{$customer->contact}}</td>
-                                    <td>{{$customer->birthday}}</td>
-                                    <td>{{$customer->occupation}}</td>
-                                    <td>{{$customer->gender}}</td>
-                                    <td>{{$customer->status}}</td>
+                                    <td>{{$penalty->transaction->customer->subscriber_no}}</td>
+                                    <td>{{$penalty->transaction->customer->firstname . ' ' . $penalty->transaction->customer->middlename . ' ' . $penalty->transaction->customer->lastname}}</td>
+                                    <td>{{$penalty->transaction->code}}</td>
+                                    <td>{{ date('M d, Y', strtotime($penalty->amortization->payment_date))}} </td>
+                                    <td>{{ date('M d, Y', strtotime($penalty->penalty_date))}}</td>
+                                    <td>₱ {{ number_format($penalty->amount, 2)}}</td>
+                                    <td>{{$penalty->status}}</td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -43,6 +43,14 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/destroy/{id}',                'AreaDetailController@destroy'                        )->name('destroy_employment_information');
     });
 
+    Route::group(['prefix' => 'penalty'], function (){
+        Route::get          ('/',                            'PenaltyController@index'                          )->name('get_employment_information');
+        Route::post         ('/save',                        'PenaltyController@store'                          )->name('save_employment_information');
+        Route::get          ('/edit/{id}',                   'PenaltyController@edit'                           )->name('edit_employment_information');
+        Route::post         ('/update/{id}',                 'PenaltyController@update'                         )->name('update_employment_information');
+        Route::get          ('/destroy/{id}',                'PenaltyController@destroy'                        )->name('destroy_employment_information');
+    });
+
     Route::group(['prefix' => 'payment'], function (){
         Route::get          ('/',                            'PaymentController@index'                          )->name('get_employment_information');
         Route::post         ('/save',                        'PaymentController@store'                          )->name('save_employment_information');
@@ -55,7 +63,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::group(['prefix' => 'transaction'], function (){
         Route::post          ('/reservation',                 'TransactionController@reservation'               )->name('get_employment_information');
         Route::get           ('/checkdp/{id}',                'TransactionController@checkdp'                   )->name('get_employment_information');
+        Route::get           ('/penalty',                     'TransactionController@penalty'                   )->name('get_employment_information');
         Route::get           ('/soa/{id}',                    'TransactionController@soa'                       )->name('get_employment_information');
+        Route::post          ('/generate_amort/{id}',         'TransactionController@generate_amortization'     )->name('get_employment_information');
     });
 
     Route::get('/dashboard', function () {

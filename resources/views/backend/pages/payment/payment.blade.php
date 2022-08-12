@@ -1,6 +1,6 @@
     @extends('backend.master.template')
 
-@section('title', 'Customers')
+@section('title', 'Payment')
 
 @section('breadcrumbs')
     <span><a href="#" style="color:#fff;">Home</a></span> / <span class="highlight">Payment</span>
@@ -137,7 +137,7 @@
                 </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary submit-button">Add</button>
+                <button type="submit" class="btn btn-primary submit-button">Pay</button>
                 </form>
             </div>
         </div>
