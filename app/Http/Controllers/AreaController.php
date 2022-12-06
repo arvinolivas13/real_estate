@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Area;
+use App\AreaDetail;
+use App\AreaDetailLot;
 use Illuminate\Http\Request;
 use Mail;
 use Auth;
@@ -32,7 +34,7 @@ class AreaController extends Controller
         $file = $request->image->getClientOriginalName();
         $filename = pathinfo($file, PATHINFO_FILENAME);
 
-        $imageName = $filename.time().'.'.$request->image->extension();  
+        $imageName = $filename.time().'.'.$request->image->extension();
         $image = $request->image->move(public_path('images/area'), $imageName);
 
         $requestData = $request->all();
@@ -44,7 +46,7 @@ class AreaController extends Controller
     }
 
     public function html_email() {
-        
+
         $data = array('name'=>"Virat Gandhi");
         Mail::send('email.sample', $data, function($message) {
             $message->to('arvin.olivas15@gmail.com', 'Tutorials Point')->subject('Laravel HTML Testing Mail');
@@ -64,7 +66,7 @@ class AreaController extends Controller
         $file = $request->image->getClientOriginalName();
         $filename = pathinfo($file, PATHINFO_FILENAME);
 
-        $imageName = $filename.time().'.'.$request->image->extension();  
+        $imageName = $filename.time().'.'.$request->image->extension();
         $image = $request->image->move(public_path('images/area'), $imageName);
 
         $requestData = $request->all();
@@ -76,7 +78,7 @@ class AreaController extends Controller
 
     public function destroy($id)
     {
-        $destroy = Area::find($id);
+        $destroy = AreaDetailLot::where('block_id', $id)->orderBy('id', 'desc')->first();
         $destroy->delete();
         return redirect()->back()->with('success','Successfully Deleted!');
     }

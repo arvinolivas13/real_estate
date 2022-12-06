@@ -14,11 +14,8 @@
 
 Route::get('sendhtmlemail','AreaController@html_email');
 
-
-
-
 Route::group(['middleware' => ['auth']], function() {
-    
+
     Route::group(['prefix' => 'customer'], function (){
         Route::get          ('/',                            'CustomerController@index'                          )->name('get_employment_information');
         Route::post         ('/save',                        'CustomerController@store'                          )->name('save_employment_information');
@@ -26,7 +23,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post         ('/update/{id}',                 'CustomerController@update'                         )->name('update_employment_information');
         Route::get          ('/destroy/{id}',                'CustomerController@destroy'                        )->name('destroy_employment_information');
     });
-    
+
     Route::group(['prefix' => 'area'], function (){
         Route::get          ('/',                            'AreaController@index'                          )->name('get_employment_information');
         Route::post         ('/save',                        'AreaController@store'                          )->name('save_employment_information');
@@ -88,7 +85,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('maintenance/van', function () {
         return view('backend.pages.maintenance.van');
     });
-    
+
 
     Route::group(['prefix' => '/maintenance'], function (){
 
@@ -149,6 +146,6 @@ Route::get('/account-status', function () {
 Route::get('/home', 'HomeController@index' )->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::get('/payment', 'PaymentTransactionController@index');
-Route::post('/charge', 'PaymentTransactionController@charge');
-Route::get('/confirm', 'PaymentTransactionController@confirm');
+// Route::get('/payment', 'PaymentTransactionController@index');
+// Route::post('/charge', 'PaymentTransactionController@charge');
+// Route::get('/confirm', 'PaymentTransactionController@confirm');

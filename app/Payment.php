@@ -12,7 +12,7 @@ class Payment extends Model
     protected $fillable = [
         'customer_id',
         'code',
-        'payment_date',
+        'date',
         'payment_type',
         'payment_classification',
         'amount',

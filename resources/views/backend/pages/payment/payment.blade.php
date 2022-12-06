@@ -1,4 +1,4 @@
-    @extends('backend.master.template')
+@extends('backend.master.template')
 
 @section('title', 'Payment')
 
@@ -92,10 +92,10 @@
                     <select class="form-control" id="code" name="code" required>
                     </select>
                 </div>
-                    
+
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Payment Date<span style="color: red">*</span></label>
-                    <input type="date" class="form-control" id="payment_date" name="payment_date" required>
+                    <input type="date" class="form-control" id="date" name="date" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label class="inputPassword4">Payment Type<span style="color: red">*</span></label>
@@ -240,11 +240,11 @@
                 success: function(data) {
                     $('#code').empty();
                     console.log(data);
-                    var lot = data.lot; 
+                    var lot = data.lot;
                     for (let index = 0; index < lot.length; index++) {
                         $("#code").append(new Option(lot[index].code, lot[index].code));
                     }
-                    
+
                 }
             });
         }

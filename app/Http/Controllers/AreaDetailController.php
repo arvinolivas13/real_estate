@@ -62,22 +62,14 @@ class AreaDetailController extends Controller
 
     public function edit($id)
     {
-        $area = Area::where('id', $id)->orderBy('id')->firstOrFail();
-        return response()->json(compact('area'));
+        $area_detail_lot = AreaDetailLot::where('id', $id)->orderBy('id')->firstOrFail();
+        return response()->json(compact('area_detail_lot'));
     }
 
     public function update(Request $request, $id)
     {
-        $file = $request->image->getClientOriginalName();
-        $filename = pathinfo($file, PATHINFO_FILENAME);
-
-        $imageName = $filename.time().'.'.$request->image->extension();  
-        $image = $request->image->move(public_path('images/area'), $imageName);
-
-        $requestData = $request->all();
-        $requestData['image'] = $imageName;
-
-        Area::find($id)->update($requestData);
+        AreaDetailLot::find($id)->update($request->all());
+        $request->request->add(['status' => 'OPEN']);
         return redirect()->back()->with('success','Successfully Updated');
     }
 

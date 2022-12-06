@@ -36,16 +36,19 @@ class TransactionController extends Controller
 
         $request->request->add(['created_user' => Auth::user()->id]);
 
+        if($request->attachment != null) {
         $file = $request->attachment->getClientOriginalName();
         $filename = pathinfo($file, PATHINFO_FILENAME);
 
-        $imageName = $filename.time().'.'.$request->attachment->extension();  
+        $imageName = $filename.time().'.'.$request->attachment->extension();
         $image = $request->attachment->move(public_path('customer_file/' . $request->customer_id . '-' . $request->lot_id), $imageName);
 
         $requestData = $request->all();
         $requestData['attachment'] = $imageName;
-
         Payment::create($requestData);
+        } else {
+            Payment::create($request->all());
+        }
 
         $transaction = new Transaction([
             'code' => $request->code,
@@ -72,10 +75,10 @@ class TransactionController extends Controller
 
     public function soa($id)
     {
-        $transaction = Transaction::where('lot_id', $id)->firstOrFail(); 
+        $transaction = Transaction::where('lot_id', $id)->firstOrFail();
         $id = $id;
-        $customer = Customer::where('id', $transaction->customer_id)->firstOrFail(); 
-        $lot = AreaDetailLot::where('id', $transaction->lot_id)->with('block')->firstOrFail(); 
+        $customer = Customer::where('id', $transaction->customer_id)->firstOrFail();
+        $lot = AreaDetailLot::where('id', $transaction->lot_id)->with('block')->firstOrFail();
         $dp = Payment::where('code', $transaction->code)->where('payment_classification', 'DP')->firstOrFail();
         $res = Payment::where('code', $transaction->code)->where('payment_classification', 'RES')->firstOrFail();
         $payments = Payment::where('code', $transaction->code)->where('payment_classification', '!=', 'PEN')->with('customer')->get();
@@ -89,7 +92,7 @@ class TransactionController extends Controller
         $penalty_total = Penalty::where('transaction_id', $id)->where('status', 'UNPAID')->get();
         $penalty_amount_due = $penalty_total->sum('amount');
 
-        return view('backend.pages.area.soa', compact('payments', 'customer', 'lot', 'dp', 'res', 'id', 'amortizations', 'penalties', 'remaining_balance', 'total_pay', 'regular_amount_pay', 
+        return view('backend.pages.area.soa', compact('payments', 'customer', 'lot', 'dp', 'res', 'id', 'amortizations', 'penalties', 'remaining_balance', 'total_pay', 'regular_amount_pay',
                                                       'penalty_amount_pay', 'penalty_amount_due'));
     }
 
@@ -97,42 +100,42 @@ class TransactionController extends Controller
         $startDateDay = (int) $startDate->format('j');
         $startDateMonth = (int) $startDate->format('n');
         $startDateYear = (int) $startDate->format('Y');
-    
+
         $numberOfYearsToAdd = floor(($startDateMonth + $numberOfMonthsToAdd) / 12);
         if ((($startDateMonth + $numberOfMonthsToAdd) % 12) === 0) {
           $numberOfYearsToAdd--;
         }
         $year = $startDateYear + $numberOfYearsToAdd;
-    
+
         $month = ($startDateMonth + $numberOfMonthsToAdd) % 12;
         if ($month === 0) {
           $month = 12;
         }
         $month = sprintf('%02s', $month);
-    
+
         $numberOfDaysInMonth = (new DateTime("$year-$month-01"))->format('t');
         $day = $startDateDay;
         if ($startDateDay > $numberOfDaysInMonth) {
           $day = $numberOfDaysInMonth;
         }
         $day = sprintf('%02s', $day);
-    
+
         return new DateTime("$year-$month-$day");
       }
 
     public function generate_amortization(Request $request, $id)
     {
-        $transaction = Transaction::where('lot_id', $id)->firstOrFail(); 
+        $transaction = Transaction::where('lot_id', $id)->firstOrFail();
         AreaDetailLot::where("id", $id)->update(["purchase_date" => $request->purchase_date, 'end_date' => $request->end_date]);
         $to = Carbon::createFromFormat('Y-m-d', $request->purchase_date);
         $from = Carbon::createFromFormat('Y-m-d', $request->end_date);
         $diff_in_months = $to->diffInMonths($from);
         $startDate = new DateTime($request->purchase_date);
         Transaction::where("code", $transaction->code)->update(["starting_date" => $request->purchase_date, 'duration' => $diff_in_months]);
-        $lot = AreaDetailLot::where('id', $transaction->lot_id)->with('block')->firstOrFail(); 
+        $lot = AreaDetailLot::where('id', $transaction->lot_id)->with('block')->firstOrFail();
         $dp = Payment::where('code', $transaction->code)->where('payment_classification', 'DP')->firstOrFail();
         $res = Payment::where('code', $transaction->code)->where('payment_classification', 'RES')->firstOrFail();
-        $customer = Customer::where('id', $transaction->customer_id)->firstOrFail(); 
+        $customer = Customer::where('id', $transaction->customer_id)->firstOrFail();
 
         $remaining_balance = $lot->tcp - $dp->amount - $res->amount;
         $monthly_amortization = $remaining_balance/$diff_in_months;

@@ -17,7 +17,7 @@
     <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <button type="button" class="btn btn-success add-block" data-toggle="modal" data-target="#customerModal" style="float:right">
+                    <button type="button" class="btn btn-success add-block" data-toggle="modal" data-target="#blockModal" style="float:right">
                         <i class="fas fa-plus"></i>
                     </button>
                 </div>
@@ -46,10 +46,12 @@
                                     <h4> {{'BLOCK-' . $block->block}} ({{App\AreaDetailLot::where('block_id', $block->id)->where('status', '!=', 'Open')->count() . '/' .App\AreaDetailLot::where('block_id', $block->id)->count()}}) </h4>
                                         <div class="row">
                                             @foreach ($block->lot as $item)
-                                                <div class="col-2" onclick="LotFunction('{{$item->status}}', '{{$item->id}}', '{{$block->block}}', '{{$item->lot}}')">
+                                                <div class="col-2">
                                                 <div class="lot {{$item->status}}">
-                                                    <span class="lot-name">LOT {{$item->lot}}<button class="btn btn-sm btn-block edit-lot"><i class="fas fa-pen"></i></button></span>
-                                                    <div class="row lot-details">
+                                                    <span class="lot-name">LOT {{$item->lot}}
+                                                        <button class="btn btn-sm btn-block edit-lot" onclick="editLot('{{$item->status}}', '{{$item->id}}', '{{$block->block}}', '{{$item->lot}}')"><i class="fas fa-pen"></i></button>
+                                                    </span>
+                                                    <div class="row lot-details" style="cursor: pointer" onclick="LotFunction('{{$item->status}}', '{{$item->id}}', '{{$block->block}}', '{{$item->lot}}')">
                                                         <div class="col-12">
                                                             @if($item->status === 'OPEN')
                                                             <span class="name-open">OPEN LOT</span>
@@ -58,7 +60,7 @@
                                                             @endif
                                                         </div>
                                                         <div class="col-6">
-                                                            Area: {{$item->area}} <br>
+                                                            Area: {{$item->area}} SQM <br>
                                                             TCP: ₱ {{ number_format($item->tcp, 2) }} <br>
                                                         </div>
                                                         <div class="col-6">
@@ -81,24 +83,24 @@
 
 
 {{-- MODAL --}}
-<div class="modal fade" id="customerModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="blockModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Customer</h5>
+                <h5 class="modal-title block-details-title">Add Block</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body m-3">
-                <form id="modal-form" action="{{url('area_detail/save')}}" method="post">
+                <form id="modal-form-block" action="{{url('area_detail/save')}}" method="post">
                 @csrf
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-12 customize-div">
                     <label for="inputPassword4">Block # <span style="color: red">*</span></label>
                     <input type="text" class="form-control" id="area_id" name="area_id" value="{{$area_id}}" required hidden>
                     <input type="text" class="form-control" id="block" name="block" placeholder="Enter Block No" required>
                 </div>
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-12 customize-div">
                     <label for="inputPassword4">Lot Quantity<span style="color: red">*</span></label>
                     <input type="number" class="form-control" id="lot" name="lot" placeholder="Enter Lot Quantity" required>
                 </div>
@@ -130,9 +132,11 @@
                     <label for="inputPassword4">Monthly Amortization<span style="color: red">*</span></label>
                     <input type="number" class="form-control" id="monthly_amortization" name="monthly_amortization" placeholder="Enter Monthly Amortization" required>
                 </div>
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-12 customize-div">
                     <label class="inputPassword4">Status <span style="color: red">*</span></label>
                     <select class="form-control" name="status" required>
+                        <option value="OPEN">OPEN</option>
+                        <option value="RESERVED">RESERVED</option>
                         <option value="ACTIVE">ACTIVE</option>
                         <option value="INACTIVE">INACTIVE</option>
                     </select>
@@ -161,7 +165,7 @@
                 <form id="modal-form" action="{{url('transaction/reservation')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Customer Name</label>
+                    <label for="inputPassword4">Customer Name <span style="color: red">*</span></label>
                     <div class="row col-12">
                         <input type="hidden" id="lot_id" name="lot_id" class="form-control col-10"/>
                         <input type="hidden" id="block_no" name="block_no" class="form-control col-10"/>
@@ -212,8 +216,8 @@
                     <input type="file" class="form-control" id="attachment" name="attachment">
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Remarks</label>
-                    <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Enter Remarks">
+                    <label for="inputPassword4">Remarks <span style="color: red">*</span></label>
+                    <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Enter Remarks" required>
                 </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -295,7 +299,7 @@
             arr2 = name.split(" ");
             for (i = 0; i < arr2.length; i++) {
                 while (arr1.indexOf(arr2[i]) > -1) {
-                arr1.splice(arr1.indexOf(arr2[i]), 1);     
+                arr1.splice(arr1.indexOf(arr2[i]), 1);
                 }
             }
             element.className = arr1.join(" ");
@@ -325,14 +329,49 @@
                 $('#lot_id').val(id);
                 $('#block_no').val(block);
                 $('#lot_no').val(lot);
-                $('#reserveModal').modal('show'); 
+                $('#reserveModal').modal('show');
             } if (status == 'RESERVED') {
                 checkDownpayment(id);
             } if (status == 'INACTIVE') {
 
             } else {
 
-            }    
+            }
+        }
+
+        function editLot(status, id, block, lot) {
+            if (status == 'OPEN') {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: '/area_detail/edit/' + id,
+                    method: 'get',
+                    success: function(data) {
+                        $('#modal-form-block').attr('action', '/area_detail/update/' + data.area_detail_lot.id);
+                        $('.submit-button').text('Update');
+                        $('#block').val(data.area_detail_lot.block_id)
+
+                            $.each(data, function() {
+                                $.each(this, function(k, v) {
+                                    $('#'+k).val(v);
+                                });
+
+                            });
+                    }
+                });
+                $('.customize-div').hide();
+                $('.block-details-title').text('Edit - ' + $('#area_name').val() + ' Block ' + block + ' Lot ' + lot)
+                $('#code').val($('#area_code').val() + '-' + block + '-' + lot)
+                $('#lot_id').val(id);
+                $('#block_no').val(block);
+                $('#lot_no').val(lot);
+                $('#blockModal').modal('show');
+            } if (status == 'RESERVED') {
+                checkDownpayment(id);
+            } if (status == 'INACTIVE') {
+
+            }
         }
 
         function selectCustomer(id, value) {
@@ -367,17 +406,15 @@
 
         function removeLot(id) {
             let message = "Are you sure you want to Delete?";
-            
+
             if (confirm(message) == true) {
-                location.href = 'area/destroy/' + id
-            } else {
-                
+                location.href = '/area/destroy/' + id
             }
         }
 
         $( document ).ready(function() {
             filterSelection("all");
-           
+
             $('#customer_records').DataTable({
                 scrollX: true,
             });
@@ -403,7 +440,7 @@
             margin-right: 5px;
             float: right;
         }
-        
+
         .action-item button i {
             color: #fff !important;
         }

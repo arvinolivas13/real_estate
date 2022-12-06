@@ -16,15 +16,16 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('payment_id');
             $table->string('code');
-            $table->date('payment_date');
+            $table->date('date');
             $table->string('payment_type');
             $table->string('payment_classification');
             $table->string('amount');
-            $table->string('reference_no');
-            $table->string('or_no');
-            $table->string('attachment');
-            $table->string('remarks');
+            $table->string('reference_no')->nullable();
+            $table->string('or_no')->nullable();
+            $table->string('attachment')->nullable();
+            $table->string('remarks')->nullable();
             $table->string('created_user')->nullable();
             $table->softDeletes();
             $table->timestamps();
@@ -33,6 +34,10 @@ class CreatePaymentsTable extends Migration
                 ->references('id')
                 ->on('customers')
                 ->onDelete('cascade');
+
+            $table->foreign('payment_id')
+                ->references('id')
+                ->on('payment_types');
         });
     }
 

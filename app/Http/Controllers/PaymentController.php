@@ -22,7 +22,7 @@ class PaymentController extends Controller
         $Payment = $request->validate([
             'customer_id' => ['required', 'max:250'],
             'code' => ['required'],
-            'payment_date'=> ['required'],
+            'date'=> ['required'],
             'payment_type' => ['required'],
             'payment_classification' => ['required'],
             'amount' => ['required'],
@@ -34,19 +34,24 @@ class PaymentController extends Controller
 
         $request->request->add(['created_user' => Auth::user()->id]);
 
-        $file = $request->attachment->getClientOriginalName();
-        $filename = pathinfo($file, PATHINFO_FILENAME);
+        if($request->attachment != null) {
+            $file = $request->attachment->getClientOriginalName();
+            $filename = pathinfo($file, PATHINFO_FILENAME);
 
-        $imageName = $filename.time().'.'.$request->attachment->extension();  
-        $image = $request->attachment->move(public_path('customer_file/' . $request->customer_id . '-' . $request->lot_id), $imageName);
+            $imageName = $filename.time().'.'.$request->attachment->extension();
+            $image = $request->attachment->move(public_path('customer_file/' . $request->customer_id . '-' . $request->lot_id), $imageName);
 
-        $requestData = $request->all();
-        $requestData['attachment'] = $imageName;
+            $requestData = $request->all();
+            $requestData['attachment'] = $imageName;
+            Payment::create($requestData);
+        } else {
+            Payment::create($request->all());
+        }
 
-        Payment::create($requestData);
+
 
         if($request->payment_classification == 'DP') {
-            
+
         }
 
         return redirect()->back()->with('success','Successfully Added');
