@@ -12,6 +12,10 @@ class PaymentType extends Seeder
     public function run()
     {
         DB::table('payment_types')->insert([
+            'payment' => 'CASH'
+        ]);
+
+        DB::table('payment_types')->insert([
             'payment' => 'BPI'
         ]);
 
@@ -24,7 +28,8 @@ class PaymentType extends Seeder
         ]);
 
         DB::table('payment_types')->insert([
-            'payment' => 'CASH'
+            'payment' => 'CHEQUE'
         ]);
+
     }
 }

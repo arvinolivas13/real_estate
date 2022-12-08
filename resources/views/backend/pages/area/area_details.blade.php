@@ -189,14 +189,14 @@
 
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Payment Date<span style="color: red">*</span></label>
-                    <input type="date" class="form-control" id="payment_date" name="payment_date" required>
+                    <input type="date" class="form-control" id="date" name="date" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label class="inputPassword4">Payment Type<span style="color: red">*</span></label>
-                    <select class="form-control" name="payment_type" required>
-                        <option value="CASH">CASH</option>
-                        <option value="CHEQUE">CHEQUE</option>
-                        <option value="ONLINE TRANSFER">ONLINE TRANSFER</option>
+                    <select class="form-control" name="payment_id" required>
+                        @foreach ($paymenttypes as $paymenttype)
+                            <option value="{{ $paymenttype->id }}">{{ $paymenttype->payment }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group col-md-12">

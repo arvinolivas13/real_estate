@@ -48,8 +48,8 @@
                                     </td>
                                     <td>{{$payment->customer->firstname . ' ' . $payment->customer->middlename . ' ' . $payment->customer->lastname}}</td>
                                     <td>{{$payment->code}}</td>
-                                    <td>{{$payment->payment_date}}</td>
-                                    <td>{{$payment->payment_type}}</td>
+                                    <td>{{$payment->date}}</td>
+                                    <td>{{$payment->paymenttype->payment}}</td>
                                     <td>{{$payment->payment_classification}}</td>
                                     <td>₱ {{ number_format($payment->amount, 2) }}</td>
                                     <td>{{$payment->reference_no}}</td>
@@ -99,10 +99,10 @@
                 </div>
                 <div class="form-group col-md-12">
                     <label class="inputPassword4">Payment Type<span style="color: red">*</span></label>
-                    <select class="form-control" name="payment_type" required>
-                        <option value="CASH">CASH</option>
-                        <option value="CHEQUE">CHEQUE</option>
-                        <option value="ONLINE TRANSFER">ONLINE TRANSFER</option>
+                    <select class="form-control" name="payment_id" required>
+                        @foreach ($paymenttypes as $paymenttype)
+                            <option value="{{ $paymenttype->id }}">{{ $paymenttype->payment }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group col-md-12">

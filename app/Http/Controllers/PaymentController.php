@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Payment;
+use App\PaymentType;
 use App\Customer;
 use App\Transaction;
 use Illuminate\Http\Request;
@@ -14,7 +15,8 @@ class PaymentController extends Controller
     {
         $payments = Payment::orderBy('id')->with('customer')->get();
         $customers = Customer::where('status', 'ACTIVE')->get();
-        return view('backend.pages.payment.payment', compact('payments', 'customers'));
+        $paymenttypes  = PaymentType::get();
+        return view('backend.pages.payment.payment', compact('payments', 'customers', 'paymenttypes'));
     }
 
     public function store(Request $request)
@@ -23,7 +25,7 @@ class PaymentController extends Controller
             'customer_id' => ['required', 'max:250'],
             'code' => ['required'],
             'date'=> ['required'],
-            'payment_type' => ['required'],
+            'payment_id' => ['required'],
             'payment_classification' => ['required'],
             'amount' => ['required'],
             'reference_no',
