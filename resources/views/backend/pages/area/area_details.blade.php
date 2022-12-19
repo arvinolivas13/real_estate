@@ -27,6 +27,8 @@
                         <div><span class="square Active"></span> <span class="square-details">Active Lot</span></div>
                         <div><span class="square Inactive"></span> <span class="square-details">Inactive Lot</span></div>
                         <div><span class="square Reserved"></span> <span class="square-details">Reserved Lot</span></div>
+                        <div><span class="square Fullypaid"></span> <span class="square-details">Fully Paid</span></div>
+                        <div><span class="square Turnover"></span> <span class="square-details">Turn Over</span></div>
                     </div>
                     <div id="myBtnContainer">
                         <button class="block_btn btn active" onclick="filterSelection('all')">All</button>
@@ -504,6 +506,15 @@
         .lot.RESERVED, .square.Reserved {
             background: #fffbd1;
         }
+
+        .lot.FULLYPAID, .square.Fullypaid {
+            background: #93bbd2;
+        }
+
+        .lot.TURNOVER, .square.Turnover {
+            background: #3b577c;
+        }
+
         div#myBtnContainer button {
             background: #eee;
             border: 1px solid #ccc;

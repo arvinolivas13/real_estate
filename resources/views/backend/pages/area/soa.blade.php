@@ -75,12 +75,12 @@
                 @foreach ($payments as $payment)
                     @php
                         $contract_price = $contract_price - $payment->amount
-                    @endphp 
+                    @endphp
 
                     @if ($payment->payment_classification == 'RES' || $payment->payment_classification == 'DP' )
                         <tr>
                             <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_classification}}</td>
-                            <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_date}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->date}}</td>
                             <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($payment->amount, 2)}}</td>
                             <td style="padding: 15px; width: 100px; text-align: right;">10/28/2022</td>
                             <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->reference_no}}</td>
@@ -91,15 +91,15 @@
                         </tr>
                     @else
                         <tr>
-                            <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_classification}}</td>
-                            <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_date}}</td>
-                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($lot->monthly_amortization, 2)}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: left;">{{ $payment->payment_classification }}</td>
+                            <td style="padding: 15px; width: 100px; text-align: left;">{{ $payment->date }}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format( $lot->monthly_amortization, 2)}}</td>
                             <td style="padding: 15px; width: 100px; text-align: right;">10/28/2022</td>
-                            <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->reference_no}}</td>
-                            <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->payment_type}}</td>
-                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($lot->monthly_amortization, 2)}}</td>
-                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($payment->amount, 2)}}</td>
-                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($contract_price, 2)}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">{{ $payment->reference_no }}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">{{ $payment->payment_type }}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format( $lot->monthly_amortization, 2)}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format( $payment->amount, 2)}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format( $contract_price, 2)}}</td>
                         </tr>
                     @endif
                 @endforeach
@@ -113,8 +113,8 @@
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($lot->monthly_amortization, 2)}}</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">-</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">-</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">₱ 0.00</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($contract_price, 2)}}</td>
                     </tr>
                 @endforeach
             </table>
@@ -167,7 +167,9 @@
                         <td style="padding: 15px; width: 100px; text-align: right;">({{ number_format($total_penalty, 2)}})</td>
                     </tr>
                 @endforeach
-               
+
+
+
             </table>
         </div>
         <div class="row">
@@ -184,7 +186,7 @@
                     <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($penalty_amount_pay, 2)}}</th>
                     <th style="padding: 15px; width: 100px; text-align: right;"></th>
                 </tr>
-                
+
                 <tr>
                     <td style="padding: 15px; width: 100px; text-align: left; font-weight: bold;">Grand Total</td>
                     <td style="padding: 15px; width: 100px; text-align: left;"></td>
@@ -243,7 +245,7 @@
 @section('chart-js')
 <script>
     $(function() {
-        
+
         new Chart(document.getElementById("chartjs-bar"), {
             type: "bar",
             data: {
@@ -292,7 +294,7 @@
                 }
             }
         });
-        
+
         new Chart(document.getElementById("chartjs-pie"), {
             type: "pie",
             data: {
@@ -358,7 +360,7 @@
             url: '/transaction/generate_amort/' + id,
             method: 'get',
             success: function(data) {
-                
+
             }
         });
     }

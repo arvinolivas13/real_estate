@@ -83,7 +83,7 @@ class TransactionController extends Controller
         $res = Payment::where('code', $transaction->code)->where('payment_classification', 'RES')->firstOrFail();
         $payments = Payment::where('code', $transaction->code)->where('payment_classification', '!=', 'PEN')->with('customer')->get();
         $payment_penalty = Payment::where('code', $transaction->code)->where('payment_classification', 'PEN')->with('customer')->get();
-        $amortizations = MonthlyAmortization::where('transaction_id', $id)->where('status', 'UNPAID')->orderBy('date')->get();
+        $amortizations = MonthlyAmortization::where('transaction_id', $transaction->id)->where('status', 'UNPAID')->orderBy('payment_date')->get();
         $penalties = Penalty::select(DB::raw("SUM(amount) as amount"), 'penalty_date as penalty_date')->where('transaction_id', $id)->groupBy(DB::raw("penalty_date"))->where('status', 'UNPAID')->get();
         $remaining_balance = $lot->tcp - $dp->amount - $res->amount;
 
@@ -92,7 +92,7 @@ class TransactionController extends Controller
         $penalty_total = Penalty::where('transaction_id', $id)->where('status', 'UNPAID')->get();
         $penalty_amount_due = $penalty_total->sum('amount');
 
-        return view('backend.pages.area.soa', compact('payments', 'customer', 'lot', 'dp', 'res', 'id', 'amortizations', 'penalties', 'remaining_balance', 'total_pay', 'regular_amount_pay',
+        return view('backend.pages.area.soa', compact('payments', 'customer', 'lot', 'dp', 'res', 'id', 'amortizations', 'penalties', 'remaining_balance', 'regular_amount_pay',
                                                       'penalty_amount_pay', 'penalty_amount_due'));
     }
 
@@ -144,8 +144,8 @@ class TransactionController extends Controller
 
         for ($i=1; $i < $diff_in_months; $i++) {
             $monthlyAmort = new MonthlyAmortization([
-                'transaction_id' => 3,
-                'date' => $this->getSameDayNextMonth($startDate, $i)->format('Y-m-d'),
+                'transaction_id' => 1,
+                'payment_date' => $this->getSameDayNextMonth($startDate, $i)->format('Y-m-d'),
                 'payment_classification' => 'MA',
                 'amount' => $monthly_amortization,
                 'status' => 'UNPAID',
@@ -163,7 +163,7 @@ class TransactionController extends Controller
         $transaction_lot = Transaction::where('status', 'ACTIVE')->get();
 
         foreach ($transaction_lot as $key => $transaction) {
-            $penalty_months = MonthlyAmortization::where('transaction_id', $transaction->id)->where('status', 'UNPAID')->whereDate('date', '<', now())->get();
+            $penalty_months = MonthlyAmortization::where('transaction_id', $transaction->id)->where('status', 'UNPAID')->whereDate('payment_date', '<', now())->get();
             foreach ($penalty_months as $key => $monthly_amortization) {
                 $penalty = new Penalty([
                     'monthly_amortization_id' => $monthly_amortization->id,
