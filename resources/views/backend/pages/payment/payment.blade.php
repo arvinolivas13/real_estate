@@ -9,200 +9,239 @@
 
 @section('content')
 <div class="main">
-<div class="row">
-    @include('backend.partial.flash-message')
-    <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3>Payment Record</h3>
-                    <button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#reserveModal" style="float:right">
-                        Add Payment
+    <div class="row">
+        @include('backend.partial.flash-message')
+        <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Payment Record</h3>
+                        <button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#reserveModal" style="float:right">
+                            Add Payment
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <table id="customer_record" class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Action</th>
+                                    <th>Customer Name</th>
+                                    <th>Property Code</th>
+                                    <th>Payment Date</th>
+                                    <th>Payment Type</th>
+                                    <th>Payment Classification</th>
+                                    <th>Amount</th>
+                                    <th>Reference No.</th>
+                                    <th>OR No.</th>
+                                    <th>Attachment</th>
+                                    <th>Remarks</th>
+                                    <th>Process By</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($payments as $key => $payment)
+                                    <tr>
+                                        <td>{{++$key}}</td>
+                                        <td>
+                                            <a href="#" class="align-middle edit" onclick="edit({{ $payment->id }})" title="Edit" data-toggle="modal" data-target="#customerModal" id={{$payment->id}}><i class="align-middle fas fa-fw fa-pen"></i></a>
+                                            <a href="{{url('payment/destroy/' . $payment->id)}}" onclick="alert('Are you sure you want to Delete?')"><i class="align-middle fas fa-fw fa-trash"></i></a>
+                                        </td>
+                                        <td>{{$payment->customer->firstname . ' ' . $payment->customer->middlename . ' ' . $payment->customer->lastname}}</td>
+                                        <td>{{$payment->code}}</td>
+                                        <td>{{$payment->date}}</td>
+                                        <td>{{$payment->paymenttype->payment}}</td>
+                                        <td>{{$payment->payment_classification}}</td>
+                                        <td>₱ {{ number_format($payment->amount, 2) }}</td>
+                                        <td>{{$payment->reference_no}}</td>
+                                        <td>{{$payment->or_no}}</td>
+                                        <td class="text-primary" style="font-weight: bold"><span class="image-viewer-btn" onclick="imageView('{{$payment->code}}', '{{$payment->attachment}}')">{{$payment->attachment}}</span></td>
+                                        <td>{{$payment->remarks}}</td>
+                                        <td>{{$payment->process_by->firstname . ' ' . $payment->process_by->middlename . ' ' . $payment->process_by->lastname}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="attachmentModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document" style="height: calc(100% - 57px);">
+            <div class="modal-content" style="height:100%;">
+                <div class="modal-header">
+                    <h5>Attachment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="card-body">
-                    <table id="customer_record" class="table table-striped" style="width:100%">
+                <div class="modal-body" style="height:calc(100% - 100px);">
+                    <div class="row" style="height:100%;">
+                        <div class="col-3">
+                            <div class="list-item">
+                                <ul>
+                                    <li>
+                                        <a href="#" onclick="viewAttachment('/attachment/sample.jpg', 'jpg')">FOR IMAGE</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="viewAttachment('/attachment/sample.pdf', 'pdf')">FOR PDF</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-9" style="height:100%;overflow:auto;">
+                            <div class="attachment-content">
+                                <div class="no_attachment">No Attachment</div>
+                                <img id="image_attachment" src="" alt="" style="display:none;"/>
+                                <iframe id="pdf_attachment" src="" style="display:none;"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="reserveModal" tabindex="1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title reserve-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body m-3">
+                    <form id="modal-form" action="{{url('payment/save')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group col-md-12">
+                        <label for="inputPassword4">Customer Name</label>
+                        <div class="row col-12">
+                            <input type="hidden" id="customer_id" name="customer_id" class="form-control col-10"/>
+                            <input type="text" class="form-control col-10 customer_name" placeholder="Select Order" disabled/>
+                            <button type="button" class="btn btn-primary col-2" data-toggle="modal" data-target="#customerList"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label class="inputPassword4">Property Code<span style="color: red">*</span></label>
+                        <select class="form-control" id="code" name="code" required>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label for="inputPassword4">Payment Date<span style="color: red">*</span></label>
+                        <input type="date" class="form-control" id="date" name="date" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="inputPassword4">Payment Type<span style="color: red">*</span></label>
+                        <select class="form-control" name="payment_id" required>
+                            @foreach ($paymenttypes as $paymenttype)
+                                <option value="{{ $paymenttype->id }}">{{ $paymenttype->payment }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="inputPassword4">Payment Classification<span style="color: red">*</span></label>
+                        <select class="form-control" name="payment_classification" required>
+                            <option value="MA">MONTHLY AMORTIZATION</option>
+                            <option value="DP">DOWN PAYMENT</option>
+                            <option value="INT">INTEREST</option>
+                            <option value="PEN">PENALTY</option>
+                            <option value="FULL">FULL PAYMENT</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputPassword4">Amount<span style="color: red">*</span></label>
+                        <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter Amount" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputPassword4">Reference #</label>
+                        <input type="text" class="form-control" id="reference_no" name="reference_no" placeholder="Enter Reference #">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputPassword4">OR #</label>
+                        <input type="number" class="form-control" id="or_no" name="or_no" placeholder="Enter OR #">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputPassword4">Attachment</label>
+                        <input type="file" class="form-control" id="attachment" name="attachment">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputPassword4">Remarks</label>
+                        <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Enter Remarks">
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary submit-button">Pay</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ImageView" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>File</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body m-3">
+                    <div class="image-viewer">
+                        <img src="" alt="" width="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Customer List Modal -->
+    <div class="modal fade" id="customerList" style="background: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Orders</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body m-3">
+                    <table id="customer_records_tbl" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Action</th>
+                                <th>Subscriber No</th>
                                 <th>Customer Name</th>
-                                <th>Property Code</th>
-                                <th>Payment Date</th>
-                                <th>Payment Type</th>
-                                <th>Payment Classification</th>
-                                <th>Amount</th>
-                                <th>Reference No.</th>
-                                <th>OR No.</th>
-                                <th>Attachment</th>
-                                <th>Remarks</th>
-                                <th>Process By</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Contact</th>
+                                <th>Birthday</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($payments as $key => $payment)
-                                <tr>
+                            @foreach ($customers as $key => $customer)
+                                <tr onclick="selectCustomer({{ $customer->id }}, '{{ $customer->firstname . ' ' . $customer->middlename . ' ' . $customer->lastname }}')">
                                     <td>{{++$key}}</td>
-                                    <td>
-                                        <a href="#" class="align-middle edit" onclick="edit({{ $payment->id }})" title="Edit" data-toggle="modal" data-target="#customerModal" id={{$payment->id}}><i class="align-middle fas fa-fw fa-pen"></i></a>
-                                        <a href="{{url('payment/destroy/' . $payment->id)}}" onclick="alert('Are you sure you want to Delete?')"><i class="align-middle fas fa-fw fa-trash"></i></a>
-                                    </td>
-                                    <td>{{$payment->customer->firstname . ' ' . $payment->customer->middlename . ' ' . $payment->customer->lastname}}</td>
-                                    <td>{{$payment->code}}</td>
-                                    <td>{{$payment->date}}</td>
-                                    <td>{{$payment->paymenttype->payment}}</td>
-                                    <td>{{$payment->payment_classification}}</td>
-                                    <td>₱ {{ number_format($payment->amount, 2) }}</td>
-                                    <td>{{$payment->reference_no}}</td>
-                                    <td>{{$payment->or_no}}</td>
-                                    <td class="text-primary" style="font-weight: bold"><span class="image-viewer-btn" onclick="imageView('{{$payment->code}}', '{{$payment->attachment}}')">{{$payment->attachment}}</span></td>
-                                    <td>{{$payment->remarks}}</td>
-                                    <td>{{$payment->process_by->firstname . ' ' . $payment->process_by->middlename . ' ' . $payment->process_by->lastname}}</td>
+                                    <td>{{$customer->subscriber_no}}</td>
+                                    <td>{{$customer->firstname . ' ' . $customer->middlename . ' ' . $customer->lastname}}</td>
+                                    <td>{{$customer->email}}</td>
+                                    <td>{{$customer->address}}</td>
+                                    <td>{{$customer->contact}}</td>
+                                    <td>{{$customer->birthday}}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
-    </div>
-</div>
-
-<div class="modal fade" id="reserveModal" tabindex="1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title reserve-title"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body m-3">
-                <form id="modal-form" action="{{url('payment/save')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Customer Name</label>
-                    <div class="row col-12">
-                        <input type="hidden" id="customer_id" name="customer_id" class="form-control col-10"/>
-                        <input type="text" class="form-control col-10 customer_name" placeholder="Select Order" disabled/>
-                        <button type="button" class="btn btn-primary col-2" data-toggle="modal" data-target="#customerList"><i class="fas fa-search"></i></button>
-                    </div>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label class="inputPassword4">Property Code<span style="color: red">*</span></label>
-                    <select class="form-control" id="code" name="code" required>
-                    </select>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Payment Date<span style="color: red">*</span></label>
-                    <input type="date" class="form-control" id="date" name="date" required>
-                </div>
-                <div class="form-group col-md-12">
-                    <label class="inputPassword4">Payment Type<span style="color: red">*</span></label>
-                    <select class="form-control" name="payment_id" required>
-                        @foreach ($paymenttypes as $paymenttype)
-                            <option value="{{ $paymenttype->id }}">{{ $paymenttype->payment }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group col-md-12">
-                    <label class="inputPassword4">Payment Classification<span style="color: red">*</span></label>
-                    <select class="form-control" name="payment_classification" required>
-                        <option value="MA">MONTHLY AMORTIZATION</option>
-                        <option value="DP">DOWN PAYMENT</option>
-                        <option value="INT">INTEREST</option>
-                        <option value="PEN">PENALTY</option>
-                        <option value="FULL">FULL PAYMENT</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Amount<span style="color: red">*</span></label>
-                    <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter Amount" required>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Reference #</label>
-                    <input type="text" class="form-control" id="reference_no" name="reference_no" placeholder="Enter Reference #">
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">OR #</label>
-                    <input type="number" class="form-control" id="or_no" name="or_no" placeholder="Enter OR #">
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Attachment</label>
-                    <input type="file" class="form-control" id="attachment" name="attachment">
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Remarks</label>
-                    <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Enter Remarks">
-                </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary submit-button">Pay</button>
-                </form>
-            </div>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="ImageView" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5>File</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body m-3">
-                <div class="image-viewer">
-                    <img src="" alt="" width="100%">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Customer List Modal -->
-<div class="modal fade" id="customerList" style="background: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5>Orders</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body m-3">
-                <table id="customer_records_tbl" class="table table-striped" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Subscriber No</th>
-                            <th>Customer Name</th>
-                            <th>Email</th>
-                            <th>Address</th>
-                            <th>Contact</th>
-                            <th>Birthday</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($customers as $key => $customer)
-                            <tr onclick="selectCustomer({{ $customer->id }}, '{{ $customer->firstname . ' ' . $customer->middlename . ' ' . $customer->lastname }}')">
-                                <td>{{++$key}}</td>
-                                <td>{{$customer->subscriber_no}}</td>
-                                <td>{{$customer->firstname . ' ' . $customer->middlename . ' ' . $customer->lastname}}</td>
-                                <td>{{$customer->email}}</td>
-                                <td>{{$customer->address}}</td>
-                                <td>{{$customer->contact}}</td>
-                                <td>{{$customer->birthday}}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 @section('scripts')
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
@@ -271,6 +310,21 @@
             $('#ImageView').modal('show');
             $('#ImageView img').attr('src', '/customer_file/' + blk[1] + '/' + output);
         }
+
+        function viewAttachment(file, type) {
+            if(type === "jpg") {
+                $('.no_attachment').css('display','none');
+                $('#pdf_attachment').css('display','none');
+                $('#image_attachment').attr('src',file);
+                $('#image_attachment').css('display','block');
+            }
+            else {
+                $('.no_attachment').css('display','none');
+                $('#image_attachment').css('display','none');
+                $('#pdf_attachment').attr('src',file);
+                $('#pdf_attachment').css('display','block');
+            }
+        }
     </script>
 @endsection
 
@@ -282,7 +336,49 @@
             white-space: nowrap;
         }
         thead th {
-             white-space: nowrap;
+            white-space: nowrap;
+        }
+
+        .modal-header h5 {
+            color: #fff;
+            margin: 0px;
+        }
+
+        iframe#pdf_attachment {
+            width: 100%;
+            height: 100%;
+        }
+
+        .list-item ul {
+            padding: 0px;
+            list-style: none;
+            margin: 0px;
+        }
+
+        .attachment-content {
+            height: 100%;
+        }
+
+        .list-item li a {
+            padding: 10px;
+            display: block;
+            margin-bottom: 2px;
+            background: #eee;
+            color: #2e759e;
+            font-family: system-ui;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-decoration: none !important;
+        }
+
+        img#image_attachment {
+            width: 100%;
+        }
+
+        .no_attachment {
+            padding: 10px;
+            background: #eee;
+            text-align: center;
         }
     </style>
 @endsection
