@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/contract', function () {
+    return view('backend.partial.contract');
+});
 
 Route::get('sendhtmlemail','AreaController@html_email');
 
@@ -68,6 +71,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard', function () {
         return view('backend.pages.dashboard');
     });
+   
+
 
     Route::get('/document-management', function () {
         return view('backend.pages.elfinder');
