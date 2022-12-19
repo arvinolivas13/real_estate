@@ -25,7 +25,7 @@
         </div>
         <div style="padding: 1em; padding: 1em; border-bottom: 3px solid #4aa40f;"></div>
         <div style="padding-top: 2em;" class="">
-            <div class="contract-title" style="color:black; text-align: center; font-size: 32px; text-transform: uppercase; font-weight: bold;">Contract to Sell</div>
+            <div class="contract-title" style="color:black; text-align: center; font-size: 32px; text-transform: uppercase; font-weight: bold;">Schedule of Payment</div>
         </div>
         <div style="padding: 2em;"></div>
         <div class="row">
@@ -53,22 +53,6 @@
         <div class="row">
             <div class="col" style="font-size: 18px; color: black;">
                 <p style="text-indent: 60px;">IN WITNESS WHEREOF, We have hereunto set our hands this day of <span style="font-weight: bold; text-decoration: underline;">MAY 07, 2021</span> in the municipality of Teresa Rizal</p>
-            </div>
-        </div>
-        <div style="padding: 1em;"></div>
-
-        <div class="row">
-            <div class="col" style="font-size: 18px; color: black;">
-                <p style="text-transform: uppercase; font-weight: bold; margin-bottom: 0px;">Co-Owners: </p>
-                <p style="">This is to certify that Jetro Macalipay, Joshua Opinion, Arvin Olivas, Jude Muego are co-owners of the property.</p>
-            </div>
-        </div>
-        <div style="padding: 1em;"></div>
-
-        <div class="row">
-            <div class="col" style="font-size: 18px; color: black;">
-                <p style="text-transform: uppercase; font-weight: bold; margin-bottom: 0px;">Annotation: </p>
-                <p style="">Sample Annotation</p>
             </div>
         </div>
         <div style="padding: 3em;"></div>

@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('/schedule-of-payment', function () {
+    return view('backend.partial.sop');
+});
+
+
 Route::get('/contract', function () {
     return view('backend.partial.contract');
 });
