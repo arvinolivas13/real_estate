@@ -7,6 +7,7 @@ use App\Payment;
 use App\MonthlyAmortization;
 use App\Transaction;
 use App\Customer;
+use App\TransferFee;
 use App\Penalty;
 use App\AreaDetailLot;
 use Carbon\Carbon;
@@ -81,19 +82,29 @@ class TransactionController extends Controller
         $lot = AreaDetailLot::where('id', $transaction->lot_id)->with('block')->firstOrFail();
         $dp = Payment::where('code', $transaction->code)->where('payment_classification', 'DP')->firstOrFail();
         $res = Payment::where('code', $transaction->code)->where('payment_classification', 'RES')->firstOrFail();
-        $payments = Payment::where('code', $transaction->code)->where('payment_classification', '!=', 'PEN')->with('customer')->get();
-        $payment_penalty = Payment::where('code', $transaction->code)->where('payment_classification', 'PEN')->with('customer')->get();
+        $payment_transfer_fee = Payment::where('code', $transaction->code)->where('payment_classification', 'TF')->with('customer')->get();
         $amortizations = MonthlyAmortization::where('transaction_id', $transaction->id)->where('status', 'UNPAID')->orderBy('payment_date')->get();
-        $penalties = Penalty::select(DB::raw("SUM(amount) as amount"), 'penalty_date as penalty_date')->where('transaction_id', $id)->groupBy(DB::raw("penalty_date"))->where('status', 'UNPAID')->get();
         $remaining_balance = $lot->tcp - $dp->amount - $res->amount;
 
+        // Regular Pay
+        $payments = Payment::where('code', $transaction->code)->where('payment_classification', '!=', 'PEN')->with('customer')->get();
         $regular_amount_pay = $payments->sum('amount');
+
+        // Penalty Fee
+        $penalties = Penalty::select(DB::raw("SUM(amount) as amount"), 'penalty_date as penalty_date')->where('transaction_id', $id)->groupBy(DB::raw("penalty_date"))->where('status', 'UNPAID')->get();
+        $payment_penalty = Payment::where('code', $transaction->code)->where('payment_classification', 'PEN')->with('customer')->get();
         $penalty_amount_pay = $payment_penalty->sum('amount');
         $penalty_total = Penalty::where('transaction_id', $id)->where('status', 'UNPAID')->get();
         $penalty_amount_due = $penalty_total->sum('amount');
 
+        // Transfer Fee
+        $transfer_fees = TransferFee::where('transaction_id', $transaction->id)->where('status', 'UNPAID')->orderBy('payment_date')->get();
+        $transfer_fee_amount_pay = $payment_transfer_fee->sum('amount');
+        $transfer_fee_amount_due = $transfer_fees->sum('amount');
+
+
         return view('backend.pages.area.soa', compact('payments', 'customer', 'lot', 'dp', 'res', 'id', 'amortizations', 'penalties', 'remaining_balance', 'regular_amount_pay',
-                                                      'penalty_amount_pay', 'penalty_amount_due'));
+                                                      'penalty_amount_pay', 'penalty_amount_due', 'transfer_fees', 'transfer_fee_amount_due', 'transfer_fee_amount_pay'));
     }
 
     function getSameDayNextMonth(DateTime $startDate, $numberOfMonthsToAdd = 1) {
@@ -144,7 +155,7 @@ class TransactionController extends Controller
 
         for ($i=1; $i < $diff_in_months; $i++) {
             $monthlyAmort = new MonthlyAmortization([
-                'transaction_id' => 1,
+                'transaction_id' => $transaction->id,
                 'payment_date' => $this->getSameDayNextMonth($startDate, $i)->format('Y-m-d'),
                 'payment_classification' => 'MA',
                 'amount' => $monthly_amortization,
@@ -154,6 +165,17 @@ class TransactionController extends Controller
 
             $monthlyAmort->save();
         }
+
+        $trans_fee = new TransferFee([
+            'transaction_id' => $transaction->id,
+            'payment_date' => Carbon::createFromFormat('Y-m-d', $request->end_date),
+            'payment_classification' => 'TF',
+            'amount' => $request->transfer_fee,
+            'status' => 'UNPAID',
+            'created_user' => Auth::user()->id,
+        ]);
+
+        $trans_fee->save();
 
         return redirect()->back()->with('success','Successfully Added');
     }
