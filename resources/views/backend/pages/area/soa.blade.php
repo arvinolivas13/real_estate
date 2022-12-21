@@ -70,17 +70,18 @@
                 @php
                     $contract_price = $lot->tcp;
                     $total_penalty = 0;
+                    $total_transfer_fee = 0;
                 @endphp
 
                 @foreach ($payments as $payment)
                     @php
                         $contract_price = $contract_price - $payment->amount
-                    @endphp 
+                    @endphp
 
                     @if ($payment->payment_classification == 'RES' || $payment->payment_classification == 'DP' )
                         <tr>
                             <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_classification}}</td>
-                            <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_date}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->date}}</td>
                             <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($payment->amount, 2)}}</td>
                             <td style="padding: 15px; width: 100px; text-align: right;">10/28/2022</td>
                             <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->reference_no}}</td>
@@ -91,15 +92,15 @@
                         </tr>
                     @else
                         <tr>
-                            <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_classification}}</td>
-                            <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_date}}</td>
-                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($lot->monthly_amortization, 2)}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: left;">{{ $payment->payment_classification }}</td>
+                            <td style="padding: 15px; width: 100px; text-align: left;">{{ $payment->date }}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format( $lot->monthly_amortization, 2)}}</td>
                             <td style="padding: 15px; width: 100px; text-align: right;">10/28/2022</td>
-                            <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->reference_no}}</td>
-                            <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->payment_type}}</td>
-                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($lot->monthly_amortization, 2)}}</td>
-                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($payment->amount, 2)}}</td>
-                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($contract_price, 2)}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">{{ $payment->reference_no }}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">{{ $payment->payment_type }}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format( $lot->monthly_amortization, 2)}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format( $payment->amount, 2)}}</td>
+                            <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format( $contract_price, 2)}}</td>
                         </tr>
                     @endif
                 @endforeach
@@ -113,8 +114,8 @@
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($lot->monthly_amortization, 2)}}</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">-</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">-</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">₱ 0.00</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($contract_price, 2)}}</td>
                     </tr>
                 @endforeach
             </table>
@@ -167,7 +168,6 @@
                         <td style="padding: 15px; width: 100px; text-align: right;">({{ number_format($total_penalty, 2)}})</td>
                     </tr>
                 @endforeach
-               
             </table>
         </div>
         <div class="row">
@@ -184,7 +184,62 @@
                     <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($penalty_amount_pay, 2)}}</th>
                     <th style="padding: 15px; width: 100px; text-align: right;"></th>
                 </tr>
-                
+            </table>
+        </div>
+
+        <div class="row">
+            <p style="margin-bottom: 20px;"></p>
+            <table style="width: 100%; font-size: 12px;">
+                <tr>
+                    <td style="padding: 15px; width: 100px; text-align: left; text-decoration: underline;">Transfer Fee</td>
+                    <td style="padding: 15px; width: 100px; text-align: left;">Date</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">Amount</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">O.R Date</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">O.R No.</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">Cheque No.</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">Amount Due</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">Amount Paid</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">Outstanding Balance</td>
+                </tr>
+
+                @foreach ($transfer_fees as $transfer_fee)
+                @php
+                    $total_transfer_fee = $total_transfer_fee + $transfer_fee->amount;
+                @endphp
+                    <tr>
+                        <td style="padding: 15px; width: 100px; text-align: left;">TF</td>
+                        <td style="padding: 15px; width: 100px; text-align: left;">{{$transfer_fee->penalty_date}}</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">{{ number_format($transfer_fee->amount, 2)}}</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">-</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">-</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">-</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">{{ number_format($transfer_fee->amount, 2)}}</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">-</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">{{ number_format($total_transfer_fee, 2)}}</td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+        <div class="row">
+            <p style="margin-bottom: 20px;"></p>
+            <table style="width: 100%; font-size: 12px;">
+                <tr style="border-bottom: 2px solid; border-top: 2px solid;">
+                    <th style="padding: 15px; width: 100px; text-align: left;">Total</th>
+                    <th style="padding: 15px; width: 100px; text-align: left;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($transfer_fee_amount_due, 2)}}</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($transfer_fee_amount_due, 2)}}</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($transfer_fee_amount_pay, 2)}}</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="row">
+            <p style="margin-bottom: 20px;"></p>
+            <table style="width: 100%; font-size: 12px;">
                 <tr>
                     <td style="padding: 15px; width: 100px; text-align: left; font-weight: bold;">Grand Total</td>
                     <td style="padding: 15px; width: 100px; text-align: left;"></td>
@@ -192,8 +247,8 @@
                     <td style="padding: 15px; width: 100px; text-align: right;"></td>
                     <td style="padding: 15px; width: 100px; text-align: right;"></td>
                     <td style="padding: 15px; width: 100px; text-align: right;"></td>
-                    <td style="padding: 15px; width: 100px; text-align: right; font-weight: bold;">₱ {{ number_format($penalty_amount_due + ($lot->tcp - $regular_amount_pay), 2)}}</td>
-                    <td style="padding: 15px; width: 100px; text-align: right; font-weight: bold;">₱ {{ number_format($penalty_amount_pay + $regular_amount_pay, 2)}}</td>
+                    <td style="padding: 15px; width: 100px; text-align: right; font-weight: bold;">₱ {{ number_format(($penalty_amount_due + $transfer_fee_amount_due) + ($lot->tcp - $regular_amount_pay), 2)}}</td>
+                    <td style="padding: 15px; width: 100px; text-align: right; font-weight: bold;">₱ {{ number_format($penalty_amount_pay + $regular_amount_pay + $transfer_fee_amount_pay, 2)}}</td>
                     <td style="padding: 15px; width: 100px; text-align: right;"></td>
                 </tr>
             </table>
@@ -225,6 +280,10 @@
                     <label for="inputPassword4">End Date<span style="color: red">*</span></label>
                     <input type="date" class="form-control" id="end_date" name="end_date" required>
                 </div>
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">Transfer Fee<span style="color: red">*</span></label>
+                    <input type="double" class="form-control" id="transfer_fee" name="transfer_fee" placeholder="Transfer Fee" required>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -243,7 +302,7 @@
 @section('chart-js')
 <script>
     $(function() {
-        
+
         new Chart(document.getElementById("chartjs-bar"), {
             type: "bar",
             data: {
@@ -292,7 +351,7 @@
                 }
             }
         });
-        
+
         new Chart(document.getElementById("chartjs-pie"), {
             type: "pie",
             data: {
@@ -358,7 +417,7 @@
             url: '/transaction/generate_amort/' + id,
             method: 'get',
             success: function(data) {
-                
+
             }
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Area;
 use App\AreaDetail;
 use App\AreaDetailLot;
+use App\PaymentType;
 use App\Customer;
 use Illuminate\Http\Request;
 use Auth;
@@ -15,9 +16,10 @@ class AreaDetailController extends Controller
     {
         $blocks = AreaDetail::where('area_id', $id)->orderBy('block')->with('lot')->get();
         $customers = Customer::where('status', 'ACTIVE')->get();
+        $paymenttypes = PaymentType::get();
         $area_id = $id;
         $area = Area::where('id', $id)->firstOrFail();
-        return view('backend.pages.area.area_details', compact('blocks', 'area_id', 'customers', 'area'));
+        return view('backend.pages.area.area_details', compact('blocks', 'area_id', 'customers', 'area', 'paymenttypes'));
     }
 
     public function store(Request $request)

@@ -18,7 +18,7 @@ class CreateMonthlyAmortizationsTable extends Migration
             $table->unsignedBigInteger('transaction_id');
             $table->date('payment_date');
             $table->string('payment_classification');
-            $table->string('amount');
+            $table->double('amount', 10, 2);
             $table->string('status');
             $table->string('created_user')->nullable();
             $table->softDeletes();

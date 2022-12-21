@@ -19,9 +19,8 @@ class CreatePaymentsTable extends Migration
             $table->unsignedBigInteger('payment_id');
             $table->string('code');
             $table->date('date');
-            $table->string('payment_type');
             $table->string('payment_classification');
-            $table->string('amount');
+            $table->double('amount', 10, 2);
             $table->string('reference_no')->nullable();
             $table->string('or_no')->nullable();
             $table->string('attachment')->nullable();

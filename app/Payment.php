@@ -13,7 +13,7 @@ class Payment extends Model
         'customer_id',
         'code',
         'date',
-        'payment_type',
+        'payment_id',
         'payment_classification',
         'amount',
         'reference_no',
@@ -31,5 +31,10 @@ class Payment extends Model
     public function process_by()
     {
         return $this->belongsTo(User::class, 'created_user');
+    }
+
+    public function paymenttype()
+    {
+        return $this->belongsTo(PaymentType::class, 'payment_id');
     }
 }

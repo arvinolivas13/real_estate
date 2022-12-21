@@ -27,6 +27,8 @@
                         <div><span class="square Active"></span> <span class="square-details">Active Lot</span></div>
                         <div><span class="square Inactive"></span> <span class="square-details">Inactive Lot</span></div>
                         <div><span class="square Reserved"></span> <span class="square-details">Reserved Lot</span></div>
+                        <div><span class="square Fullypaid"></span> <span class="square-details">Fully Paid</span></div>
+                        <div><span class="square Turnover"></span> <span class="square-details">Turn Over</span></div>
                     </div>
                     <div id="myBtnContainer">
                         <button class="block_btn btn active" onclick="filterSelection('all')">All</button>
@@ -189,14 +191,14 @@
 
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Payment Date<span style="color: red">*</span></label>
-                    <input type="date" class="form-control" id="payment_date" name="payment_date" required>
+                    <input type="date" class="form-control" id="date" name="date" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label class="inputPassword4">Payment Type<span style="color: red">*</span></label>
-                    <select class="form-control" name="payment_type" required>
-                        <option value="CASH">CASH</option>
-                        <option value="CHEQUE">CHEQUE</option>
-                        <option value="ONLINE TRANSFER">ONLINE TRANSFER</option>
+                    <select class="form-control" name="payment_id" required>
+                        @foreach ($paymenttypes as $paymenttype)
+                            <option value="{{ $paymenttype->id }}">{{ $paymenttype->payment }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group col-md-12">
@@ -504,6 +506,15 @@
         .lot.RESERVED, .square.Reserved {
             background: #fffbd1;
         }
+
+        .lot.FULLYPAID, .square.Fullypaid {
+            background: #93bbd2;
+        }
+
+        .lot.TURNOVER, .square.Turnover {
+            background: #3b577c;
+        }
+
         div#myBtnContainer button {
             background: #eee;
             border: 1px solid #ccc;
