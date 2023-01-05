@@ -11,6 +11,7 @@ class Payment extends Model
 
     protected $fillable = [
         'customer_id',
+        'monthly_amortization_id',
         'code',
         'date',
         'payment_id',
@@ -22,6 +23,11 @@ class Payment extends Model
         'remarks',
         'created_user',
     ];
+
+    public function transaction_record()
+    {
+        return $this->belongsTo(Transaction::class, 'code');
+    }
 
     public function customer()
     {

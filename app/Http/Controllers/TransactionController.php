@@ -88,7 +88,8 @@ class TransactionController extends Controller
         $remaining_balance = $lot->tcp - $dp->amount - $res->amount;
 
         // Regular Pay
-        $payments = Payment::where('code', $transaction->code)->where('payment_classification', '!=', 'PEN')->with('customer')->get();
+        $payments = Payment::where('code', $transaction->code)->where('payment_classification', '!=', 'PEN')->with('customer', 'transaction_record')->get();
+        // dd($payments); die();
         $regular_amount_pay = $payments->sum('amount');
 
         // Penalty Fee
@@ -138,7 +139,7 @@ class TransactionController extends Controller
     public function generate_amortization(Request $request, $id)
     {
         $transaction = Transaction::where('lot_id', $id)->firstOrFail();
-        AreaDetailLot::where("id", $id)->update(["purchase_date" => $request->purchase_date, 'end_date' => $request->end_date]);
+        AreaDetailLot::where("id", $id)->update(["purchase_date" => $request->purchase_date, 'end_date' => $request->end_date, 'status' => $request->end_date]);
         $to = Carbon::createFromFormat('Y-m-d', $request->purchase_date);
         $from = Carbon::createFromFormat('Y-m-d', $request->end_date);
         $diff_in_months = $to->diffInMonths($from);

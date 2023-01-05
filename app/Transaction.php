@@ -33,4 +33,10 @@ class Transaction extends Model
     {
         return $this->belongsTo(Penalty::class);
     }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class, 'code');
+    }
+
 }
