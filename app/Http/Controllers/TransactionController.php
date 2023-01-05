@@ -84,6 +84,7 @@ class TransactionController extends Controller
         $res = Payment::where('code', $transaction->code)->where('payment_classification', 'RES')->firstOrFail();
         $payment_transfer_fee = Payment::where('code', $transaction->code)->where('payment_classification', 'TF')->with('customer')->get();
         $amortizations = MonthlyAmortization::where('transaction_id', $transaction->id)->where('status', 'UNPAID')->orderBy('payment_date')->get();
+        $generate_amortization = MonthlyAmortization::where('transaction_id', $transaction->id)->exists();
         $remaining_balance = $lot->tcp - $dp->amount - $res->amount;
 
         // Regular Pay
@@ -103,7 +104,7 @@ class TransactionController extends Controller
         $transfer_fee_amount_due = $transfer_fees->sum('amount');
 
 
-        return view('backend.pages.area.soa', compact('payments', 'customer', 'lot', 'dp', 'res', 'id', 'amortizations', 'penalties', 'remaining_balance', 'regular_amount_pay',
+        return view('backend.pages.area.soa', compact('generate_amortization', 'payments', 'customer', 'lot', 'dp', 'res', 'id', 'amortizations', 'penalties', 'remaining_balance', 'regular_amount_pay',
                                                       'penalty_amount_pay', 'penalty_amount_due', 'transfer_fees', 'transfer_fee_amount_due', 'transfer_fee_amount_pay'));
     }
 

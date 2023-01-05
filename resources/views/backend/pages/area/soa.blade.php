@@ -29,7 +29,11 @@
         </div>
         <div class="row" style="border-top: 2px solid;">
             <div class="col-12" style="background: #2e9e5b; margin-top: 5px; text-align: center;padding: 5px;">
-                <p style="margin: 0px; font-size: 20px; font-weight: bold; text-transform: uppercase; color: white;">Statement of Account <i class="align-middle mr-2 fas fa-fw fa-file-invoice"  data-toggle="modal" data-target="#amortizationModal" title="Generate Monthly Amortization"></i></p>
+                <p style="margin: 0px; font-size: 20px; font-weight: bold; text-transform: uppercase; color: white;">Statement of Account
+                    @if ($generate_amortization == false)
+                    <i class="align-middle mr-2 fas fa-fw fa-file-invoice"  data-toggle="modal" data-target="#amortizationModal" title="Generate Monthly Amortization"></i>
+                    @endif
+                    </p>
             </div>
         </div>
         <div class="row" style="margin: 10px 0px;">
