@@ -332,7 +332,7 @@
                 $('#block_no').val(block);
                 $('#lot_no').val(lot);
                 $('#reserveModal').modal('show');
-            } if (status == 'RESERVED') {
+            } if (status == 'RESERVED' || status == 'ACTIVE') {
                 checkDownpayment(id);
             } if (status == 'INACTIVE') {
 

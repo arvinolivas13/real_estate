@@ -66,41 +66,7 @@
         </div>
     </div>
     
-    <div class="modal fade" id="attachmentModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document" style="height: calc(100% - 57px);">
-            <div class="modal-content" style="height:100%;">
-                <div class="modal-header">
-                    <h5>Attachment</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" style="height:calc(100% - 100px);">
-                    <div class="row" style="height:100%;">
-                        <div class="col-3">
-                            <div class="list-item">
-                                <ul>
-                                    <li>
-                                        <a href="#" onclick="viewAttachment('/attachment/sample.jpg', 'jpg')">FOR IMAGE</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="viewAttachment('/attachment/sample.pdf', 'pdf')">FOR PDF</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-9" style="height:100%;overflow:auto;">
-                            <div class="attachment-content">
-                                <div class="no_attachment">No Attachment</div>
-                                <img id="image_attachment" src="" alt="" style="display:none;"/>
-                                <iframe id="pdf_attachment" src="" style="display:none;"></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <div class="modal fade" id="reserveModal" tabindex="1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -131,7 +97,7 @@
 
                     <div class="form-group col-md-12">
                         <label for="inputPassword4">Payment Date<span style="color: red">*</span></label>
-                        <input type="date" class="form-control" id="date" name="date" required>
+                        <input type="date" class="form-control" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" required>
                     </div>
                     <div class="form-group col-md-12">
                         <label class="inputPassword4">Payment Type<span style="color: red">*</span></label>
@@ -311,20 +277,7 @@
             $('#ImageView img').attr('src', '/customer_file/' + blk[1] + '/' + output);
         }
 
-        function viewAttachment(file, type) {
-            if(type === "jpg") {
-                $('.no_attachment').css('display','none');
-                $('#pdf_attachment').css('display','none');
-                $('#image_attachment').attr('src',file);
-                $('#image_attachment').css('display','block');
-            }
-            else {
-                $('.no_attachment').css('display','none');
-                $('#image_attachment').css('display','none');
-                $('#pdf_attachment').attr('src',file);
-                $('#pdf_attachment').css('display','block');
-            }
-        }
+        
     </script>
 @endsection
 

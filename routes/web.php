@@ -25,52 +25,60 @@ Route::get('sendhtmlemail','AreaController@html_email');
 Route::group(['middleware' => ['auth']], function() {
 
     Route::group(['prefix' => 'customer'], function (){
-        Route::get          ('/',                            'CustomerController@index'                          )->name('get_employment_information');
-        Route::post         ('/save',                        'CustomerController@store'                          )->name('save_employment_information');
-        Route::get          ('/edit/{id}',                   'CustomerController@edit'                           )->name('edit_employment_information');
-        Route::post         ('/update/{id}',                 'CustomerController@update'                         )->name('update_employment_information');
-        Route::get          ('/destroy/{id}',                'CustomerController@destroy'                        )->name('destroy_employment_information');
+        Route::get          ('/',                            'CustomerController@index'                          )->name('get');
+        Route::post         ('/save',                        'CustomerController@store'                          )->name('save');
+        Route::get          ('/edit/{id}',                   'CustomerController@edit'                           )->name('edit');
+        Route::post         ('/update/{id}',                 'CustomerController@update'                         )->name('update');
+        Route::get          ('/destroy/{id}',                'CustomerController@destroy'                        )->name('delete');
+    });
+
+    Route::group(['prefix' => 'attachment'], function (){
+        Route::get          ('/',                            'AttachmentController@index'                          )->name('get');
+        Route::post         ('/save',                        'AttachmentController@store'                          )->name('save');
+        Route::get          ('/edit/{id}',                   'AttachmentController@edit'                           )->name('edit');
+        Route::post         ('/update/{id}',                 'AttachmentController@update'                         )->name('update');
+        Route::get          ('/destroy/{id}',                'AttachmentController@destroy'                        )->name('delete');
     });
 
     Route::group(['prefix' => 'area'], function (){
-        Route::get          ('/',                            'AreaController@index'                          )->name('get_employment_information');
-        Route::post         ('/save',                        'AreaController@store'                          )->name('save_employment_information');
-        Route::get          ('/edit/{id}',                   'AreaController@edit'                           )->name('edit_employment_information');
-        Route::post         ('/update/{id}',                 'AreaController@update'                         )->name('update_employment_information');
-        Route::get          ('/destroy/{id}',                'AreaController@destroy'                        )->name('destroy_employment_information');
+        Route::get          ('/',                            'AreaController@index'                          )->name('get');
+        Route::post         ('/save',                        'AreaController@store'                          )->name('save');
+        Route::get          ('/edit/{id}',                   'AreaController@edit'                           )->name('edit');
+        Route::post         ('/update/{id}',                 'AreaController@update'                         )->name('update');
+        Route::get          ('/destroy/{id}',                'AreaController@destroy'                        )->name('delete');
     });
 
     Route::group(['prefix' => 'area_detail'], function (){
-        Route::get          ('/{id}',                        'AreaDetailController@index'                          )->name('get_employment_information');
-        Route::post         ('/save',                        'AreaDetailController@store'                          )->name('save_employment_information');
-        Route::get          ('/edit/{id}',                   'AreaDetailController@edit'                           )->name('edit_employment_information');
-        Route::post         ('/update/{id}',                 'AreaDetailController@update'                         )->name('update_employment_information');
-        Route::get          ('/destroy/{id}',                'AreaDetailController@destroy'                        )->name('destroy_employment_information');
+        Route::get          ('/{id}',                        'AreaDetailController@index'                          )->name('get');
+        Route::post         ('/save',                        'AreaDetailController@store'                          )->name('save');
+        Route::get          ('/edit/{id}',                   'AreaDetailController@edit'                           )->name('edit');
+        Route::post         ('/update/{id}',                 'AreaDetailController@update'                         )->name('update');
+        Route::get          ('/destroy/{id}',                'AreaDetailController@destroy'                        )->name('delete');
     });
 
     Route::group(['prefix' => 'penalty'], function (){
-        Route::get          ('/',                            'PenaltyController@index'                          )->name('get_employment_information');
-        Route::post         ('/save',                        'PenaltyController@store'                          )->name('save_employment_information');
-        Route::get          ('/edit/{id}',                   'PenaltyController@edit'                           )->name('edit_employment_information');
-        Route::post         ('/update/{id}',                 'PenaltyController@update'                         )->name('update_employment_information');
-        Route::get          ('/destroy/{id}',                'PenaltyController@destroy'                        )->name('destroy_employment_information');
+        Route::get          ('/',                            'PenaltyController@index'                          )->name('get');
+        Route::post         ('/save',                        'PenaltyController@store'                          )->name('save');
+        Route::get          ('/edit/{id}',                   'PenaltyController@edit'                           )->name('edit');
+        Route::post         ('/update/{id}',                 'PenaltyController@update'                         )->name('update');
+        Route::get          ('/destroy/{id}',                'PenaltyController@destroy'                        )->name('delete');
     });
 
     Route::group(['prefix' => 'payment'], function (){
-        Route::get          ('/',                            'PaymentController@index'                          )->name('get_employment_information');
-        Route::post         ('/save',                        'PaymentController@store'                          )->name('save_employment_information');
-        Route::get          ('/edit/{id}',                   'PaymentController@edit'                           )->name('edit_employment_information');
-        Route::post         ('/update/{id}',                 'PaymentController@update'                         )->name('update_employment_information');
-        Route::get          ('/destroy/{id}',                'PaymentController@destroy'                        )->name('destroy_employment_information');
-        Route::get          ('/lot/{id}',                    'PaymentController@lotNo'                          )->name('destroy_employment_information');
+        Route::get          ('/',                            'PaymentController@index'                          )->name('get');
+        Route::post         ('/save',                        'PaymentController@store'                          )->name('save');
+        Route::get          ('/edit/{id}',                   'PaymentController@edit'                           )->name('edit');
+        Route::post         ('/update/{id}',                 'PaymentController@update'                         )->name('update');
+        Route::get          ('/destroy/{id}',                'PaymentController@destroy'                        )->name('delete');
+        Route::get          ('/lot/{id}',                    'PaymentController@lotNo'                          )->name('delete');
     });
 
     Route::group(['prefix' => 'transaction'], function (){
-        Route::post          ('/reservation',                 'TransactionController@reservation'               )->name('get_employment_information');
-        Route::get           ('/checkdp/{id}',                'TransactionController@checkdp'                   )->name('get_employment_information');
-        Route::get           ('/penalty',                     'TransactionController@penalty'                   )->name('get_employment_information');
-        Route::get           ('/soa/{id}',                    'TransactionController@soa'                       )->name('get_employment_information');
-        Route::post          ('/generate_amort/{id}',         'TransactionController@generate_amortization'     )->name('get_employment_information');
+        Route::post          ('/reservation',                 'TransactionController@reservation'               )->name('get');
+        Route::get           ('/checkdp/{id}',                'TransactionController@checkdp'                   )->name('get');
+        Route::get           ('/penalty',                     'TransactionController@penalty'                   )->name('get');
+        Route::get           ('/soa/{id}',                    'TransactionController@soa'                       )->name('get');
+        Route::post          ('/generate_amort/{id}',         'TransactionController@generate_amortization'     )->name('get');
     });
 
     Route::get('/dashboard', function () {

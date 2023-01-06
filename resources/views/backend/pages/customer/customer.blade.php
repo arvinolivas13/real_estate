@@ -42,6 +42,8 @@
                                     <td>{{++$key}}</td>
                                     <td>
                                         <a href="#" class="align-middle edit" onclick="edit({{ $customer->id }})" title="Edit" data-toggle="modal" data-target="#customerModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-pen"></i></a>
+                                        <a href="#" class="align-middle attachment" onclick="attachment({{ $customer->id }})" title="Upload" data-toggle="modal" data-target="#attachmentModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-file"></i></a>
+                                        <a href="#" class="align-middle upload" onclick="uploadAttachment({{ $customer->id }})" title="Attachment" data-toggle="modal" data-target="#uploadModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-upload"></i></a>
                                         <a href="{{url('customer/destroy/' . $customer->id)}}" onclick="alert('Are you sure you want to Delete?')"><i class="align-middle fas fa-fw fa-trash"></i></a>
                                     </td>
                                     <td>{{$customer->subscriber_no}}</td>
@@ -62,6 +64,7 @@
     </div>
 </div>
 
+@include('backend.partial.component.attachment')
 {{-- MODAL --}}
 <div class="modal fade" id="customerModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -168,6 +171,25 @@
             });
         }
 
+        function uploadAttachment() {
+
+        }
+        
+        function viewAttachment(file, type) {
+            if(type === "jpg") {
+                $('.no_attachment').css('display','none');
+                $('#pdf_attachment').css('display','none');
+                $('#image_attachment').attr('src',file);
+                $('#image_attachment').css('display','block');
+            }
+            else {
+                $('.no_attachment').css('display','none');
+                $('#image_attachment').css('display','none');
+                $('#pdf_attachment').attr('src',file);
+                $('#pdf_attachment').css('display','block');
+            }
+        }
+
         $(function() {
             $('#customer_record').DataTable({
                 scrollX: true,
@@ -186,6 +208,48 @@
         }
         thead th {
              white-space: nowrap;
+        }
+      
+        .modal-header h5 {
+            color: #fff;
+            margin: 0px;
+        }
+
+        iframe#pdf_attachment {
+            width: 100%;
+            height: 100%;
+        }
+
+        .list-item ul {
+            padding: 0px;
+            list-style: none;
+            margin: 0px;
+        }
+
+        .attachment-content {
+            height: 100%;
+        }
+
+        .list-item li a {
+            padding: 10px;
+            display: block;
+            margin-bottom: 2px;
+            background: #eee;
+            color: #2e759e;
+            font-family: system-ui;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-decoration: none !important;
+        }
+
+        img#image_attachment {
+            width: 100%;
+        }
+
+        .no_attachment {
+            padding: 10px;
+            background: #eee;
+            text-align: center;
         }
     </style>
 @endsection

@@ -38,15 +38,15 @@ class TransactionController extends Controller
         $request->request->add(['created_user' => Auth::user()->id]);
 
         if($request->attachment != null) {
-        $file = $request->attachment->getClientOriginalName();
-        $filename = pathinfo($file, PATHINFO_FILENAME);
+            $file = $request->attachment->getClientOriginalName();
+            $filename = pathinfo($file, PATHINFO_FILENAME);
 
-        $imageName = $filename.time().'.'.$request->attachment->extension();
-        $image = $request->attachment->move(public_path('customer_file/' . $request->customer_id . '-' . $request->lot_id), $imageName);
+            $imageName = $filename.time().'.'.$request->attachment->extension();
+            $image = $request->attachment->move(public_path('customer_file/' . $request->customer_id . '-' . $request->lot_id), $imageName);
 
-        $requestData = $request->all();
-        $requestData['attachment'] = $imageName;
-        Payment::create($requestData);
+            $requestData = $request->all();
+            $requestData['attachment'] = $imageName;
+            Payment::create($requestData);
         } else {
             Payment::create($request->all());
         }
