@@ -11,6 +11,7 @@ class MonthlyAmortization extends Model
 
     protected $fillable = [
         'transaction_id',
+        'payment_id',
         'payment_date',
         'payment_classification',
         'amount',

@@ -66,8 +66,6 @@
         </div>
     </div>
     
-    
-
     <div class="modal fade" id="reserveModal" tabindex="1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -163,7 +161,7 @@
             </div>
         </div>
     </div>
-    
+
 
     <!-- Customer List Modal -->
     <div class="modal fade" id="customerList" style="background: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-hidden="true">
