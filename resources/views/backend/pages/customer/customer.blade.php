@@ -42,8 +42,8 @@
                                     <td>{{++$key}}</td>
                                     <td>
                                         <a href="#" class="align-middle edit" onclick="edit({{ $customer->id }})" title="Edit" data-toggle="modal" data-target="#customerModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-pen"></i></a>
-                                        <a href="#" class="align-middle attachment" onclick="attachment({{ $customer->id }})" title="Upload" data-toggle="modal" data-target="#attachmentModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-file"></i></a>
-                                        <a href="#" class="align-middle upload" onclick="uploadAttachment({{ $customer->id }})" title="Attachment" data-toggle="modal" data-target="#uploadModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-upload"></i></a>
+                                        <a href="#" class="align-middle" onclick="attachment({{ $customer->id }})" title="Upload" data-toggle="modal" data-target="#attachmentModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-file"></i></a>
+                                        <a href="#" class="align-middle" onclick="uploadAttachment({{ $customer->id }})" title="Attachment" data-toggle="modal" data-target="#uploadModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-upload"></i></a>
                                         <a href="{{url('customer/destroy/' . $customer->id)}}" onclick="alert('Are you sure you want to Delete?')"><i class="align-middle fas fa-fw fa-trash"></i></a>
                                     </td>
                                     <td>{{$customer->subscriber_no}}</td>
@@ -171,10 +171,29 @@
             });
         }
 
-        function uploadAttachment() {
-
+        function uploadAttachment(id) {
+            $('#customer_id').val(id)
         }
-        
+
+        function attachment(id) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/attachment/show/' + id,
+                method: 'get',
+                success: function(data) {
+                    $('#attachment-pdf-list, #attachment-image-list').empty();
+                    var record = data.attachments;                                                  
+                    for (let index = 0; index < record.length; index++) {
+                        var path = '/attachment/requirement/' + record[index].id + '/' + record[index].attachment + "'" + ',' + "'" +  record[index].type;
+                        $('#attachment-pdf-list').append('<a href="#" onclick="viewAttachment('+"'"+path+"'"+')">' + record[index].code + '</a>')
+                        console.log(record[index].attachment);
+                    }
+                }
+            });
+        }
+
         function viewAttachment(file, type) {
             if(type === "jpg") {
                 $('.no_attachment').css('display','none');

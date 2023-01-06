@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/',                            'AttachmentController@index'                          )->name('get');
         Route::post         ('/save',                        'AttachmentController@store'                          )->name('save');
         Route::get          ('/edit/{id}',                   'AttachmentController@edit'                           )->name('edit');
+        Route::get          ('/show/{id}',                   'AttachmentController@show'                           )->name('edit');
         Route::post         ('/update/{id}',                 'AttachmentController@update'                         )->name('update');
         Route::get          ('/destroy/{id}',                'AttachmentController@destroy'                        )->name('delete');
     });

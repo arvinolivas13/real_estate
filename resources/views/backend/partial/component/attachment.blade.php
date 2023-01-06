@@ -12,11 +12,11 @@
                     <div class="col-3">
                         <div class="list-item">
                             <ul>
-                                <li>
+                                <li id="attachment-image-list">
                                     <a href="#" onclick="viewAttachment('/attachment/sample.jpg', 'jpg')">FOR IMAGE</a>
                                 </li>
-                                <li>
-                                    <a href="#" onclick="viewAttachment('/attachment/sample.pdf', 'pdf')">FOR PDF</a>
+                                <li id="attachment-pdf-list">
+                                    <a href="#" onclick="viewAttachment('/attachment/requirement/8/B26 L6 SHIELA CABALLERO.pdf', 'pdf')">FOR PDF</a>
                                 </li>
                             </ul>
                         </div>
@@ -44,11 +44,12 @@
                 </button>
             </div>
             <div class="modal-body m-3">
-                <form id="modal-form" action="{{url('attachment/save')}}" method="post">
+                <form id="modal-form" action="{{url('attachment/save')}}" method="post" enctype='multipart/form-data'>
                     @csrf
                     <div class="form-group col-md-12">
                         <label for="inputPassword4">Code<span style="color: red">*</span></label>
                         <input type="text" class="form-control" id="code" name="code" placeholder="Enter Code/File Name" required>
+                        <input type="hidden" class="form-control" id="customer_id" name="customer_id" required>
                     </div>
 
                     <div class="form-group col-md-12">
@@ -58,7 +59,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary submit-button">Add</button>
+                <button type="submit" class="btn btn-primary submit-button">Upload</button>
                 </form>
             </div>
         </div>

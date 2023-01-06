@@ -21,7 +21,7 @@ class CreateAttachmentsTable extends Migration
             $table->string('attachment');
             $table->string('status')->default(1);
             $table->string('created_user');
-            $table->string('updated_user');
+            $table->string('updated_user')->nullable();
             $table->timestamps();
 
             $table->foreign('customer_id')
