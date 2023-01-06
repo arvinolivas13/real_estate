@@ -139,7 +139,7 @@ class TransactionController extends Controller
     public function generate_amortization(Request $request, $id)
     {
         $transaction = Transaction::where('lot_id', $id)->firstOrFail();
-        AreaDetailLot::where("id", $id)->update(["purchase_date" => $request->purchase_date, 'end_date' => $request->end_date, 'status' => $request->end_date]);
+        AreaDetailLot::where("id", $id)->update(["purchase_date" => $request->purchase_date, 'end_date' => $request->end_date, 'status' => 'ACTIVE']);
         $to = Carbon::createFromFormat('Y-m-d', $request->purchase_date);
         $from = Carbon::createFromFormat('Y-m-d', $request->end_date);
         $diff_in_months = $to->diffInMonths($from);

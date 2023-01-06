@@ -65,7 +65,7 @@
                 </div>
         </div>
     </div>
-    
+
     <div class="modal fade" id="attachmentModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document" style="height: calc(100% - 57px);">
             <div class="modal-content" style="height:100%;">
@@ -197,7 +197,7 @@
             </div>
         </div>
     </div>
-    
+
 
     <!-- Customer List Modal -->
     <div class="modal fade" id="customerList" style="background: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-hidden="true">

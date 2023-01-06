@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Payment;
 use App\PaymentType;
+use App\MonthlyAmortization;
 use App\Customer;
 use App\Transaction;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class PaymentController extends Controller
 
     public function store(Request $request)
     {
-        $Payment = $request->validate([
+        $payment = $request->validate([
             'customer_id' => ['required', 'max:250'],
             'code' => ['required'],
             'date'=> ['required'],
@@ -36,6 +37,7 @@ class PaymentController extends Controller
 
         $request->request->add(['created_user' => Auth::user()->id]);
 
+
         if($request->attachment != null) {
             $file = $request->attachment->getClientOriginalName();
             $filename = pathinfo($file, PATHINFO_FILENAME);
@@ -45,15 +47,16 @@ class PaymentController extends Controller
 
             $requestData = $request->all();
             $requestData['attachment'] = $imageName;
-            Payment::create($requestData);
+            $payment_save = Payment::create($requestData);
         } else {
-            Payment::create($request->all());
+            $payment_save = Payment::create($request->all());
         }
 
-
-
-        if($request->payment_classification == 'DP') {
-
+        if($request->payment_classification == 'MA') {
+            $transaction = Transaction::where('code', $request->code)->first();
+            $latest_amortization = MonthlyAmortization::where("transaction_id", $transaction->id)->where('status', 'PAID')->first();
+            dd($latest_amortization); die();
+            MonthlyAmortization::where('id', $latest_amortization->id)->update(['payment_id' => $payment_save->id, 'status' => 'PAID']);
         }
 
         return redirect()->back()->with('success','Successfully Added');
