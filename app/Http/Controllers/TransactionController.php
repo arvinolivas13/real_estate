@@ -109,6 +109,20 @@ class TransactionController extends Controller
                                                       'penalty_amount_pay', 'penalty_amount_due', 'transfer_fees', 'transfer_fee_amount_due', 'transfer_fee_amount_pay'));
     }
 
+    function noDownpayment($id) {
+        $downpayment = new Payment([
+            'transaction_id' => $transaction->id,
+            'payment_date' => $this->getSameDayNextMonth($startDate, $i)->format('Y-m-d'),
+            'payment_classification' => 'MA',
+            'amount' => $monthly_amortization,
+            'counter' => $i,
+            'status' => 'UNPAID',
+            'created_user' => Auth::user()->id,
+        ]);
+
+        $downpayment->save();
+    }
+
     function getSameDayNextMonth(DateTime $startDate, $numberOfMonthsToAdd = 1) {
         $startDateDay = (int) $startDate->format('j');
         $startDateMonth = (int) $startDate->format('n');
@@ -161,6 +175,7 @@ class TransactionController extends Controller
                 'payment_date' => $this->getSameDayNextMonth($startDate, $i)->format('Y-m-d'),
                 'payment_classification' => 'MA',
                 'amount' => $monthly_amortization,
+                'counter' => $i,
                 'status' => 'UNPAID',
                 'created_user' => Auth::user()->id,
             ]);

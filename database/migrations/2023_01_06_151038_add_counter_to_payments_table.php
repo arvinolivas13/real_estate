@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPaymentIdToMonthlyAmortizationsTable extends Migration
+class AddCounterToPaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class AddPaymentIdToMonthlyAmortizationsTable extends Migration
      */
     public function up()
     {
-        Schema::table('monthly_amortizations', function (Blueprint $table) {
-            $table->unsignedBigInteger('payment_id')->nullable();
+        Schema::table('payments', function (Blueprint $table) {
+            $table->unsignedBigInteger('monthly_amortization_id');
 
-            $table->foreign('payment_id')
+            $table->foreign('monthly_amortization_id')
                 ->references('id')
-                ->on('payments');
+                ->on('monthly_amortizations');
         });
     }
 
@@ -29,8 +29,8 @@ class AddPaymentIdToMonthlyAmortizationsTable extends Migration
      */
     public function down()
     {
-        Schema::table('monthly_amortizations', function (Blueprint $table) {
-            $table->dropColumn('payment_id');
+        Schema::table('payments', function (Blueprint $table) {
+            $table->dropColumn('monthly_amortization_id');
         });
     }
 }

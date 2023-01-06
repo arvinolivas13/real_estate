@@ -79,6 +79,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get           ('/checkdp/{id}',                'TransactionController@checkdp'                   )->name('get');
         Route::get           ('/penalty',                     'TransactionController@penalty'                   )->name('get');
         Route::get           ('/soa/{id}',                    'TransactionController@soa'                       )->name('get');
+        Route::get           ('/nodownpayment/{id}',          'TransactionController@noDownpayment'             )->name('get');
         Route::post          ('/generate_amort/{id}',         'TransactionController@generate_amortization'     )->name('get');
     });
 

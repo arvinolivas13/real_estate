@@ -14,7 +14,7 @@ class AreaDetailController extends Controller
 {
     public function index($id)
     {
-        $blocks = AreaDetail::where('area_id', $id)->orderBy('block')->with('lot')->get();
+        $blocks = AreaDetail::where('area_id', $id)->orderBy('id')->with('lot')->get();
         $customers = Customer::where('status', 'ACTIVE')->get();
         $paymenttypes = PaymentType::get();
         $area_id = $id;

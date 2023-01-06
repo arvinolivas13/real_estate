@@ -166,7 +166,7 @@
             <div class="modal-body m-3">
                 <form id="modal-form" action="{{url('transaction/reservation')}}" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-12 customer-name-lookup">
                     <label for="inputPassword4">Customer Name <span style="color: red">*</span></label>
                     <div class="row col-12">
                         <input type="hidden" id="lot_id" name="lot_id" class="form-control col-10"/>
@@ -179,12 +179,17 @@
                     </div>
                 </div>
 
+                <div class="form-group col-md-12 customerName">
+                    <label for="inputPassword4">Customer Name<span style="color: red"></span></label>
+                    <input type="text" class="form-control" id="customerName" value="" readonly>
+                </div>
+
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Code<span style="color: red">*</span></label>
                     <input type="text" class="form-control" id="code" name="code" value="" readonly>
                 </div>
 
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-12 subscriberNo">
                     <label for="inputPassword4">Subscriber No.<span style="color: red">*</span></label>
                     <input type="text" class="form-control" id="subscriber_no" name="subscriber_no" placeholder="Enter Subscriber No" required>
                 </div>
@@ -307,7 +312,7 @@
             element.className = arr1.join(" ");
         }
 
-        function checkDownpayment(id) {
+        function checkDownpayment(status, id, block, lot) {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -318,7 +323,28 @@
                    if(data.Message == 'DETECTED') {
                         location.href = '/transaction/soa/' + id
                    } else {
-                       alert('No Downpayment! Please provide an amount before calculating monthly amortization.');
+                    Swal.fire({
+                            title: 'Please provide Downpayment to proceed with calculation of Monthly Amortization.',
+                            showDenyButton: true,
+                            showCancelButton: true,
+                            confirmButtonText: 'Process Downpayment',
+                            denyButtonText: `Zero Downpayment`,
+                        }).then((result) => {
+                            /* Read more about isConfirmed, isDenied below */
+                            if (result.isConfirmed) {
+                                $('.customerName').show();
+                                $('.customer-name-lookup').hide();
+                                $('.subscriberNo').hide();
+                                $('.reserve-title').text('Process Downpayment - ' + $('#area_name').val() + ' Block ' + block + ' Lot ' + lot)
+                                $('#code').val($('#area_code').val() + '-' + block + '-' + lot)
+                                $('#lot_id').val(id);
+                                $('#block_no').val(block);
+                                $('#lot_no').val(lot);
+                                $('#reserveModal').modal('show');
+                            } else if (result.isDenied) {
+                                location.href = '/transaction/nodownpaynment/' + id;
+                            }
+                        })
                    }
                 }
             });
@@ -326,6 +352,9 @@
 
         function LotFunction(status, id, block, lot) {
             if (status == 'OPEN') {
+                $('.customerName').hide();
+                $('.customer-name-lookup').show();
+                $('.subscriberNo').show();
                 $('.reserve-title').text('Reserve - ' + $('#area_name').val() + ' Block ' + block + ' Lot ' + lot)
                 $('#code').val($('#area_code').val() + '-' + block + '-' + lot)
                 $('#lot_id').val(id);
@@ -333,7 +362,7 @@
                 $('#lot_no').val(lot);
                 $('#reserveModal').modal('show');
             } if (status == 'RESERVED' || status == 'ACTIVE') {
-                checkDownpayment(id);
+                checkDownpayment(status, id, block, lot);
             } if (status == 'INACTIVE') {
 
             } else {
@@ -370,7 +399,7 @@
                 $('#lot_no').val(lot);
                 $('#blockModal').modal('show');
             } if (status == 'RESERVED') {
-                checkDownpayment(id);
+                checkDownpayment(status, id, block, lot);
             } if (status == 'INACTIVE') {
 
             }

@@ -15,6 +15,7 @@ class MonthlyAmortization extends Model
         'payment_date',
         'payment_classification',
         'amount',
+        'counter',
         'status',
         'created_user',
     ];

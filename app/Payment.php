@@ -11,6 +11,7 @@ class Payment extends Model
 
     protected $fillable = [
         'customer_id',
+        'monthly_amortization_id',
         'code',
         'date',
         'payment_id',
