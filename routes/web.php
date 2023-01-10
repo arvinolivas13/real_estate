@@ -20,6 +20,11 @@ Route::get('/contract', function () {
     return view('backend.partial.contract');
 });
 
+
+Route::get('/purchase-email', function () {
+    return view('backend.partial.email.purchase');
+});
+
 Route::get('sendhtmlemail','AreaController@html_email');
 
 Route::group(['middleware' => ['auth']], function() {

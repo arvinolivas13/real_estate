@@ -51,7 +51,7 @@
 
         <div class="buy-button">
             <a href="#" class="customizer-logo"><img src="frontend/img/logo/logo.png" alt="Theme Logo"></a>
-            <a class="opener" href="#"><i class="fa fa-cog fa-spin"></i></a>
+            {{-- <a class="opener" href="#"><i class="fa fa-cog fa-spin"></i></a> --}}
             <div class="buy-now">
                 <a class="button button-border" href="#">Buy now!</a>
             </div>
