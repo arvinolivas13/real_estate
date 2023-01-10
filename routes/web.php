@@ -17,7 +17,7 @@ Route::get('/schedule-of-payment', function () {
 
 
 Route::get('/contract', function () {
-    return view('backend.partial.contract');
+    return view('backend.pages.document.contract');
 });
 
 
@@ -68,6 +68,14 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/edit/{id}',                   'PenaltyController@edit'                           )->name('edit');
         Route::post         ('/update/{id}',                 'PenaltyController@update'                         )->name('update');
         Route::get          ('/destroy/{id}',                'PenaltyController@destroy'                        )->name('delete');
+    });
+
+    Route::group(['prefix' => 'document'], function (){
+        Route::get          ('/contract',                    'DocumentController@index'                          )->name('get');
+        Route::post         ('/save',                        'DocumentController@store'                          )->name('save');
+        Route::get          ('/show/{id}',                   'DocumentController@show'                           )->name('edit');
+        Route::post         ('/update/{id}',                 'DocumentController@update'                         )->name('update');
+        Route::get          ('/destroy/{id}',                'DocumentController@destroy'                        )->name('delete');
     });
 
     Route::group(['prefix' => 'payment'], function (){

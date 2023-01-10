@@ -54,8 +54,8 @@
                 </a>
                 <ul id="payment" class="sidebar-dropdown list-unstyled collapse" data-parent="#sidebar">
                     <li class="list-title">Payment</li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="{{ url('payment') }}">Main</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="{{ url('payment/all') }}">Calendar</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ url('payment') }}">Payment</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ url('payment/all') }}">All Payment</a></li>
                 </ul>
                 <a href="{{ url('penalty') }}" class="sidebar-link collapsed">
                     <span class="item">
@@ -64,6 +64,19 @@
                 </a>
                 @endrole
             </li>
+
+            @role('Super Admin')
+            <li class="sidebar-header">
+                Documents
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ url('document/contract') }}" class="sidebar-link collapsed">
+                    <span class="item">
+                        <i class="align-middle mr-2 fas fa-fw fa-file-word"></i> <span class="align-middle">Contract</span>
+                    </span>
+                </a>
+            </li>
+            @endrole
 
             @role('Super Admin')
             <li class="sidebar-header">

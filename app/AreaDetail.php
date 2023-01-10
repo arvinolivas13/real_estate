@@ -16,6 +16,11 @@ class AreaDetail extends Model
         'created_user',
     ];
 
+    public function area_detail()
+    {
+        return $this->belongsTo(Area::class, 'area_id');
+    }
+
     public function lot()
     {
         return $this->hasMany(AreaDetailLot::class, 'block_id');

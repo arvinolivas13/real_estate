@@ -19,4 +19,9 @@ class Area extends Model
         'status',
         'created_user',
     ];
+
+    public function lot()
+    {
+        return $this->hasOne(AreaDetail::class);
+    }
 }
