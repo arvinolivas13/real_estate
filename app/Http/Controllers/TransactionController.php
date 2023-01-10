@@ -32,7 +32,7 @@ class TransactionController extends Controller
             'reference_no',
             'or_no',
             'attachment',
-            'remarks' => ['required'],
+            'remarks',
         ]);
 
         $request->request->add(['created_user' => Auth::user()->id]);
@@ -70,7 +70,9 @@ class TransactionController extends Controller
         if(Payment::where('code', $transaction->code)->where('payment_classification', 'DP')->exists()) {
             return response()->json(['Message' => 'DETECTED']);
         } else {
-            return response()->json(['Message' => 'NONE']);
+
+            $customer = Customer::where('id', $transaction->customer_id)->first();
+            return response()->json(['Message' => 'NONE', 'customer' => $customer]);
         }
     }
 
@@ -88,8 +90,7 @@ class TransactionController extends Controller
         $remaining_balance = $lot->tcp - $dp->amount - $res->amount;
 
         // Regular Pay
-        $payments = Payment::where('code', $transaction->code)->where('payment_classification', '!=', 'PEN')->with('customer', 'transaction_record')->get();
-        // dd($payments); die();
+        $payments = Payment::where('code', $transaction->code)->where('payment_classification', '!=', 'PEN')->with('customer', 'transaction_record', 'amortization')->get();
         $regular_amount_pay = $payments->sum('amount');
 
         // Penalty Fee
@@ -175,6 +176,7 @@ class TransactionController extends Controller
                 'payment_date' => $this->getSameDayNextMonth($startDate, $i)->format('Y-m-d'),
                 'payment_classification' => 'MA',
                 'amount' => $monthly_amortization,
+                'balance' => $monthly_amortization,
                 'counter' => $i,
                 'status' => 'UNPAID',
                 'created_user' => Auth::user()->id,

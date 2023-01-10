@@ -15,6 +15,7 @@ class MonthlyAmortization extends Model
         'payment_date',
         'payment_classification',
         'amount',
+        'balance',
         'counter',
         'status',
         'created_user',
@@ -23,5 +24,10 @@ class MonthlyAmortization extends Model
     public function Penalty()
     {
         return $this->belongsTo(Penalty::class);
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class);
     }
 }

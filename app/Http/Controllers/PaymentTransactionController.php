@@ -10,25 +10,25 @@ class PaymentTransactionController extends Controller
 {
     public $gateway;
     public $completePaymentUrl;
- 
+
     public function __construct()
     {
         $this->gateway = Omnipay::create('Stripe\PaymentIntents');
         $this->gateway->setApiKey(env('STRIPE_SECRET_KEY'));
         $this->completePaymentUrl = url('confirm');
     }
- 
+
     public function index()
     {
         return view('frontend.partial.payment');
     }
- 
+
     public function charge(Request $request)
     {
         if($request->input('stripeToken'))
         {
             $token = $request->input('stripeToken');
- 
+
             $response = $this->gateway->authorize([
                 'amount' => $request->input('amount'),
                 'currency' => env('STRIPE_CURRENCY'),
@@ -37,7 +37,7 @@ class PaymentTransactionController extends Controller
                 'returnUrl' => $this->completePaymentUrl,
                 'confirm' => true,
             ])->send();
- 
+
             if($response->isSuccessful())
             {
                 $response = $this->gateway->capture([
@@ -45,9 +45,9 @@ class PaymentTransactionController extends Controller
                     'currency' => env('STRIPE_CURRENCY'),
                     'paymentIntentReference' => $response->getPaymentIntentReference(),
                 ])->send();
- 
+
                 $arr_payment_data = $response->getData();
- 
+
                 $this->store_payment([
                     'payment_id' => $arr_payment_data['id'],
                     'payer_email' => $request->input('email'),
@@ -55,7 +55,7 @@ class PaymentTransactionController extends Controller
                     'currency' => env('STRIPE_CURRENCY'),
                     'payment_status' => $arr_payment_data['status'],
                 ]);
- 
+
                 return redirect("payment")->with("success", "Payment is successful. Your payment id is: ". $arr_payment_data['id']);
             }
             elseif($response->isRedirect())
@@ -69,14 +69,14 @@ class PaymentTransactionController extends Controller
             }
         }
     }
- 
+
     public function confirm(Request $request)
     {
         $response = $this->gateway->confirm([
             'paymentIntentReference' => $request->input('payment_intent'),
             'returnUrl' => $this->completePaymentUrl,
         ])->send();
-         
+
         if($response->isSuccessful())
         {
             $response = $this->gateway->capture([
@@ -84,9 +84,9 @@ class PaymentTransactionController extends Controller
                 'currency' => env('STRIPE_CURRENCY'),
                 'paymentIntentReference' => $request->input('payment_intent'),
             ])->send();
- 
+
             $arr_payment_data = $response->getData();
- 
+
             $this->store_payment([
                 'payment_id' => $arr_payment_data['id'],
                 'payer_email' => session('payer_email'),
@@ -94,7 +94,7 @@ class PaymentTransactionController extends Controller
                 'currency' => env('STRIPE_CURRENCY'),
                 'payment_status' => $arr_payment_data['status'],
             ]);
- 
+
             return redirect("payment")->with("success", "Payment is successful. Your payment id is: ". $arr_payment_data['id']);
         }
         else
@@ -102,11 +102,11 @@ class PaymentTransactionController extends Controller
             return redirect("payment")->with("error", $response->getMessage());
         }
     }
- 
+
     public function store_payment($arr_data = [])
     {
-        $isPaymentExist = PaymentTransaction::where('payment_id', $arr_data['payment_id'])->first();  
-  
+        $isPaymentExist = PaymentTransaction::where('payment_id', $arr_data['payment_id'])->first();
+
         if(!$isPaymentExist)
         {
             $payment = new PaymentTransaction;

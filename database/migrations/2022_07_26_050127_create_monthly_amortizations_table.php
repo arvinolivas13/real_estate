@@ -20,6 +20,7 @@ class CreateMonthlyAmortizationsTable extends Migration
             $table->string('payment_classification');
             $table->integer('counter');
             $table->double('amount', 10, 2);
+            $table->double('balance', 10, 2);
             $table->string('status');
             $table->string('created_user')->nullable();
             $table->softDeletes();

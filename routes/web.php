@@ -69,6 +69,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/',                            'PaymentController@index'                          )->name('get');
         Route::post         ('/save',                        'PaymentController@store'                          )->name('save');
         Route::get          ('/edit/{id}',                   'PaymentController@edit'                           )->name('edit');
+        Route::get          ('/amortization/{code}',         'PaymentController@ma_counter'                     )->name('edit');
         Route::post         ('/update/{id}',                 'PaymentController@update'                         )->name('update');
         Route::get          ('/destroy/{id}',                'PaymentController@destroy'                        )->name('delete');
         Route::get          ('/lot/{id}',                    'PaymentController@lotNo'                          )->name('delete');
@@ -86,7 +87,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard', function () {
         return view('backend.pages.dashboard');
     });
-   
+
 
 
     Route::get('/document-management', function () {

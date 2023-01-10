@@ -8,7 +8,7 @@
         <div class="company-logo">
             <img src="/images/logo.png" alt="company-logo" width="100%"/>
             <div class="company-name">
-                Brilliant Five J Construction and Development Corp. 
+                Brilliant Five J Construction and Development Corp.
             </div>
         </div>
 
@@ -18,7 +18,7 @@
                 Main
             </li>
             @role('Super Admin|Agent')
-            <li class="sidebar-item">   
+            <li class="sidebar-item">
                 <a href="#dashboard" data-toggle="collapse" class="sidebar-link collapsed">
                     <span class="item">
                         <i class="align-middle mr-2 fas fa-fw fa-tachometer-alt"></i> <span class="align-middle">Dashboard</span>
@@ -32,7 +32,7 @@
                 <a href="{{url('customer')}}" class="sidebar-link collapsed">
                     <span class="item">
                         <i class="align-middle mr-2 fas fa-fw fa-users"></i> <span class="align-middle">Customer</span>
-                    </span> 
+                    </span>
                 </a>
             </li>
             @endrole
@@ -45,56 +45,26 @@
                 <a href="{{ url('area') }}" class="sidebar-link collapsed">
                     <span class="item">
                         <i class="align-middle mr-2 fas fa-fw fa-receipt"></i> <span class="align-middle">Area</span>
-                    </span> 
+                    </span>
                 </a>
-                <a href="{{ url('payment') }}" class="sidebar-link collapsed">
+                <a href="#payment" data-toggle="collapse" class="sidebar-link collapsed">
                     <span class="item">
                         <i class="align-middle mr-2 fas fa-fw fa-money-bill"></i> <span class="align-middle">Payment</span>
-                    </span> 
+                    </span>
                 </a>
+                <ul id="payment" class="sidebar-dropdown list-unstyled collapse" data-parent="#sidebar">
+                    <li class="list-title">Payment</li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ url('payment') }}">Main</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ url('payment/all') }}">Calendar</a></li>
+                </ul>
                 <a href="{{ url('penalty') }}" class="sidebar-link collapsed">
                     <span class="item">
                         <i class="align-middle mr-2 fas fa-fw fa-minus-circle"></i> <span class="align-middle">Penalty</span>
-                    </span> 
+                    </span>
                 </a>
                 @endrole
-                @role('Agent')
-                <a href="/transaction/van" class="sidebar-link collapsed">
-                    <span class="item">
-                        <i class="align-middle mr-2 fas fa-fw fa-car"></i> <span class="align-middle">Van</span>
-                    </span> 
-                </a>
-                @endrole
-                @role('Super Admin|Agent')
-                <a href="/transaction/commission" class="sidebar-link collapsed">
-                    <span class="item">
-                        <i class="align-middle mr-2 fas fa-fw fa-dollar-sign"></i> <span class="align-middle">Commission</span>
-                    </span> 
-                </a> 
-                @endrole
-                {{-- <ul id="payroll_system" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
-                    <li class="list-title">Area</li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="/transaction/area">Area</a></li>
-                </ul> --}}
             </li>
-            @role('Super Admin')
-            <li class="sidebar-header">
-                Maintenace
-            </li>
-            <li class="sidebar-item">
-                <a href="#information" data-toggle="collapse" class="sidebar-link collapsed">
-                    <span class="item">
-                        <i class="align-middle mr-2 fas fa-fw fa-info"></i> <span class="align-middle">Information</span>
-                    </span> 
-                </a>
-                <ul id="information" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
-                    <li class="list-title">Main</li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="/maintenance/customer">Customers</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="/maintenance/agent">Agents</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="/maintenance/van">Vans</a></li>
-                </ul>
-            </li>
-            @endrole
+
             @role('Super Admin')
             <li class="sidebar-header">
                 Other
@@ -103,7 +73,7 @@
                 <a href="/document-management" class="sidebar-link collapsed">
                     <span class="item">
                         <i class="align-middle mr-2 fas fa-fw fa-file"></i> <span class="align-middle">Document Management</span>
-                    </span> 
+                    </span>
                 </a>
             </li>
             @endrole

@@ -42,8 +42,8 @@
                                     <td>{{++$key}}</td>
                                     <td>
                                         <a href="#" class="align-middle edit" onclick="edit({{ $customer->id }})" title="Edit" data-toggle="modal" data-target="#customerModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-pen"></i></a>
-                                        <a href="#" class="align-middle" onclick="attachment({{ $customer->id }})" title="Upload" data-toggle="modal" data-target="#attachmentModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-file"></i></a>
-                                        <a href="#" class="align-middle" onclick="uploadAttachment({{ $customer->id }})" title="Attachment" data-toggle="modal" data-target="#uploadModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-upload"></i></a>
+                                        <a href="#" class="align-middle" onclick="attachment({{ $customer->id }})" title="Attachment" data-toggle="modal" data-target="#attachmentModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-file"></i></a>
+                                        <a href="#" class="align-middle" onclick="uploadAttachment({{ $customer->id }})" title="Upload" data-toggle="modal" data-target="#uploadModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-upload"></i></a>
                                         <a href="{{url('customer/destroy/' . $customer->id)}}" onclick="alert('Are you sure you want to Delete?')"><i class="align-middle fas fa-fw fa-trash"></i></a>
                                     </td>
                                     <td>{{$customer->subscriber_no}}</td>
@@ -94,7 +94,7 @@
                     <label for="inputPassword4">Last Name <span style="color: red">*</span></label>
                     <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name" required>
                 </div>
-                
+
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Email <span style="color: red">*</span></label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
@@ -104,12 +104,12 @@
                     <label for="inputPassword4">Address <span style="color: red">*</span></label>
                     <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" required>
                 </div>
-                
+
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Contact <span style="color: red">*</span></label>
                     <input type="number" class="form-control" id="contact" name="contact" placeholder="Enter Contact" required>
                 </div>
-                
+
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Birthday <span style="color: red">*</span></label>
                     <input type="date" class="form-control" id="birthday" name="birthday" required>
@@ -184,7 +184,7 @@
                 method: 'get',
                 success: function(data) {
                     $('#attachment-pdf-list, #attachment-image-list').empty();
-                    var record = data.attachments;                                                  
+                    var record = data.attachments;
                     for (let index = 0; index < record.length; index++) {
                         var path = '/attachment/requirement/' + record[index].id + '/' + record[index].attachment + "'" + ',' + "'" +  record[index].type;
                         $('#attachment-pdf-list').append('<a href="#" onclick="viewAttachment('+"'"+path+"'"+')">' + record[index].code + '</a>')
@@ -228,7 +228,7 @@
         thead th {
              white-space: nowrap;
         }
-      
+
         .modal-header h5 {
             color: #fff;
             margin: 0px;

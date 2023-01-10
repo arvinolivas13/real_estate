@@ -30,13 +30,16 @@ class PaymentController extends Controller
             'payment_classification' => ['required'],
             'amount' => ['required'],
             'reference_no',
+            'counter',
             'or_no',
             'attachment',
             'remarks',
         ]);
 
-        $request->request->add(['created_user' => Auth::user()->id]);
+        $transaction = Transaction::where('code', $request->code)->first();
+        $amortization = MonthlyAmortization::where("transaction_id", $transaction->id)->where('counter', $request->counter)->first();
 
+        $request->request->add(['created_user' => Auth::user()->id, 'monthly_amortization_id' => $amortization->id]);
 
         if($request->attachment != null) {
             $file = $request->attachment->getClientOriginalName();
@@ -53,10 +56,13 @@ class PaymentController extends Controller
         }
 
         if($request->payment_classification == 'MA') {
-            $transaction = Transaction::where('code', $request->code)->first();
-            $latest_amortization = MonthlyAmortization::where("transaction_id", $transaction->id)->where('status', 'PAID')->first();
-            dd($latest_amortization); die();
-            MonthlyAmortization::where('id', $latest_amortization->id)->update(['payment_id' => $payment_save->id, 'status' => 'PAID']);
+            $current_balance = $amortization->balance - $request->amount;
+
+            if( $current_balance <= 100) {
+                MonthlyAmortization::where('id', $amortization->id)->update(['balance' => $current_balance, 'status' => 'PAID']);
+            } else {
+                MonthlyAmortization::where('id', $amortization->id)->update(['balance' => $current_balance, 'status' => 'UNPAID']);
+            }
         }
 
         return redirect()->back()->with('success','Successfully Added');
@@ -72,6 +78,14 @@ class PaymentController extends Controller
     {
         $lot = Transaction::where('customer_id', $id)->orderBy('id')->get();
         return response()->json(compact('lot'));
+    }
+
+    public function ma_counter($code)
+    {
+        $transaction = Transaction::where('code', $code)->first();
+        $ma_counters = MonthlyAmortization::where('transaction_id', $transaction->id)->where('status', 'UNPAID')->get();
+
+        return response()->json(compact('ma_counters'));
     }
 
     public function update(Request $request, $id)

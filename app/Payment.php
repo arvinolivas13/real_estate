@@ -43,4 +43,9 @@ class Payment extends Model
     {
         return $this->belongsTo(PaymentType::class, 'payment_id');
     }
+
+    public function amortization()
+    {
+        return $this->belongsTo(MonthlyAmortization::class, 'monthly_amortization_id');
+    }
 }

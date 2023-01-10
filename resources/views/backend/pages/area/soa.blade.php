@@ -99,8 +99,8 @@
                     @else
                         @if($payment->payment_classification == 'MA')
                             <tr>
-                                <td style="padding: 15px; width: 100px; text-align: left;">{{ $payment->payment_classification }}</td>
-                                <td style="padding: 15px; width: 100px; text-align: left;">{{ date('M d, Y', strtotime($payment->date)) }}</td>
+                                <td style="padding: 15px; width: 100px; text-align: left;">{{ $payment->payment_classification . ' ('. $payment->amortization->counter .')'}}</td>
+                                <td style="padding: 15px; width: 100px; text-align: left;">{{ date('M d, Y', strtotime($payment->amortization->payment_date)) }}</td>
                                 <td style="padding: 15px; width: 100px; text-align: right;"> {{ date('M d, Y', strtotime($payment->date)) }}</td>
                                 <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->paymenttype->payment}}</td>
                                 <td style="padding: 15px; width: 100px; text-align: right;">{{ $payment->reference_no }}</td>
@@ -129,14 +129,14 @@
 
                 @foreach ($amortizations as $amortization)
                     <tr>
-                        <td style="padding: 15px; width: 100px; text-align: left;">{{$amortization->payment_classification}}</td>
+                        <td style="padding: 15px; width: 100px; text-align: left;">{{$amortization->payment_classification . ' ('.$amortization->counter .')'}}</td>
                         <td style="padding: 15px; width: 100px; text-align: left;">{{ date('M d, Y', strtotime($amortization->payment_date)) }}</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">--</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">-</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($lot->monthly_amortization, 2)}}</td>
+                        <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($amortization->balance, 2)}}</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">₱ 0.00</td>
                         <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($contract_price, 2)}}</td>
                     </tr>
@@ -297,11 +297,11 @@
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Purchase Date<span style="color: red">*</span></label>
-                    <input type="date" class="form-control" id="purchase_date" name="purchase_date" required>
+                    <input type="date" class="form-control" id="purchase_date" name="purchase_date" value="<?php echo date('Y-m-d'); ?>" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">End Date<span style="color: red">*</span></label>
-                    <input type="date" class="form-control" id="end_date" name="end_date" required>
+                    <input type="date" class="form-control" id="end_date" name="end_date" value="<?php echo date('Y-m-d'); ?>" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Transfer Fee<span style="color: red">*</span></label>

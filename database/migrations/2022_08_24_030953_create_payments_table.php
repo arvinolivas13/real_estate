@@ -17,7 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('payment_id');
-            // $table->unsignedBigInteger('monthly_amortization_id')->nullable();
+            $table->unsignedBigInteger('monthly_amortization_id')->nullable();
             $table->string('code');
             $table->date('date');
             $table->string('payment_classification');
@@ -39,9 +39,9 @@ class CreatePaymentsTable extends Migration
                 ->references('id')
                 ->on('payment_types');
 
-            // $table->foreign('monthly_amortization_id')
-            //     ->references('id')
-            //     ->on('monthly_amortizations');
+            $table->foreign('monthly_amortization_id')
+                ->references('id')
+                ->on('monthly_amortizations');
         });
     }
 
