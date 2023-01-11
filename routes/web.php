@@ -80,6 +80,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::group(['prefix' => 'payment'], function (){
         Route::get          ('/',                            'PaymentController@index'                          )->name('get');
+        Route::get          ('/all',                         'PaymentController@all'                          )->name('get');
         Route::post         ('/save',                        'PaymentController@store'                          )->name('save');
         Route::get          ('/edit/{id}',                   'PaymentController@edit'                           )->name('edit');
         Route::get          ('/amortization/{code}',         'PaymentController@ma_counter'                     )->name('edit');
@@ -93,6 +94,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get           ('/checkdp/{id}',                'TransactionController@checkdp'                   )->name('get');
         Route::get           ('/penalty',                     'TransactionController@penalty'                   )->name('get');
         Route::get           ('/soa/{id}',                    'TransactionController@soa'                       )->name('get');
+        Route::get           ('/soa_frontend/{id}',           'TransactionController@soa_frontend'                       )->name('get');
+        Route::get           ('/checksoa/{a}/{b}/{c}',        'TransactionController@check_soa'                       )->name('get');
+        Route::get           ('/exist/{id}',                  'TransactionController@account_exists'            )->name('get');
         Route::get           ('/nodownpayment/{id}',          'TransactionController@noDownpayment'             )->name('get');
         Route::post          ('/generate_amort/{id}',         'TransactionController@generate_amortization'     )->name('get');
     });

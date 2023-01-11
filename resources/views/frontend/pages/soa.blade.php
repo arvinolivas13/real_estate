@@ -1,12 +1,24 @@
-@extends('backend.master.template')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Brilliant Five J Construction and Development Corp.</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-@section('title', 'E-SOA')
-
-@section('breadcrumbs')
-    <span>E-SOA</span>
-@endsection
-
-@section('content')
+    <script src="{{asset('/js/jquery.validate.min.js')}}" ></script>
+    <link href="{{{ URL::asset('backend/css/modern.css') }}}" rel="stylesheet">
+    <link href="{{asset('/plugins/toastr/toastr.min.css')}}" rel="stylesheet">
+    <link href="{{asset('/css/custom.css')}}" rel="stylesheet">
+    {{-- <script src="{{{ URL::asset('backend/js/settings.js') }}}"></script> --}}
+    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="{{asset('lib/main.css')}}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Document</title>
+</head>
+<body>
 
 <div class="main">
     <div id="printableSoa" class="main-container" style="background: white; padding: 10px 40px;">
@@ -150,13 +162,13 @@
                 <tr style="border-bottom: 2px solid; border-top: 2px solid;">
                     <th style="padding: 15px; width: 100px; text-align: left;">Totals</th>
                     <th style="padding: 15px; width: 100px; text-align: left;"></th>
-                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($lot->tcp, 2)}}</th>
                     <th style="padding: 15px; width: 100px; text-align: right;"></th>
                     <th style="padding: 15px; width: 100px; text-align: right;"></th>
                     <th style="padding: 15px; width: 100px; text-align: right;"></th>
                     <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($lot->tcp - $regular_amount_pay, 2)}}</th>
                     <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($regular_amount_pay, 2)}}</th>
-                    <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($lot->tcp - $regular_amount_pay, 2)}}</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
                 </tr>
             </table>
         </div>
@@ -199,13 +211,13 @@
                 <tr style="border-bottom: 2px solid; border-top: 2px solid;">
                     <th style="padding: 15px; width: 100px; text-align: left;">Total</th>
                     <th style="padding: 15px; width: 100px; text-align: left;"></th>
-                    <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($penalty_amount_due, 2)}}</th>
+                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
                     <th style="padding: 15px; width: 100px; text-align: right;"></th>
                     <th style="padding: 15px; width: 100px; text-align: right;"></th>
                     <th style="padding: 15px; width: 100px; text-align: right;"></th>
                     <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($penalty_amount_due, 2)}}</th>
                     <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($penalty_amount_pay, 2)}}</th>
-                    <th style="padding: 15px; width: 100px; text-align: right;"></th>
+                    <th style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($penalty_amount_due, 2)}}</th>
                 </tr>
             </table>
         </div>
@@ -278,148 +290,18 @@
         </div>
     </div>
 
-    {{-- MODAL --}}
-<div class="modal fade" id="amortizationModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Generate Monthly Amortization</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body m-3">
-                <form id="modal-form" action="{{url('transaction/generate_amort/' . $id)}}" method="post">
-                @csrf
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Reservation Date<span style="color: red">*</span></label>
-                    <input type="date" class="form-control" value="{{$lot->reservation_date}}" readonly>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Purchase Date<span style="color: red">*</span></label>
-                    <input type="date" class="form-control" id="purchase_date" name="purchase_date" value="<?php echo date('Y-m-d'); ?>" required>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">End Date<span style="color: red">*</span></label>
-                    <input type="date" class="form-control" id="end_date" name="end_date" value="<?php echo date('Y-m-d'); ?>" required>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Transfer Fee<span style="color: red">*</span></label>
-                    <input type="double" class="form-control" id="transfer_fee" name="transfer_fee" placeholder="Transfer Fee" required>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary submit-button">Generate</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
     <a onclick='printDiv();' class="float">
         <i class="fa fa-print my-float"></i>
     </a>
 </div>
-@endsection
-
-@section('chart-js')
+<script src="{{{ URL::asset('backend/js/app.js') }}}"></script>
+<script src="{{asset('lib/main.js')}}"></script>
+<script src="{{asset('/plugins/cropimg/cropzee.js')}}" ></script>
+<script src="{{asset('/plugins/toastr/toastr.min.js')}}" ></script>
+<script src="{{asset('/js/global.js')}}" ></script>
 <script>
     $(function() {
 
-        new Chart(document.getElementById("chartjs-bar"), {
-            type: "bar",
-            data: {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Last year",
-                    backgroundColor: window.theme.primary,
-                    borderColor: window.theme.primary,
-                    hoverBackgroundColor: window.theme.primary,
-                    hoverBorderColor: window.theme.primary,
-                    data: [54, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79],
-                    barPercentage: .75,
-                    categoryPercentage: .5
-                }, {
-                    label: "This year",
-                    backgroundColor: "#E8EAED",
-                    borderColor: "#E8EAED",
-                    hoverBackgroundColor: "#E8EAED",
-                    hoverBorderColor: "#E8EAED",
-                    data: [69, 66, 24, 48, 52, 51, 44, 53, 62, 79, 51, 68],
-                    barPercentage: .75,
-                    categoryPercentage: .5
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                legend: {
-                    display: false
-                },
-                scales: {
-                    yAxes: [{
-                        gridLines: {
-                            display: false
-                        },
-                        stacked: false,
-                        ticks: {
-                            stepSize: 20
-                        }
-                    }],
-                    xAxes: [{
-                        stacked: false,
-                        gridLines: {
-                            color: "transparent"
-                        }
-                    }]
-                }
-            }
-        });
-
-        new Chart(document.getElementById("chartjs-pie"), {
-            type: "pie",
-            data: {
-                labels: ["GRAND VILLAS FARM PHASE 1", "GRAND VILLAS FARM PHASE 2", "GRAND VILLAS FARM PHASE 2-B", "GRAND VILLAS FARM PHASE 3"],
-                datasets: [{
-                    data: [150, 125, 54, 146],
-                    backgroundColor: [
-                        window.theme.primary,
-                        window.theme.warning,
-                        window.theme.danger,
-                        "#E8EAED"
-                    ],
-                    borderColor: "transparent"
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                legend: {
-                    display: false
-                }
-            }
-        });
-
-        new Chart(document.getElementById("chartjs-pie2"), {
-            type: "pie",
-            data: {
-                labels: ["Antipolo", "Batangas", "Quezon City", "Zambales"],
-                datasets: [{
-                    data: [20, 2, 7, 11],
-                    backgroundColor: [
-                        window.theme.success,
-                        window.theme.secondary,
-                        window.theme.warning,
-                        "#E8EAED"
-                    ],
-                    borderColor: "transparent"
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                legend: {
-                    display: false
-                }
-            }
-        });
     });
 
    function printDiv() {
@@ -445,9 +327,7 @@
         });
     }
 </script>
-@endsection
 
-@section('styles')
 <style>
 .float{
 	position:fixed;
@@ -480,4 +360,6 @@ a.float:hover {
 }
 
 </style>
-@endsection
+
+</body>
+</html>

@@ -76,6 +76,28 @@ class TransactionController extends Controller
         }
     }
 
+    public function account_exists($id)
+    {
+        if(AreaDetailLot::where('subscriber_no', $id)->where('status', 'ACTIVE')->exists()) {
+            return response()->json(['Message' => 'DETECTED']);
+        } else {
+            return response()->json(['Message' => 'NONE']);
+        }
+    }
+
+    public function check_soa($lastname, $birthday, $subscriber_no)
+    {
+        $subcriber = AreaDetailLot::where('subscriber_no', $subscriber_no)->first();
+        $transaction = Transaction::where('lot_id', $subcriber->id)->first();
+
+        if($transaction->customer->lastname === $lastname && $transaction->customer->birthday === $birthday) {
+            return response()->json(['transaction' => $subcriber->id]);
+        } else {
+            return response()->json(['Message' => 'NONE']);
+        }
+
+    }
+
     public function soa($id)
     {
         $transaction = Transaction::where('lot_id', $id)->firstOrFail();
@@ -123,6 +145,7 @@ class TransactionController extends Controller
 
         $downpayment->save();
     }
+
 
     function getSameDayNextMonth(DateTime $startDate, $numberOfMonthsToAdd = 1) {
         $startDateDay = (int) $startDate->format('j');
@@ -217,5 +240,39 @@ class TransactionController extends Controller
                 $penalty->save();
             }
         }
+    }
+
+    public function soa_frontend($id)
+    {
+        $transaction = Transaction::where('lot_id', $id)->firstOrFail();
+        $id = $id;
+        $customer = Customer::where('id', $transaction->customer_id)->firstOrFail();
+        $lot = AreaDetailLot::where('id', $transaction->lot_id)->with('block')->firstOrFail();
+        $dp = Payment::where('code', $transaction->code)->where('payment_classification', 'DP')->firstOrFail();
+        $res = Payment::where('code', $transaction->code)->where('payment_classification', 'RES')->firstOrFail();
+        $payment_transfer_fee = Payment::where('code', $transaction->code)->where('payment_classification', 'TF')->with('customer')->get();
+        $amortizations = MonthlyAmortization::where('transaction_id', $transaction->id)->where('status', 'UNPAID')->orderBy('payment_date')->get();
+        $generate_amortization = MonthlyAmortization::where('transaction_id', $transaction->id)->exists();
+        $remaining_balance = $lot->tcp - $dp->amount - $res->amount;
+
+        // Regular Pay
+        $payments = Payment::where('code', $transaction->code)->where('payment_classification', '!=', 'PEN')->with('customer', 'transaction_record', 'amortization')->get();
+        $regular_amount_pay = $payments->sum('amount');
+
+        // Penalty Fee
+        $penalties = Penalty::select(DB::raw("SUM(amount) as amount"), 'penalty_date as penalty_date')->where('transaction_id', $id)->groupBy(DB::raw("penalty_date"))->where('status', 'UNPAID')->get();
+        $payment_penalty = Payment::where('code', $transaction->code)->where('payment_classification', 'PEN')->with('customer')->get();
+        $penalty_amount_pay = $payment_penalty->sum('amount');
+        $penalty_total = Penalty::where('transaction_id', $id)->where('status', 'UNPAID')->get();
+        $penalty_amount_due = $penalty_total->sum('amount');
+
+        // Transfer Fee
+        $transfer_fees = TransferFee::where('transaction_id', $transaction->id)->where('status', 'UNPAID')->orderBy('payment_date')->get();
+        $transfer_fee_amount_pay = $payment_transfer_fee->sum('amount');
+        $transfer_fee_amount_due = $transfer_fees->sum('amount');
+
+
+        return view('frontend.pages.soa', compact('generate_amortization', 'payments', 'customer', 'lot', 'dp', 'res', 'id', 'amortizations', 'penalties', 'remaining_balance', 'regular_amount_pay',
+                                                      'penalty_amount_pay', 'penalty_amount_due', 'transfer_fees', 'transfer_fee_amount_due', 'transfer_fee_amount_pay'));
     }
 }

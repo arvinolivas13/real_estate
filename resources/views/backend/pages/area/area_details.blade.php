@@ -453,6 +453,11 @@
         $( document ).ready(function() {
             filterSelection("all");
 
+            $('#reservation_percent, #tcp').change(function(){
+                $('#reservation_fee').val(($('#reservation_percent').val() / 100) * $('#tcp').val());
+                $('#balance').val($('#tcp').val() - (($('#reservation_percent').val() / 100) * $('#tcp').val()));
+            })
+
             $('#customer_records').DataTable({
                 scrollX: true,
             });

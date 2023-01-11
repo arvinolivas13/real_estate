@@ -126,12 +126,12 @@
                         <form action="#" class="form-row gutter-30">
                             <div class="col-lg-9 col-md-8 col-12">
                                 <div class="find-home-item mb-40">
-                                    <input type="text" name="account-no" placeholder="Account No.">
+                                    <input type="text" id="subscriber_no" name="subscriber_no" placeholder="Subscriber No." >
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-4 col-12">
                                 <div class="find-home-item">
-                                    <button type="submit">Check Status </button>
+                                    <button type="button" onclick="checkstatus()">Check Status </button>
                                 </div>
                             </div>
                         </form>
@@ -140,6 +140,7 @@
             </div>
         </div>
         <!--Find home area end-->
+
 
         <!--Feature property section start-->
         <div class="property-area fadeInUp wow ptb-130" data-wow-delay="0.2s">
@@ -414,7 +415,7 @@
                             <h4 class="title-2">WE ALWAYS PROVIDE PRIORITY TO OUR CLIENTS</h4>
                         </div>
                         <div class="welcome-content">
-                            <p> <span>Brilliant Five J</span> is a construction and development corporation that are selling farm-lots at Rizal. We provide quality and efficient service to our clients 
+                            <p> <span>Brilliant Five J</span> is a construction and development corporation that are selling farm-lots at Rizal. We provide quality and efficient service to our clients
                         to help them with investing and acquiring farm land properties at the lowest possible price.</p>
                         </div>
                         <div class="welcome-services">
