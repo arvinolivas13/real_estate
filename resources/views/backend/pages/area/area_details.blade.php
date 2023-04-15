@@ -44,6 +44,9 @@
                                         <button class="btn" onclick="removeLot({{$block->id}})">
                                             <i class="align-middle fas fa-fw fa-times" style="color: black"></i> Reduce Lot
                                         </button>
+                                        <button class="btn" onclick="addLot({{$block->id}})">
+                                            <i class="align-middle fas fa-fw fa-plus" style="color: black "></i> Add Lot
+                                        </button>
                                     </div>
                                     <h4> {{'BLOCK-' . $block->block}} ({{App\AreaDetailLot::where('block_id', $block->id)->where('status', '!=', 'Open')->count() . '/' .App\AreaDetailLot::where('block_id', $block->id)->count()}}) </h4>
                                         <div class="row">
@@ -123,16 +126,20 @@
                     <input type="number" class="form-control" id="reservation_percent" name="reservation_percent" placeholder="Enter Reservation %" required>
                 </div>
                 <div class="form-group col-md-12">
+                    <label for="inputPassword4">Months to Pay<span style="color: red">*</span></label>
+                    <input type="number" class="form-control" id="no_of_month" name="no_of_month" placeholder="Enter Total # of Months to Pay" required>
+                </div>
+                <div class="form-group col-md-12">
                     <label for="inputPassword4">Reservation Fee<span style="color: red">*</span></label>
-                    <input type="number" class="form-control" id="reservation_fee" name="reservation_fee" placeholder="Enter Reservation Fee" required>
+                    <input type="number" class="form-control" id="reservation_fee" name="reservation_fee" placeholder="Enter Reservation Fee" required readonly>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Balance<span style="color: red">*</span></label>
-                    <input type="number" class="form-control" id="balance" name="balance" placeholder="Enter Balance" required>
+                    <input type="number" class="form-control" id="balance" name="balance" placeholder="Enter Balance" required readonly>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Monthly Amortization<span style="color: red">*</span></label>
-                    <input type="number" class="form-control" id="monthly_amortization" name="monthly_amortization" placeholder="Enter Monthly Amortization" required>
+                    <input type="number" class="form-control" id="monthly_amortization" name="monthly_amortization" placeholder="Enter Monthly Amortization" required readonly>
                 </div>
                 <div class="form-group col-md-12 customize-div">
                     <label class="inputPassword4">Status <span style="color: red">*</span></label>
@@ -295,6 +302,7 @@
             var i, arr1, arr2;
             arr1 = element.className.split(" ");
             arr2 = name.split(" ");
+
             for (i = 0; i < arr2.length; i++) {
                 if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
             }
@@ -430,7 +438,7 @@
 
                 },
                 success: function(data) {
-                    $('#modal-form').attr('action', 'customer/update/' + data.customer.id);
+                    $('#modal-form').attr('action', '/customer/update/' + data.customer.id);
                     $('.modal-title').text('Update Customer');
                     $('.submit-button').text('Update');
                         $.each(data, function() {
@@ -450,12 +458,21 @@
             }
         }
 
+        function addLot(id) {
+            let message = "Are you sure you want to Add?";
+
+            if (confirm(message) == true) {
+                location.href = '/area/add/' + id
+            }
+        }
+
         $( document ).ready(function() {
             filterSelection("all");
 
-            $('#reservation_percent, #tcp').change(function(){
+            $('#reservation_percent, #tcp, #no_of_month').change(function(){
                 $('#reservation_fee').val(($('#reservation_percent').val() / 100) * $('#tcp').val());
                 $('#balance').val($('#tcp').val() - (($('#reservation_percent').val() / 100) * $('#tcp').val()));
+                $('#monthly_amortization').val(parseFloat($('#balance').val()  / $('#no_of_month').val()).toFixed(2));
             })
 
             $('#customer_records').DataTable({
@@ -477,7 +494,7 @@
             text-align: right;
         }
         .action-item button {
-            background: #c54545;
+            background: gray;
             color: #fff !important;
             margin-top: 5px;
             margin-right: 5px;

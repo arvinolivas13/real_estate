@@ -51,6 +51,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post         ('/save',                        'AreaController@store'                          )->name('save');
         Route::get          ('/edit/{id}',                   'AreaController@edit'                           )->name('edit');
         Route::post         ('/update/{id}',                 'AreaController@update'                         )->name('update');
+        Route::get          ('/add/{id}',                    'AreaController@add'                            )->name('delete');
         Route::get          ('/destroy/{id}',                'AreaController@destroy'                        )->name('delete');
     });
 

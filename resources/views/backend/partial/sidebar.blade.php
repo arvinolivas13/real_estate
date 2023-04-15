@@ -17,7 +17,7 @@
             <li class="sidebar-header">
                 Main
             </li>
-            @role('Super Admin|Agent')
+            {{-- @role('Super Admin| Agent |Jayson Obeña') --}}
             <li class="sidebar-item">
                 <a href="#dashboard" data-toggle="collapse" class="sidebar-link collapsed">
                     <span class="item">
@@ -35,13 +35,13 @@
                     </span>
                 </a>
             </li>
-            @endrole
+            {{-- @endrole --}}
             <li class="sidebar-header">
                 Transaction
             </li>
 
             <li class="sidebar-item">
-                @role('Super Admin|Agent')
+                {{-- @role('Super Admin|Agent|Jayson Obeña') --}}
                 <a href="{{ url('area') }}" class="sidebar-link collapsed">
                     <span class="item">
                         <i class="align-middle mr-2 fas fa-fw fa-receipt"></i> <span class="align-middle">Area</span>
@@ -62,10 +62,10 @@
                         <i class="align-middle mr-2 fas fa-fw fa-minus-circle"></i> <span class="align-middle">Penalty</span>
                     </span>
                 </a>
-                @endrole
+                {{-- @endrole --}}
             </li>
 
-            @role('Super Admin')
+            {{-- @role('Super Admin|Jayson Obeña') --}}
             <li class="sidebar-header">
                 Documents
             </li>
@@ -76,9 +76,9 @@
                     </span>
                 </a>
             </li>
-            @endrole
+            {{-- @endrole --}}
 
-            @role('Super Admin')
+            {{-- @role('Super Admin|Jayson Obeña') --}}
             <li class="sidebar-header">
                 Other
             </li>
@@ -89,7 +89,7 @@
                     </span>
                 </a>
             </li>
-            @endrole
+            {{-- @endrole --}}
 
             {{-- <li class="sidebar-header">
                 Maintenance

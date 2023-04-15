@@ -76,7 +76,7 @@
                 </button>
             </div>
             <div class="modal-body m-3">
-                <form id="modal-form" action="{{url('customer/save')}}" method="post">
+                <form id="customerForm" action="{{url('customer/save')}}" method="post">
                 @csrf
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Customer Code <span style="color: red">*</span></label>
@@ -111,8 +111,8 @@
                 </div>
 
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Birthday <span style="color: red">*</span></label>
-                    <input type="date" class="form-control" id="birthday" name="birthday" required>
+                    <label for="inputPassword4">Birthday</label>
+                    <input type="date" class="form-control" id="birthday" name="birthday">
                 </div>
 
                 <div class="form-group col-md-12">
@@ -159,7 +159,8 @@
 
                 },
                 success: function(data) {
-                    $('#modal-form').attr('action', 'customer/update/' + data.customer.id);
+                    console.log(data.customer.id);
+                    $('#customerForm').attr('action', 'customer/update/' + data.customer.id);
                     $('.modal-title').text('Update Customer');
                     $('.submit-button').text('Update');
                         $.each(data, function() {

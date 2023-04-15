@@ -23,6 +23,7 @@ class AreaDetailLot extends Model
         'reservation_fee',
         'balance',
         'monthly_amortization',
+        'no_of_month',
         'status',
         'created_user',
     ];

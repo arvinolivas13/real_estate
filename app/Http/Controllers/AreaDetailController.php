@@ -35,6 +35,7 @@ class AreaDetailController extends Controller
             'reservation_fee' => ['required', 'max:250'],
             'balance' => ['required', 'max:250'],
             'monthly_amortization' => ['required', 'max:250'],
+            'no_of_month',
             'status' => ['required'],
         ]);
 
@@ -52,6 +53,7 @@ class AreaDetailController extends Controller
                 'reservation_fee' => $request->reservation_fee,
                 'balance' => $request->balance,
                 'monthly_amortization' => $request->monthly_amortization,
+                'no_of_month' => $request->no_of_month,
                 'status' => 'OPEN',
                 'created_user' => Auth::user()->id,
               ]);

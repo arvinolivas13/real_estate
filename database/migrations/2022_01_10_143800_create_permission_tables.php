@@ -40,6 +40,14 @@ class CreatePermissionTables extends Migration
                 'guard_name' => 'web'
             ],
             [
+                'name' => 'Jayson Obeña', 
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'Resian Obeña', 
+                'guard_name' => 'web'
+            ],
+            [
                 'name' => 'Agent', 
                 'guard_name' => 'web'
             ]

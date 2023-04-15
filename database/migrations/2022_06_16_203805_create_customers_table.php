@@ -22,7 +22,7 @@ class CreateCustomersTable extends Migration
             $table->string('email');
             $table->string('address');
             $table->string('contact');
-            $table->date('birthday');
+            $table->date('birthday')->nullable();
             $table->string('occupation')->nullable();;
             $table->string('gender');
             $table->string('status')->default('ACTIVE');

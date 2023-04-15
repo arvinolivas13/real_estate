@@ -13,7 +13,7 @@ class AreaController extends Controller
 {
     public function index()
     {
-        $areas = Area::orderBy('id')->get();
+        $areas = Area::orderBy('id')->where('status', 'ACTIVE')->get();
         return view('backend.pages.area.area', compact('areas'));
     }
 
@@ -74,6 +74,29 @@ class AreaController extends Controller
 
         Area::find($id)->update($requestData);
         return redirect()->back()->with('success','Successfully Updated');
+    }
+
+    public function add($id)
+    {
+        $latest_lot = AreaDetailLot::where('block_id', $id)->orderBy('id', 'desc')->first();
+        $lot = new AreaDetailLot([
+            'block_id' => $latest_lot->block_id,
+            'lot' => $latest_lot->lot + 1,
+            'area' => $latest_lot->area,
+            'psqm' => $latest_lot->psqm,
+            'tcp' => $latest_lot->tcp,
+            'reservation_percent' => $latest_lot->reservation_percent,
+            'reservation_fee' => $latest_lot->reservation_fee,
+            'balance' => $latest_lot->balance,
+            'monthly_amortization' => $latest_lot->monthly_amortization,
+            'no_of_month' => $latest_lot->no_of_month,
+            'status' => 'OPEN',
+            'created_user' => Auth::user()->id,
+          ]);
+
+        $lot->save();
+
+        return redirect()->back()->with('success','Successfully Deleted!');
     }
 
     public function destroy($id)

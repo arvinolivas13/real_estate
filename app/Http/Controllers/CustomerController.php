@@ -24,7 +24,7 @@ class CustomerController extends Controller
             'email' => ['required'],
             'address' => ['required'],
             'contact' => ['required'],
-            'birthday' => ['required'],
+            'birthday',
             'occupation',
             'gender' => ['required'],
             'status' => ['required'],
@@ -51,6 +51,7 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         $destroy = Customer::find($id);
+        Customer::find($id)->update(['subscriber_no' => $destroy->subscriber_no . '(deleted)']);
         $destroy->delete();
         return redirect()->back()->with('success','Successfully Deleted!');
     }
