@@ -39,7 +39,12 @@ class PaymentController extends Controller
         $transaction = Transaction::where('code', $request->code)->first();
         $amortization = MonthlyAmortization::where("transaction_id", $transaction->id)->where('counter', $request->counter)->first();
 
-        $request->request->add(['created_user' => Auth::user()->id, 'monthly_amortization_id' => $amortization->id]);
+        if($amortization == null) {
+            $request->request->add(['created_user' => Auth::user()->id]);
+        } else {
+            $request->request->add(['created_user' => Auth::user()->id, 'monthly_amortization_id' => $amortization->id]);
+        }
+
 
         if($request->attachment != null) {
             $file = $request->attachment->getClientOriginalName();

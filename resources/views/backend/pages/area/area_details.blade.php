@@ -356,7 +356,7 @@
                                 $('.reserve-button').text('Down Payment');
                                 $('#modal-form').attr('action', '/payment/save');
                             } else if (result.isDenied) {
-                                location.href = '/transaction/nodownpaynment/' + id;
+                                location.href = '/transaction/nodownpayment/' + id;
                             }
                         })
                    }
