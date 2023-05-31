@@ -15,50 +15,12 @@
             <div class="card">
                 <div class="card-header">
                     <h3>Customer Information</h3>
-                    <button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#customerModal" style="float:right">
-                        Add Customer
+                    <button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#customerModal" style="float:right" onclick="clearField()">
+                        ADD CUSTOMER
                     </button>
                 </div>
                 <div class="card-body">
-                    <table id="customer_record" class="table table-striped" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Action</th>
-                                <th>Customer Code</th>
-                                <th>Customer Name</th>
-                                <th>Email</th>
-                                <th>Address</th>
-                                <th>Contact</th>
-                                <th>Birthday</th>
-                                <th>Occupation</th>
-                                <th>Gender</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($customers as $key => $customer)
-                                <tr>
-                                    <td>{{++$key}}</td>
-                                    <td>
-                                        <a href="#" class="align-middle edit" onclick="edit({{ $customer->id }})" title="Edit" data-toggle="modal" data-target="#customerModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-pen"></i></a>
-                                        <a href="#" class="align-middle" onclick="attachment({{ $customer->id }})" title="Attachment" data-toggle="modal" data-target="#attachmentModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-file"></i></a>
-                                        <a href="#" class="align-middle" onclick="uploadAttachment({{ $customer->id }})" title="Upload" data-toggle="modal" data-target="#uploadModal" id={{$customer->id}}><i class="align-middle fas fa-fw fa-upload"></i></a>
-                                        <a href="{{url('customer/destroy/' . $customer->id)}}" onclick="alert('Are you sure you want to Delete?')"><i class="align-middle fas fa-fw fa-trash"></i></a>
-                                    </td>
-                                    <td>{{$customer->subscriber_no}}</td>
-                                    <td>{{$customer->firstname . ' ' . $customer->middlename . ' ' . $customer->lastname}}</td>
-                                    <td>{{$customer->email}}</td>
-                                    <td>{{$customer->address}}</td>
-                                    <td>{{$customer->contact}}</td>
-                                    <td>{{$customer->birthday}}</td>
-                                    <td>{{$customer->occupation}}</td>
-                                    <td>{{$customer->gender}}</td>
-                                    <td>{{$customer->status}}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <table id="customer_table" class="table table-striped" style="width:100%"></table>
                 </div>
             </div>
     </div>
@@ -67,88 +29,117 @@
 @include('backend.partial.component.attachment')
 {{-- MODAL --}}
 <div class="modal fade" id="customerModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Customer</h5>
+                <h5 class="modal-title">CUSTOMER</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body m-3">
-                <form id="customerForm" action="{{url('customer/save')}}" method="post">
-                @csrf
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Customer Code <span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="subscriber_no" name="subscriber_no" placeholder="Enter Customer Code" required>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">First Name <span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name" required>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Middle Name</label>
-                    <input type="text" class="form-control" id="middlename" name="middlename" placeholder="Enter Middle Name">
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Last Name <span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name" required>
-                </div>
+                <div class="row">
+                    <div class="form-group col-md-12 subscriber_no">
+                        <label for="inputPassword4">Customer Code <span style="color: red">*</span></label>
+                        <input type="text" class="form-control" id="subscriber_no" name="subscriber_no" placeholder="Enter Customer Code" required>
+                    </div>
+                    <div class="form-group col-md-4 firstname">
+                        <label for="inputPassword4">First Name <span style="color: red">*</span></label>
+                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name" required>
+                    </div>
+                    <div class="form-group col-md-4 middlename">
+                        <label for="inputPassword4">Middle Name</label>
+                        <input type="text" class="form-control" id="middlename" name="middlename" placeholder="Enter Middle Name">
+                    </div>
+                    <div class="form-group col-md-4 lastname">
+                        <label for="inputPassword4">Last Name <span style="color: red">*</span></label>
+                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name" required>
+                    </div>
+    
+                    <div class="form-group col-md-6 email">
+                        <label for="inputPassword4">Email <span style="color: red">*</span></label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+                    </div>
 
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Email <span style="color: red">*</span></label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
-                </div>
+                    <div class="form-group col-md-6 contact">
+                        <label for="inputPassword4">Contact <span style="color: red">*</span></label>
+                        <input type="number" class="form-control" id="contact" name="contact" placeholder="Enter Contact" required>
+                    </div>
+    
+                    <div class="form-group col-md-12 address">
+                        <label for="inputPassword4">Address <span style="color: red">*</span></label>
+                        <textarea name="address" id="address" class="form-control" placeholder="Enter Address" required></textarea>
+                    </div>
+    
+                    <div class="form-group col-md-6 birthday">
+                        <label for="inputPassword4">Birthday</label>
+                        <input type="date" class="form-control" id="birthday" name="birthday">
+                    </div>
 
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Address <span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" required>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Contact <span style="color: red">*</span></label>
-                    <input type="number" class="form-control" id="contact" name="contact" placeholder="Enter Contact" required>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Birthday</label>
-                    <input type="date" class="form-control" id="birthday" name="birthday">
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Occupation</label>
-                    <input type="text" class="form-control" id="occupation" name="occupation" placeholder="Enter Occupation">
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label class="inputPassword4">Gender <span style="color: red">*</span></label>
-                    <select class="form-control" name="gender" required>
-                        <option value="MALE">MALE</option>
-                        <option value="FEMALE">FEMALE</option>
-                    </select>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label class="inputPassword4">Status <span style="color: red">*</span></label>
-                    <select class="form-control" name="status" required>
-                        <option value="ACTIVE">ACTIVE</option>
-                        <option value="INACTIVE">INACTIVE</option>
-                    </select>
+                    <div class="form-group col-md-6 gender">
+                        <label class="inputPassword4">Gender <span style="color: red">*</span></label>
+                        <select class="form-control" name="gender" id="gender" required>
+                            <option value="MALE">MALE</option>
+                            <option value="FEMALE">FEMALE</option>
+                        </select>
+                    </div>
+    
+                    <div class="form-group col-md-12 occupation">
+                        <label for="inputPassword4">Occupation</label>
+                        <input type="text" class="form-control" id="occupation" name="occupation" placeholder="Enter Occupation">
+                    </div>
+    
+                    <div class="form-group col-md-12 status">
+                        <label class="inputPassword4">Status <span style="color: red">*</span></label>
+                        <select class="form-control" name="status" id="status" required>
+                            <option value="ACTIVE">ACTIVE</option>
+                            <option value="INACTIVE">INACTIVE</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary submit-button">Add</button>
-                </form>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                <button type="button" class="btn btn-primary submit-button" onclick="saveRecord()">SAVE</button>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">CONFIRMATION</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">ARE YOU SURE YOU WANT TO DELETE THIS RECORD?</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                <button type="button" class="btn btn-success" onclick="deleteRecord()">YES</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 @section('scripts')
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script>
+        var table;
+        var action = 'save';
+        var hold_id = null;
+
         function edit(id){
+            action = 'update';
+            hold_id = id;
+            
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -160,14 +151,14 @@
                 },
                 success: function(data) {
                     console.log(data.customer.id);
-                    $('#customerForm').attr('action', 'customer/update/' + data.customer.id);
-                    $('.modal-title').text('Update Customer');
+                    $('#customerModal').modal('show');
                     $('.submit-button').text('Update');
-                        $.each(data, function() {
-                            $.each(this, function(k, v) {
-                                $('#'+k).val(v);
-                            });
+                    
+                    $.each(data, function() {
+                        $.each(this, function(k, v) {
+                            $('#'+k).val(v);
                         });
+                    });
                 }
             });
         }
@@ -210,9 +201,107 @@
             }
         }
 
+        function saveRecord() {
+            var data = {
+                _token: '{{csrf_token()}}',
+                subscriber_no: $('#subscriber_no').val(),
+                firstname: $('#firstname').val(),
+                middlename: $('#middlename').val(),
+                lastname: $('#lastname').val(),
+                email: $('#email').val(),
+                address: $('#address').val(),
+                contact: $('#contact').val(),
+                birthday: $('#birthday').val(),
+                gender: $('#gender').val(),
+                occupation: $('#occupation').val(),
+                status: $('#status').val(),
+                action: action,
+                id: hold_id
+            };
+
+            $('.error-message').remove();
+
+            $.post('/customer/save', data).done(function(response){
+                clearField();
+                $('#customerModal').modal('hide');
+                table.clear().draw();
+            }).fail(function(response) {
+                for (var field in response.responseJSON.errors) {
+                    $('#'+field+"_error_message").remove();
+                    $('.'+field).append('<span id="'+field+'_error_message" class="error-message">'+response.responseJSON.errors[field][0]+'</span>');
+                }
+            });
+        }
+
+        function clearField() {
+            hold_id = null;
+            action = 'save';
+            
+            $('#subscriber_no').val("");
+            $('#firstname').val("");
+            $('#middlename').val("");
+            $('#lastname').val("");
+            $('#email').val("");
+            $('#contact').val("");
+            $('#address').val("");
+            $('#birthday').val("");
+            $('#gender').val("MALE");
+            $('#occupation').val("");
+            $('#status').val("ACTIVE");
+        }
+
+        function confirmDelete(id) {
+            hold_id = id;
+            action = 'delete';
+            $('#confirmModal').modal('show');
+        }
+
+        function deleteRecord() {
+            $.get('/customer/destroy/' + hold_id).done(function(response) {
+                $('#confirmModal').modal('hide');
+                clearField();
+                table.clear().draw();
+            });
+        }
+
         $(function() {
-            $('#customer_record').DataTable({
-                scrollX: true,
+            
+            table = $('#customer_table').DataTable({
+                responsive: true,
+                processing: true,
+                serverSide: true,
+                pageLength: 20,
+                ajax: {
+                    url: '/customer/get',
+                    type: 'GET'
+                },
+                columns: [
+                    { data: null, title: '', render: function(data, type, row, meta) {
+                        return "<i class='fas fa-circle stats-" + row.status + "' title='"+row.status+"'></i>";
+                    }},
+                    { data: null, title: 'ACTION', render: function(data, type, row, meta) {
+                        var html = "<td>";
+                            html += "<a href='#' class='align-middle edit' onclick='edit("+row.id+")' title='EDIT'><i class='align-middle fas fa-fw fa-pen'></i></a>";
+                            html += "<a href='#' class='align-middle edit' onclick='confirmDelete("+row.id+")' title='DELETE'><i class='align-middle fas fa-fw fa-trash'></i></a>";
+                            html += "<a href='#' class='align-middle edit' onclick='attachment("+row.id+")' title='ATTACHMENT'><i class='align-middle fas fa-fw fa-paperclip'></i></a>";
+                            html += "</td>";
+                        return html;
+                    }},
+                    { data: 'subscriber_no', title: 'CODE', render: function(data, type, row, meta) {
+                        return "<span class='code'>"+row.subscriber_no+"</span>";
+                    }},
+                    { data: null, title: 'NAME', render: function(data, type, row, meta) {
+                        return row.firstname + " " + (row.middlename !== ''?row.middlename + ' ':'') + row.lastname;
+                    }},
+                    { data: 'email', title: 'EMAIL'},
+                    { data: 'address', title: 'ADDRESS'},
+                    { data: 'contact', title: 'CONTACT NO.'},
+                    { data: 'birthday', title: 'BIRTHDAY', render: function(data, type, row, meta) {
+                        return moment(row.birthday).format('MMM DD, YYYY');
+                    }},
+                    { data: 'occupation', title: 'OCCUPATION'},
+                    { data: 'gender', title: 'GENDER'},
+                ]
             });
         });
 
@@ -226,8 +315,17 @@
             width: 1px;
             white-space: nowrap;
         }
+        .stats-ACTIVE {
+            color: #31f331 !important;
+        }
+        .stats-INACTIVE {
+            color: red !important;
+        }
         thead th {
-             white-space: nowrap;
+            white-space: nowrap;
+        }
+        table#customer_table {
+            font-size: 12px;
         }
 
         .modal-header h5 {
@@ -270,6 +368,14 @@
             padding: 10px;
             background: #eee;
             text-align: center;
+        }
+        span.code {
+            background: #ccc;
+            color: #646464;
+            font-size: 12px;
+            padding: 3px 5px;
+            border-radius: 3px;
+            font-weight: bold;
         }
     </style>
 @endsection

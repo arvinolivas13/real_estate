@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/',                            'CustomerController@index'                          )->name('get');
         Route::post         ('/save',                        'CustomerController@store'                          )->name('save');
         Route::get          ('/edit/{id}',                   'CustomerController@edit'                           )->name('edit');
+        Route::get          ('/get',                         'CustomerController@get'                            )->name('get');
         Route::post         ('/update/{id}',                 'CustomerController@update'                         )->name('update');
         Route::get          ('/destroy/{id}',                'CustomerController@destroy'                        )->name('delete');
     });
