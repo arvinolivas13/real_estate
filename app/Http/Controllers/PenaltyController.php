@@ -2,80 +2,78 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Penalty;
+use App\Customer;
+use App\Transaction;
+use App\MonthlyAmortization;
 
 class PenaltyController extends Controller
 {
     public function index()
     {
         $penalties = Penalty::orderBy('id')->with('transaction')->get();
-        return view('backend.pages.penalty.penalty', compact('penalties'));
+        $customers = Customer::where('status', 'ACTIVE')->get();
+
+        return view('backend.pages.penalty.penalty', compact('penalties', 'customers'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function get_transaction($id) {
+        $transaction = Transaction::where('customer_id', $id)->get();
+        
+        return response()->json(compact('transaction'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function get_amortization($id) {
+        $amortization = MonthlyAmortization::where('transaction_id', $id)->get();
+
+        return response()->json(compact('amortization'));
+    }
+
+    
     public function store(Request $request)
     {
-        //
-    }
+        $penalty = $request->validate([
+            'monthly_amortization_id' => ['required', 'max:250'],
+            'transaction_id' => ['required'],
+            'penalty_date' => ['required'],
+            'payment_classification' => ['required'],
+            'amount' => ['required'],
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $request->request->add(['created_user' => Auth::user()->id]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+        if($request->action === "save") {
+            Penalty::create($request->except(['action', 'id']));
+        }
+        else {
+            Penalty::find($request->id)->update($request->except(['action', 'id']));
+        }
+
+        return response()->json(compact('penalty'));
+    }
+    
+    public function get() {
+        if(request()->ajax()) {
+            return datatables()->of(
+                Penalty::with('transaction', 'transaction.customer', 'amortization')->orderBy('id', 'desc')->get()
+            )
+            ->addIndexColumn()
+            ->make(true);
+        }
+    }
+    
     public function edit($id)
     {
-        //
+        $penalty = Penalty::with('transaction', 'transaction.customer', 'amortization')->where('id', $id)->orderBy('id')->firstOrFail();
+        return response()->json(compact('penalty'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $destroy = Penalty::find($id);
+        $destroy->delete();
+        return redirect()->back()->with('success','Successfully Deleted!');
     }
 }

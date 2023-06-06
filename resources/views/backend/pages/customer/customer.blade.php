@@ -146,13 +146,10 @@
                 },
                 url: '/customer/edit/' + id,
                 method: 'get',
-                data: {
-
-                },
+                data: {},
                 success: function(data) {
                     console.log(data.customer.id);
                     $('#customerModal').modal('show');
-                    $('.submit-button').text('Update');
                     
                     $.each(data, function() {
                         $.each(this, function(k, v) {
@@ -223,13 +220,15 @@
 
             $.post('/customer/save', data).done(function(response){
                 clearField();
-                $('#customerModal').modal('hide');
+                // $('#customerModal').modal('hide');
+                toastr.success('Record saved');
                 table.clear().draw();
             }).fail(function(response) {
                 for (var field in response.responseJSON.errors) {
                     $('#'+field+"_error_message").remove();
                     $('.'+field).append('<span id="'+field+'_error_message" class="error-message">'+response.responseJSON.errors[field][0]+'</span>');
                 }
+                toastr.error(response.responseJSON.message);
             });
         }
 
@@ -287,10 +286,8 @@
                             html += "</td>";
                         return html;
                     }},
-                    { data: 'subscriber_no', title: 'CODE', render: function(data, type, row, meta) {
-                        return "<span class='code'>"+row.subscriber_no+"</span>";
-                    }},
-                    { data: null, title: 'NAME', render: function(data, type, row, meta) {
+                    { data: 'subscriber_no', title: 'CODE', class: 'data-code'},
+                    { data: null, title: 'NAME', class:'data-name', render: function(data, type, row, meta) {
                         return row.firstname + " " + (row.middlename !== ''?row.middlename + ' ':'') + row.lastname;
                     }},
                     { data: 'email', title: 'EMAIL'},
@@ -369,13 +366,20 @@
             background: #eee;
             text-align: center;
         }
-        span.code {
+        td.data-code {
             background: #ccc;
             color: #646464;
             font-size: 12px;
-            padding: 3px 5px;
-            border-radius: 3px;
             font-weight: bold;
+        }
+        td.data-name {
+            color: #0b42b1;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        table#customer_table th {
+            background: #2e9e5b;
+            color: #fff;
         }
     </style>
 @endsection

@@ -45,7 +45,6 @@ class PaymentController extends Controller
             $request->request->add(['created_user' => Auth::user()->id, 'monthly_amortization_id' => $amortization->id]);
         }
 
-
         if($request->attachment != null) {
             $file = $request->attachment->getClientOriginalName();
             $filename = pathinfo($file, PATHINFO_FILENAME);
@@ -53,11 +52,22 @@ class PaymentController extends Controller
             $imageName = $filename.time().'.'.$request->attachment->extension();
             $image = $request->attachment->move(public_path('customer_file/' . $request->customer_id . '-' . $request->lot_id), $imageName);
 
-            $requestData = $request->all();
+            $requestData = $request->except(['_token', 'action', 'id']);
             $requestData['attachment'] = $imageName;
-            $payment_save = Payment::create($requestData);
+
+            if($request->action === "save") {
+                $payment_save = Payment::create($requestData);
+            }
+            else {
+                $payment_save = Payment::find($request->id)->update($requestData);
+            }
         } else {
-            $payment_save = Payment::create($request->all());
+            if($request->action === "save") {
+                $payment_save = Payment::create($request->except(['_token', 'action', 'id']));
+            }
+            else {
+                $payment_save = Payment::find($request->id)->update($request->except(['_token', 'action', 'id']));
+            }
         }
 
         if($request->payment_classification == 'MA') {
@@ -70,13 +80,23 @@ class PaymentController extends Controller
             }
         }
 
-        return redirect()->back()->with('success','Successfully Added');
+        return response()->json(compact('payment'));
+    }
+
+    public function get() {
+        if(request()->ajax()) {
+            return datatables()->of(
+                Payment::with('customer', 'paymenttype', 'process_by')->orderBy('id', 'desc')->get()
+            )
+            ->addIndexColumn()
+            ->make(true);
+        }
     }
 
     public function edit($id)
     {
-        $Payment = Payment::where('id', $id)->orderBy('id')->firstOrFail();
-        return response()->json(compact('Payment'));
+        $payment = Payment::with('customer')->where('id', $id)->orderBy('id')->firstOrFail();
+        return response()->json(compact('payment'));
     }
 
     public function lotNo($id)
@@ -104,5 +124,11 @@ class PaymentController extends Controller
         $destroy = Payment::find($id);
         $destroy->delete();
         return redirect()->back()->with('success','Successfully Deleted!');
+    }
+
+    public function getWithDownpayment(Request $request) {
+        $payment = Payment::where('customer_id', $request->id)->where('code', $request->code)->where('payment_classification', 'DP')->get();
+
+        return response()->json(compact('payment'));
     }
 }

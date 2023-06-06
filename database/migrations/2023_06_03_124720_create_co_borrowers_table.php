@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttachmentsTable extends Migration
+class CreateCoBorrowersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateAttachmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('attachments', function (Blueprint $table) {
+        Schema::create('co_borrowers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('file_name');
             $table->integer('lot_id');
-            $table->integer('co_borrower_id')->nullable();
-            $table->string('type');
-            $table->string('status')->default(1);
+            $table->string('name');
             $table->integer('created_by');
-            $table->integer('updated_by')->nullable();
+            $table->integer('updated_by');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreateAttachmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attachments');
+        Schema::dropIfExists('co_borrowers');
     }
 }
