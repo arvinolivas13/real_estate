@@ -95,6 +95,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/edit/{id}',                   'PaymentController@edit'                           )->name('edit');
         Route::get          ('/amortization/{code}',         'PaymentController@ma_counter'                     )->name('edit');
         Route::get          ('/get',                         'PaymentController@get'                            )->name('get');
+        Route::post         ('/filter',                      'PaymentController@filter'                         )->name('filter');
         Route::post         ('/update/{id}',                 'PaymentController@update'                         )->name('update');
         Route::get          ('/destroy/{id}',                'PaymentController@destroy'                        )->name('delete');
         Route::get          ('/lot/{id}',                    'PaymentController@lotNo'                          )->name('delete');
