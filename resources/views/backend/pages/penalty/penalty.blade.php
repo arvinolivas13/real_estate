@@ -14,161 +14,306 @@
     <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3>Penalty</h3>
-                    <button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#customerModal" style="float:right">
-                        Add Penalty
+                    <h3>PENALTY</h3>
+                    <button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#penaltyModal" style="float:right" onclick="clearField()">
+                        ADD PENALTY
                     </button>
                 </div>
                 <div class="card-body">
-                    <table id="customer_record" class="table table-striped" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Action</th>
-                                <th>Customer Code</th>
-                                <th>Customer Name</th>
-                                <th>Subscriber No.</th>
-                                <th>Amortization Month</th>
-                                <th>Penalty Date</th>
-                                <th>Amount</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($penalties as $key => $penalty)
-                                <tr>
-                                    <td>{{++$key}}</td>
-                                    <td>
-                                        <a href="#" class="align-middle edit" onclick="edit({{ $penalty->id }})" title="Edit" data-toggle="modal" data-target="#customerModal" id={{$penalty->id}}><i class="align-middle fas fa-fw fa-pen"></i></a>
-                                        <a href="{{url('customer/destroy/' . $penalty->id)}}" onclick="alert('Are you sure you want to Delete?')"><i class="align-middle fas fa-fw fa-trash"></i></a>
-                                    </td>
-                                    <td>{{$penalty->transaction->customer->subscriber_no}}</td>
-                                    <td>{{$penalty->transaction->customer->firstname . ' ' . $penalty->transaction->customer->middlename . ' ' . $penalty->transaction->customer->lastname}}</td>
-                                    <td>{{$penalty->transaction->code}}</td>
-                                    <td>{{ date('M d, Y', strtotime($penalty->amortization->payment_date))}} </td>
-                                    <td>{{ date('M d, Y', strtotime($penalty->penalty_date))}}</td>
-                                    <td>₱ {{ number_format($penalty->amount, 2)}}</td>
-                                    <td>{{$penalty->status}}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <table id="penalty_table" class="table table-striped" style="width:100%"></table>
                 </div>
             </div>
     </div>
 </div>
 
 {{-- MODAL --}}
-<div class="modal fade" id="customerModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="penaltyModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Customer</h5>
+                <h5 class="modal-title">PENALTY</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body m-3">
-                <form id="modal-form" action="{{url('customer/save')}}" method="post">
-                @csrf
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Customer Code <span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="subscriber_no" name="subscriber_no" placeholder="Enter Customer Code" required>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">First Name <span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name" required>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Middle Name</label>
-                    <input type="text" class="form-control" id="middlename" name="middlename" placeholder="Enter Middle Name">
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Last Name <span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name" required>
-                </div>
-                
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Email <span style="color: red">*</span></label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Address <span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" required>
-                </div>
-                
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Contact <span style="color: red">*</span></label>
-                    <input type="number" class="form-control" id="contact" name="contact" placeholder="Enter Contact" required>
-                </div>
-                
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Birthday <span style="color: red">*</span></label>
-                    <input type="date" class="form-control" id="birthday" name="birthday" required>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Occupation</label>
-                    <input type="text" class="form-control" id="occupation" name="occupation" placeholder="Enter Occupation">
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label class="inputPassword4">Gender <span style="color: red">*</span></label>
-                    <select class="form-control" name="gender" required>
-                        <option value="MALE">MALE</option>
-                        <option value="FEMALE">FEMALE</option>
-                    </select>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label class="inputPassword4">Status <span style="color: red">*</span></label>
-                    <select class="form-control" name="status" required>
-                        <option value="ACTIVE">ACTIVE</option>
-                        <option value="INACTIVE">INACTIVE</option>
-                    </select>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="customer_name">CUSTOMER</label>
+                        <div class="input-group">
+                            <input type="hidden" id="customer_id" name="customer_id" class="form-control col-10"/>
+                            <input type="text" id="customer_name" class="form-control col-10 customer_name" placeholder="SELECT CUSTOMER" disabled/>
+                            <button type="button" class="btn btn-primary col-2" data-toggle="modal" data-target="#customerList"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="form-group col-6 transaction_id">
+                        <label for="transaction_id">TRANSACTION</label>
+                        <select name="transaction_id" id="transaction_id" class="form-control" onchange="getAmortization()">
+                            <option value="">SELECT TRANSACTION</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-6 monthly_amortization_id">
+                        <label for="monthly_amortization_id">MONTHLY AMORTIZATION</label>
+                        <select name="monthly_amortization_id" id="monthly_amortization_id" class="form-control">
+                            <option value="">SELECT MONTHLY AMORTIZATION</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-6 penalty_date">
+                        <label for="penalty_date">PENALTY DATE</label>
+                        <input type="date" class="form-control" name="penalty_date" id="penalty_date"/>
+                    </div>
+                    <div class="form-group col-6 payment_classification">
+                        <label for="payment_classification">PAYMENT CLASSIFICATION</label>
+                        <select name="payment_classification" id="payment_classification" class="form-control">
+                            <option value="MA">MONTHLY AMORTIZATION</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-6 amount">
+                        <label for="amount">AMOUNT</label>
+                        <input type="number" class="form-control" name="amount" id="amount" value="0"/>
+                    </div>
+                    <div class="form-group col-6 status">
+                        <label for="status">STATUS</label>
+                        <select name="status" id="status" class="form-control">
+                            <option value="unpaid">UNPAID</option>
+                            <option value="paid">PAID</option>
+                            <option value="waived">WAIVED</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary submit-button">Add</button>
-                </form>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                <button type="button" class="btn btn-primary" onclick="saveRecord()">SAVE</button>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="customerList" style="background: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>CUSTOMERS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body m-3">
+                <table id="customer_records_tbl" class="table table-striped" style="width:100%">
+                    <thead>
+                        <th>#</th>
+                        <th>Subscriber No</th>
+                        <th>Customer Name</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($customers as $key => $customer)
+                            <tr onclick="selectCustomer({{ $customer->id }}, '{{ $customer->firstname . ' ' . $customer->middlename . ' ' . $customer->lastname }}')">
+                                <td>{{++$key}}</td>
+                                <td>{{$customer->subscriber_no}}</td>
+                                <td id="name_{{$customer->id}}">{{$customer->firstname . ' ' . $customer->middlename . ' ' . $customer->lastname}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">CONFIRMATION</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">ARE YOU SURE YOU WANT TO DELETE THIS RECORD?</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                <button type="button" class="btn btn-success" onclick="deleteRecord()">YES</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 @section('scripts')
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script>
+        var table;
+        var action = "save";
+        var hold_id = null;
+
+        $(function() {
+            $('#customer_records_tbl').DataTable({});
+            
+            table = $('#penalty_table').DataTable({
+                responsive: true,
+                processing: true,
+                serverSide: true,
+                pageLength: 20,
+                ajax: {
+                    url: '/penalty/get',
+                    type: 'GET'
+                },
+                columns: [
+                    { data: null, title: '', render: function(data, type, row, meta) {
+                        return "<i class='fas fa-circle stats-" + row.status + "' title='"+row.status+"'></i>";
+                    }},
+                    { data: null, title: 'ACTION', render: function(data, type, row, meta) {
+                        var html = "<td>";
+                            html += "<a href='#' class='align-middle edit' onclick='edit("+row.id+")' title='EDIT'><i class='align-middle fas fa-fw fa-pen'></i></a>";
+                            html += "<a href='#' class='align-middle edit' onclick='confirmDelete("+row.id+")' title='DELETE'><i class='align-middle fas fa-fw fa-trash'></i></a>";
+                            html += "</td>";
+                        return html;
+                    }},
+                    { data: 'transaction.customer.subscriber_no', title: 'CODE', class: 'data-code'},
+                    { data: null, title: 'NAME', class:'data-name', render: function(data, type, row, meta) {
+                        return row.transaction.customer.firstname + " " + (row.transaction.customer.middlename !== ''?row.transaction.customer.middlename + ' ':'') + row.transaction.customer.lastname;
+                    }},
+                    { data: 'transaction.code', title: 'TRANSACTION CODE', class: 'data-transaction-code'},
+                    { data: 'amortization.payment_date', title: 'AMORTIZATION MONTH', render: function(data, type, row, meta) {
+                        return moment(row.amortization.payment_date).format('MMM DD, YYYY');
+                    }},
+                    { data: 'penalty_date', title: 'PENALTY DATE', render: function(data, type, row, meta) {
+                        return moment(row.penalty_date).format('MMM DD, YYYY');
+                    }},
+                    { data: 'amount', title: 'AMOUNT', render: function(data, type, row, meta) {
+                        return currency(row.amount);
+                    } },
+                ]
+            });
+        });
+
         function edit(id){
+            action = "update";
+            hold_id = id;
+
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: '/customer/edit/' + id,
+                url: '/penalty/edit/' + id,
                 method: 'get',
                 data: {
 
                 },
                 success: function(data) {
-                    $('#modal-form').attr('action', 'customer/update/' + data.customer.id);
-                    $('.modal-title').text('Update Customer');
-                    $('.submit-button').text('Update');
-                        $.each(data, function() {
-                            $.each(this, function(k, v) {
-                                $('#'+k).val(v);
-                            });
+                    $('#penaltyModal').modal('show');
+                    $.each(data, function() {
+                        $('#customer_id').val(data.penalty.transaction.customer_id);
+                        $('#customer_name').val(data.penalty.transaction.customer.firstname + " " + (data.penalty.transaction.customer.middlename !== ""?data.penalty.transaction.customer.middlename + " ":"") + data.penalty.transaction.customer.lastname);
+                        $('#transaction_id').html("<option value='"+data.penalty.transaction_id+"'>"+data.penalty.transaction.code+"</option>");
+                        $('#transaction_id').prop("disabled", true);
+                        $('#monthly_amortization_id').prop("disabled", true);
+                        $('#monthly_amortization_id').html("<option value='"+data.penalty.monthly_amortization_id+"'>"+data.penalty.amortization.payment_classification+"("+data.penalty.amortization.counter+") "+data.penalty.amortization.payment_date+"</option>");
+                        $.each(this, function(k, v) {
+                            $('#'+k).val(v);
                         });
+                    });
                 }
             });
         }
-
-        $(function() {
-            $('#customer_record').DataTable({
-                scrollX: true,
+        
+        function selectCustomer(id, value) {
+            $('#customer_id').val(id);
+            $('.customer_name').val(value);
+            $('#customerList').modal('hide');
+            $.get('/penalty/get_transaction/' + id, function(response) {
+                var html = '';
+                    html += "<option value=''>SELECT TRANSACTION</option>";
+                $.each(response.transaction, (i, val)=>{
+                    html += "<option value='"+val.id+"'>"+val.code+"</option>";
+                });
+                $('#transaction_id').html(html);
             });
-        });
+        }
+
+        function getAmortization() {
+            var id = $('#transaction_id').val();
+            
+            $.get('/penalty/get_amortization/' + id, function(response) {
+                var html = '';
+                    html += "<option value=''>SELECT MONTHLY AMORTIZATION</option>";
+                $.each(response.amortization, (i, val)=>{
+                    html += "<option value='"+val.id+"'>"+val.payment_classification+"("+val.counter+") " + val.payment_date + "</option>";
+                });
+                $('#monthly_amortization_id').html(html);
+            });
+        }
+
+        function saveRecord() {
+            var data = {
+                _token: "{{csrf_token()}}",
+                monthly_amortization_id: $('#monthly_amortization_id').val(),
+                transaction_id: $('#transaction_id').val(),
+                penalty_date: $('#penalty_date').val(),
+                payment_classification: $('#payment_classification').val(),
+                amount: $('#amount').val(),
+                status: $('#status').val(),
+                action: action,
+                id: hold_id
+            };
+            
+            $('.error-message').remove();
+
+            $.post('/penalty/save', data).done(function(response) {
+                clearField();
+                toastr.success('Record saved');
+                table.clear().draw();
+            }).fail(function(response) {
+                for (var field in response.responseJSON.errors) {
+                    $('#'+field+"_error_message").remove();
+                    $('.'+field).append('<span id="'+field+'_error_message" class="error-message">'+response.responseJSON.errors[field][0]+'</span>');
+                }
+                toastr.error(response.responseJSON.message);
+            });
+        }
+        
+        function clearField() {
+            hold_id = null;
+            action = 'save';
+            
+            $('#customer_id').val("");
+            $('#customer_name').val("");
+            $('#transaction_id').html('<option value="">SELECT TRANSACTION</option>');
+            $('#monthly_amortization_id').html('<option value="">SELECT MONTHLY AMORTIZATION</option>');
+            $('#penalty_date').val("");
+            $('#payment_type').val("1");
+            $('#amount').val("0");
+            $('#status').val("unpaid");
+        }
+        
+        function currency(total) {
+            var neg = false;
+            if(total < 0) {
+                neg = true;
+                total = Math.abs(total);
+            }
+            return (neg ? "-₱ " : '₱ ') + parseFloat(total, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString();
+        }
+
+        
+        function confirmDelete(id) {
+            hold_id = id;
+            action = 'delete';
+            $('#confirmModal').modal('show');
+        }
+
+        function deleteRecord() {
+            $.get('/penalty/destroy/' + hold_id).done(function(response) {
+                $('#confirmModal').modal('hide');
+                clearField();
+                table.clear().draw();
+            });
+        }
 
     </script>
 @endsection
@@ -181,7 +326,36 @@
             white-space: nowrap;
         }
         thead th {
-             white-space: nowrap;
+            white-space: nowrap;
+        }
+        
+        table#penalty_table {
+            font-size: 12px;
+        }
+        td.data-code,
+        td.data-transaction-code {
+            background: #ccc;
+            color: #646464;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        td.data-name {
+            color: #0b42b1;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        table#penalty_table th {
+            background: #2e9e5b;
+            color: #fff;
+        }
+        .stats-unpaid {
+            color: red;
+        }
+        .stats-paid {
+            color: lime;
+        }
+        .stats-waived {
+            color: orange;
         }
     </style>
 @endsection

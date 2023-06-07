@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/',                            'CustomerController@index'                          )->name('get');
         Route::post         ('/save',                        'CustomerController@store'                          )->name('save');
         Route::get          ('/edit/{id}',                   'CustomerController@edit'                           )->name('edit');
+        Route::get          ('/get',                         'CustomerController@get'                            )->name('get');
         Route::post         ('/update/{id}',                 'CustomerController@update'                         )->name('update');
         Route::get          ('/destroy/{id}',                'CustomerController@destroy'                        )->name('delete');
     });
@@ -41,9 +42,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/',                            'AttachmentController@index'                          )->name('get');
         Route::post         ('/save',                        'AttachmentController@store'                          )->name('save');
         Route::get          ('/edit/{id}',                   'AttachmentController@edit'                           )->name('edit');
-        Route::get          ('/show/{id}',                   'AttachmentController@show'                           )->name('edit');
+        Route::post         ('/show',                        'AttachmentController@show'                           )->name('edit');
         Route::post         ('/update/{id}',                 'AttachmentController@update'                         )->name('update');
-        Route::get          ('/destroy/{id}',                'AttachmentController@destroy'                        )->name('delete');
+        Route::post         ('/destroy',                     'AttachmentController@destroy'                        )->name('delete');
     });
 
     Route::group(['prefix' => 'area'], function (){
@@ -69,6 +70,14 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/edit/{id}',                   'PenaltyController@edit'                           )->name('edit');
         Route::post         ('/update/{id}',                 'PenaltyController@update'                         )->name('update');
         Route::get          ('/destroy/{id}',                'PenaltyController@destroy'                        )->name('delete');
+        Route::get          ('/get',                         'PenaltyController@get'                            )->name('get');
+        Route::get          ('/get_transaction/{id}',        'PenaltyController@get_transaction'                )->name('get_transaction');
+        Route::get          ('/get_amortization/{id}',       'PenaltyController@get_amortization'               )->name('get_amortization');
+    });
+
+    Route::group(['prefix' => 'co_borrower'], function (){
+        Route::get          ('/get/{id}',                    'CoBorrowerController@get'                          )->name('get');
+        Route::post         ('/save',                        'CoBorrowerController@store'                        )->name('save');
     });
 
     Route::group(['prefix' => 'document'], function (){
@@ -81,13 +90,15 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::group(['prefix' => 'payment'], function (){
         Route::get          ('/',                            'PaymentController@index'                          )->name('get');
-        Route::get          ('/all',                         'PaymentController@all'                          )->name('get');
+        Route::get          ('/all',                         'PaymentController@all'                            )->name('get');
         Route::post         ('/save',                        'PaymentController@store'                          )->name('save');
         Route::get          ('/edit/{id}',                   'PaymentController@edit'                           )->name('edit');
         Route::get          ('/amortization/{code}',         'PaymentController@ma_counter'                     )->name('edit');
+        Route::get          ('/get',                         'PaymentController@get'                            )->name('get');
         Route::post         ('/update/{id}',                 'PaymentController@update'                         )->name('update');
         Route::get          ('/destroy/{id}',                'PaymentController@destroy'                        )->name('delete');
         Route::get          ('/lot/{id}',                    'PaymentController@lotNo'                          )->name('delete');
+        Route::post         ('/getWithDownpayment',          'PaymentController@getWithDownpayment'             )->name('get_downpayment');
     });
 
     Route::group(['prefix' => 'transaction'], function (){

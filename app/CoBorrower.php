@@ -4,15 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Attachment extends Model
+class CoBorrower extends Model
 {
     protected $fillable = [
-        'file_name',
         'lot_id',
-        'co_borrower_id',
-        'type',
-        'status',
+        'name',
         'created_by',
-        'updated_by',
+        'updated_by'
     ];
 }
