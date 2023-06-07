@@ -17,7 +17,7 @@ class CreateAttachmentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('file_name');
             $table->integer('lot_id');
-            $table->integer('co_borrower_id')->nullable();
+            $table->string('co_borrower_id')->nullable();
             $table->string('type');
             $table->string('status')->default(1);
             $table->integer('created_by');

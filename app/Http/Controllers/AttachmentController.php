@@ -90,7 +90,7 @@ class AttachmentController extends Controller
     public function show(Request $request)
     {
         if($request->co_borrower_id === null) {
-            $attachments = Attachment::where('lot_id', $request->id)->where('type', $request->type)->where('co_borrower_id', null)->orderBy('id')->get();
+            $attachments = Attachment::where('lot_id', $request->id)->where('type', $request->type)->where('co_borrower_id', 'null')->orderBy('id')->get();
         }
         else {
             $attachments = Attachment::where('lot_id', $request->id)->where('type', $request->type)->where('co_borrower_id', $request->co_borrower_id)->orderBy('id')->get();
