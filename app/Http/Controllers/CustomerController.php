@@ -42,6 +42,14 @@ class CustomerController extends Controller
         return response()->json(compact('customer'));
     }
 
+    public function update_code()
+    {
+        $customer = Customer::orderBy('id')->get();
+        foreach ($customer as $key => $value) {
+            # code...
+        }
+    }
+
     public function update(Request $request, $id)
     {
         Customer::find($id)->update($request->all());
