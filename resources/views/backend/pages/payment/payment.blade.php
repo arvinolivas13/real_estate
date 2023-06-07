@@ -15,11 +15,60 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>Payment Record</h3>
-                        <button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#reserveModal" style="float:right" onclick="clearField()">
+                        <button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#reserveModal" style="float:right;" onclick="clearField()">
                             ADD PAYMENT
+                        </button> 
+                        <button type="button" class="btn btn-light" onclick="showFilter()" style="float:right; margin-right:5px;">
+                            FILTER
                         </button>
                     </div>
                     <div class="card-body">
+                        <div class="filter-body hide">
+                            <div class="row">
+                                <div class="form-group col-4">
+                                    <label for="firstname">FIRSTNAME:</label>
+                                    <input type="text" class="form-control form-control-sm" name="f_firstname" id="f_firstname"/>
+                                </div>
+                                <div class="form-group col-4">
+                                    <label for="middlename">MIDDLENAME:</label>
+                                    <input type="text" class="form-control form-control-sm" name="f_middlename" id="f_middlename"/>
+                                </div>
+                                <div class="form-group col-4">
+                                    <label for="lastname">LASTNAME:</label>
+                                    <input type="text" class="form-control form-control-sm" name="f_lastname" id="f_lastname"/>
+                                </div>
+                                <div class="form-group col-4">
+                                    <label for="lastname">PROPERTY CODE:</label>
+                                    <input type="text" class="form-control form-control-sm" name="f_code" id="f_code"/>
+                                </div>
+                                <div class="form-group col-4">
+                                    <label for="lastname">PAYMENT TYPE:</label>
+                                    <select name="f_payment_type" id="f_payment_type" class="form-control form-control-sm">
+                                        <option></option>
+                                        @foreach ($paymenttypes as $paymenttype)
+                                            <option value="{{ $paymenttype->id }}">{{ $paymenttype->payment }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group col-4">
+                                    <label for="lastname">PAYMENT CLASSIFICATION:</label>
+                                    <select name="f_payment_classification" id="f_payment_classification" class="form-control form-control-sm">
+                                        <option></option>
+                                        <option value="MA">MONTHLY AMORTIZATION</option>
+                                        <option value="DP">DOWN PAYMENT</option>
+                                        <option value="INT">INTEREST</option>
+                                        <option value="PEN">PENALTY</option>
+                                        <option value="FULL">FULL PAYMENT</option>
+                                        <option value="RES">RESERVATION</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 text-right">
+                                    <button class="btn btn-light" onclick="clearFilter()">Clear</button>
+                                    <button class="btn btn-primary" onclick="filter()">Generate</button>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
                         <table id="payment_table" class="table table-striped" style="width:100%"></table>
                     </div>
                 </div>
@@ -233,13 +282,12 @@
                     }},
                     { data: 'code', title: 'PROPERTY CODE', class: 'data-code' },
                     { data: 'paymenttype.payment', title: 'PAYMENT TYPE' },
-                    { data: 'payment_classification', title: 'AMOUNT' },
+                    { data: 'payment_classification', title: 'PAYMENT CLASSIFICATION' },
                     { data: 'amount', title: 'AMOUNT', render: function(data, type, row, meta) {
                         return currency(row.amount);
                     }},
                     { data: 'reference_no', title: 'REFERENCE NO.' },
                     { data: 'or_no', title: 'OR NO.' },
-                    { data: 'attachment', title: 'ATTACHMENT' },
                     { data: 'remarks', title: 'REMARKS' },
                     { data: null, title: 'PROCESS BY', render: function(data, type, row, meta) {
                         return row.process_by.firstname + " " + (row.process_by.middlename !== ''?row.process_by.middlename + ' ':'') + row.process_by.lastname;
@@ -341,7 +389,6 @@
             $('#customerList').modal('hide');
         }
 
-
         function imageView(block, output) {
             var blk = block.split(" ");
             $('#ImageView').modal('show');
@@ -421,11 +468,89 @@
             $('#remarks').val("");
         }
 
+        function filter() {
+            var data = { 
+                _token: "{{csrf_token()}}",
+                firstname: $('#firstname').val()
+            };
+
+            if ($.fn.DataTable.isDataTable('#payment_table')) {
+                $('#payment_table').DataTable().clear().destroy();
+            }
+
+            table = $('#payment_table').DataTable({
+                    responsive: true,
+                    processing: true,
+                    serverSide: true,
+                    pageLength: 20,
+                    ajax: {
+                        url: '/payment/filter',
+                        type: 'POST',
+                        data: {
+                            '_token': "{{csrf_token()}}",
+                            'firstname': $('#f_firstname').val(),
+                            'middlename': $('#f_middlename').val(),
+                            'lastname': $('#f_lastname').val(),
+                            'code': $('#f_code').val(),
+                            'payment_type': $('#f_payment_type').val(),
+                            'payment_classification': $('#f_payment_classification').val()
+                        }
+                    },
+                    columns: [
+                        { data: null, title: 'ACTION', render: function(data, type, row, meta) {
+                            var html = "<td>";
+                                html += "<a href='#' class='align-middle edit' onclick='edit("+row.id+")' title='EDIT'><i class='align-middle fas fa-fw fa-pen'></i></a>";
+                                html += "<a href='#' class='align-middle edit' onclick='confirmDelete("+row.id+")' title='DELETE'><i class='align-middle fas fa-fw fa-trash'></i></a>";
+                                html += "</td>";
+                            return html;
+                        }},
+                        { data: null, title: 'NAME', class:'data-name', render: function(data, type, row, meta) {
+                            return row.customer.firstname + " " + (row.customer.middlename !== ''?row.customer.middlename + ' ':'') + row.customer.lastname;
+                        }},
+                        { data: 'code', title: 'PROPERTY CODE', class: 'data-code' },
+                        { data: 'paymenttype.payment', title: 'PAYMENT TYPE' },
+                        { data: 'payment_classification', title: 'PAYMENT CLASSIFICATION' },
+                        { data: 'amount', title: 'AMOUNT', render: function(data, type, row, meta) {
+                            return currency(row.amount);
+                        }},
+                        { data: 'reference_no', title: 'REFERENCE NO.' },
+                        { data: 'or_no', title: 'OR NO.' },
+                        { data: 'remarks', title: 'REMARKS' },
+                        { data: null, title: 'PROCESS BY', render: function(data, type, row, meta) {
+                            return row.process_by.firstname + " " + (row.process_by.middlename !== ''?row.process_by.middlename + ' ':'') + row.process_by.lastname;
+                        }},
+                    ]
+                });
+        }
+
+        function clearFilter() {
+            $('#f_firstname').val('');
+            $('#f_middlename').val('');
+            $('#f_lastname').val('');
+            $('#f_code').val('');
+            $('#f_payment_type').val('');
+            $('#f_payment_classification').val('');
+            table.clear().draw();
+            filter();
+        }
+
+        function showFilter() {
+            if($('.hide').length === 0) {
+                $('.filter-body').addClass('hide');
+            }
+            else {
+                $('.filter-body').removeClass('hide');
+            }
+        }
+
     </script>
 @endsection
 
 @section('styles')
     <style>
+        .filter-body.hide {
+            display: none !important;
+        }
         table.dataTable td {
             padding: 3px 10px;
             width: 1px;

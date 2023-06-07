@@ -93,6 +93,20 @@ class PaymentController extends Controller
         }
     }
 
+    public function filter(Request $request) {
+        if(request()->ajax()) {
+            return datatables()->of(
+                Payment::with('customer', 'paymenttype', 'process_by')->whereHAs('customer', function($q) use($request){
+                    $q->where('firstname', 'like', "%".$request->firstname."%");
+                    $q->where('middlename', 'like', "%".$request->middlename."%");
+                    $q->where('lastname', 'like', "%".$request->lastname."%");
+                })->where('code', 'like', '%'.$request->code.'%')->where('payment_id', 'like', '%'.$request->payment_type.'%')->where('payment_classification', 'like', '%'.$request->payment_classification.'%')->orderBy('id', 'desc')->get()
+            )
+            ->addIndexColumn()
+            ->make(true);
+        }
+    }
+
     public function edit($id)
     {
         $payment = Payment::with('customer')->where('id', $id)->orderBy('id')->firstOrFail();

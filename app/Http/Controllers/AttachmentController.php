@@ -67,7 +67,7 @@ class AttachmentController extends Controller
                     $data = array(
                         'file_name' => $path,
                         'lot_id' => $request->lot_id,
-                        'co_borrower_id' => $request->co_borrower_id,
+                        'co_borrower_id' => $request->co_borrower_id !== null ? $request->co_borrower_id:'',
                         'type' => $request->type,
                         'status' => 1,
                         'created_by' => Auth::user()->id,
