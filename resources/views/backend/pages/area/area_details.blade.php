@@ -354,7 +354,7 @@
                                 $('#lot_no').val(lot);
                                 $('#reserveModal').modal('show');
                                 $('.reserve-button').text('Down Payment');
-                                $('#modal-form').attr('action', '/payment/save');
+                                $('#modal-form').attr('action', '/payment/.0save');
                             } else if (result.isDenied) {
                                 location.href = '/transaction/nodownpayment/' + id;
                             }
