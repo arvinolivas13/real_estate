@@ -442,7 +442,7 @@
 @section('scripts')
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script>
-        
+
         var table;
         var lot_id = null;
         var type = 'buyers_info';
@@ -505,7 +505,7 @@
                         alert(data.responseJSON.errors.files[0]);
                     }
                 });
-                
+
             });
 
         });
@@ -578,7 +578,7 @@
                                 $('#lot_no').val(lot);
                                 $('#reserveModal').modal('show');
                                 $('.reserve-button').text('Down Payment');
-                                $('#modal-form').attr('action', '/payment/.0save');
+                                $('#modal-form').attr('action', '/payment/save');
                             } else if (result.isDenied) {
                                 var record = {
                                     _token: "{{csrf_token()}}",
@@ -717,7 +717,7 @@
 
         function coBorrower(id) {
             lot_id = id;
-            
+
             if ($.fn.DataTable.isDataTable('#co_borrower_table')) {
                 $('#co_borrower_table').DataTable().clear().destroy();
             }

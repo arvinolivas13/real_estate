@@ -55,7 +55,7 @@
                         <label for="inputPassword4">Last Name <span style="color: red">*</span></label>
                         <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name" required>
                     </div>
-    
+
                     <div class="form-group col-md-6 email">
                         <label for="inputPassword4">Email <span style="color: red">*</span></label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
@@ -65,12 +65,12 @@
                         <label for="inputPassword4">Contact <span style="color: red">*</span></label>
                         <input type="number" class="form-control" id="contact" name="contact" placeholder="Enter Contact" required>
                     </div>
-    
+
                     <div class="form-group col-md-12 address">
                         <label for="inputPassword4">Address <span style="color: red">*</span></label>
                         <textarea name="address" id="address" class="form-control" placeholder="Enter Address" required></textarea>
                     </div>
-    
+
                     <div class="form-group col-md-6 birthday">
                         <label for="inputPassword4">Birthday</label>
                         <input type="date" class="form-control" id="birthday" name="birthday">
@@ -83,12 +83,12 @@
                             <option value="FEMALE">FEMALE</option>
                         </select>
                     </div>
-    
+
                     <div class="form-group col-md-12 occupation">
                         <label for="inputPassword4">Occupation</label>
                         <input type="text" class="form-control" id="occupation" name="occupation" placeholder="Enter Occupation">
                     </div>
-    
+
                     <div class="form-group col-md-12 status">
                         <label class="inputPassword4">Status <span style="color: red">*</span></label>
                         <select class="form-control" name="status" id="status" required>
@@ -139,7 +139,7 @@
         function edit(id){
             action = 'update';
             hold_id = id;
-            
+
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -150,7 +150,7 @@
                 success: function(data) {
                     console.log(data.customer.id);
                     $('#customerModal').modal('show');
-                    
+
                     $.each(data, function() {
                         $.each(this, function(k, v) {
                             $('#'+k).val(v);
@@ -235,7 +235,7 @@
         function clearField() {
             hold_id = null;
             action = 'save';
-            
+
             $('#subscriber_no').val("");
             $('#firstname').val("");
             $('#middlename').val("");
@@ -264,7 +264,7 @@
         }
 
         $(function() {
-            
+
             table = $('#customer_table').DataTable({
                 responsive: true,
                 processing: true,
