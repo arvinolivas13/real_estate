@@ -17,7 +17,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $customer = $request->validate([
-            'subscriber_no' => ['required', 'max:250', 'unique:customers'],
+            'subscriber_no' => ['required', 'max:250'],
             'firstname' => ['required'],
             'middlename',
             'lastname' => ['required'],
@@ -31,9 +31,25 @@ class CustomerController extends Controller
         ]);
 
         $request->request->add(['created_user' => Auth::user()->id]);
-        Customer::create($request->all());
 
-        return redirect()->back()->with('success','Successfully Added');
+        if($request->action === "save") {
+            Customer::create($request->except(['action', 'id']));
+        }
+        else {
+            Customer::find($request->id)->update($request->except(['action', 'id']));
+        }
+
+        return response()->json(compact('customer'));
+    }
+
+    public function get() {
+        if(request()->ajax()) {
+            return datatables()->of(
+                Customer::orderBy('id', 'desc')->get()
+            )
+            ->addIndexColumn()
+            ->make(true);
+        }
     }
 
     public function edit($id)
@@ -42,16 +58,10 @@ class CustomerController extends Controller
         return response()->json(compact('customer'));
     }
 
-    public function update(Request $request, $id)
-    {
-        Customer::find($id)->update($request->all());
-        return redirect()->back()->with('success','Successfully Updated');
-    }
-
     public function destroy($id)
     {
         $destroy = Customer::find($id);
-        Customer::find($id)->update(['subscriber_no' => $destroy->subscriber_no . '(deleted)']);
+        // Customer::find($id)->update(['subscriber_no' => $destroy->subscriber_no . '(deleted)']);
         $destroy->delete();
         return redirect()->back()->with('success','Successfully Deleted!');
     }
