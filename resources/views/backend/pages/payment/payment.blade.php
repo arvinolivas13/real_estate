@@ -342,7 +342,7 @@
                         var counter = data.ma_counters;
                         console.log(counter);
                         for (let index = 0; index < counter.length; index++) {
-                            $("#counter").append('<option value="' + counter[index].id + '">' + counter[index].payment_classification + ' (' + counter[index].counter +')' + '</option>');
+                            $("#counter").append('<option value="' + counter[index].counter + '">' + counter[index].payment_classification + ' (' + counter[index].counter +')' + '</option>');
                         }
 
                     }
@@ -411,6 +411,7 @@
                 code: $('#code').val(),
                 date: $('#date').val(),
                 payment_id: $('#payment_id').val(),
+                counter: $('#counter').val(),
                 payment_classification: $('#payment_classification').val(),
                 amount: $('#amount').val(),
                 reference_no: $('#reference_no').val(),
