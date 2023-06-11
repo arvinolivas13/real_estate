@@ -7,6 +7,7 @@ use App\PaymentType;
 use App\MonthlyAmortization;
 use App\Customer;
 use App\Transaction;
+use App\Attachment;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -32,7 +33,6 @@ class PaymentController extends Controller
             'reference_no',
             'counter',
             'or_no',
-            'attachment',
             'remarks',
         ]);
 
@@ -45,15 +45,15 @@ class PaymentController extends Controller
             $request->request->add(['created_user' => Auth::user()->id, 'monthly_amortization_id' => $amortization->id]);
         }
 
-        if($request->attachment != null) {
-            $file = $request->attachment->getClientOriginalName();
-            $filename = pathinfo($file, PATHINFO_FILENAME);
+        if($request->attach_file != null) {
+            // $file = $request->attachment->getClientOriginalName();
+            // $filename = pathinfo($file, PATHINFO_FILENAME);
 
-            $imageName = $filename.time().'.'.$request->attachment->extension();
-            $image = $request->attachment->move(public_path('customer_file/' . $request->customer_id . '-' . $request->lot_id), $imageName);
+            // $imageName = $filename.time().'.'.$request->attachment->extension();
+            // $image = $request->attachment->move(public_path('customer_file/' . $request->customer_id . '-' . $request->lot_id), $imageName);
 
             $requestData = $request->except(['_token', 'action', 'id']);
-            $requestData['attachment'] = $imageName;
+            $requestData['attachment'] = '';
 
             if($request->action === "save") {
                 $payment_save = Payment::create($requestData);
@@ -61,6 +61,31 @@ class PaymentController extends Controller
             else {
                 $payment_save = Payment::find($request->id)->update($requestData);
             }
+            
+            for ($x = 0; $x < $request->TotalFiles; $x++) 
+            {
+    
+                if ($request->hasFile('files'.$x)) 
+                {
+                    $file = $request->file('files'.$x);
+    
+                    $path = $file->store('public/files');
+                    $name = $file->getClientOriginalName();
+    
+                    $data = array(
+                        'file_name' => $path,
+                        'lot_id' => $request->lot_id,
+                        'co_borrower_id' => $payment_save->id,
+                        'type' => $request->type,
+                        'status' => 1,
+                        'created_by' => Auth::user()->id,
+                        'updated_by' => Auth::user()->id,
+                    );
+            
+                    Attachment::create($data);
+                }
+            }
+
         } else {
             if($request->action === "save") {
                 $payment_save = Payment::create($request->except(['_token', 'action', 'id']));
@@ -86,7 +111,7 @@ class PaymentController extends Controller
     public function get() {
         if(request()->ajax()) {
             return datatables()->of(
-                Payment::with('customer', 'paymenttype', 'process_by')->orderBy('id', 'desc')->get()
+                Payment::with('customer', 'paymenttype', 'process_by', 'attachment')->orderBy('id', 'desc')->get()
             )
             ->addIndexColumn()
             ->make(true);
@@ -144,5 +169,11 @@ class PaymentController extends Controller
         $payment = Payment::where('customer_id', $request->id)->where('code', $request->code)->where('payment_classification', 'DP')->get();
 
         return response()->json(compact('payment'));
+    }
+
+    public function getAttachment($id) {
+        $attachment = Attachment::where('co_borrower_id', $id)->get();
+
+        return response()->json(compact('attachment'));
     }
 }

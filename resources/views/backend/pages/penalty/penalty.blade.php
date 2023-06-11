@@ -18,8 +18,44 @@
                     <button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#penaltyModal" style="float:right" onclick="clearField()">
                         ADD PENALTY
                     </button>
+                    <button type="button" class="btn btn-light" onclick="showFilter()" style="float:right; margin-right:5px;">
+                        FILTER
+                    </button>
                 </div>
                 <div class="card-body">
+                    <div class="filter-body hide">
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label for="firstname">FIRSTNAME:</label>
+                                <input type="text" class="form-control form-control-sm" name="f_firstname" id="f_firstname"/>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="middlename">MIDDLENAME:</label>
+                                <input type="text" class="form-control form-control-sm" name="f_middlename" id="f_middlename"/>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="lastname">LASTNAME:</label>
+                                <input type="text" class="form-control form-control-sm" name="f_lastname" id="f_lastname"/>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="lastname">CODE:</label>
+                                <input type="text" class="form-control form-control-sm" name="f_code" id="f_code"/>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="lastname">AMMORTIZATION DATE:</label>
+                                <input type="date" class="form-control form-control-sm" name="ammortization_date" id="ammortization_date">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="lastname">PENALTY DATE:</label>
+                                <input type="date" class="form-control form-control-sm" name="penalty_date" id="penalty_date">
+                            </div>
+                            <div class="col-12 text-right">
+                                <button class="btn btn-light" onclick="clearFilter()">Clear</button>
+                                <button class="btn btn-primary" onclick="filter()">Generate</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
                     <table id="penalty_table" class="table table-striped" style="width:100%"></table>
                 </div>
             </div>
@@ -179,7 +215,7 @@
                         return row.transaction.customer.firstname + " " + (row.transaction.customer.middlename !== ''?row.transaction.customer.middlename + ' ':'') + row.transaction.customer.lastname;
                     }},
                     { data: 'transaction.code', title: 'TRANSACTION CODE', class: 'data-transaction-code'},
-                    { data: 'amortization.payment_date', title: 'AMORTIZATION MONTH', render: function(data, type, row, meta) {
+                    { data: 'amortization.payment_date', title: 'AMORTIZATION DATE', render: function(data, type, row, meta) {
                         return moment(row.amortization.payment_date).format('MMM DD, YYYY');
                     }},
                     { data: 'penalty_date', title: 'PENALTY DATE', render: function(data, type, row, meta) {

@@ -79,11 +79,11 @@
                 @endphp
 
                 @foreach ($payments as $payment)
-                    @php
-                        $contract_price = $contract_price - $payment->amount
-                    @endphp
 
                     @if ($payment->payment_classification == 'RES' || $payment->payment_classification == 'DP' )
+                        @php
+                            $contract_price = $contract_price - $payment->amount
+                        @endphp
                         @if ($payment->payment_classification == 'DP' && $payment->amount == 0)
                             <tr>
                                 <td style="padding: 15px; width: 100px; text-align: left;">{{$payment->payment_classification}}</td>
@@ -113,7 +113,21 @@
                         @endif
                         
                     @else
-                        @if($payment->payment_classification == 'MA')
+                        @if($payment->payment_classification !== 'MA')
+                            <tr>
+                                <td style="padding: 15px; width: 100px; text-align: left;">{{ $payment->payment_classification }}</td>
+                                <td style="padding: 15px; width: 100px; text-align: left;">{{ date('M d, Y', strtotime($payment->date)) }}</td>
+                                <td style="padding: 15px; width: 100px; text-align: right;"> {{ date('M d, Y', strtotime($payment->date)) }}</td>
+                                <td style="padding: 15px; width: 100px; text-align: right;">{{$payment->paymenttype->payment}}</td>
+                                <td style="padding: 15px; width: 100px; text-align: right;">{{ $payment->reference_no }}</td>
+                                <td style="padding: 15px; width: 100px; text-align: right;"></td>
+                                <td style="padding: 15px; width: 100px; text-align: right;">{{ $payment->or_no }}</td>
+                                <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($lot->monthly_amortization, 2) }}</td>
+                                <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format( $payment->amount, 2)}}</td>
+                                <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format( $contract_price, 2)}}</td>
+                            </tr>
+                        @endif
+                        {{-- @if($payment->payment_classification == 'MA')
                             <tr>
                                 <td style="padding: 15px; width: 100px; text-align: left;">{{ $payment->payment_classification . ' ('. $payment->amortization->counter .')'}}</td>
                                 <td style="padding: 15px; width: 100px; text-align: left;">{{ date('M d, Y', strtotime($payment->amortization->payment_date)) }}</td>
@@ -139,24 +153,28 @@
                                 <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format( $payment->amount, 2)}}</td>
                                 <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format( $contract_price, 2)}}</td>
                             </tr>
-                        @endif
+                        @endif --}}
                     @endif
                 @endforeach
-
                 @foreach ($amortizations as $amortization)
-                    <tr>
-                        <td style="padding: 15px; width: 100px; text-align: left;">{{$amortization->payment_classification . ' ('.$amortization->counter .')'}}</td>
-                        <td style="padding: 15px; width: 100px; text-align: left;">{{ date('M d, Y', strtotime($amortization->payment_date)) }}</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">--</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">-</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">-</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">-</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">-</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($amortization->balance, 2)}}</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">₱ 0.00</td>
-                        <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($contract_price, 2)}}</td>
-                    </tr>
-                @endforeach
+                @php
+                    if($amortization->payment !== null) {
+                        $contract_price = $contract_price - $amortization->payment['amount'];
+                    }
+                @endphp
+                <tr>
+                    <td style="padding: 15px; width: 100px; text-align: left;">{{$amortization->payment_classification . ' ('.$amortization->counter .')'}}</td>
+                    <td style="padding: 15px; width: 100px; text-align: left;">{{ date('M d, Y', strtotime($amortization->payment_date)) }}</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">{{$amortization->payment !== null?date('M d, Y', strtotime($amortization->payment['date'])):'--' }}</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">{{$amortization->payment !== null?$amortization->payment['paymenttype']['payment']:'--' }}</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">-</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">-</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">-</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">₱ {{$amortization->payment !== null?number_format($lot->monthly_amortization, 2):number_format($amortization->balance, 2) }}</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">₱ {{$amortization->payment !== null?number_format($amortization->payment['amount'], 2):'0.00' }}</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($contract_price, 2)}}</td>
+                </tr>
+            @endforeach
             </table>
         </div>
         <div class="spacer" style="height: 60px;"></div>

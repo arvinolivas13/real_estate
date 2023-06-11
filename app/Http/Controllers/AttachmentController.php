@@ -98,15 +98,6 @@ class AttachmentController extends Controller
         return response()->json(compact('attachments'));
     }
 
-    public function edit(Attachment $attachment)
-    {
-        //
-    }
-
-    public function update(Request $request, Attachment $attachment)
-    {
-        //
-    }
 
     public function destroy(Request $request)
     {

@@ -38,7 +38,7 @@
                                     <input type="text" class="form-control form-control-sm" name="f_lastname" id="f_lastname"/>
                                 </div>
                                 <div class="form-group col-4">
-                                    <label for="lastname">PROPERTY CODE:</label>
+                                    <label for="lastname">TRANSACTION CODE:</label>
                                     <input type="text" class="form-control form-control-sm" name="f_code" id="f_code"/>
                                 </div>
                                 <div class="form-group col-4">
@@ -85,74 +85,78 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="customer_name">Customer Name</label>
-                            <div class="input-group">
-                                <input type="hidden" id="customer_id" name="customer_id" class="form-control col-10"/>
-                                <input type="text" id="customer_name" class="form-control col-10 customer_name" placeholder="Select Order" disabled/>
-                                <button type="button" class="btn btn-primary col-2" data-toggle="modal" data-target="#customerList"><i class="fas fa-search"></i></button>
+                    <form id="paymentForm" method="POST" action="javascript:void(0)" accept-charset="utf-8" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="customer_name">Customer Name</label>
+                                <div class="input-group">
+                                    <input type="hidden" id="customer_id" name="customer_id" class="form-control col-10"/>
+                                    <input type="text" id="customer_name" class="form-control col-10 customer_name" placeholder="Select Order" disabled/>
+                                    <button type="button" class="btn btn-primary col-2" data-toggle="modal" data-target="#customerList"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 code">
+                                <label for="code">Property Code<span style="color: red">*</span></label>
+                                <select class="form-control" id="code" name="code" onchange="identifyDownpayment()" required>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4 date">
+                                <label for="date">Payment Date<span style="color: red">*</span></label>
+                                <input type="date" class="form-control" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" required>
+                            </div>
+                            <div class="form-group col-md-4 payment_id">
+                                <label for="payment_id">Payment Type<span style="color: red">*</span></label>
+                                <select class="form-control" name="payment_id" id="payment_id" required>
+                                    @foreach ($paymenttypes as $paymenttype)
+                                        <option value="{{ $paymenttype->id }}">{{ $paymenttype->payment }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4 payment_classification">
+                                <label for="payment_classification">Payment Classification<span style="color: red">*</span></label>
+                                <select class="form-control" name="payment_classification" id="payment_classification" onchange="classification(this.value)" required>
+                                    <option selected disabled hidden>Choose here</option>
+                                    <option value="MA">MONTHLY AMORTIZATION</option>
+                                    <option value="DP" class="dp">DOWN PAYMENT</option>
+                                    <option value="INT">INTEREST</option>
+                                    <option value="PEN">PENALTY</option>
+                                    <option value="FULL">FULL PAYMENT</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12 ma_counter counter">
+                                <label for="counter">Monthly Amortization<span style="color: red">*</span></label>
+                                <select class="form-control" id="counter" name="counter">
+                                    <option selected disabled hidden>Choose here</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6 amount">
+                                <label for="amount">Amount<span style="color: red">*</span></label>
+                                <input type="number" class="form-control" id="amount" name="amount" step="0.01" placeholder="Enter Amount" required>
+                            </div>
+                            <div class="form-group col-md-6 reference_no">
+                                <label for="reference_no">Reference #</label>
+                                <input type="text" class="form-control" id="reference_no" name="reference_no" placeholder="Enter Reference #">
+                            </div>
+                            <div class="form-group col-md-12 or_no">
+                                <label for="or_no">OR #</label>
+                                <input type="number" class="form-control" id="or_no" name="or_no" placeholder="Enter OR #">
+                            </div>
+                            <div class="form-group col-md-12 attachment">
+                                <label for="attachment">Attachment</label>
+                                {{-- <input type="file" class="form-control" id="attachment" name="attachment"> --}}
+                                <input type="file" name="attach_file[]" id="attach_file" class="form-control" accept="image/*,.pdf" multiple/>
+                            </div>
+                            <div class="form-group col-md-12 remarks">
+                                <label for="remarks">Remarks</label>
+                                <textarea name="remarks" id="remarks" class="form-control" placeholder="Enter Remarks"></textarea>
                             </div>
                         </div>
-                        <div class="form-group col-md-6 code">
-                            <label for="code">Property Code<span style="color: red">*</span></label>
-                            <select class="form-control" id="code" name="code" onchange="identifyDownpayment()" required>
-                            </select>
+                        <div class="text-right">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                            <button type="submit" class="btn btn-success">PAY</button>
                         </div>
-                        <div class="form-group col-md-4 date">
-                            <label for="date">Payment Date<span style="color: red">*</span></label>
-                            <input type="date" class="form-control" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" required>
-                        </div>
-                        <div class="form-group col-md-4 payment_id">
-                            <label for="payment_id">Payment Type<span style="color: red">*</span></label>
-                            <select class="form-control" name="payment_id" id="payment_id" required>
-                                @foreach ($paymenttypes as $paymenttype)
-                                    <option value="{{ $paymenttype->id }}">{{ $paymenttype->payment }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-md-4 payment_classification">
-                            <label for="payment_classification">Payment Classification<span style="color: red">*</span></label>
-                            <select class="form-control" name="payment_classification" id="payment_classification" onchange="classification(this.value)" required>
-                                <option selected disabled hidden>Choose here</option>
-                                <option value="MA">MONTHLY AMORTIZATION</option>
-                                <option value="DP" class="dp">DOWN PAYMENT</option>
-                                <option value="INT">INTEREST</option>
-                                <option value="PEN">PENALTY</option>
-                                <option value="FULL">FULL PAYMENT</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-12 ma_counter counter">
-                            <label for="counter">Monthly Amortization<span style="color: red">*</span></label>
-                            <select class="form-control" id="counter" name="counter">
-                                <option selected disabled hidden>Choose here</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6 amount">
-                            <label for="amount">Amount<span style="color: red">*</span></label>
-                            <input type="number" class="form-control" id="amount" name="amount" step="0.01" placeholder="Enter Amount" required>
-                        </div>
-                        <div class="form-group col-md-6 reference_no">
-                            <label for="reference_no">Reference #</label>
-                            <input type="text" class="form-control" id="reference_no" name="reference_no" placeholder="Enter Reference #">
-                        </div>
-                        <div class="form-group col-md-12 or_no">
-                            <label for="or_no">OR #</label>
-                            <input type="number" class="form-control" id="or_no" name="or_no" placeholder="Enter OR #">
-                        </div>
-                        <div class="form-group col-md-12 attachment">
-                            <label for="attachment">Attachment</label>
-                            <input type="file" class="form-control" id="attachment" name="attachment">
-                        </div>
-                        <div class="form-group col-md-12 remarks">
-                            <label for="remarks">Remarks</label>
-                            <textarea name="remarks" id="remarks" class="form-control" placeholder="Enter Remarks"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
-                    <button type="button" class="btn btn-success" onclick="saveRecord()">PAY</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -198,6 +202,72 @@
         </div>
     </div>
 
+    <div class="modal fade" id="attachmentModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title block-details-title">ATTACHMENT</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="attachment-container">
+                                <div class="attachment-item row"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+<div class="modal fade" id="imageView" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title block-details-title">VIEWER</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="attachmentForm" method="POST"  action="javascript:void(0)" accept-charset="utf-8" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-12">
+                            <img id="image_view" src="" alt="">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="fileView" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title block-details-title">VIEWER</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="attachmentForm" method="POST"  action="javascript:void(0)" accept-charset="utf-8" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-12">
+                            <object id="file_view" data="" type="application/pdf" width="100%" height="500px"></object>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- Customer List Modal -->
     <div class="modal fade" id="customerList" style="background: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-hidden="true">
@@ -249,6 +319,7 @@
         var table;
         var action = "save";
         var hold_id = null;
+        var type = "payment";
 
         $(function() {
             $('.ma_counter').hide();
@@ -289,11 +360,53 @@
                     { data: 'reference_no', title: 'REFERENCE NO.' },
                     { data: 'or_no', title: 'OR NO.' },
                     { data: 'remarks', title: 'REMARKS' },
+                    { data: 'attachment', title: 'ATTACHMENT', render: function(data, type, row, meta) {
+                        return '<a href="#" onclick="viewAttachment('+row.id+')">' +row.attachment.length + ' File/s</a>';
+                    }},
                     { data: null, title: 'PROCESS BY', render: function(data, type, row, meta) {
                         return row.process_by.firstname + " " + (row.process_by.middlename !== ''?row.process_by.middlename + ' ':'') + row.process_by.lastname;
                     }},
                 ]
             });
+
+            $('#paymentForm').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                let TotalFiles = $('#attach_file')[0].files.length; //Total files
+                let files = $('#attach_file')[0];
+
+                for (let i = 0; i < TotalFiles; i++) {
+                    formData.append('files' + i, files.files[i]);
+                }
+
+                formData.append('TotalFiles', TotalFiles);
+                formData.append('lot_id', $('#code').val().split('-')[2]);
+                formData.append('type', type);
+                formData.append('action', action);
+                formData.append('id', hold_id);
+
+                $.ajax({
+                    type:'POST',
+                    url: "/payment/save",
+                    data: formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    dataType: 'json',
+                    success: (data) => {
+                        this.reset();
+                        $('#addAttachment').modal('hide');
+                        clearField();
+                        table.clear().draw();
+                        // getAttachmentItem();
+                    },
+                    error: function(data){
+                        alert(data.responseJSON.errors.files[0]);
+                    }
+                });
+                
+            });
+
         });
 
         function edit(id){
@@ -315,6 +428,10 @@
                         $.each(this, function(k, v) {
                             if(k === 'code') {
                                 $("#" + k).html(o);
+                            }
+                            else if(k === 'payment_classification') {
+                                $('#'+k).val(v);
+                                classification(v);
                             }
                             else {
                                 $('#'+k).val(v);
@@ -414,6 +531,7 @@
                 counter: $('#counter').val(),
                 payment_classification: $('#payment_classification').val(),
                 amount: $('#amount').val(),
+                counter: $('#counter').val(),
                 reference_no: $('#reference_no').val(),
                 or_no: $('#or_no').val(),
                 attachment: $('#attachment').val(),
@@ -467,6 +585,8 @@
             $('#or_no').val("");
             $('#attachment').val("");
             $('#remarks').val("");
+            $('.ma_counter').css("display", 'none');
+            $('#counter option').remove();
         }
 
         function filter() {
@@ -516,7 +636,10 @@
                         }},
                         { data: 'reference_no', title: 'REFERENCE NO.' },
                         { data: 'or_no', title: 'OR NO.' },
-                        { data: 'remarks', title: 'REMARKS' },
+                        { data: 'remarks', title: 'REMARKS' },,
+                        { data: 'attachment', title: 'ATTACHMENT', render: function(data, type, row, meta) {
+                            return '<a href="#" onclick="viewAttachment('+row.id+')">' +row.attachment.length + ' File/s</a>';
+                        }},
                         { data: null, title: 'PROCESS BY', render: function(data, type, row, meta) {
                             return row.process_by.firstname + " " + (row.process_by.middlename !== ''?row.process_by.middlename + ' ':'') + row.process_by.lastname;
                         }},
@@ -542,6 +665,42 @@
             else {
                 $('.filter-body').removeClass('hide');
             }
+        }
+
+        function viewAttachment(id) {
+            event.preventDefault();
+            var html = '';
+            $.get('/payment/get_attachment/' + id, function(response) {
+                console.log(response);
+                $.each(response.attachment, (i, v) => {
+                    var ext = v.file_name.split('.');
+                    if(ext[1] === "pdf") {
+                        html += "<div class='file-item col-3'><span class='remove-img' onclick='removeFile("+v.id+", \"/storage/" + v.file_name.replace('public/','') + "\")'><i class='fas fa-trash'></i></span><div onclick='fileView("+'"/storage/'+v.file_name.replace('public/','')+'"'+")'><div class='file-img' style='background:url(/images/pdf.png)'></div><div class='file-name'>"+v.type+"_"+i+"</div></div></div>";
+                    }
+                    else {
+                        html += "<div class='file-item col-3'><span class='remove-img' onclick='removeFile("+v.id+", \"/storage/" + v.file_name.replace('public/','')+ "\")'><i class='fas fa-trash'></i></span><div onclick='imageView("+'"/storage/'+v.file_name.replace('public/','')+'"'+")'><div class='file-img' style='background:url(/storage/" + v.file_name.replace('public/','') + ")'></div><div class='file-name'>"+v.type+"_"+i+"</div></div></div>";
+                    }
+                });
+                $('.attachment-item').html(html);
+                $('#attachmentModal').modal('show');
+            });
+        }
+        
+        function fileView(file) {
+            $('#file_view').attr('data', file);
+            $('#fileView').modal('show');
+        }
+
+        function imageView(image) {
+            $('#image_view').attr('src', image);
+
+            $('#imageView').modal('show');
+        }
+
+        function removeFile(id, file) {
+            $.post('/attachment/destroy', { _token: "{{csrf_token()}}", id: id, file: file }).done(function(response) {
+                getAttachmentItem();
+            });
         }
 
     </script>
@@ -620,6 +779,84 @@
         table#payment_table th {
             background: #2e9e5b;
             color: #fff;
+        }
+        
+        span.remove-img {
+            float: right;
+            background: #a50a0a;
+            padding: 5px 8px;
+            font-size: 12px;
+            color: #fff;
+            border-radius: 5px;
+            opacity: 0.7 !important;
+            cursor: pointer;
+        }
+        object#file_view {
+            height: 800px;
+        }
+        .file-item>div {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .file-item>div:hover {
+            background: #ccc;
+        }
+        .list-item.active {
+            background: #2e9e5b !important;
+            color: #fff !important;
+        }
+        img#image_view {
+            width: 100%;
+        }
+        .file-name {
+            font-weight: bold;
+            color: blue;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .file-img {
+            height: 124px;
+            background-size: cover !important;
+            background-position: center center !important;
+            cursor: pointer;
+        }
+
+        .attachment-item {
+            margin: 10px 0px;
+        }
+
+        div#addAttachment,
+        #imageView,
+        #fileView {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .attachment-container {
+            padding: 15px;
+        }
+        .list-item:hover {
+            background: #d5d5d5 !important;
+        }
+        ul.attachment-list {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+        ul.attachment-list .list-item {
+            padding: 10px;
+            background: #eee;
+            margin-bottom: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .attachment-container {
+            height: 450px;
+            background: #eee;
+        }
+        .attachment-option {
+            padding: 13px;
+            background: #fdf2ca;
+            margin-bottom: 10px;
         }
     </style>
 @endsection

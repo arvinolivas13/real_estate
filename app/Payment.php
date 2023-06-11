@@ -48,4 +48,9 @@ class Payment extends Model
     {
         return $this->belongsTo(MonthlyAmortization::class, 'monthly_amortization_id');
     }
+
+    public function attachment()
+    {
+        return $this->hasMany(Attachment::class, 'co_borrower_id', 'id');
+    }
 }

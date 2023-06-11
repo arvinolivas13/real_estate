@@ -107,7 +107,7 @@ class TransactionController extends Controller
         $dp = Payment::where('code', $transaction->code)->where('payment_classification', 'DP')->firstOrFail();
         $res = Payment::where('code', $transaction->code)->where('payment_classification', 'RES')->firstOrFail();
         $payment_transfer_fee = Payment::where('code', $transaction->code)->where('payment_classification', 'TF')->with('customer')->get();
-        $amortizations = MonthlyAmortization::where('transaction_id', $transaction->id)->where('status', 'UNPAID')->orderBy('payment_date')->get();
+        $amortizations = MonthlyAmortization::with('payment', 'payment.paymenttype')->where('transaction_id', $transaction->id)->orderBy('payment_date')->get();
         $generate_amortization = MonthlyAmortization::where('transaction_id', $transaction->id)->exists();
         $remaining_balance = $lot->tcp - $dp->amount - $res->amount;
 
