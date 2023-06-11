@@ -11,7 +11,6 @@ class MonthlyAmortization extends Model
 
     protected $fillable = [
         'transaction_id',
-        'payment_id',
         'payment_date',
         'payment_classification',
         'amount',
@@ -28,6 +27,11 @@ class MonthlyAmortization extends Model
 
     public function payment()
     {
-        return $this->belongsTo(Payment::class);
+        return $this->hasOne(Payment::class, 'monthly_amortization_id', 'id');
+    }
+
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class);
     }
 }

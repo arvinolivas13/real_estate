@@ -459,7 +459,7 @@
                         var counter = data.ma_counters;
                         console.log(counter);
                         for (let index = 0; index < counter.length; index++) {
-                            $("#counter").append('<option value="' + counter[index].id + '">' + counter[index].payment_classification + ' (' + counter[index].counter +')' + '</option>');
+                            $("#counter").append('<option value="' + counter[index].counter + '">' + counter[index].payment_classification + ' (' + counter[index].counter +')' + '</option>');
                         }
 
                     }
