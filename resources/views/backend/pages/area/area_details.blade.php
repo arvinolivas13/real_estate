@@ -55,9 +55,9 @@
                                                 <div class="lot {{$item->status}}">
                                                     <span class="lot-name">LOT {{$item->lot}}
                                                         <span class="action-items">
-                                                            <button class="btn btn-sm btn-block edit-lot" onclick="editLot('{{$item->status}}', '{{$item->id}}', '{{$block->block}}', '{{$item->lot}}')"><i class="fas fa-pen"></i></button>
-                                                            <button class="btn btn-sm btn-block" onclick="showAttachment({{$item->id}}, null)"><i class="fas fa-paperclip"></i></button>
-                                                            <button class="btn btn-sm btn-block" onclick="coBorrower({{$item->id}})"><i class="fas fa-users"></i></button>
+                                                            <button class="btn btn-sm btn-block edit-lot" title="EDIT LOT" onclick="editLot('{{$item->status}}', '{{$item->id}}', '{{$block->block}}', '{{$item->lot}}')"><i class="fas fa-pen"></i></button>
+                                                            <button class="btn btn-sm btn-block" title="ATTACHMENT" onclick="showAttachment({{$item->id}}, '')"><i class="fas fa-paperclip"></i></button>
+                                                            <button class="btn btn-sm btn-block" title="CO-OWNER" onclick="coBorrower({{$item->id}})"><i class="fas fa-users"></i></button>
                                                         </span>
                                                     </span>
                                                     <div class="row lot-details" style="cursor: pointer" onclick="LotFunction('{{$item->status}}', '{{$item->id}}', '{{$block->block}}', '{{$item->lot}}')">
@@ -295,7 +295,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title block-details-title">CO-BORROWER</h5>
+                <h5 class="modal-title block-details-title">CO-OWNER</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -446,7 +446,7 @@
         var table;
         var lot_id = null;
         var type = 'buyers_info';
-        var co_borrower_id = null;
+        var co_borrower_id = '';
         var storage = "{{asset('/storage/app/')}}";
 
         $(document).ready(function() {

@@ -528,6 +528,7 @@
                 code: $('#code').val(),
                 date: $('#date').val(),
                 payment_id: $('#payment_id').val(),
+                counter: $('#counter').val(),
                 payment_classification: $('#payment_classification').val(),
                 amount: $('#amount').val(),
                 counter: $('#counter').val(),
