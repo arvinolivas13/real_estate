@@ -217,19 +217,25 @@
             };
 
             $('.error-message').remove();
-
-            $.post('/customer/save', data).done(function(response){
-                clearField();
-                // $('#customerModal').modal('hide');
-                toastr.success('Record saved');
-                table.clear().draw();
-            }).fail(function(response) {
-                for (var field in response.responseJSON.errors) {
-                    $('#'+field+"_error_message").remove();
-                    $('.'+field).append('<span id="'+field+'_error_message" class="error-message">'+response.responseJSON.errors[field][0]+'</span>');
+            $.post('/customer/get_name', data).done(function(response){
+                if(response.customer >= 1) {
+                    toastr.error('Name is already Exist!');
                 }
-                toastr.error(response.responseJSON.message);
+                else {
+                    $.post('/customer/save', data).done(function(response){
+                        clearField();
+                        toastr.success('Record saved');
+                        table.clear().draw();
+                    }).fail(function(response) {
+                        for (var field in response.responseJSON.errors) {
+                            $('#'+field+"_error_message").remove();
+                            $('.'+field).append('<span id="'+field+'_error_message" class="error-message">'+response.responseJSON.errors[field][0]+'</span>');
+                        }
+                        toastr.error(response.responseJSON.message);
+                    });
+                }
             });
+
         }
 
         function clearField() {

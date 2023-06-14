@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/get',                         'CustomerController@get'                            )->name('get');
         Route::post         ('/update/{id}',                 'CustomerController@update'                         )->name('update');
         Route::get          ('/destroy/{id}',                'CustomerController@destroy'                        )->name('delete');
+        Route::post         ('/get_name',                    'CustomerController@get_name'                       )->name('get_name');
     });
 
     Route::group(['prefix' => 'attachment'], function (){
@@ -102,6 +103,8 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/lot/{id}',                    'PaymentController@lotNo'                          )->name('delete');
         Route::post         ('/getWithDownpayment',          'PaymentController@getWithDownpayment'             )->name('get_downpayment');
     });
+
+    
 
     Route::group(['prefix' => 'transaction'], function (){
         Route::post          ('/reservation',                 'TransactionController@reservation'               )->name('get');

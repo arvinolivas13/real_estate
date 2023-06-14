@@ -65,4 +65,9 @@ class CustomerController extends Controller
         $destroy->delete();
         return redirect()->back()->with('success','Successfully Deleted!');
     }
+
+    public function get_name(Request $request) {
+        $customer = Customer::where('firstname', $request->firstname)->where('middlename', $request->middlename)->where('lastname', $request->lastname)->count();
+        return response()->json(compact('customer'));
+    }
 }
