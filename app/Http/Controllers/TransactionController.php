@@ -193,7 +193,7 @@ class TransactionController extends Controller
 
         AreaDetailLot::where("id", $id)->update(["monthly_amortization" => $monthly_amortization]);
 
-        for ($i=1; $i < $diff_in_months; $i++) {
+        for ($i=1; $i <= $diff_in_months; $i++) {
             $monthlyAmort = new MonthlyAmortization([
                 'transaction_id' => $transaction->id,
                 'payment_date' => $this->getSameDayNextMonth($startDate, $i)->format('Y-m-d'),

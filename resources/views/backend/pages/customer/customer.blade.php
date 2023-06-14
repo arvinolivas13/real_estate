@@ -275,10 +275,10 @@
                     type: 'GET'
                 },
                 columns: [
-                    { data: null, title: '', render: function(data, type, row, meta) {
+                    { data: 'firstname', title: '', render: function(data, type, row, meta) {
                         return "<i class='fas fa-circle stats-" + row.status + "' title='"+row.status+"'></i>";
                     }},
-                    { data: null, title: 'ACTION', render: function(data, type, row, meta) {
+                    { data: 'middlename', title: 'ACTION', render: function(data, type, row, meta) {
                         var html = "<td>";
                             html += "<a href='#' class='align-middle edit' onclick='edit("+row.id+")' title='EDIT'><i class='align-middle fas fa-fw fa-pen'></i></a>";
                             html += "<a href='#' class='align-middle edit' onclick='confirmDelete("+row.id+")' title='DELETE'><i class='align-middle fas fa-fw fa-trash'></i></a>";
@@ -287,7 +287,7 @@
                         return html;
                     }},
                     { data: 'subscriber_no', title: 'CODE', class: 'data-code'},
-                    { data: null, title: 'NAME', class:'data-name', render: function(data, type, row, meta) {
+                    { data: 'lastname', title: 'NAME', class:'data-name', render: function(data, type, row, meta) {
                         return row.firstname + " " + (row.middlename !== ''?row.middlename + ' ':'') + row.lastname;
                     }},
                     { data: 'email', title: 'EMAIL'},
