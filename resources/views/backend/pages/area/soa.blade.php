@@ -331,15 +331,26 @@
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Purchase Date<span style="color: red">*</span></label>
-                    <input type="date" class="form-control" id="purchase_date" name="purchase_date" value="{{$lot->reservation_date}}" required>
+                    <input type="date" class="form-control" id="purchase_date" name="purchase_date" value="{{$lot->reservation_date}}" required readonly>
+                </div>
+                @php
+                    $date_1 = date_create($lot->reservation_date);
+                    date_add($date_1,date_interval_create_from_date_string($get_months_pay->block->area_detail->no_months_pay." months"));
+                @endphp
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">End Date<span style="color: red">*</span> ({{$get_months_pay->block->area_detail->no_months_pay." Months"}})</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date" value="{{date_format($date_1,"Y-m-d")}}" required readonly>
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">End Date<span style="color: red">*</span></label>
-                    <input type="date" class="form-control" id="end_date" name="end_date" value="<?php echo date('Y-m-d'); ?>" required>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Transfer Fee<span style="color: red">*</span></label>
-                    <input type="double" class="form-control" id="transfer_fee" name="transfer_fee" placeholder="Transfer Fee" required>
+                    <label for="inputPassword4">Transfer Fee<span style="color: red">*</span></label> (TCP: {{number_format($lot->tcp)}})
+                    <div class="mb-2">
+                        <button type="button" class="btn btn-sm btn-light" onclick="generateTransferFee({{$lot->tcp}}, 0.01)">1%</button>
+                        <button type="button" class="btn btn-sm btn-light" onclick="generateTransferFee({{$lot->tcp}}, 0.015)">1.5%</button>
+                        <button type="button" class="btn btn-sm btn-light" onclick="generateTransferFee({{$lot->tcp}}, 0.02)">2%</button>
+                        <button type="button" class="btn btn-sm btn-light" onclick="generateTransferFee({{$lot->tcp}}, 0.025)">2.5%</button>
+                        <button type="button" class="btn btn-sm btn-light" onclick="generateTransferFee({{$lot->tcp}}, 0.03)">3%</button>
+                    </div>
+                    <input type="number" class="form-control" id="transfer_fee" name="transfer_fee" placeholder="Transfer Fee" required>
                 </div>
             </div>
             <div class="modal-footer">
@@ -477,6 +488,11 @@
 
             }
         });
+    }
+
+    function generateTransferFee(tcp, percent) {
+        var transfer_fee = tcp * percent;
+        $('#transfer_fee').val(transfer_fee);
     }
 </script>
 @endsection

@@ -18,6 +18,7 @@ class Area extends Model
         'image',
         'status',
         'created_user',
+        'no_months_pay'
     ];
 
     public function lot()

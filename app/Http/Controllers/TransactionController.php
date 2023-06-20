@@ -127,9 +127,11 @@ class TransactionController extends Controller
         $transfer_fee_amount_pay = $payment_transfer_fee->sum('amount');
         $transfer_fee_amount_due = $transfer_fees->sum('amount');
 
+        $get_months_pay = AreaDetailLot::with('block', 'block.area_detail')->where('id', $transaction->lot_id)->firstOrFail();
+
 
         return view('backend.pages.area.soa', compact('generate_amortization', 'payments', 'customer', 'lot', 'dp', 'res', 'id', 'amortizations', 'penalties', 'remaining_balance', 'regular_amount_pay',
-                                                      'penalty_amount_pay', 'penalty_amount_due', 'transfer_fees', 'transfer_fee_amount_due', 'transfer_fee_amount_pay'));
+                                                      'penalty_amount_pay', 'penalty_amount_due', 'transfer_fees', 'transfer_fee_amount_due', 'transfer_fee_amount_pay', 'get_months_pay'));
     }
 
     function noDownpayment($id) {
