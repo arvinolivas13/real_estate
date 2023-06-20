@@ -627,7 +627,7 @@
         }
 
         function editLot(status, id, block, lot) {
-            if (status == 'OPEN') {
+            if (status == 'OPEN' || status == 'ACTIVE') {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -122,6 +122,7 @@
                                     <option value="INT">INTEREST</option>
                                     <option value="PEN">PENALTY</option>
                                     <option value="FULL">FULL PAYMENT</option>
+                                    <option value="RES">RESERVATION</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-12 ma_counter counter">
@@ -359,6 +360,9 @@
                     }},
                     { data: 'reference_no', title: 'REFERENCE NO.' },
                     { data: 'or_no', title: 'OR NO.' },
+                    { data: 'date', title: 'PAYMENT DATE', render: function(data, type, row, meta) {
+                        return moment(row.date).format('MMM DD YYYY');
+                    }},
                     { data: 'remarks', title: 'REMARKS' },
                     { data: 'attachment', title: 'ATTACHMENT', render: function(data, type, row, meta) {
                         return '<a href="#" onclick="viewAttachment('+row.id+')">' +row.attachment.length + ' File/s</a>';
@@ -636,9 +640,12 @@
                         }},
                         { data: 'reference_no', title: 'REFERENCE NO.' },
                         { data: 'or_no', title: 'OR NO.' },
-                        { data: 'remarks', title: 'REMARKS' },,
+                        { data: 'date', title: 'PAYMENT DATE', render: function(data, type, row, meta) {
+                            return moment(row.date).format('MMM DD YYYY');
+                        }},
+                        { data: 'remarks', title: 'REMARKS' },
                         { data: 'attachment', title: 'ATTACHMENT', render: function(data, type, row, meta) {
-                            return '<a href="#" onclick="viewAttachment('+row.id+')">' +row.attachment.length + ' File/s</a>';
+                            return '<a href="#" onclick="viewAttachment('+row.id+')">' + (row.attachment!==null?row.attachment.length:0) + ' File/s</a>';
                         }},
                         { data: null, title: 'PROCESS BY', render: function(data, type, row, meta) {
                             return row.process_by.firstname + " " + (row.process_by.middlename !== ''?row.process_by.middlename + ' ':'') + row.process_by.lastname;

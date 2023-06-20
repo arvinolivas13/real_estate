@@ -43,11 +43,11 @@
                             </div>
                             <div class="form-group col-4">
                                 <label for="lastname">AMMORTIZATION DATE:</label>
-                                <input type="date" class="form-control form-control-sm" name="ammortization_date" id="ammortization_date">
+                                <input type="date" class="form-control form-control-sm" name="f_ammortization_date" id="f_ammortization_date">
                             </div>
                             <div class="form-group col-4">
                                 <label for="lastname">PENALTY DATE:</label>
-                                <input type="date" class="form-control form-control-sm" name="penalty_date" id="penalty_date">
+                                <input type="date" class="form-control form-control-sm" name="f_penalty_date" id="f_penalty_date">
                             </div>
                             <div class="col-12 text-right">
                                 <button class="btn btn-light" onclick="clearFilter()">Clear</button>

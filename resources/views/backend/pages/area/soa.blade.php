@@ -167,9 +167,9 @@
                     <td style="padding: 15px; width: 100px; text-align: left;">{{ date('M d, Y', strtotime($amortization->payment_date)) }}</td>
                     <td style="padding: 15px; width: 100px; text-align: right;">{{$amortization->payment !== null?date('M d, Y', strtotime($amortization->payment['date'])):'--' }}</td>
                     <td style="padding: 15px; width: 100px; text-align: right;">{{$amortization->payment !== null?$amortization->payment['paymenttype']['payment']:'--' }}</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">-</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">-</td>
-                    <td style="padding: 15px; width: 100px; text-align: right;">-</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">{{$amortization->payment !== null && $amortization->payment['reference_no'] !== null?$amortization->payment['reference_no']:'--' }}</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">--</td>
+                    <td style="padding: 15px; width: 100px; text-align: right;">{{$amortization->payment !== null?$amortization->payment['or_no']:'--' }}</td>
                     <td style="padding: 15px; width: 100px; text-align: right;">₱ {{$amortization->payment !== null?number_format($lot->monthly_amortization, 2):number_format($amortization->balance, 2) }}</td>
                     <td style="padding: 15px; width: 100px; text-align: right;">₱ {{$amortization->payment !== null?number_format($amortization->payment['amount'], 2):'0.00' }}</td>
                     <td style="padding: 15px; width: 100px; text-align: right;">₱ {{ number_format($contract_price, 2)}}</td>
