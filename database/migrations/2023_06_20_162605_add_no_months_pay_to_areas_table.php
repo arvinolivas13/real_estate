@@ -14,7 +14,7 @@ class AddNoMonthsPayToAreasTable extends Migration
     public function up()
     {
         Schema::table('areas', function (Blueprint $table) {
-            $table->integer('no_months_pay');
+            $table->integer('no_months_pay')->default(0);
         });
     }
 
