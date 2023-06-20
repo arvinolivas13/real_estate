@@ -155,7 +155,7 @@
                         </div>
                         <div class="text-right">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
-                            <button type="submit" class="btn btn-success">PAY</button>
+                            <button type="submit" class="btn btn-success">SAVE</button>
                         </div>
                     </form>
                 </div>

@@ -331,7 +331,7 @@
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Purchase Date<span style="color: red">*</span></label>
-                    <input type="date" class="form-control" id="purchase_date" name="purchase_date" value="<?php echo date('Y-m-d'); ?>" required>
+                    <input type="date" class="form-control" id="purchase_date" name="purchase_date" value="{{$lot->reservation_date}}" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">End Date<span style="color: red">*</span></label>
