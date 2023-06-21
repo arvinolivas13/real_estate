@@ -56,6 +56,7 @@
                     <li class="list-title">Payment</li>
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ url('payment') }}">Payment</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ url('payment/all') }}">All Payment</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ url('transfer_fee') }}">Transfer Fee</a></li>
                 </ul>
                 <a href="{{ url('penalty') }}" class="sidebar-link collapsed">
                     <span class="item">

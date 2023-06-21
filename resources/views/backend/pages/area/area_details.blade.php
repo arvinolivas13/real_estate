@@ -55,7 +55,9 @@
                                                 <div class="lot {{$item->status}}">
                                                     <span class="lot-name">LOT {{$item->lot}}
                                                         <span class="action-items">
+                                                            @if($item->status === "OPEN")
                                                             <button class="btn btn-sm btn-block edit-lot" title="EDIT LOT" onclick="editLot('{{$item->status}}', '{{$item->id}}', '{{$block->block}}', '{{$item->lot}}')"><i class="fas fa-pen"></i></button>
+                                                            @endif
                                                             <button class="btn btn-sm btn-block" title="ATTACHMENT" onclick="showAttachment({{$item->id}}, '')"><i class="fas fa-paperclip"></i></button>
                                                             <button class="btn btn-sm btn-block" title="CO-OWNER" onclick="coBorrower({{$item->id}})"><i class="fas fa-users"></i></button>
                                                         </span>

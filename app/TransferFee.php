@@ -17,4 +17,9 @@ class TransferFee extends Model
         'status',
         'created_user',
     ];
+    
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class);
+    }
 }

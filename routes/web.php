@@ -95,6 +95,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post         ('/save',                        'PaymentController@store'                          )->name('save');
         Route::get          ('/edit/{id}',                   'PaymentController@edit'                           )->name('edit');
         Route::get          ('/amortization/{code}',         'PaymentController@ma_counter'                     )->name('edit');
+        Route::get          ('/amortization_2/{code}',       'PaymentController@ma_counter_2'                     )->name('edit');
         Route::get          ('/get',                         'PaymentController@get'                            )->name('get');
         Route::post         ('/filter',                      'PaymentController@filter'                         )->name('filter');
         Route::get          ('/get_attachment/{id}',         'PaymentController@getAttachment'                  )->name('filter');
@@ -116,6 +117,13 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get           ('/exist/{id}',                  'TransactionController@account_exists'            )->name('get');
         Route::get           ('/nodownpayment/{id}',          'TransactionController@noDownpayment'             )->name('get');
         Route::post          ('/generate_amort/{id}',         'TransactionController@generate_amortization'     )->name('get');
+    });
+    
+    Route::group(['prefix' => 'transfer_fee'], function (){
+        Route::get          ('/',                             'TransferFeeController@index'                     )->name('get');
+        Route::get          ('/get',                          'TransferFeeController@get'                       )->name('get');
+        Route::get          ('/edit/{id}',                    'TransferFeeController@edit'                      )->name('edit');
+        Route::post         ('/save',                         'TransferFeeController@store'                     )->name('save');
     });
 
     Route::get('/dashboard', function () {

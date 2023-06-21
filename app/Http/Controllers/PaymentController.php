@@ -57,9 +57,11 @@ class PaymentController extends Controller
 
             if($request->action === "save") {
                 $payment_save = Payment::create($requestData);
+                $payment_save_id = $payment_save->id;
             }
             else {
-                $payment_save = Payment::find($request->id)->update($requestData);
+                Payment::find($request->id)->update($requestData);
+                $payment_save_id = $request->id;
             }
             
             for ($x = 0; $x < $request->TotalFiles; $x++) 
@@ -75,7 +77,7 @@ class PaymentController extends Controller
                     $data = array(
                         'file_name' => $path,
                         'lot_id' => $request->lot_id,
-                        'co_borrower_id' => $payment_save->id,
+                        'co_borrower_id' => $payment_save_id,
                         'type' => $request->type,
                         'status' => 1,
                         'created_by' => Auth::user()->id,
@@ -134,7 +136,7 @@ class PaymentController extends Controller
 
     public function edit($id)
     {
-        $payment = Payment::with('customer')->where('id', $id)->orderBy('id')->firstOrFail();
+        $payment = Payment::with('customer', 'amortization')->where('id', $id)->orderBy('id')->firstOrFail();
         return response()->json(compact('payment'));
     }
 
@@ -148,6 +150,14 @@ class PaymentController extends Controller
     {
         $transaction = Transaction::where('code', $code)->first();
         $ma_counters = MonthlyAmortization::where('transaction_id', $transaction->id)->where('status', 'UNPAID')->get();
+
+        return response()->json(compact('ma_counters'));
+    }
+
+    public function ma_counter_2($code)
+    {
+        $transaction = Transaction::where('code', $code)->first();
+        $ma_counters = MonthlyAmortization::where('transaction_id', $transaction->id)->get();
 
         return response()->json(compact('ma_counters'));
     }

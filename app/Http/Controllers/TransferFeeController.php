@@ -7,79 +7,37 @@ use Illuminate\Http\Request;
 
 class TransferFeeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return view('backend.pages.payment.transfer_fee');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    
+    public function get() {
+        if(request()->ajax()) {
+            return datatables()->of(
+                TransferFee::with('transaction')->orderBy('id', 'desc')->get()
+            )
+            ->addIndexColumn()
+            ->make(true);
+        }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        //
-    }
+        $transfer_fee = $request->validate([
+            'amount' => ['required'],
+            'status' => ['required']
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\TransferFee  $transferFee
-     * @return \Illuminate\Http\Response
-     */
-    public function show(TransferFee $transferFee)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\TransferFee  $transferFee
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(TransferFee $transferFee)
-    {
-        //
-    }
+        TransferFee::find($request->id)->update($request->except(['id', '_token']));
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TransferFee  $transferFee
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, TransferFee $transferFee)
-    {
-        //
+        return response()->json(compact('transfer_fee'));
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\TransferFee  $transferFee
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(TransferFee $transferFee)
+    
+    public function edit($id)
     {
-        //
+        $transfer_fee = TransferFee::where('id', $id)->orderBy('id')->firstOrFail();
+        return response()->json(compact('transfer_fee'));
     }
 }

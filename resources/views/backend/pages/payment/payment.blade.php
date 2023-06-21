@@ -434,11 +434,17 @@
                                 $("#" + k).html(o);
                             }
                             else if(k === 'payment_classification') {
+                                classification_2(v);
                                 $('#'+k).val(v);
-                                classification(v);
                             }
                             else {
                                 $('#'+k).val(v);
+                                if(k === 'amortization') {
+                                    setTimeout(() => {
+                                        $('#counter').val(data.payment.amortization.counter);
+                                    }, 1000);
+                                    console.log(data.payment.amortization.counter);
+                                }
                             }
                         });
                     });
@@ -457,6 +463,30 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     url: '/payment/amortization/' + $('#code').val() ,
+                    method: 'get',
+                    success: function(data) {
+                        $('#counter').empty();
+                        var counter = data.ma_counters;
+                        console.log(counter);
+                        for (let index = 0; index < counter.length; index++) {
+                            $("#counter").append('<option value="' + counter[index].counter + '">' + counter[index].payment_classification + ' (' + counter[index].counter +')' + '</option>');
+                        }
+
+                    }
+                });
+            } else {
+                $('.ma_counter').hide();
+            }
+        }
+
+        function classification_2(value) {
+            if( value == 'MA') {
+                $('.ma_counter').show();
+                    $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: '/payment/amortization_2/' + $('#code').val() ,
                     method: 'get',
                     success: function(data) {
                         $('#counter').empty();
