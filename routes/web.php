@@ -125,6 +125,21 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/edit/{id}',                    'TransferFeeController@edit'                      )->name('edit');
         Route::post         ('/save',                         'TransferFeeController@store'                     )->name('save');
     });
+    
+    Route::group(['prefix' => 'user'], function (){
+        Route::get          ('/',                             'UserController@index'                            )->name('');
+        Route::post         ('/save',                         'UserController@store'                            )->name('save');
+        Route::get          ('/get',                          'UserController@get'                              )->name('get');
+        Route::get          ('/edit/{id}',                    'UserController@edit'                             )->name('edit');
+        Route::get          ('/destroy/{id}',                 'UserController@destroy'                          )->name('delete');
+        Route::post         ('/give_access',                  'UserController@give_access'                      )->name('give_access');
+        Route::get          ('/check_access/{id}',            'UserController@check_access'                     )->name('check_access');
+        Route::get          ('/roles',                        'UserController@roles'                            )->name('roles');
+        Route::get          ('/roles_get',                    'UserController@roles_get'                        )->name('roles_get');
+        Route::post         ('/roles_save',                   'UserController@roles_store'                      )->name('roles_save');
+        Route::get          ('/roles_edit/{id}',              'UserController@roles_edit'                       )->name('roles_edit');
+        Route::get          ('/roles_destroy/{id}',           'UserController@roles_destroy'                    )->name('roles_delete');
+    });
 
     Route::get('/dashboard', function () {
         return view('backend.pages.dashboard');

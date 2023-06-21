@@ -23,7 +23,7 @@
                     </button>
                 </div>
                 <div class="card-body">
-                    <div class="filter-body hide">
+                    {{-- <div class="filter-body hide">
                         <div class="row">
                             <div class="form-group col-4">
                                 <label for="firstname">FIRSTNAME:</label>
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                     </div>
-                    <br>
+                    <br> --}}
                     <table id="penalty_table" class="table table-striped" style="width:100%"></table>
                 </div>
             </div>
