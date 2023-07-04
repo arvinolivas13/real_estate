@@ -47,11 +47,11 @@
             </div>
             <div class="col-4">
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Purchase Date: <span style="font-weight: 300;">{{$lot->purchase_date}}</span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">End Date: <span style="font-weight: 300;">{{$lot->end_date}}</span></p>
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Contract Price: <span style="font-weight: 300;">₱ {{ number_format($lot->tcp, 2)}}</span></p>
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Down payment: <span style="font-weight: 300;">₱ {{ number_format($dp->amount, 2)}}</span></p>
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Reservation: <span style="font-weight: 300;">₱ {{ number_format($res->amount, 2)}}</span></p>
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Ammortization: <span style="font-weight: 300;">₱ {{ number_format($lot->monthly_amortization, 2) }}</span></p>
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">OR Number: <span style="font-weight: 300;">0148</span></p>
             </div>
         </div>
         <div class="row" style="border-top: 2px solid;">
@@ -162,6 +162,7 @@
                         $contract_price = $contract_price - $amortization->payment['amount'];
                     }
                 @endphp
+                
                 <tr>
                     <td style="padding: 15px; width: 100px; text-align: left;">{{$amortization->payment_classification . ' ('.$amortization->counter .')'}}</td>
                     <td style="padding: 15px; width: 100px; text-align: left;">{{ date('M d, Y', strtotime($amortization->payment_date)) }}</td>
@@ -333,13 +334,10 @@
                     <label for="inputPassword4">Purchase Date<span style="color: red">*</span></label>
                     <input type="date" class="form-control" id="purchase_date" name="purchase_date" value="{{$lot->reservation_date}}" required readonly>
                 </div>
-                @php
-                    $date_1 = date_create($lot->reservation_date);
-                    date_add($date_1,date_interval_create_from_date_string($get_months_pay->block->area_detail->no_months_pay." months"));
-                @endphp
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">End Date<span style="color: red">*</span> ({{$get_months_pay->block->area_detail->no_months_pay." Months"}})</label>
-                    <input type="date" class="form-control" id="end_date" name="end_date" value="{{date_format($date_1,"Y-m-d")}}" required readonly>
+                    <input type="date" class="form-control" id="end_date" name="end_date" value="{{Carbon\Carbon::parse($lot->reservation_date)->addMonthsNoOverflow($get_months_pay->block->area_detail->no_months_pay)->format('Y-m-d')}}" required readonly>
+                    <input type="hidden" id="no_month" name="no_month" value="{{$get_months_pay->block->area_detail->no_months_pay}}"/>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Transfer Fee<span style="color: red">*</span></label> (TCP: {{number_format($lot->tcp)}})
@@ -350,7 +348,7 @@
                         <button type="button" class="btn btn-sm btn-light" onclick="generateTransferFee({{$lot->tcp}}, 0.025)">2.5%</button>
                         <button type="button" class="btn btn-sm btn-light" onclick="generateTransferFee({{$lot->tcp}}, 0.03)">3%</button>
                     </div>
-                    <input type="number" class="form-control" id="transfer_fee" name="transfer_fee" placeholder="Transfer Fee" required>
+                    <input type="number" class="form-control" step="any" id="transfer_fee" name="transfer_fee" placeholder="Transfer Fee" required>
                 </div>
             </div>
             <div class="modal-footer">
@@ -365,6 +363,7 @@
         <i class="fa fa-print my-float"></i>
     </a>
 </div>
+
 @endsection
 
 @section('chart-js')

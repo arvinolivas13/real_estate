@@ -178,6 +178,7 @@ class TransactionController extends Controller
 
     public function generate_amortization(Request $request, $id)
     {
+
         $transaction = Transaction::where('lot_id', $id)->firstOrFail();
         AreaDetailLot::where("id", $id)->update(["purchase_date" => $request->purchase_date, 'end_date' => $request->end_date, 'status' => 'ACTIVE']);
         $to = Carbon::createFromFormat('Y-m-d', $request->purchase_date);
@@ -195,7 +196,7 @@ class TransactionController extends Controller
 
         AreaDetailLot::where("id", $id)->update(["monthly_amortization" => $monthly_amortization]);
 
-        for ($i=1; $i <= $diff_in_months; $i++) {
+        for ($i=1; $i <= $request->no_month; $i++) {
             $monthlyAmort = new MonthlyAmortization([
                 'transaction_id' => $transaction->id,
                 'payment_date' => $this->getSameDayNextMonth($startDate, $i)->format('Y-m-d'),

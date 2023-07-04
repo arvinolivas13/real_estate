@@ -337,20 +337,21 @@
                 processing: true,
                 serverSide: true,
                 pageLength: 20,
+                scrollX: true,
                 ajax: {
                     url: '/payment/get',
                     type: 'GET'
                 },
                 columns: [
-                    { data: null, title: 'ACTION', render: function(data, type, row, meta) {
+                    { data: 'customer.lastname', title: 'ACTION', render: function(data, type, row, meta) {
                         var html = "<td>";
                             html += "<a href='#' class='align-middle edit' onclick='edit("+row.id+")' title='EDIT'><i class='align-middle fas fa-fw fa-pen'></i></a>";
                             html += "<a href='#' class='align-middle edit' onclick='confirmDelete("+row.id+")' title='DELETE'><i class='align-middle fas fa-fw fa-trash'></i></a>";
                             html += "</td>";
                         return html;
                     }},
-                    { data: null, title: 'NAME', class:'data-name', render: function(data, type, row, meta) {
-                        return row.customer.firstname + " " + (row.customer.middlename !== ''?row.customer.middlename + ' ':'') + row.customer.lastname;
+                    { data: 'customer.firstname', title: 'NAME', class:'data-name', render: function(data, type, row, meta) {
+                        return row.customer.firstname + " " + (row.customer.middlename !== ''&&row.customer.middlename !== null?row.customer.middlename + ' ':'') + row.customer.lastname;
                     }},
                     { data: 'code', title: 'PROPERTY CODE', class: 'data-code' },
                     { data: 'paymenttype.payment', title: 'PAYMENT TYPE' },
@@ -367,8 +368,8 @@
                     { data: 'attachment', title: 'ATTACHMENT', render: function(data, type, row, meta) {
                         return '<a href="#" onclick="viewAttachment('+row.id+')">' +row.attachment.length + ' File/s</a>';
                     }},
-                    { data: null, title: 'PROCESS BY', render: function(data, type, row, meta) {
-                        return row.process_by.firstname + " " + (row.process_by.middlename !== ''?row.process_by.middlename + ' ':'') + row.process_by.lastname;
+                    { data: 'customer.middlename', title: 'PROCESS BY', render: function(data, type, row, meta) {
+                        return row.process_by.firstname + " " + (row.process_by.middlename !== ''&&row.process_by.middlename !== null?row.process_by.middlename + ' ':'') + row.process_by.lastname;
                     }},
                 ]
             });
@@ -467,6 +468,7 @@
                     success: function(data) {
                         $('#counter').empty();
                         var counter = data.ma_counters;
+                        console.log('TEST');
                         console.log(counter);
                         for (let index = 0; index < counter.length; index++) {
                             $("#counter").append('<option value="' + counter[index].counter + '">' + counter[index].payment_classification + ' (' + counter[index].counter +')' + '</option>');
@@ -637,6 +639,7 @@
                     responsive: true,
                     processing: true,
                     serverSide: true,
+                    scrollX: true,
                     pageLength: 20,
                     ajax: {
                         url: '/payment/filter',
@@ -652,15 +655,15 @@
                         }
                     },
                     columns: [
-                        { data: null, title: 'ACTION', render: function(data, type, row, meta) {
+                        { data: 'customer.lastname', title: 'ACTION', render: function(data, type, row, meta) {
                             var html = "<td>";
                                 html += "<a href='#' class='align-middle edit' onclick='edit("+row.id+")' title='EDIT'><i class='align-middle fas fa-fw fa-pen'></i></a>";
                                 html += "<a href='#' class='align-middle edit' onclick='confirmDelete("+row.id+")' title='DELETE'><i class='align-middle fas fa-fw fa-trash'></i></a>";
                                 html += "</td>";
                             return html;
                         }},
-                        { data: null, title: 'NAME', class:'data-name', render: function(data, type, row, meta) {
-                            return row.customer.firstname + " " + (row.customer.middlename !== ''?row.customer.middlename + ' ':'') + row.customer.lastname;
+                        { data: 'customer.firstname', title: 'NAME', class:'data-name', render: function(data, type, row, meta) {
+                            return row.customer.firstname + " " + (row.customer.middlename !== ''&&row.customer.middlename !== null?row.customer.middlename + ' ':'') + row.customer.lastname;
                         }},
                         { data: 'code', title: 'PROPERTY CODE', class: 'data-code' },
                         { data: 'paymenttype.payment', title: 'PAYMENT TYPE' },
@@ -677,8 +680,8 @@
                         { data: 'attachment', title: 'ATTACHMENT', render: function(data, type, row, meta) {
                             return '<a href="#" onclick="viewAttachment('+row.id+')">' + (row.attachment!==null?row.attachment.length:0) + ' File/s</a>';
                         }},
-                        { data: null, title: 'PROCESS BY', render: function(data, type, row, meta) {
-                            return row.process_by.firstname + " " + (row.process_by.middlename !== ''?row.process_by.middlename + ' ':'') + row.process_by.lastname;
+                        { data: 'customer.middlename', title: 'PROCESS BY', render: function(data, type, row, meta) {
+                            return row.process_by.firstname + " " + (row.process_by.middlename !== ''&&row.process_by.middlename !== null?row.process_by.middlename + ' ':'') + row.process_by.lastname;
                         }},
                     ]
                 });

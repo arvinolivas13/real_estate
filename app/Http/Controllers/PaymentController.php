@@ -170,6 +170,9 @@ class PaymentController extends Controller
 
     public function destroy($id)
     {
+        $amortization_id = Payment::where('id', $id)->firstOrFail()->amortization_id;
+        $amortization = MonthlyAmortization::where('id', $amortization_id)->update(['status'=>'UNPAID']);
+        
         $destroy = Payment::find($id);
         $destroy->delete();
         return redirect()->back()->with('success','Successfully Deleted!');
