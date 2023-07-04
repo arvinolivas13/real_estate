@@ -65,6 +65,22 @@
                 </a>
                 {{-- @endrole --}}
             </li>
+            
+            <li class="sidebar-header">
+                Account Management
+            </li>
+            <li class="sidebar-item">
+                <a href="#account_management" data-toggle="collapse" class="sidebar-link collapsed">
+                    <span class="item">
+                        <i class="align-middle mr-2 fas fa-fw fa-users"></i> <span class="align-middle">User Setup</span>
+                    </span>
+                </a>
+                <ul id="account_management" class="sidebar-dropdown list-unstyled collapse" data-parent="#sidebar">
+                    <li class="list-title">User Setup</li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ url('/user') }}">Users</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ url('/user/roles') }}">Roles</a></li>
+                </ul>
+            </li>
 
             {{-- @role('Super Admin|Jayson Obeña') --}}
             <li class="sidebar-header">
@@ -90,6 +106,8 @@
                     </span>
                 </a>
             </li>
+
+            
             {{-- @endrole --}}
 
             {{-- <li class="sidebar-header">
