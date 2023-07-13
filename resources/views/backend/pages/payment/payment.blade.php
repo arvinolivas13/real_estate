@@ -440,11 +440,13 @@
                             }
                             else {
                                 $('#'+k).val(v);
-                                if(k === 'amortization') {
-                                    setTimeout(() => {
-                                        $('#counter').val(data.payment.amortization.counter);
-                                    }, 1000);
-                                    console.log(data.payment.amortization.counter);
+                                if(data.payment.amortization !== null) {
+                                    if(k === 'amortization') {
+                                        setTimeout(() => {
+                                            $('#counter').val(data.payment.amortization.counter);
+                                        }, 1000);
+                                        console.log(data.payment.amortization.counter);
+                                    }
                                 }
                             }
                         });
@@ -638,6 +640,7 @@
             table = $('#payment_table').DataTable({
                     responsive: true,
                     processing: true,
+                    ordering: false,
                     serverSide: true,
                     scrollX: true,
                     pageLength: 20,

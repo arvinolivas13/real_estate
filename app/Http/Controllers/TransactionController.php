@@ -192,7 +192,7 @@ class TransactionController extends Controller
         $customer = Customer::where('id', $transaction->customer_id)->firstOrFail();
 
         $remaining_balance = $lot->tcp - $dp->amount - $res->amount;
-        $monthly_amortization = $remaining_balance/$diff_in_months;
+        $monthly_amortization = $remaining_balance/$request->no_month;
 
         AreaDetailLot::where("id", $id)->update(["monthly_amortization" => $monthly_amortization]);
 
