@@ -355,7 +355,13 @@
                     }},
                     { data: 'code', title: 'PROPERTY CODE', class: 'data-code' },
                     { data: 'paymenttype.payment', title: 'PAYMENT TYPE' },
-                    { data: 'payment_classification', title: 'PAYMENT CLASSIFICATION' },
+                    { data: 'payment_classification', title: 'PAYMENT CLASSIFICATION', render: function(data, type, row, meta) {
+                        if (row.payment_classification != 'MA') {
+                            return row.payment_classification;
+                        } else {
+                            return  row.payment_classification + ' (' + row.amortization.counter + ')';
+                        }
+                    }},
                     { data: 'amount', title: 'AMOUNT', render: function(data, type, row, meta) {
                         return currency(row.amount);
                     }},

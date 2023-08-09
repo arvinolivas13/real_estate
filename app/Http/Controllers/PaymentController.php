@@ -100,11 +100,12 @@ class PaymentController extends Controller
         if($request->payment_classification == 'MA') {
             $current_balance = $amortization->balance - $request->amount;
 
-            if( $current_balance <= 300) {
-                MonthlyAmortization::where('id', $amortization->id)->update(['balance' => $current_balance, 'status' => 'PAID']);
-            } else {
-                MonthlyAmortization::where('id', $amortization->id)->update(['balance' => $current_balance, 'status' => 'UNPAID']);
-            }
+            // if( $current_balance <= 300) {
+            //     MonthlyAmortization::where('id', $amortization->id)->update(['balance' => $current_balance, 'status' => 'PAID']);
+            // } else {
+            //     MonthlyAmortization::where('id', $amortization->id)->update(['balance' => $current_balance, 'status' => 'UNPAID']);
+            // }
+            MonthlyAmortization::where('id', $amortization->id)->update(['balance' => $current_balance, 'status' => 'PAID']);
         }
 
         return response()->json(compact('payment'));
@@ -113,7 +114,7 @@ class PaymentController extends Controller
     public function get() {
          if(request()->ajax()) {
              return datatables()->of(
-              Payment::with('customer', 'paymenttype', 'process_by', 'attachment')->orderBy('id', 'desc')->get()
+              Payment::with('customer', 'paymenttype', 'process_by', 'attachment', 'amortization')->orderBy('id', 'desc')->get()
             )
             ->addIndexColumn()
             ->make(true);
