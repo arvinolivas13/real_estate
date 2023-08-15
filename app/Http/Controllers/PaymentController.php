@@ -15,7 +15,7 @@ class PaymentController extends Controller
 {
     public function index()
     {
-        $payments = Payment::orderBy('id')->with('customer')->get();
+        $payments = Payment::orderBy('created_at', 'desc')->with('customer')->get();
         $customers = Customer::where('status', 'ACTIVE')->get();
         $paymenttypes  = PaymentType::get();
         return view('backend.pages.payment.payment', compact('payments', 'customers', 'paymenttypes'));
