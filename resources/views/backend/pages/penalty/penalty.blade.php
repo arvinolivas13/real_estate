@@ -200,10 +200,10 @@
                     type: 'GET'
                 },
                 columns: [
-                    { data: null, title: '', render: function(data, type, row, meta) {
+                    { data: 'transaction.customer.lastname', title: '', render: function(data, type, row, meta) {
                         return "<i class='fas fa-circle stats-" + row.status + "' title='"+row.status+"'></i>";
                     }},
-                    { data: null, title: 'ACTION', render: function(data, type, row, meta) {
+                    { data: 'transaction.customer.middlename', title: 'ACTION', render: function(data, type, row, meta) {
                         var html = "<td>";
                             html += "<a href='#' class='align-middle edit' onclick='edit("+row.id+")' title='EDIT'><i class='align-middle fas fa-fw fa-pen'></i></a>";
                             html += "<a href='#' class='align-middle edit' onclick='confirmDelete("+row.id+")' title='DELETE'><i class='align-middle fas fa-fw fa-trash'></i></a>";
@@ -211,8 +211,8 @@
                         return html;
                     }},
                     { data: 'transaction.customer.subscriber_no', title: 'CODE', class: 'data-code'},
-                    { data: null, title: 'NAME', class:'data-name', render: function(data, type, row, meta) {
-                        return row.transaction.customer.firstname + " " + (row.transaction.customer.middlename !== ''?row.transaction.customer.middlename + ' ':'') + row.transaction.customer.lastname;
+                    { data: 'transaction.customer.firstname', title: 'NAME', class:'data-name', render: function(data, type, row, meta) {
+                        return row.transaction.customer.firstname + " " + (row.transaction.customer.middlename !== ''&&row.transaction.customer.middlename !== null?row.transaction.customer.middlename + ' ':'') + row.transaction.customer.lastname;
                     }},
                     { data: 'transaction.code', title: 'TRANSACTION CODE', class: 'data-transaction-code'},
                     { data: 'amortization.payment_date', title: 'AMORTIZATION DATE', render: function(data, type, row, meta) {
@@ -223,7 +223,7 @@
                     }},
                     { data: 'amount', title: 'AMOUNT', render: function(data, type, row, meta) {
                         return currency(row.amount);
-                    } },
+                    }},
                 ]
             });
         });

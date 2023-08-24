@@ -89,6 +89,12 @@ a.sidebar-link .item {
     min-width: 7px;
     width: 65px;
     transition: .5s;
+    position: fixed;
+    height: 100%;
+}
+
+body>.wrapper>.main {
+    margin-left: 65px !important;
 }
 
 a.sidebar-link {

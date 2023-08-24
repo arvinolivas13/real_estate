@@ -15,7 +15,7 @@ class PaymentController extends Controller
 {
     public function index()
     {
-        $payments = Payment::orderBy('id')->with('customer')->get();
+        $payments = Payment::orderBy('created_at', 'desc')->with('customer')->get();
         $customers = Customer::where('status', 'ACTIVE')->get();
         $paymenttypes  = PaymentType::get();
         return view('backend.pages.payment.payment', compact('payments', 'customers', 'paymenttypes'));
@@ -100,20 +100,21 @@ class PaymentController extends Controller
         if($request->payment_classification == 'MA') {
             $current_balance = $amortization->balance - $request->amount;
 
-            if( $current_balance <= 300) {
-                MonthlyAmortization::where('id', $amortization->id)->update(['balance' => $current_balance, 'status' => 'PAID']);
-            } else {
-                MonthlyAmortization::where('id', $amortization->id)->update(['balance' => $current_balance, 'status' => 'UNPAID']);
-            }
+            // if( $current_balance <= 300) {
+            //     MonthlyAmortization::where('id', $amortization->id)->update(['balance' => $current_balance, 'status' => 'PAID']);
+            // } else {
+            //     MonthlyAmortization::where('id', $amortization->id)->update(['balance' => $current_balance, 'status' => 'UNPAID']);
+            // }
+            MonthlyAmortization::where('id', $amortization->id)->update(['balance' => $current_balance, 'status' => 'PAID']);
         }
 
         return response()->json(compact('payment'));
     }
 
     public function get() {
-        if(request()->ajax()) {
-            return datatables()->of(
-                Payment::with('customer', 'paymenttype', 'process_by', 'attachment')->orderBy('id', 'desc')->get()
+         if(request()->ajax()) {
+             return datatables()->of(
+              Payment::with('customer', 'paymenttype', 'process_by', 'attachment', 'amortization')->orderBy('id', 'desc')->get()
             )
             ->addIndexColumn()
             ->make(true);
@@ -125,9 +126,9 @@ class PaymentController extends Controller
             return datatables()->of(
                 Payment::with('customer', 'paymenttype', 'process_by')->whereHAs('customer', function($q) use($request){
                     $q->where('firstname', 'like', "%".$request->firstname."%");
-                    $q->where('middlename', 'like', "%".$request->middlename."%");
+                    // $q->where('middlename', 'like', "%".$request->middlename."%");
                     $q->where('lastname', 'like', "%".$request->lastname."%");
-                })->where('code', 'like', '%'.$request->code.'%')->where('payment_id', 'like', '%'.$request->payment_type.'%')->where('payment_classification', 'like', '%'.$request->payment_classification.'%')->orderBy('id', 'desc')->get()
+                })->where('code', 'like', '%'.$request->code.'%')->where('payment_id', 'like', '%'.$request->payment_type.'%')->where('payment_classification', 'like', '%'.$request->payment_classification.'%')->orderBy('date')->get()
             )
             ->addIndexColumn()
             ->make(true);
@@ -170,6 +171,9 @@ class PaymentController extends Controller
 
     public function destroy($id)
     {
+        $amortization_id = Payment::where('id', $id)->firstOrFail()->amortization_id;
+        $amortization = MonthlyAmortization::where('id', $amortization_id)->update(['status'=>'UNPAID']);
+        
         $destroy = Payment::find($id);
         $destroy->delete();
         return redirect()->back()->with('success','Successfully Deleted!');
