@@ -440,10 +440,12 @@
                             else {
                                 $('#'+k).val(v);
                                 if(k === 'amortization') {
-                                    setTimeout(() => {
-                                        $('#counter').val(data.payment.amortization.counter);
-                                    }, 1000);
-                                    console.log(data.payment.amortization.counter);
+                                    if(v !== null) {
+                                        setTimeout(() => {
+                                            $('#counter').val(data.payment.amortization.counter);
+                                        }, 1000);
+                                        // console.log(data.payment.amortization.counter);
+                                    }
                                 }
                             }
                         });

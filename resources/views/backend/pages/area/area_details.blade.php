@@ -52,17 +52,24 @@
                                         <div class="row">
                                             @foreach ($block->lot as $item)
                                                 <div class="col-2">
-                                                <div class="lot {{$item->status}}">
+                                                <div class="lot {{$item->status}}" id="area_lot_{{$item->id}}">
                                                     <span class="lot-name">LOT {{$item->lot}}
                                                         <span class="action-items">
                                                             @if($item->status === "OPEN")
                                                             <button class="btn btn-sm btn-block edit-lot" title="EDIT LOT" onclick="editLot('{{$item->status}}', '{{$item->id}}', '{{$block->block}}', '{{$item->lot}}')"><i class="fas fa-pen"></i></button>
                                                             @endif
+                                                            @if($item->status !== "OPEN")
+                                                                @if($item->transaction->hide_status === 0)
+                                                                    <button class="btn btn-sm btn-block hide" title="HIDE LOT" onclick="hideLot({{$item->transaction->id}}, {{$item->id}}, 1)"><i class="fas fa-eye"></i></button>
+                                                                @else
+                                                                    <button class="btn btn-sm btn-block hide" title="UNHIDE LOT" onclick="hideLot({{$item->transaction->id}}, {{$item->id}}, 0)"><i class="fas fa-eye-slash"></i></button>
+                                                                @endif
+                                                            @endif
                                                             <button class="btn btn-sm btn-block" title="ATTACHMENT" onclick="showAttachment({{$item->id}}, '')"><i class="fas fa-paperclip"></i></button>
                                                             <button class="btn btn-sm btn-block" title="CO-OWNER" onclick="coBorrower({{$item->id}})"><i class="fas fa-users"></i></button>
                                                         </span>
                                                     </span>
-                                                    <div class="row lot-details" style="cursor: pointer" onclick="LotFunction('{{$item->status}}', '{{$item->id}}', '{{$block->block}}', '{{$item->lot}}')">
+                                                    <div class="row lot-details" style="cursor: pointer" data-status="{{$item->status}}" onclick="LotFunction('{{$item->id}}', '{{$block->block}}', '{{$item->lot}}')">
                                                         <div class="col-12">
                                                             @if($item->status === 'OPEN')
                                                             <span class="name-open">OPEN LOT</span>
@@ -177,7 +184,7 @@
                     </button>
                 </div>
                 <div class="modal-body m-3">
-                    <form id="modal-form" action="{{url('transaction/reservation')}}" method="post" enctype="multipart/form-data">
+                    <form id="reservation_form" action="{{url('transaction/reservation')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group col-md-12 customer-name-lookup">
                         <label for="inputPassword4">Customer Name <span style="color: red">*</span></label>
@@ -231,17 +238,17 @@
                         <label for="inputPassword4">OR #</label>
                         <input type="number" class="form-control" id="or_no" name="or_no" placeholder="Enter OR #">
                     </div>
-                    <div class="form-group col-md-12">
+                    {{-- <div class="form-group col-md-12">
                         <label for="inputPassword4">Attachment</label>
                         <input type="file" class="form-control" id="attachment" name="attachment">
-                    </div>
+                    </div> --}}
                     <div class="form-group col-md-12">
                         <label for="inputPassword4">Remarks <span style="color: red">*</span></label>
                         <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Enter Remarks">
                     </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary submit-button reserve-button">Reserve</button>
+                    <button type="button" class="btn btn-primary submit-button reserve-button" onclick="reserve()">Reserve</button>
                     </form>
                 </div>
             </div>
@@ -450,6 +457,7 @@
         var type = 'buyers_info';
         var co_borrower_id = '';
         var storage = "{{asset('/storage/app/')}}";
+        var selected_lot = null;
 
         $(document).ready(function() {
             filterSelection("all");
@@ -608,7 +616,9 @@
             });
         }
 
-        function LotFunction(status, id, block, lot) {
+        function LotFunction(id, block, lot) {
+            selected_lot = id;
+            var status = $('#area_lot_' + id + ' .lot-details').attr('data-status');
             if (status == 'OPEN') {
                 $('.customerName').hide();
                 $('.customer-name-lookup').show();
@@ -797,6 +807,48 @@
                 getAttachmentItem();
             });
         }
+
+        function reserve() {
+            event.preventDefault();
+
+            var form = $('#reservation_form')[0];
+            var formData = new FormData(form);
+
+            $.ajax({
+                url: "/transaction/reservation",
+                method: "post",
+                processData: false,
+                contentType: false,
+                data: formData,
+                success: function (data) {
+                    $('#area_lot_' + selected_lot).removeClass('ACTIVE');
+                    $('#area_lot_' + selected_lot).addClass('RESERVED');
+                    $('#area_lot_' + selected_lot + ' .lot-details').attr('data-status', 'RESERVED');
+
+                    $('#reserveModal').modal('hide');
+                },
+                error: function (e) {
+                    //error
+                }
+            });
+        }
+
+        function hideLot(id, lot_id, val) {
+            var data = {
+                _token: '{{csrf_token()}}',
+                id: id,
+                status: val
+            };
+
+            $.post('/transaction/hide_lot', data, function() {
+                if(val === 1) {
+                    $('#area_lot_' + lot_id + ' .hide').html('<i class="fas fa-eye-slash"></i>');
+                }
+                else {
+                    $('#area_lot_' + lot_id + ' .hide').html('<i class="fas fa-eye"></i>');
+                }
+            });
+        } 
 
     </script>
 @endsection

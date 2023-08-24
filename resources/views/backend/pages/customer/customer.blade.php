@@ -20,6 +20,41 @@
                     </button>
                 </div>
                 <div class="card-body">
+                    <div class="filter-container">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="f_code">CODE</label>
+                                    <input type="text" class="form-control" id="f_code" name="f_code">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="f_fname">FIRSTNAME</label>
+                                    <input type="text" class="form-control" id="f_fname" name="f_fname">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="f_mname">MIDDLENAME</label>
+                                    <input type="text" class="form-control" id="f_mname" name="f_mname">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="f_lname">LASTNAME</label>
+                                    <input type="text" class="form-control" id="f_lname" name="f_lname">
+                                </div>
+                            </div>
+                            <div class="col-12 text-right">
+                                <div class="form-group">
+                                    <button class="btn btn-primary" onclick="filter()">SEARCH</button>
+                                    <button class="btn btn-light" onclick="clearFilter()">CLEAR</button>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
                     <table id="customer_table" class="table table-striped" style="width:100%"></table>
                 </div>
             </div>
@@ -270,7 +305,6 @@
         }
 
         $(function() {
-
             table = $('#customer_table').DataTable({
                 responsive: true,
                 processing: true,
@@ -307,6 +341,68 @@
                 ]
             });
         });
+
+        
+        function filter() {
+            var data = { 
+                _token: "{{csrf_token()}}",
+                firstname: $('#firstname').val()
+            };
+
+            if ($.fn.DataTable.isDataTable('#customer_table')) {
+                $('#customer_table').DataTable().clear().destroy();
+            }
+
+            table = $('#customer_table').DataTable({
+                    responsive: true,
+                    processing: true,
+                    serverSide: true,
+                    pageLength: 20,
+                    ajax: {
+                        url: '/customer/filter',
+                        type: 'POST',
+                        data: {
+                            '_token': "{{csrf_token()}}",
+                            'firstname': $('#f_fname').val(),
+                            'middlename': $('#f_mname').val(),
+                            'lastname': $('#f_lname').val(),
+                            'code': $('#f_code').val()
+                        }
+                    },
+                    columns: [
+                        { data: 'firstname', title: '', render: function(data, type, row, meta) {
+                            return "<i class='fas fa-circle stats-" + row.status + "' title='"+row.status+"'></i>";
+                        }},
+                        { data: 'middlename', title: 'ACTION', render: function(data, type, row, meta) {
+                            var html = "<td>";
+                                html += "<a href='#' class='align-middle edit' onclick='edit("+row.id+")' title='EDIT'><i class='align-middle fas fa-fw fa-pen'></i></a>";
+                                html += "<a href='#' class='align-middle edit' onclick='confirmDelete("+row.id+")' title='DELETE'><i class='align-middle fas fa-fw fa-trash'></i></a>";
+                                html += "<a href='#' class='align-middle edit' onclick='attachment("+row.id+")' title='ATTACHMENT'><i class='align-middle fas fa-fw fa-paperclip'></i></a>";
+                                html += "</td>";
+                            return html;
+                        }},
+                        { data: 'subscriber_no', title: 'CODE', class: 'data-code'},
+                        { data: 'lastname', title: 'NAME', class:'data-name', render: function(data, type, row, meta) {
+                            return row.firstname + " " + (row.middlename !== ''?row.middlename + ' ':'') + row.lastname;
+                        }},
+                        { data: 'email', title: 'EMAIL'},
+                        { data: 'address', title: 'ADDRESS'},
+                        { data: 'contact', title: 'CONTACT NO.'},
+                        { data: 'birthday', title: 'BIRTHDAY', render: function(data, type, row, meta) {
+                            return moment(row.birthday).format('MMM DD, YYYY');
+                        }},
+                        { data: 'occupation', title: 'OCCUPATION'},
+                        { data: 'gender', title: 'GENDER'},
+                    ]
+                });
+        }
+        function clearFilter() {
+            $('#f_code').val('');
+            $('#f_fname').val('');
+            $('#f_mname').val('');
+            $('#f_lname').val('');
+            filter();
+        }
 
     </script>
 @endsection

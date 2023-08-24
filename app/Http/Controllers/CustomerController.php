@@ -51,6 +51,16 @@ class CustomerController extends Controller
             ->make(true);
         }
     }
+    
+    public function filter(Request $request) {
+        if(request()->ajax()) {
+            return datatables()->of(
+                Customer::where('subscriber_no', 'like', '%'.$request->code.'%')->where('firstname', 'like', '%'.$request->firstname.'%')->where('middlename', 'like', '%'.$request->middlename.'%')->where('lastname', 'like', '%'.$request->lastname.'%')->orderBy('id', 'desc')->get()
+            )
+            ->addIndexColumn()
+            ->make(true);
+        }
+    }
 
     public function edit($id)
     {

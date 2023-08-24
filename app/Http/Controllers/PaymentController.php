@@ -142,7 +142,7 @@ class PaymentController extends Controller
 
     public function lotNo($id)
     {
-        $lot = Transaction::where('customer_id', $id)->orderBy('id')->get();
+        $lot = Transaction::where('customer_id', $id)->where('hide_status', 0)->orderBy('id')->get();
         return response()->json(compact('lot'));
     }
 

@@ -22,6 +22,7 @@ class TransactionController extends Controller
         $area = $request->validate([
             'code' => ['required', 'max:250'],
             'lot_id' => ['required', 'max:250'],
+            'subscriber_no' => ['required'],
             'block_no' => ['required', 'max:250'],
             'lot_no' => ['required', 'max:250'],
             'payment_classification' => ['required', 'max:250'],
@@ -274,7 +275,10 @@ class TransactionController extends Controller
         $transfer_fee_amount_due = $transfer_fees->sum('amount');
 
 
-        return view('frontend.pages.soa', compact('generate_amortization', 'payments', 'customer', 'lot', 'dp', 'res', 'id', 'amortizations', 'penalties', 'remaining_balance', 'regular_amount_pay',
-                                                      'penalty_amount_pay', 'penalty_amount_due', 'transfer_fees', 'transfer_fee_amount_due', 'transfer_fee_amount_pay'));
+        return view('frontend.pages.soa', compact('generate_amortization', 'payments', 'customer', 'lot', 'dp', 'res', 'id', 'amortizations', 'penalties', 'remaining_balance', 'regular_amount_pay', 'penalty_amount_pay', 'penalty_amount_due', 'transfer_fees', 'transfer_fee_amount_due', 'transfer_fee_amount_pay'));
+    }
+
+    public function hide_lot(Request $request) {
+        Transaction::where('id', $request->id)->update(['hide_status' => $request->status]);
     }
 }

@@ -17,6 +17,7 @@ class Transaction extends Model
         'duration',
         'status',
         'created_user',
+        'hide_status'
     ];
 
     public function lot()
