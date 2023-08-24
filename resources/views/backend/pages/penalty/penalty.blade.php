@@ -18,9 +18,9 @@
                     <button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#penaltyModal" style="float:right" onclick="clearField()">
                         ADD PENALTY
                     </button>
-                    <button type="button" class="btn btn-light" onclick="showFilter()" style="float:right; margin-right:5px;">
+                    {{-- <button type="button" class="btn btn-light" onclick="showFilter()" style="float:right; margin-right:5px;">
                         FILTER
-                    </button>
+                    </button> --}}
                 </div>
                 <div class="card-body">
                     {{-- <div class="filter-body hide">
