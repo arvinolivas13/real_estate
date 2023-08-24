@@ -60,9 +60,9 @@
                                                             @endif
                                                             @if($item->status !== "OPEN")
                                                                 @if($item->transaction->hide_status === 0)
-                                                                    <button class="btn btn-sm btn-block hide" title="HIDE LOT" onclick="hideLot({{$item->transaction->id}}, {{$item->id}}, 1)"><i class="fas fa-eye"></i></button>
+                                                                    <button class="btn btn-sm btn-block hide" title="HIDE LOT" onclick="hideLot({{$item->transaction->id}}, {{$item->id}})" data-val="1"><i class="fas fa-eye"></i></button>
                                                                 @else
-                                                                    <button class="btn btn-sm btn-block hide" title="UNHIDE LOT" onclick="hideLot({{$item->transaction->id}}, {{$item->id}}, 0)"><i class="fas fa-eye-slash"></i></button>
+                                                                    <button class="btn btn-sm btn-block hide" title="UNHIDE LOT" onclick="hideLot({{$item->transaction->id}}, {{$item->id}})" data-val="0"><i class="fas fa-eye-slash"></i></button>
                                                                 @endif
                                                             @endif
                                                             <button class="btn btn-sm btn-block" title="ATTACHMENT" onclick="showAttachment({{$item->id}}, '')"><i class="fas fa-paperclip"></i></button>
@@ -833,18 +833,20 @@
             });
         }
 
-        function hideLot(id, lot_id, val) {
+        function hideLot(id, lot_id) {
             var data = {
                 _token: '{{csrf_token()}}',
                 id: id,
-                status: val
+                status: $('#area_lot_' + lot_id + ' .hide').attr('data-val')
             };
 
             $.post('/transaction/hide_lot', data, function() {
-                if(val === 1) {
+                if($('#area_lot_' + lot_id + ' .hide').attr('data-val') === "1") {
+                    $('#area_lot_' + lot_id + ' .hide').attr('data-val','0');
                     $('#area_lot_' + lot_id + ' .hide').html('<i class="fas fa-eye-slash"></i>');
                 }
                 else {
+                    $('#area_lot_' + lot_id + ' .hide').attr('data-val','1');
                     $('#area_lot_' + lot_id + ' .hide').html('<i class="fas fa-eye"></i>');
                 }
             });
