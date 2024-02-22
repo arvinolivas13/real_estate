@@ -59,10 +59,12 @@
                                                             <button class="btn btn-sm btn-block edit-lot" title="EDIT LOT" onclick="editLot('{{$item->status}}', '{{$item->id}}', '{{$block->block}}', '{{$item->lot}}')"><i class="fas fa-pen"></i></button>
                                                             @endif
                                                             @if($item->status !== "OPEN")
-                                                                @if($item->transaction->hide_status === 0)
-                                                                    <button class="btn btn-sm btn-block hide" title="HIDE LOT" onclick="hideLot({{$item->transaction->id}}, {{$item->id}})" data-val="1"><i class="fas fa-eye"></i></button>
-                                                                @else
-                                                                    <button class="btn btn-sm btn-block hide" title="UNHIDE LOT" onclick="hideLot({{$item->transaction->id}}, {{$item->id}})" data-val="0"><i class="fas fa-eye-slash"></i></button>
+                                                                @if($item->transaction !== null)
+                                                                    @if($item->transaction->hide_status === 0)
+                                                                        <button class="btn btn-sm btn-block hide" title="HIDE LOT" onclick="hideLot({{$item->transaction->id}}, {{$item->id}})" data-val="1"><i class="fas fa-eye"></i></button>
+                                                                    @else
+                                                                        <button class="btn btn-sm btn-block hide" title="UNHIDE LOT" onclick="hideLot({{$item->transaction->id}}, {{$item->id}})" data-val="0"><i class="fas fa-eye-slash"></i></button>
+                                                                    @endif
                                                                 @endif
                                                             @endif
                                                             <button class="btn btn-sm btn-block" title="ATTACHMENT" onclick="showAttachment({{$item->id}}, '')"><i class="fas fa-paperclip"></i></button>

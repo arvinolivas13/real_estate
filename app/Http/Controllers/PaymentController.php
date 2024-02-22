@@ -15,7 +15,7 @@ class PaymentController extends Controller
 {
     public function index()
     {
-        $payments = Payment::orderBy('created_at', 'desc')->with('customer')->get();
+        $payments = Payment::orderBy('created_at', 'desc')->with('customer')->limit(500)->get();
         $customers = Customer::where('status', 'ACTIVE')->get();
         $paymenttypes  = PaymentType::get();
         return view('backend.pages.payment.payment', compact('payments', 'customers', 'paymenttypes'));
@@ -114,7 +114,7 @@ class PaymentController extends Controller
     public function get() {
          if(request()->ajax()) {
              return datatables()->of(
-              Payment::with('customer', 'paymenttype', 'process_by', 'attachment', 'amortization')->orderBy('id', 'desc')->get()
+              Payment::with('customer', 'paymenttype', 'process_by', 'attachment', 'amortization')->orderBy('id', 'desc')->limit(500)->get()
             )
             ->addIndexColumn()
             ->make(true);
@@ -124,11 +124,11 @@ class PaymentController extends Controller
     public function filter(Request $request) {
         if(request()->ajax()) {
             return datatables()->of(
-                Payment::with('customer', 'paymenttype', 'process_by')->whereHAs('customer', function($q) use($request){
+                Payment::with('customer', 'paymenttype', 'process_by', 'attachment', 'amortization')->whereHAs('customer', function($q) use($request){
                     $q->where('firstname', 'like', "%".$request->firstname."%");
                     // $q->where('middlename', 'like', "%".$request->middlename."%");
                     $q->where('lastname', 'like', "%".$request->lastname."%");
-                })->where('code', 'like', '%'.$request->code.'%')->where('payment_id', 'like', '%'.$request->payment_type.'%')->where('payment_classification', 'like', '%'.$request->payment_classification.'%')->orderBy('date')->get()
+                })->where('code', 'like', '%'.$request->code.'%')->where('payment_id', 'like', '%'.$request->payment_type.'%')->where('payment_classification', 'like', '%'.$request->payment_classification.'%')->orderBy('date')->limit(500)->get()
             )
             ->addIndexColumn()
             ->make(true);

@@ -39,7 +39,7 @@
         <div class="row" style="margin: 10px 0px;">
             <div class="col-8">
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Customer Name: <span style="font-weight: 300;">{{$customer->firstname . ' ' . $customer->middlename . ' ' . $customer->lastname}}</span></p>
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Subscriber Number: <span style="font-weight: 300;">{{$lot->subscriber_no}}</span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Subscriber Number: <span style="font-weight: 300;">{{$customer->subscriber_no}}</span></p>
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Block Number: <span style="font-weight: 300;">Block {{$lot->block->block}}</span></p>
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Lot Number: <span style="font-weight: 300;">Lot {{$lot->lot}}</span></p>
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Area: <span style="font-weight: 300;">{{$lot->area}}</span></p>
