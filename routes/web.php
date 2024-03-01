@@ -132,6 +132,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/',                             'SettingsController@index'                        )->name('page');
         Route::get          ('/get/{id}',                     'SettingsController@get'                          )->name('get');
         Route::get          ('/destroy/{transaction_id}/{lot_id}',  'SettingsController@destroy'                )->name('destroy');
+        Route::post         ('/close_amortization/{id}',      'SettingsController@close_amortization'           )->name('update');
     });
     
     Route::group(['prefix' => 'user'], function (){

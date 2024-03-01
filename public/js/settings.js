@@ -1,5 +1,6 @@
 var transaction_id = null;
 var lot_id = null;
+var ammort_id = null;
 
 $(function() {
     $('#transaction_record').DataTable({
@@ -23,8 +24,8 @@ function selectTransaction(id) {
                     amort += "<div class='classification col-4'>"+v.payment_classification+"("+v.counter+")</div>";
                     amort += "<div class='amort-date col-2 text-right'>"+moment(v.payment_date).format('MMM DD, YYYY')+"</div>";
                     amort += "<div class='amort-amount col-2 text-right' style='font-weight:bold;'>"+currency(v.amount)+"</div>";
-                    amort += "<div class='amort-balance col-2 text-right' style='font-weight:bold;'>"+currency(v.balance)+"</div>";
-                    amort += "<div class='amort-statu col-2 text-right' style='font-weight:bold;'>"+(v.status !== "PAID"?"<span class='open-a'>OPEN</span>":"<span class='close-a'>CLOSE</span>")+"</div>";
+                    amort += "<div class='amort-balance col-2 text-right' style='font-weight:bold;' id='bal_"+v.id+"'>"+currency(v.balance)+"</div>";
+                    amort += "<div class='amort-statu col-2 text-right' style='font-weight:bold;' id='amort_"+v.id+"'>"+(v.status !== "PAID"?"<span class='open-a'>CLOSE</span>":"<span class='close-a' onclick='closeAmortization("+v.id+")'>OPEN</span>")+"</div>";
                 amort += "</div>";
             amort += "</div>";
         });
@@ -73,5 +74,20 @@ function yesDelete() {
         $('#confirmModal').modal('hide');
 
         toastr.success("Data has been deleted");
+    });
+}
+
+function closeAmortization(id) {
+    ammort_id = id;
+    $('#closeConfirm').modal('show');
+}
+
+function yesClose(){
+    $.post('/admin_control/close_amortization/' + ammort_id, {_token:$('meta[name="csrf-token"]').attr('content')}).done(function(response) {
+        $('#amort_'+ammort_id).html("<span class='open-a'>OPEN</span>");
+        $('#bal_'+ammort_id).text(currency(response.balance));
+        $('#closeConfirm').modal('hide');
+        ammort_id = null;
+        toastr.success("Data has been updated");
     });
 }

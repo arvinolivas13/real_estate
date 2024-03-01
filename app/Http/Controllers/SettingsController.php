@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Payment;
 use App\Transaction;
 use App\MonthlyAmortization;
 use App\AreaDetailLot;
@@ -33,5 +34,14 @@ class SettingsController extends Controller
         AreaDetailLot::where('id', $lot_id)->update(['reservation_date'=>null,'purchase_date'=>null,'end_date'=>null,'status'=>'OPEN']);
 
         return response()->json();
+    }
+    public function close_amortization(Request $request, $id) {
+        $ammort = MonthlyAmortization::where('id', $id)->first();
+
+        MonthlyAmortization::where('id', $id)->update(['balance'=>$ammort->amount, 'status'=>'UNPAID']);
+        Payment::where('monthly_amortization_id', $id)->delete();
+        
+        $balance = $ammort->amount;
+        return response()->json(compact('balance'));
     }
 }
