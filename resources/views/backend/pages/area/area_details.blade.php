@@ -79,11 +79,11 @@
                                                             <span class="name-open">----</span>
                                                             @endif
                                                         </div>
-                                                        <div class="col-6">
+                                                        <div class="col-6 dark-text">
                                                             Area: {{$item->area}} SQM <br>
                                                             TCP: ₱ {{ number_format($item->tcp, 2) }} <br>
                                                         </div>
-                                                        <div class="col-6">
+                                                        <div class="col-6 dark-text">
                                                             P/SQM: {{ number_format($item->psqm, 2) }}/SQM<br>
                                                             MA: ₱ {{ number_format($item->monthly_amortization, 2) }}
                                                         </div>

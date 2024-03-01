@@ -11,7 +11,7 @@
     <script src="{{asset('/js/jquery.validate.min.js')}}" ></script>
     <link href="{{{ URL::asset('backend/css/modern.css') }}}" rel="stylesheet">
     <link href="{{asset('/plugins/toastr/toastr.min.css')}}" rel="stylesheet">
-    <link href="{{asset('/css/custom.css')}}" rel="stylesheet">
+    <link id="stylesheet" href="/css/custom.css" rel="stylesheet">
     {{-- <script src="{{{ URL::asset('backend/js/settings.js') }}}"></script> --}}
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="{{asset('lib/main.css')}}">
@@ -19,6 +19,13 @@
     @yield('scripts')
     @yield('styles')
     @yield('styles-2')
+    <style>
+        .custom-control-input:checked~.custom-control-label:before {
+    color: #fff;
+    border-color: #000000;
+    background-color: #001c0b;
+}
+    </style>
 </head>
 <body>
     <div class="wrapper">
@@ -95,6 +102,29 @@
                 allowedInputs: ['png','jpg','jpeg']
             });
 		});
+
+        $(document).ready(function() {
+        // Check if there is a stored preference for dark mode
+        var darkModeEnabled = localStorage.getItem('darkModeEnabled');
+
+        // If dark mode was enabled, update the toggle button and apply dark mode CSS
+        if (darkModeEnabled === 'true') {
+            $('#dark-mode-toggle').prop('checked', true);
+            $('#stylesheet').attr('href', '/css/darkmode.css');
+        }
+
+        // Toggle dark mode when the toggle button is clicked
+        $('#dark-mode-toggle').change(function() {
+            var stylesheet = $('#stylesheet');
+            if ($(this).prop('checked')) {
+            stylesheet.attr('href', '/css/darkmode.css');
+            localStorage.setItem('darkModeEnabled', 'true'); // Store preference for dark mode
+            } else {
+            stylesheet.attr('href', '/css/custom.css');
+            localStorage.setItem('darkModeEnabled', 'false'); // Store preference for light mode
+            }
+        });
+        });
 	</script>
     
     @yield('chart-js')

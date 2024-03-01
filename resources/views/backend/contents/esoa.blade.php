@@ -8,7 +8,7 @@
 
 @section('content')
 
-<div class="main">
+<div class="main" id="exlude-dark-mode">
     <div id="printableSoa" class="main-container" style="background: white; padding: 10px 40px;">
         <div class="row" style="margin-bottom: 10px;">
             <div style="text-align: left; display: flex;" class="col-8">
@@ -211,6 +211,10 @@
         newWin.document.write(myStyle + '<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
         newWin.document.close();
     };
+
+    if ($('#exclude-dark-mode').length) {
+    $('#stylesheet').attr('href', '/css/custom.css');
+  }
 </script>
 @endsection
 
