@@ -453,7 +453,7 @@
     });
 
    function printDiv() {
-        var myStyle = '<link rel="stylesheet" href="/backend/css/modern.css" />';
+        var myStyle = '<link rel="stylesheet" href="/css/customprint.css"/> <link rel="stylesheet" href="/backend/css/modern.css"/>';
         var divToPrint=document.getElementById('printableSoa');
         var newWin=window.open('','Print-Window');
         newWin.document.open();
@@ -514,7 +514,10 @@ a.float:hover {
     margin-bottom: 15px;
 }
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #f0f0f0;
+    background-color: #dfdfdf;
+}
+body {
+    background: white;
 }
 </style>
 @endsection
