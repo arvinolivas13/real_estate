@@ -10,7 +10,7 @@ $(function() {
 function selectTransaction(id) {
     var transaction_html = "";
     var amort = "";
-    $.get('/delete_control/get/'+id, function(response) {
+    $.get('/admin_control/get/'+id, function(response) {
         transaction_html += "<div class='transaction-item'>";
             transaction_html += "<div class='code'><b>Code:</b> "+response.transaction.code+"</div>";
             transaction_html += "<div class='trans-info'>Block "+response.transaction.lot.block.block+" Lot "+response.transaction.lot.lot+"</div>";
@@ -20,9 +20,11 @@ function selectTransaction(id) {
         $.each(response.amortization, (i,v) => {
             amort += "<div class='amort-item'>";
                 amort += "<div class='row'>";
-                    amort += "<div class='classification col-5'>"+v.payment_classification+"("+v.counter+")</div>";
-                    amort += "<div class='amort-date col-5 text-right'>"+moment(v.payment_date).format('MMM DD, YYYY')+"</div>";
+                    amort += "<div class='classification col-4'>"+v.payment_classification+"("+v.counter+")</div>";
+                    amort += "<div class='amort-date col-2 text-right'>"+moment(v.payment_date).format('MMM DD, YYYY')+"</div>";
                     amort += "<div class='amort-amount col-2 text-right' style='font-weight:bold;'>"+currency(v.amount)+"</div>";
+                    amort += "<div class='amort-balance col-2 text-right' style='font-weight:bold;'>"+currency(v.balance)+"</div>";
+                    amort += "<div class='amort-statu col-2 text-right' style='font-weight:bold;'>"+(v.status !== "PAID"?"<span class='open-a'>OPEN</span>":"<span class='close-a'>CLOSE</span>")+"</div>";
                 amort += "</div>";
             amort += "</div>";
         });
@@ -58,7 +60,7 @@ function deleteRecord() {
 }
 
 function yesDelete() {
-    $.get('/delete_control/destroy/'+transaction_id+"/"+lot_id, function() {
+    $.get('/admin_control/destroy/'+transaction_id+"/"+lot_id, function() {
         
         transaction_id = null;
         lot_id = null;

@@ -128,7 +128,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post         ('/save',                         'TransferFeeController@store'                     )->name('save');
     });
 
-    Route::group(['prefix' => 'delete_control'], function (){
+    Route::group(['prefix' => 'admin_control'], function (){
         Route::get          ('/',                             'SettingsController@index'                        )->name('page');
         Route::get          ('/get/{id}',                     'SettingsController@get'                          )->name('get');
         Route::get          ('/destroy/{transaction_id}/{lot_id}',  'SettingsController@destroy'                )->name('destroy');

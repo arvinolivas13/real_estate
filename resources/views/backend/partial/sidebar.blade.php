@@ -107,9 +107,9 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="/delete_control" class="sidebar-link collapsed">
+                <a href="/admin_control" class="sidebar-link collapsed">
                     <span class="item">
-                        <i class="align-middle mr-2 fas fa-fw fa-trash"></i> <span class="align-middle">Delete Control</span>
+                        <i class="align-middle mr-2 fas fa-fw fa-key"></i> <span class="align-middle">Admin Control</span>
                     </span>
                 </a>
             </li>

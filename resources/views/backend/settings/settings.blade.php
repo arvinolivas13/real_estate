@@ -3,7 +3,7 @@
 @section('title', 'Customers')
 
 @section('breadcrumbs')
-    <span><a href="#" style="color:#fff;">Home</a></span> / <span class="highlight">Delete Control</span>
+    <span><a href="#" style="color:#fff;">Home</a></span> / <span class="highlight">Access Control</span>
 @endsection
 
 
@@ -11,7 +11,7 @@
 <div class="main p-3">
     <div class="row">
         <div class="col-6">
-            <h1>Delete Control</h1>
+            <h1>Access Control</h1>
         </div>
         <div class="col-6 text-right">
             <button class="btn btn-danger" onclick="deleteRecord()">DELETE</button>
@@ -151,6 +151,20 @@ table#transaction_record tr:hover {
     padding: 3px;
     color: #3f3f3f;
     border-bottom: 1px solid #ccc;
+}
+
+span.open-a {
+    text-decoration: line-through;
+    color: red;
+}
+
+span.close-a {
+    padding: 0 10px;
+    background: green;
+    cursor: pointer;
+    color: #fff;
+    font-weight: normal;
+    border-radius: 3px;
 }
 </style>
 @endsection
