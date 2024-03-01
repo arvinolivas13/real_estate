@@ -15,7 +15,7 @@ class PaymentController extends Controller
 {
     public function index()
     {
-        $payments = Payment::orderBy('created_at', 'desc')->with('customer')->limit(500)->get();
+        $payments = Payment::orderBy('created_at', 'desc')->with('customer')->limit(500)->orderBy('id', 'desc')->get();
         $customers = Customer::where('status', 'ACTIVE')->get();
         $paymenttypes  = PaymentType::get();
         return view('backend.pages.payment.payment', compact('payments', 'customers', 'paymenttypes'));
@@ -128,7 +128,7 @@ class PaymentController extends Controller
                     $q->where('firstname', 'like', "%".$request->firstname."%");
                     // $q->where('middlename', 'like', "%".$request->middlename."%");
                     $q->where('lastname', 'like', "%".$request->lastname."%");
-                })->where('code', 'like', '%'.$request->code.'%')->where('payment_id', 'like', '%'.$request->payment_type.'%')->where('payment_classification', 'like', '%'.$request->payment_classification.'%')->orderBy('date')->limit(500)->get()
+                })->where('code', 'like', '%'.$request->code.'%')->where('payment_id', 'like', '%'.$request->payment_type.'%')->where('payment_classification', 'like', '%'.$request->payment_classification.'%')->orderBy('monthly_amortization_id')->limit(500)->get()
             )
             ->addIndexColumn()
             ->make(true);
