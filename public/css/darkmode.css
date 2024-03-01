@@ -471,7 +471,7 @@ table#lookup tbody>tr:hover {
 }
 
 .sidebar-content {
-    background: #001c0b !important;
+    background: #000000 !important;
 }
 .card-body, .card-header, .toggled li.sidebar-item, a.sidebar-link, .action-item button {
     color: white;
