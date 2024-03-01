@@ -74,10 +74,10 @@
             </div>
             <div class="modal-body m-3">
                 <div class="row">
-                    <div class="form-group col-md-12 subscriber_no">
+                    {{-- <div class="form-group col-md-12 subscriber_no">
                         <label for="inputPassword4">Customer Code <span style="color: red">*</span></label>
                         <input type="text" class="form-control" id="subscriber_no" name="subscriber_no" placeholder="Enter Customer Code" required>
-                    </div>
+                    </div> --}}
                     <div class="form-group col-md-4 firstname">
                         <label for="inputPassword4">First Name <span style="color: red">*</span></label>
                         <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name" required>
@@ -134,7 +134,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button> --}}
                 <button type="button" class="btn btn-primary submit-button" onclick="saveRecord()">SAVE</button>
             </div>
         </div>
@@ -236,7 +236,7 @@
         function saveRecord() {
             var data = {
                 _token: '{{csrf_token()}}',
-                subscriber_no: $('#subscriber_no').val(),
+                // subscriber_no: $('#subscriber_no').val(),
                 firstname: $('#firstname').val(),
                 middlename: $('#middlename').val(),
                 lastname: $('#lastname').val(),
@@ -310,6 +310,7 @@
                 processing: true,
                 serverSide: true,
                 pageLength: 20,
+                ordering: false,
                 ajax: {
                     url: '/customer/get',
                     type: 'GET'

@@ -56,9 +56,9 @@ class AreaDetailController extends Controller
                 'no_of_month' => $request->no_of_month,
                 'status' => 'OPEN',
                 'created_user' => Auth::user()->id,
-              ]);
+            ]);
 
-              $lot->save();
+            $lot->save();
         }
 
         return redirect()->back()->with('success','Successfully Added');
