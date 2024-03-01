@@ -146,6 +146,7 @@
                             <div class="form-group col-md-12 attachment">
                                 <label for="attachment">Attachment</label>
                                 {{-- <input type="file" class="form-control" id="attachment" name="attachment"> --}}
+                                {{-- <input type="hidden" id="selected_files" name="selected_files" value=""> --}}
                                 <input type="file" name="attach_file[]" id="attach_file" class="form-control" accept="image/*,.pdf" multiple/>
                             </div>
                             <div class="form-group col-md-12 remarks">
@@ -417,7 +418,7 @@
                 });
                 
             });
-
+            // TAB FORM
             const $paymentForm = $("#paymentForm");
         const $modal = $("#reserveModal");
         const $saveButton = $(".btn-success");
