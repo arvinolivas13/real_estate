@@ -112,9 +112,9 @@ class PaymentController extends Controller
     }
 
     public function get() {
-         if(request()->ajax()) {
-             return datatables()->of(
-              Payment::with('customer', 'paymenttype', 'process_by', 'attachment', 'amortization')->orderBy('id', 'desc')->limit(500)->get()
+        if(request()->ajax()) {
+            return datatables()->of(
+                Payment::with('customer', 'paymenttype', 'process_by', 'attachment', 'amortization')->orderBy('id', 'desc')->limit(500)->get()
             )
             ->addIndexColumn()
             ->make(true);
@@ -173,7 +173,7 @@ class PaymentController extends Controller
     {
         $payment_record = Payment::where('id', $id)->first();
         $amortization_record = MonthlyAmortization::where('id', $payment_record->monthly_amortization_id)->first();
-        $amortization = MonthlyAmortization::where('id', $amortization_id)->update(['balance' => $amortization_record->balance + $payment_record->amount, 'status'=>'UNPAID']);
+        $amortization = MonthlyAmortization::where('id', $payment_record->monthly_amortization_id)->update(['balance' => $amortization_record->balance + $payment_record->amount, 'status'=>'UNPAID']);
         
         $destroy = Payment::find($id);
         $destroy->delete();
