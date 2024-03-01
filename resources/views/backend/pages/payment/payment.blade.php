@@ -38,7 +38,7 @@
                                     <input type="text" class="form-control form-control-sm" name="f_lastname" id="f_lastname"/>
                                 </div>
                                 <div class="form-group col-4">
-                                    <label for="lastname">TRANSACTION CODE:</label>
+                                    <label for="lastname">PROPERTY CODE:</label>
                                     <input type="text" class="form-control form-control-sm" name="f_code" id="f_code"/>
                                 </div>
                                 <div class="form-group col-4">
@@ -93,7 +93,7 @@
                                 <div class="input-group">
                                     <input type="hidden" id="customer_id" name="customer_id" class="form-control col-10"/>
                                     <input type="text" id="customer_name" class="form-control col-10 customer_name" placeholder="Select Order" disabled/>
-                                    <button type="button" class="btn btn-primary col-2" data-toggle="modal" data-target="#customerList"><i class="fas fa-search"></i></button>
+                                    <button type="button" class="btn btn-primary col-2 searchButton" data-toggle="modal" data-target="#customerList"><i class="fas fa-search"></i></button>
                                 </div>
                             </div>
                             <div class="form-group col-md-6 code">
@@ -154,7 +154,6 @@
                             </div>
                         </div>
                         <div class="text-right">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
                             <button type="submit" class="btn btn-success">SAVE</button>
                         </div>
                     </form>
@@ -338,6 +337,7 @@
                 serverSide: true,
                 pageLength: 20,
                 scrollX: true,
+                ordering: false,
                 ajax: {
                     url: '/payment/get',
                     type: 'GET'
@@ -417,6 +417,36 @@
                 });
                 
             });
+
+            const $paymentForm = $("#paymentForm");
+        const $modal = $("#reserveModal");
+        const $saveButton = $(".btn-success");
+        const $searchButton = $(".searchButton");
+        const $firstInput = $("#customer_name");
+
+        $modal.on("shown.bs.modal", function () {
+            $firstInput.focus();
+            $paymentForm.on("keydown", function(event) {
+                if (event.key === "Tab" && !event.shiftKey) {
+                    const $focusableElements = $paymentForm.find("input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled])");
+                    const currentIndex = $focusableElements.index(document.activeElement);
+                    const nextIndex = (currentIndex + 1) % $focusableElements.length;
+                    $focusableElements.eq(nextIndex).focus();
+                    event.preventDefault();
+                }
+            });
+        });
+
+        $modal.on("hidden.bs.modal", function () {
+            $paymentForm.off("keydown");
+        });
+
+        $saveButton.on("keydown", function(event) {
+            if (event.key === "Tab" && !event.shiftKey) {
+                event.preventDefault();
+                $searchButton.focus();
+            }
+        });
 
         });
 
