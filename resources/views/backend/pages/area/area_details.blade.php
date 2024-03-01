@@ -51,7 +51,7 @@
                                     <h4> {{'BLOCK-' . $block->block}} ({{App\AreaDetailLot::where('block_id', $block->id)->where('status', '!=', 'Open')->count() . '/' .App\AreaDetailLot::where('block_id', $block->id)->count()}}) </h4>
                                         <div class="row">
                                             @foreach ($block->lot as $item)
-                                                <div class="col-2">
+                                                <div class="col-md-3 col-lg-2">
                                                 <div class="lot {{$item->status}}" id="area_lot_{{$item->id}}">
                                                     <span class="lot-name">LOT {{$item->lot}}
                                                         <span class="action-items">

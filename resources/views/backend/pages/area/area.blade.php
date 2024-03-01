@@ -14,12 +14,12 @@
             <h3>List of Area</h3>
 
             <div class="area-container row">
-                <div class="col-xl-3 col-lg-3 col-sm-12">
+                <div class="col-xl-3 col-lg-3 col-sm-6 area-box">
                     <button class="btn btn-light add-btn" data-toggle="modal" data-target="#areaModal"><i class="fas fa-plus"></i></button>
                 </div>
                 
                 @foreach ($areas as $area)
-                <div class="col-xl-3 col-lg-3 col-sm-12">
+                <div class="col-xl-3 col-lg-3 col-sm-6 area-box">
                     <div class="area">
                         <button class="btn edit-pen" onclick="edit({{ $area->id }});" data-toggle="modal" data-target="#areaModal" id="{{$area->id}}"><i class="fas fa-pen"></i></button>
                         <img src="/images/area/{{$area->image}}" alt="/images/area/{{$area->image}}" onclick="location.href='{{url('area_detail/' . $area->id)}}'">
@@ -141,6 +141,9 @@
 .area img {
     width: 100%;
     height: 210px;
+}
+.area-box {
+    padding: 0.75em;
 }
 .area {
     box-shadow: 0 0 12px 0px #ccc;
