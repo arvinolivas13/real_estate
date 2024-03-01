@@ -194,7 +194,7 @@
                             <input type="hidden" id="lot_id" name="lot_id" class="form-control col-10"/>
                             <input type="hidden" id="block_no" name="block_no" class="form-control col-10"/>
                             <input type="hidden" id="lot_no" name="lot_no" class="form-control col-10"/>
-                            <input type="text" class="form-control col-10 customer_name" placeholder="Select Order" disabled/>
+                            <input type="text" class="form-control col-10 customer_name" placeholder="Select Customer" disabled/>
                             <button type="button" class="btn btn-primary col-2" data-toggle="modal" data-target="#customerList"><i class="fas fa-search"></i></button>
                         </div>
                     </div>
@@ -205,7 +205,7 @@
                     </div>
 
                     <div class="form-group col-md-12">
-                        <label for="inputPassword4">Code<span style="color: red">*</span></label>
+                        <label for="inputPassword4">Area Code<span style="color: red">*</span></label>
                         <input type="hidden" class="form-control" id="customer_id" name="customer_id" value="">
                         <input type="hidden" id="payment_classification" name="payment_classification" class="form-control col-10" value="RES"/>
                         <input type="text" class="form-control" id="code" name="code" value="" readonly>
@@ -262,7 +262,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5>ORDERS</h5>
+                    <h5>CUSTOMER</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
