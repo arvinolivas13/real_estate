@@ -17,7 +17,6 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $customer = $request->validate([
-            'subscriber_no' => ['required', 'max:250'],
             'firstname' => ['required'],
             'middlename',
             'lastname' => ['required'],
@@ -30,13 +29,16 @@ class CustomerController extends Controller
             'status' => ['required'],
         ]);
 
-        $request->request->add(['created_user' => Auth::user()->id]);
+        $customer = Customer::orderBy('id', 'desc')->first();
+        $last_id = intval(str_replace("BFJ-", "", $customer->subscriber_no)) + 1;
+
+        $request->request->add(['subscriber_no' => 'BFJ-'.str_pad($last_id, 6, '0', STR_PAD_LEFT), 'created_user' => Auth::user()->id]);
 
         if($request->action === "save") {
             Customer::create($request->except(['action', 'id']));
         }
         else {
-            Customer::find($request->id)->update($request->except(['action', 'id']));
+            Customer::find($request->id)->update($request->except(['action', 'id', 'subscriber_no']));
         }
 
         return response()->json(compact('customer'));
