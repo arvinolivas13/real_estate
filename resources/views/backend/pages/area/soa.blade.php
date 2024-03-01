@@ -38,12 +38,12 @@
         </div>
         <div class="row" style="margin: 10px 0px;">
             <div class="col-8">
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 15px;">Customer Name: <span style="font-weight: 300;">{{$customer->firstname . ' ' . $customer->middlename . ' ' . $customer->lastname}}</span></p>
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 15px;">Subscriber Number: <span style="font-weight: 300;">{{$customer->subscriber_no}}</span></p>
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 15px;">Block Number: <span style="font-weight: 300;">Block {{$lot->block->block}}</span></p>
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 15px;">Lot Number: <span style="font-weight: 300;">Lot {{$lot->lot}}</span></p>
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 15px;">Area: <span style="font-weight: 300;">{{$lot->area}}</span></p>
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 15px;">Account Status: <span style="font-weight: 300;">ACTIVE</span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Customer Name: <span style="font-weight: 300;">{{$customer->firstname . ' ' . $customer->middlename . ' ' . $customer->lastname}}</span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Subscriber Number: <span style="font-weight: 300;">{{$customer->subscriber_no}}</span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Block Number: <span style="font-weight: 300;">Block {{$lot->block->block}}</span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Lot Number: <span style="font-weight: 300;">Lot {{$lot->lot}}</span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Area: <span style="font-weight: 300;">{{$lot->area}}</span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 13px;">Account Status: <span style="font-weight: 300;">ACTIVE</span></p>
             </div>
             <div class="col-4">
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 15px;">Purchase Date: <span style="font-weight: 300;">{{$lot->purchase_date}}</span></p>
