@@ -310,6 +310,7 @@
                 processing: true,
                 serverSide: true,
                 pageLength: 20,
+                ordering: false,
                 ajax: {
                     url: '/customer/get',
                     type: 'GET'
