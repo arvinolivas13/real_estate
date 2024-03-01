@@ -58,12 +58,12 @@
         </div>
         <div class="row">
             <p style="margin-bottom: 20px;"></p>
-            <table style="width: 100%; font-size: 13px;">
+            <table style="width: 100%; font-size: 13px;" class="table-striped">
                 <tr style="border-bottom: 2px solid;">
-                    <th style="padding: 13px; width: 100px; text-align: left;">DESCRIPTION</th>
+                    <th style="padding: 13px; width: 70px; text-align: left;">DESCRIPTION</th>
                     <th style="padding: 13px; width: 100px; text-align: left;">AMORT DUE DATE</th>
-                    <th style="padding: 13px; width: 100px; text-align: right;">DATE OF PAYMENT</th>
-                    <th style="padding: 13px; width: 100px; text-align: right;">MOP</th>
+                    <th style="padding: 13px; width: 120px; text-align: right;">DATE OF PAYMENT</th>
+                    <th style="padding: 13px; width: 120px; text-align: right;">MOP</th>
                     <th style="padding: 13px; width: 100px; text-align: right;">REF NO</th>
                     <th style="padding: 13px; width: 100px; text-align: right;">OR NO</th>
                     <th style="padding: 13px; width: 100px; text-align: right;">AMOUNT DUE</th>
@@ -85,10 +85,10 @@
                         @endphp
                         @if ($payment->payment_classification == 'DP' && $payment->amount == 0)
                             <tr>
-                                <td style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">{{$payment->payment_classification}}</td>
+                                <td style="padding: 13px; width: 70px; text-align: left; font-size: 18px;">{{$payment->payment_classification}}</td>
                                 <td style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">--</td>
-                                <td style="padding: 13px; width: 100px; text-align: right;">--</td>
-                                <td style="padding: 13px; width: 100px; text-align: right;">--</td>
+                                <td style="padding: 13px; width: 120px; text-align: right;">--</td>
+                                <td style="padding: 13px; width: 120px; text-align: right;">--</td>
                                 <td style="padding: 13px; width: 100px; text-align: right;">--</td>
                                 <td style="padding: 13px; width: 100px; text-align: right;">--</td>
                                 <td style="padding: 13px; width: 100px; text-align: right;">--</td>
@@ -97,10 +97,10 @@
                             </tr>
                         @else
                             <tr>
-                                <td style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">{{$payment->payment_classification}}</td>
+                                <td style="padding: 13px; width: 70px; text-align: left; font-size: 18px;">{{$payment->payment_classification}}</td>
                                 <td style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">--</td>
-                                <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">{{ date('M d, Y', strtotime($payment->date)) }}</td>
-                                <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;W">{{$payment->paymenttype->payment}}</td>
+                                <td style="padding: 13px; width: 120px; text-align: right; font-size: 18px;">{{ date('M d, Y', strtotime($payment->date)) }}</td>
+                                <td style="padding: 13px; width: 120px; text-align: right; font-size: 18px;W">{{$payment->paymenttype->payment}}</td>
                                 <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">{{$payment->reference_no}}</td>
                                 <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">{{$payment->or_no}}</td>
                                 <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">--</td>
@@ -112,10 +112,10 @@
                     @else
                         @if($payment->payment_classification !== 'MA')
                             <tr>
-                                <td style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">{{ $payment->payment_classification }}</td>
+                                <td style="padding: 13px; width: 70px; text-align: left; font-size: 18px;">{{ $payment->payment_classification }}</td>
                                 <td style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">{{ date('M d, Y', strtotime($payment->date)) }}</td>
-                                <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;"> {{ date('M d, Y', strtotime($payment->date)) }}</td>
-                                <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">{{$payment->paymenttype->payment}}</td>
+                                <td style="padding: 13px; width: 120px; text-align: right; font-size: 18px;"> {{ date('M d, Y', strtotime($payment->date)) }}</td>
+                                <td style="padding: 13px; width: 120px; text-align: right; font-size: 18px;">{{$payment->paymenttype->payment}}</td>
                                 <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">{{ $payment->reference_no }}</td>
                                 <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">{{ $payment->or_no }}</td>
                                 <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">₱ {{ number_format($lot->monthly_amortization, 2) }}</td>
@@ -158,10 +158,10 @@
                 @endphp
                 
                 <tr>
-                    <td style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">{{$amortization->payment_classification . ' ('.$amortization->counter .')'}}</td>
+                    <td style="padding: 13px; width: 70px; text-align: left; font-size: 18px;">{{$amortization->payment_classification . ' ('.$amortization->counter .')'}}</td>
                     <td style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">{{ date('M d, Y', strtotime($amortization->payment_date)) }}</td>
-                    <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">{{$amortization->payment !== null?date('M d, Y', strtotime($amortization->payment['date'])):'--' }}</td>
-                    <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">{{$amortization->payment !== null?$amortization->payment['paymenttype']['payment']:'--' }}</td>
+                    <td style="padding: 13px; width: 120px; text-align: right; font-size: 18px;">{{$amortization->payment !== null?date('M d, Y', strtotime($amortization->payment['date'])):'--' }}</td>
+                    <td style="padding: 13px; width: 120px; text-align: right; font-size: 18px;">{{$amortization->payment !== null?$amortization->payment['paymenttype']['payment']:'--' }}</td>
                     <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">{{$amortization->payment !== null && $amortization->payment['reference_no'] !== null?$amortization->payment['reference_no']:'--' }}</td>
                     <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">{{$amortization->payment !== null?$amortization->payment['or_no']:'--' }}</td>
                     <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">₱ {{$amortization->payment !== null?number_format($lot->monthly_amortization, 2):number_format($amortization->balance, 2) }}</td>
@@ -174,12 +174,12 @@
         <div class="spacer" style="height: 60px;"></div>
         <div class="row">
             <p style="margin-bottom: 20px;"></p>
-            <table style="width: 100%; font-size: 18px;">
+            <table style="width: 100%; font-size: 18px;" class="table-striped">
                 <tr style="border-bottom: 2px solid; border-top: 2px solid;">
-                    <th style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">Totals</th>
+                    <th style="padding: 13px; width: 70px; text-align: left; font-size: 18px;">Totals</th>
                     <th style="padding: 13px; width: 100px; text-align: left; font-size: 18px;"></th>
-                    <th style="padding: 13px; width: 100px; text-align: right; font-size: 18px;"></th>
-                    <th style="padding: 13px; width: 100px; text-align: right; font-size: 18px;"></th>
+                    <th style="padding: 13px; width: 120px; text-align: right; font-size: 18px;"></th>
+                    <th style="padding: 13px; width: 120px; text-align: right; font-size: 18px;"></th>
                     <th style="padding: 13px; width: 100px; text-align: right; font-size: 18px;"></th>
                     <th style="padding: 13px; width: 100px; text-align: right; font-size: 18px;"></th>
                     <th style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">₱ {{ number_format($lot->tcp - $regular_amount_pay, 2)}}</th>
@@ -190,12 +190,12 @@
         </div>
         <div class="row">
             <p style="margin-bottom: 20px;"></p>
-            <table style="width: 100%; font-size: 12px;">
+            <table style="width: 100%; font-size: 12px;" class="table-striped">
                 <tr>
-                    <td style="padding: 13px; width: 100px; text-align: left; text-decoration: underline;">Penalty/Others</td>
+                    <td style="padding: 13px; width: 70px; text-align: left; text-decoration: underline;">Penalty/Others</td>
                     <td style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">Penalty Date</td>
-                    <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">Amount</td>
-                    <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">O.R Date</td>
+                    <td style="padding: 13px; width: 120px; text-align: right; font-size: 18px;">Amount</td>
+                    <td style="padding: 13px; width: 120px; text-align: right; font-size: 18px;">O.R Date</td>
                     <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">O.R No.</td>
                     <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">Amount Due</td>
                     <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">Amount Paid</td>
@@ -207,10 +207,10 @@
                     $total_penalty = $total_penalty + $penalty->amount;
                 @endphp
                     <tr>
-                        <td style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">PEN</td>
+                        <td style="padding: 13px; width: 70px; text-align: left; font-size: 18px;">PEN</td>
                         <td style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">{{$penalty->penalty_date}}</td>
-                        <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">{{ number_format($penalty->amount, 2)}}</td>
-                        <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">-</td>
+                        <td style="padding: 13px; width: 120px; text-align: right; font-size: 18px;">{{ number_format($penalty->amount, 2)}}</td>
+                        <td style="padding: 13px; width: 120px; text-align: right; font-size: 18px;">-</td>
                         <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">-</td>
                         <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">{{ number_format($penalty->amount, 2)}}</td>
                         <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">-</td>
@@ -221,12 +221,12 @@
         </div>
         <div class="row">
             <p style="margin-bottom: 20px;"></p>
-            <table style="width: 100%; font-size: 12px;">
+            <table style="width: 100%; font-size: 12px;" class="table-striped">
                 <tr style="border-bottom: 2px solid; border-top: 2px solid;">
-                    <th style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">Total</th>
+                    <th style="padding: 13px; width: 70px; text-align: left; font-size: 18px;">Total</th>
                     <th style="padding: 13px; width: 100px; text-align: left; font-size: 18px;"></th>
-                    <th style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">₱ {{ number_format($penalty_amount_due, 2)}}</th>
-                    <th style="padding: 13px; width: 100px; text-align: right; font-size: 18px;"></th>
+                    <th style="padding: 13px; width: 120px; text-align: right; font-size: 18px;">₱ {{ number_format($penalty_amount_due, 2)}}</th>
+                    <th style="padding: 13px; width: 120px; text-align: right; font-size: 18px;"></th>
                     <th style="padding: 13px; width: 100px; text-align: right; font-size: 18px;"></th>
                     <th style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">₱ {{ number_format($penalty_amount_due, 2)}}</th>
                     <th style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">₱ {{ number_format($penalty_amount_pay, 2)}}</th>
@@ -237,12 +237,12 @@
 
         <div class="row">
             <p style="margin-bottom: 20px;"></p>
-            <table style="width: 100%; font-size: 12px;">
+            <table style="width: 100%; font-size: 12px;" class="table-striped">
                 <tr>
-                    <td style="padding: 13px; width: 100px; text-align: left; text-decoration: underline; font-size: 18px;">Transfer Fee</td>
+                    <td style="padding: 13px; width: 70px; text-align: left; text-decoration: underline; font-size: 18px;">Transfer Fee</td>
                     <td style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">Date</td>
-                    <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">Amount</td>
-                    <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">O.R Date</td>
+                    <td style="padding: 13px; width: 120px; text-align: right; font-size: 18px;">Amount</td>
+                    <td style="padding: 13px; width: 120px; text-align: right; font-size: 18px;">O.R Date</td>
                     <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">O.R No.</td>
                     <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">Amount Due</td>
                     <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">Amount Paid</td>
@@ -254,10 +254,10 @@
                     $total_transfer_fee = $total_transfer_fee + $transfer_fee->amount;
                 @endphp
                     <tr>
-                        <td style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">TF</td>
+                        <td style="padding: 13px; width: 70px; text-align: left; font-size: 18px;">TF</td>
                         <td style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">{{$transfer_fee->penalty_date}}</td>
-                        <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">{{ number_format($transfer_fee->amount, 2)}}</td>
-                        <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">-</td>
+                        <td style="padding: 13px; width: 120px; text-align: right; font-size: 18px;">{{ number_format($transfer_fee->amount, 2)}}</td>
+                        <td style="padding: 13px; width: 120px; text-align: right; font-size: 18px;">-</td>
                         <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">-</td>
                         <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">{{ number_format($transfer_fee->amount, 2)}}</td>
                         <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">-</td>
@@ -268,12 +268,12 @@
         </div>
         <div class="row">
             <p style="margin-bottom: 20px;"></p>
-            <table style="width: 100%; font-size: 12px;">
+            <table style="width: 100%; font-size: 12px;" class="table-striped">
                 <tr style="border-bottom: 2px solid; border-top: 2px solid;">
-                    <th style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">Total</th>
+                    <th style="padding: 13px; width: 70px; text-align: left; font-size: 18px;">Total</th>
                     <th style="padding: 13px; width: 100px; text-align: left; font-size: 18px;"></th>
-                    <th style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">₱ {{ number_format($transfer_fee_amount_due, 2)}}</th>
-                    <th style="padding: 13px; width: 100px; text-align: right; font-size: 18px;"></th>
+                    <th style="padding: 13px; width: 120px; text-align: right; font-size: 18px;">₱ {{ number_format($transfer_fee_amount_due, 2)}}</th>
+                    <th style="padding: 13px; width: 120px; text-align: right; font-size: 18px;"></th>
                     <th style="padding: 13px; width: 100px; text-align: right; font-size: 18px;"></th>
                     <th style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">₱ {{ number_format($transfer_fee_amount_due, 2)}}</th>
                     <th style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">₱ {{ number_format($transfer_fee_amount_pay, 2)}}</th>
@@ -284,12 +284,12 @@
 
         <div class="row">
             <p style="margin-bottom: 20px;"></p>
-            <table style="width: 100%; font-size: 12px;">
+            <table style="width: 100%; font-size: 12px;" class="table-striped">
                 <tr>
-                    <td style="padding: 13px; width: 100px; text-align: left; font-weight: bold; font-size: 18px;">Grand Total</td>
+                    <td style="padding: 13px; width: 70px; text-align: left; font-weight: bold; font-size: 18px;">Grand Total</td>
                     <td style="padding: 13px; width: 100px; text-align: left; font-size: 18px;"></td>
-                    <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;"></td>
-                    <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;"></td>
+                    <td style="padding: 13px; width: 120px; text-align: right; font-size: 18px;"></td>
+                    <td style="padding: 13px; width: 120px; text-align: right; font-size: 18px;"></td>
                     <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;"></td>
                     <td style="padding: 13px; width: 100px; text-align: right; font-weight: bold; font-size: 18px;">₱ {{ number_format(($penalty_amount_due + $transfer_fee_amount_due) + ($lot->tcp - $regular_amount_pay), 2)}}</td>
                     <td style="padding: 13px; width: 100px; text-align: right; font-weight: bold; font-size: 18px;">₱ {{ number_format($penalty_amount_pay + $regular_amount_pay + $transfer_fee_amount_pay, 2)}}</td>
@@ -513,6 +513,8 @@ a.float:hover {
     color: #ffff;
     margin-bottom: 15px;
 }
-
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f0f0f0;
+}
 </style>
 @endsection
