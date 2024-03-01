@@ -127,6 +127,12 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/edit/{id}',                    'TransferFeeController@edit'                      )->name('edit');
         Route::post         ('/save',                         'TransferFeeController@store'                     )->name('save');
     });
+
+    Route::group(['prefix' => 'delete_control'], function (){
+        Route::get          ('/',                             'SettingsController@index'                        )->name('page');
+        Route::get          ('/get/{id}',                     'SettingsController@get'                          )->name('get');
+        Route::get          ('/destroy/{transaction_id}/{lot_id}',  'SettingsController@destroy'                )->name('destroy');
+    });
     
     Route::group(['prefix' => 'user'], function (){
         Route::get          ('/',                             'UserController@index'                            )->name('');
