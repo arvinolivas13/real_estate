@@ -28,6 +28,9 @@ class SettingsController extends Controller
     }
 
     public function destroy($transaction_id, $lot_id) {
+        $code = Transaction::where('id', $transaction_id)->first();
+        Payment::where('code', $code->code)->delete();
+
         MonthlyAmortization::where('transaction_id', $transaction_id)->delete();
         Transaction::where('id', $transaction_id)->delete();
 
@@ -35,6 +38,7 @@ class SettingsController extends Controller
 
         return response()->json();
     }
+
     public function close_amortization(Request $request, $id) {
         $ammort = MonthlyAmortization::where('id', $id)->first();
 
