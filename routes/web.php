@@ -106,7 +106,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post         ('/getWithDownpayment',          'PaymentController@getWithDownpayment'             )->name('get_downpayment');
     });
 
-    
+
 
     Route::group(['prefix' => 'transaction'], function (){
         Route::post          ('/reservation',                 'TransactionController@reservation'               )->name('get');
@@ -119,8 +119,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get           ('/nodownpayment/{id}',          'TransactionController@noDownpayment'             )->name('get');
         Route::post          ('/generate_amort/{id}',         'TransactionController@generate_amortization'     )->name('get');
         Route::post          ('/hide_lot',                    'TransactionController@hide_lot'                  )->name('get');
+        Route::post          ('/subscriber_no',               'TransactionController@subscriber_no'                  )->name('get');
     });
-    
+
     Route::group(['prefix' => 'transfer_fee'], function (){
         Route::get          ('/',                             'TransferFeeController@index'                     )->name('get');
         Route::get          ('/get',                          'TransferFeeController@get'                       )->name('get');
@@ -134,7 +135,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get          ('/destroy/{transaction_id}/{lot_id}',  'SettingsController@destroy'                )->name('destroy');
         Route::post         ('/close_amortization/{id}',      'SettingsController@close_amortization'           )->name('update');
     });
-    
+
     Route::group(['prefix' => 'user'], function (){
         Route::get          ('/',                             'UserController@index'                            )->name('');
         Route::post         ('/save',                         'UserController@store'                            )->name('save');

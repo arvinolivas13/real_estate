@@ -59,6 +59,7 @@
                                                             <button class="btn btn-sm btn-block edit-lot" title="EDIT LOT" onclick="editLot('{{$item->status}}', '{{$item->id}}', '{{$block->block}}', '{{$item->lot}}')"><i class="fas fa-pen"></i></button>
                                                             @endif
                                                             @if($item->status !== "OPEN")
+                                                                <button class="btn btn-sm btn-block edit-lot" title="EDIT LOT" onclick="editSubscriber('{{$item->id}}')"><i class="fas fa-pen"></i></button>
                                                                 @if($item->transaction !== null)
                                                                     @if($item->transaction->hide_status === 0)
                                                                         <button class="btn btn-sm btn-block hide" title="HIDE LOT" onclick="hideLot({{$item->transaction->id}}, {{$item->id}})" data-val="1"><i class="fas fa-eye"></i></button>
@@ -330,6 +331,38 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="subscriberModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title block-details-title">Subscriber No</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group name">
+                            <label for="name">Subscriber No</label>
+                            <div class="input-group">
+                                <input type="hidden" name="subscriber_no_id" id="subscriber_no_id" class="form-control">
+                                <input type="text" name="subscriber_no_edit" id="subscriber_no_edit" class="form-control">
+                                <br>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" onclick="saveSubscriber()">Update</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="modal fade" id="attachmentModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -675,6 +708,24 @@
             }
         }
 
+        function editSubscriber(id) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/area_detail/edit/' + id,
+                method: 'get',
+                success: function(data) {
+                    $('#modal-form-block').attr('action', '/area_detail/update/' + data.area_detail_lot.id);
+                    $('.submit-button').text('Update');
+                    $('#subscriber_no_id').val(data.area_detail_lot.id)
+                    $('#subscriber_no_edit').val(data.area_detail_lot.subscriber_no)
+                }
+            });
+
+            $('#subscriberModal').modal('show');
+        }
+
         function selectCustomer(id, value) {
             $('#customer_id').val(id);
             $('.customer_name').val(value);
@@ -701,6 +752,19 @@
                                 $('#'+k).val(v);
                             });
                         });
+                }
+            });
+        }
+
+        function subscriber_no() {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/transaction/subscriber_no/' + id,
+                method: 'get',
+                success: function(data) {
+
                 }
             });
         }
@@ -770,6 +834,13 @@
                 }
                 toastr.error(response.responseJSON.message);
             });
+        }
+
+        function saveSubscriber() {
+            $.post('/transaction/subscriber_no', { _token: "{{csrf_token()}}", id: $('#subscriber_no_id').val(), subscriber_no: $('#subscriber_no_edit').val() }).done(function(response) {
+                toastr.success('Record saved');
+                $('#subscriberModal').modal('hide');
+            })
         }
 
         function addAttachment() {
@@ -852,7 +923,7 @@
                     $('#area_lot_' + lot_id + ' .hide').html('<i class="fas fa-eye"></i>');
                 }
             });
-        } 
+        }
 
     </script>
 @endsection

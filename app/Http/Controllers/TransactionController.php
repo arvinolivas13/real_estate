@@ -61,8 +61,13 @@ class TransactionController extends Controller
 
         $transaction->save();
 
-        AreaDetailLot::where("id", $request->lot_id)->update(["status" => "RESERVED", 'reservation_date' => $request->date]);
+        AreaDetailLot::where("id", $request->lot_id)->update(["subscriber_no" => $request->subscriber_no, "status" => "RESERVED", 'reservation_date' => $request->date]);
         return redirect()->back()->with('success','Successfully Added');
+    }
+
+    public function subscriber_no(Request $request)
+    {
+        AreaDetailLot::where("id", $request->id)->update(["subscriber_no" => $request->subscriber_no]);
     }
 
     public function checkdp($id)

@@ -39,7 +39,7 @@
         <div class="row" style="margin: 10px 0px;">
             <div class="col-8">
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 15px;">Customer Name: <span style="font-weight: 300;">{{$customer->firstname . ' ' . $customer->middlename . ' ' . $customer->lastname}}</span></p>
-                <p style="margin-bottom: 0px; font-weight: 500; font-size: 15px;">Subscriber Number: <span style="font-weight: 300;">{{$customer->subscriber_no}}</span></p>
+                <p style="margin-bottom: 0px; font-weight: 500; font-size: 15px;">Subscriber Number: <span style="font-weight: 300;">{{$lot->subscriber_no}}</span></p>
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 15px;">Block Number: <span style="font-weight: 300;">Block {{$lot->block->block}}</span></p>
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 15px;">Lot Number: <span style="font-weight: 300;">Lot {{$lot->lot}}</span></p>
                 <p style="margin-bottom: 0px; font-weight: 500; font-size: 15px;">Area: <span style="font-weight: 300;">{{$lot->area}}</span></p>
@@ -108,7 +108,7 @@
                                 <td style="padding: 13px; width: 100px; text-align: right; font-size: 18px;">₱ {{ number_format($contract_price, 2)}}</td>
                             </tr>
                         @endif
-                        
+
                     @else
                         @if($payment->payment_classification !== 'MA')
                             <tr>
@@ -156,7 +156,7 @@
                         $contract_price = $contract_price - $amortization->payment['amount'];
                     }
                 @endphp
-                
+
                 <tr>
                     <td style="padding: 13px; width: 70px; text-align: left; font-size: 18px;">{{$amortization->payment_classification . ' ('.$amortization->counter .')'}}</td>
                     <td style="padding: 13px; width: 100px; text-align: left; font-size: 18px;">{{ date('M d, Y', strtotime($amortization->payment_date)) }}</td>
